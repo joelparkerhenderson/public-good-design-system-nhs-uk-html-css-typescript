@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Date Input Component - Basic Examples</title>
+  <link rel="stylesheet" href="../../../index.css">
+  <style>
+    body {
+      font-family: var(--public-good-font-family);
+      margin: 0;
+      padding: var(--public-good-spacing-6);
+      background-color: var(--public-good-color-background);
+    }
+    
+    .example-section {
+      margin-bottom: var(--public-good-spacing-8);
+    }
+    
+    .example-title {
+      font-size: var(--public-good-font-size-lg);
+      font-weight: var(--public-good-font-weight-bold);
+      margin-bottom: var(--public-good-spacing-4);
+      color: var(--public-good-color-text);
+    }
+    
+    .example-description {
+      margin-bottom: var(--public-good-spacing-5);
+      color: var(--public-good-color-text-secondary);
+    }
+  </style>
+</head>
+<body>
+  <h1>Date Input Component - Basic Examples</h1>
+  
+  <div class="example-section">
+    <h2 class="example-title">Basic Date Input</h2>
+    <p class="example-description">Simple date input with fieldset and legend.</p>
+    
+    <div id="basic-date-input"></div>
+  </div>
+
+  <div class="example-section">
+    <h2 class="example-title">Date Input with Hint</h2>
+    <p class="example-description">Date input with helpful hint text.</p>
+    
+    <div id="hint-date-input"></div>
+  </div>
+
+  <div class="example-section">
+    <h2 class="example-title">Date Input with Pre-filled Values</h2>
+    <p class="example-description">Date input with some values already filled.</p>
+    
+    <div id="prefilled-date-input"></div>
+  </div>
+
+  <div class="example-section">
+    <h2 class="example-title">Date Input with Error Message</h2>
+    <p class="example-description">Date input in error state with validation message.</p>
+    
+    <div id="error-date-input"></div>
+  </div>
+
+  <div class="example-section">
+    <h2 class="example-title">Date Input as Page Heading</h2>
+    <p class="example-description">Date input with legend as a page heading.</p>
+    
+    <div id="heading-date-input"></div>
+  </div>
+
+  <div class="example-section">
+    <h2 class="example-title">Simple Date Input (No Fieldset)</h2>
+    <p class="example-description">Date input without fieldset wrapper.</p>
+    
+    <div id="simple-date-input"></div>
+  </div>
+
+  <script type="module">
+    import { 
+      createDateInput, 
+      createSimpleDateInput,
+      createDateInputWithError 
+    } from '../date-input.js'
+    
+    // Basic date input
+    const basicDateInput = createDateInput({
+      namePrefix: 'basic-date',
+      fieldset: {
+        legend: {
+          text: 'What is your date of birth?'
+        }
+      }
+    })
+    document.getElementById('basic-date-input').appendChild(basicDateInput.element)
+    
+    // Date input with hint
+    const hintDateInput = createDateInput({
+      namePrefix: 'hint-date',
+      fieldset: {
+        legend: {
+          text: 'When did you start your current job?'
+        }
+      },
+      hint: {
+        text: 'For example, 27 3 2007'
+      }
+    })
+    document.getElementById('hint-date-input').appendChild(hintDateInput.element)
+    
+    // Date input with pre-filled values
+    const prefilledDateInput = createDateInput({
+      namePrefix: 'prefilled-date',
+      fieldset: {
+        legend: {
+          text: 'When was your passport issued?'
+        }
+      },
+      hint: {
+        text: 'This is shown on your passport'
+      },
+      value: {
+        day: '15',
+        month: '03',
+        year: '2021'
+      }
+    })
+    document.getElementById('prefilled-date-input').appendChild(prefilledDateInput.element)
+    
+    // Date input with error message
+    const errorDateInput = createDateInputWithError(
+      'error-date',
+      'When did you move to the UK?',
+      'Enter the date you moved to the UK'
+    )
+    document.getElementById('error-date-input').appendChild(errorDateInput.element)
+    
+    // Date input as page heading
+    const headingDateInput = createDateInput({
+      namePrefix: 'heading-date',
+      fieldset: {
+        legend: {
+          text: 'What is your date of birth?',
+          isPageHeading: true,
+          classes: 'public-good-fieldset__legend--l'
+        }
+      },
+      hint: {
+        text: 'For example, 31 3 1980'
+      }
+    })
+    document.getElementById('heading-date-input').appendChild(headingDateInput.element)
+    
+    // Simple date input without fieldset
+    const simpleDateInput = createSimpleDateInput(
+      'simple-date',
+      'Select your preferred appointment date'
+    )
+    document.getElementById('simple-date-input').appendChild(simpleDateInput.element)
+    
+    // Add event listeners for demonstration
+    document.addEventListener('public-good:date-input:change', (event) => {
+      console.log('Date input changed:', {
+        namePrefix: event.detail.namePrefix,
+        field: event.detail.field,
+        value: event.detail.value,
+        allValues: event.detail.values
+      })
+    })
+    
+    // Add demonstration controls
+    const demoControls = document.createElement('div')
+    demoControls.innerHTML = `
+      <div style="margin-top: 2rem; padding: 1rem; background: #f0f4f5; border-radius: 4px;">
+        <h3>Interactive Controls</h3>
+        <button id="validate-all" class="public-good-button public-good-button--secondary" style="margin-right: 0.5rem;">Validate All</button>
+        <button id="clear-all" class="public-good-button public-good-button--secondary" style="margin-right: 0.5rem;">Clear All</button>
+        <button id="set-today" class="public-good-button public-good-button--secondary" style="margin-right: 0.5rem;">Set Today's Date</button>
+        <button id="disable-all" class="public-good-button public-good-button--secondary" style="margin-right: 0.5rem;">Disable All</button>
+        <button id="enable-all" class="public-good-button public-good-button--secondary">Enable All</button>
+        <div id="validation-results" style="margin-top: 1rem; font-weight: bold;"></div>
+      </div>
+    `
+    document.body.appendChild(demoControls)
+    
+    // Store date inputs for controls
+    const allDateInputs = [
+      basicDateInput,
+      hintDateInput,
+      prefilledDateInput,
+      errorDateInput,
+      headingDateInput,
+      simpleDateInput
+    ]
+    
+    // Validate all
+    document.getElementById('validate-all').addEventListener('click', () => {
+      const results = allDateInputs.map(dateInput => ({
+        name: dateInput.config.namePrefix,
+        values: dateInput.getValues(),
+        date: dateInput.getDate(),
+        isValid: dateInput.validate()
+      }))
+      
+      const resultsElement = document.getElementById('validation-results')
+      resultsElement.innerHTML = results.map(result => {
+        const dateStr = result.date ? result.date.toLocaleDateString() : 'Invalid/Incomplete'
+        return `<div>${result.name}: ${result.isValid ? '✅' : '❌'} (${dateStr})</div>`
+      }).join('')
+    })
+    
+    // Clear all
+    document.getElementById('clear-all').addEventListener('click', () => {
+      allDateInputs.forEach(dateInput => dateInput.clear())
+      document.getElementById('validation-results').innerHTML = 'All date inputs cleared'
+    })
+    
+    // Set today's date
+    document.getElementById('set-today').addEventListener('click', () => {
+      const today = new Date()
+      allDateInputs.forEach(dateInput => dateInput.setDate(today))
+      document.getElementById('validation-results').innerHTML = `All dates set to today (${today.toLocaleDateString()})`
+    })
+    
+    // Disable all
+    document.getElementById('disable-all').addEventListener('click', () => {
+      allDateInputs.forEach(dateInput => dateInput.disable())
+      document.getElementById('validation-results').innerHTML = 'All date inputs disabled'
+    })
+    
+    // Enable all
+    document.getElementById('enable-all').addEventListener('click', () => {
+      allDateInputs.forEach(dateInput => dateInput.enable())
+      document.getElementById('validation-results').innerHTML = 'All date inputs enabled'
+    })
+    
+    // Auto-advance demonstration
+    let autoAdvanceCount = 0
+    document.addEventListener('public-good:date-input:change', (event) => {
+      autoAdvanceCount++
+      if (autoAdvanceCount <= 5) {
+        console.log(`Auto-advance demonstration ${autoAdvanceCount}:`, event.detail)
+      }
+    })
+    
+    // Date validation demonstration
+    const validateAndShowResult = (dateInput, name) => {
+      const isValid = dateInput.validate()
+      const date = dateInput.getDate()
+      console.log(`${name} validation:`, {
+        isValid,
+        date: date ? date.toISOString() : null,
+        values: dateInput.getValues()
+      })
+    }
+    
+    // Test various date scenarios
+    setTimeout(() => {
+      console.log('=== Date Input Demonstrations ===')
+      
+      // Valid date
+      basicDateInput.setValues({ day: '15', month: '03', year: '1984' })
+      validateAndShowResult(basicDateInput, 'Valid date')
+      
+      // Invalid date (Feb 30)
+      hintDateInput.setValues({ day: '30', month: '02', year: '2021' })
+      validateAndShowResult(hintDateInput, 'Invalid date (Feb 30)')
+      
+      // Leap year date
+      const leapYearInput = allDateInputs[2]
+      leapYearInput.setValues({ day: '29', month: '02', year: '2020' })
+      validateAndShowResult(leapYearInput, 'Leap year date (Feb 29, 2020)')
+      
+      // Non-leap year date
+      leapYearInput.setValues({ day: '29', month: '02', year: '2021' })
+      validateAndShowResult(leapYearInput, 'Non-leap year date (Feb 29, 2021)')
+    }, 1000)
+  </script>
+</body>
+</html>

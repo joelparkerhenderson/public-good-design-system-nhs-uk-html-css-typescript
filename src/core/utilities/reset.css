@@ -1,0 +1,148 @@
+/**
+ * Public Good Design System - CSS Reset
+ * Modern CSS reset with accessibility considerations
+ */
+
+/* Box sizing reset */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* Remove default margins */
+* {
+  margin: 0;
+}
+
+/* Improve text rendering */
+html {
+  -webkit-text-size-adjust: 100%;
+  -moz-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  text-rendering: optimizeSpeed;
+}
+
+/* Allow percentage-based heights in the application */
+html,
+body {
+  height: 100%;
+}
+
+/* Set core body defaults */
+body {
+  font-family: var(--public-good-font-family-base);
+  font-size: var(--public-good-body-size);
+  font-weight: var(--public-good-body-weight);
+  line-height: var(--public-good-body-line-height);
+  color: var(--public-good-color-text);
+  background-color: var(--public-good-color-background);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Make images easier to work with */
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+/* Inherit fonts for inputs and buttons */
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+/* Remove default button styles */
+button {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+/* Remove default list styles */
+ul,
+ol {
+  padding: 0;
+  list-style: none;
+}
+
+/* Reset heading styles */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: inherit;
+  line-height: inherit;
+}
+
+/* Reset link styles */
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* Remove default fieldset styles */
+fieldset {
+  border: none;
+  padding: 0;
+  margin: 0;
+  min-width: 0;
+}
+
+/* Reset table styles */
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+/* Ensure elements with hidden attribute are hidden */
+[hidden] {
+  display: none !important;
+}
+
+/* Focus styles for accessibility */
+:focus {
+  outline: var(--public-good-spacing-focus-width) solid var(--public-good-color-focus);
+  outline-offset: var(--public-good-spacing-focus-offset);
+}
+
+/* Remove focus outline for mouse users but keep for keyboard users */
+:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* Ensure focus is visible for keyboard users */
+:focus-visible {
+  outline: var(--public-good-spacing-focus-width) solid var(--public-good-color-focus);
+  outline-offset: var(--public-good-spacing-focus-offset);
+}
+
+/* Reduce motion for users who prefer it */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  :root {
+    --public-good-color-border: var(--public-good-color-black);
+    --public-good-color-text-secondary: var(--public-good-color-black);
+  }
+}

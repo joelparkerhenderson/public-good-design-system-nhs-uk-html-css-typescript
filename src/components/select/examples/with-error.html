@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Select - With Error Example</title>
+  <link rel="stylesheet" href="../../../styles/index.css">
+  <link rel="stylesheet" href="../select.css">
+</head>
+<body>
+  <div class="public-good-width-container">
+    <main class="public-good-main-wrapper">
+      <div class="public-good-grid-row">
+        <div class="public-good-grid-column-two-thirds">
+          <h1>Select - With Error Example</h1>
+          
+          <p class="public-good-body-l">
+            Show an error message when users haven't selected a required option or have selected an invalid option.
+          </p>
+
+          <div id="error-example"></div>
+          
+          <p>
+            <button type="button" id="show-error">Show error</button>
+            <button type="button" id="hide-error">Hide error</button>
+          </p>
+
+          <h2>Writing good error messages</h2>
+          <ul>
+            <li>be specific about what went wrong</li>
+            <li>explain how to fix the problem</li>
+            <li>use active language</li>
+            <li>avoid technical jargon</li>
+          </ul>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script type="module">
+    import { createSelect } from '../select.js'
+
+    // Select with error example
+    const errorSelect = createSelect({
+      name: 'priority-level',
+      label: 'What is the priority level?',
+      hint: 'Select the urgency of your request',
+      errorMessage: 'Select a priority level',
+      options: [
+        { value: '', text: 'Choose priority level' },
+        { value: 'low', text: 'Low - can wait a few weeks' },
+        { value: 'medium', text: 'Medium - can wait a few days' },
+        { value: 'high', text: 'High - needs attention this week' },
+        { value: 'urgent', text: 'Urgent - needs immediate attention' }
+      ],
+      required: true
+    })
+
+    document.getElementById('error-example').appendChild(errorSelect.element)
+
+    // Demo buttons
+    document.getElementById('show-error').addEventListener('click', () => {
+      errorSelect.showError('Select a priority level for your request')
+    })
+
+    document.getElementById('hide-error').addEventListener('click', () => {
+      errorSelect.hideError()
+    })
+
+    // Add event listener for demonstration
+    errorSelect.element.addEventListener('public-good:select:changed', (event) => {
+      console.log('Priority selected:', event.detail.value)
+      
+      // Hide error when user makes a selection
+      if (event.detail.value) {
+        errorSelect.hideError()
+      }
+    })
+  </script>
+</body>
+</html>

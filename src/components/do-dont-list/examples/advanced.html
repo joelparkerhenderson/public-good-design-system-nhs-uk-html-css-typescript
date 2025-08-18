@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Do and Don't List - Advanced Examples</title>
+  <link rel="stylesheet" href="../../../index.css">
+  <style>
+    body {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem;
+      font-family: var(--public-good-font-family);
+      line-height: 1.6;
+      color: var(--public-good-color-text);
+    }
+    
+    .example-section {
+      margin-bottom: 3rem;
+      padding-bottom: 2rem;
+      border-bottom: 1px solid var(--public-good-color-border);
+    }
+    
+    .example-section:last-child {
+      border-bottom: none;
+    }
+    
+    .example-title {
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      color: var(--public-good-color-text);
+    }
+    
+    .example-description {
+      margin-bottom: 2rem;
+      color: var(--public-good-color-text-secondary);
+    }
+    
+    .two-column {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      margin-bottom: 2rem;
+    }
+    
+    @media (max-width: 768px) {
+      .two-column {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+      }
+    }
+    
+    .variant-demo {
+      padding: 1.5rem;
+      border: 1px solid var(--public-good-color-border);
+      border-radius: 8px;
+      margin-bottom: 1rem;
+    }
+    
+    .variant-title {
+      font-weight: 600;
+      margin-bottom: 1rem;
+      font-size: 1.1rem;
+    }
+    
+    .code-block {
+      background: #f8f9fa;
+      border: 1px solid #e9ecef;
+      border-radius: 4px;
+      padding: 1rem;
+      font-family: 'Courier New', monospace;
+      font-size: 0.875rem;
+      overflow-x: auto;
+      margin-top: 1rem;
+    }
+    
+    .controls {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      margin-top: 1rem;
+    }
+    
+    .controls button {
+      padding: 0.5rem 1rem;
+      border: 1px solid var(--public-good-color-button-primary);
+      background: var(--public-good-color-button-primary);
+      color: white;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 0.875rem;
+    }
+    
+    .controls button:hover {
+      background: var(--public-good-color-button-primary-hover);
+    }
+    
+    .controls button.secondary {
+      background: white;
+      color: var(--public-good-color-button-primary);
+    }
+    
+    .controls button.secondary:hover {
+      background: #f8f9fa;
+    }
+    
+    .event-log {
+      background: #f8f9fa;
+      border: 1px solid #e9ecef;
+      border-radius: 4px;
+      padding: 1rem;
+      height: 200px;
+      overflow-y: auto;
+      font-family: 'Courier New', monospace;
+      font-size: 0.875rem;
+      white-space: pre-wrap;
+    }
+  </style>
+</head>
+<body>
+  <h1>Do and Don't List - Advanced Examples</h1>
+  <p>This page demonstrates advanced usage patterns, styling variants, and initialization methods for the Do and Don't List component.</p>
+
+  <div class="example-section">
+    <h2 class="example-title">Styling Variants</h2>
+    <p class="example-description">Different visual styles for various use cases.</p>
+    
+    <div class="two-column">
+      <div class="variant-demo">
+        <div class="variant-title">Compact Variant</div>
+        <div id="compact-example"></div>
+      </div>
+      
+      <div class="variant-demo">
+        <div class="variant-title">Bordered Variant</div>
+        <div id="bordered-example"></div>
+      </div>
+    </div>
+    
+    <div class="variant-demo">
+      <div class="variant-title">Card Style Variant</div>
+      <div id="card-example"></div>
+    </div>
+  </div>
+
+  <div class="example-section">
+    <h2 class="example-title">Data Attribute Initialization</h2>
+    <p class="example-description">Initialize components from HTML data attributes.</p>
+    
+    <div class="variant-demo">
+      <div class="variant-title">From JSON Data Attributes</div>
+      <div data-public-good-do-dont-list 
+           data-title="Security Guidelines"
+           data-do-items='[{"text":"Use strong, unique passwords"},{"text":"Enable two-factor authentication"},{"text":"Keep software updated"}]'
+           data-dont-items='[{"text":"Share passwords with others"},{"text":"Use public Wi-Fi for sensitive tasks"}]'>
+      </div>
+    </div>
+    
+    <div class="variant-demo">
+      <div class="variant-title">From Child Elements</div>
+      <div data-public-good-do-dont-list data-title="Email Best Practices">
+        <div data-do>Use clear, descriptive subject lines</div>
+        <div data-do>Keep messages concise and to the point</div>
+        <div data-do>Proofread before sending</div>
+        <div data-dont>Use ALL CAPS (it looks like shouting)</div>
+        <div data-dont>Send emails when you're angry</div>
+        <div data-dont>Reply all unless everyone needs to see it</div>
+      </div>
+    </div>
+    
+    <div class="controls">
+      <button id="init-data-attributes">Initialize Data Attributes</button>
+    </div>
+  </div>
+
+  <div class="example-section">
+    <h2 class="example-title">Complex Content Examples</h2>
+    <p class="example-description">Lists with rich HTML content and interactive elements.</p>
+    <div id="complex-content-example"></div>
+  </div>
+
+  <div class="example-section">
+    <h2 class="example-title">Multiple Lists in Context</h2>
+    <p class="example-description">Several lists working together in a larger content structure.</p>
+    
+    <div style="background: #f8f9fa; padding: 2rem; border-radius: 8px;">
+      <h3>Web Accessibility Guidelines</h3>
+      <p>Following these guidelines will help ensure your website is accessible to all users, including those using assistive technologies.</p>
+      
+      <div id="accessibility-basics"></div>
+      <div id="accessibility-advanced"></div>
+      <div id="accessibility-testing"></div>
+    </div>
+  </div>
+
+  <div class="example-section">
+    <h2 class="example-title">Interactive Demo</h2>
+    <p class="example-description">A fully interactive example with real-time updates and event monitoring.</p>
+    
+    <div class="two-column">
+      <div>
+        <div id="interactive-example"></div>
+        <div class="controls">
+          <input type="text" id="new-do-text" placeholder="New do item text" style="margin-right: 0.5rem; padding: 0.5rem;">
+          <button id="add-do-interactive">Add Do</button>
+          <br><br>
+          <input type="text" id="new-dont-text" placeholder="New don't item text" style="margin-right: 0.5rem; padding: 0.5rem;">
+          <button id="add-dont-interactive">Add Don't</button>
+          <br><br>
+          <button id="clear-all" class="secondary">Clear All Items</button>
+          <button id="reset-demo" class="secondary">Reset Demo</button>
+        </div>
+      </div>
+      
+      <div>
+        <div class="variant-title">Event Log</div>
+        <div id="event-log" class="event-log"></div>
+        <button id="clear-log" class="secondary" style="margin-top: 0.5rem;">Clear Log</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="example-section">
+    <h2 class="example-title">Performance Test</h2>
+    <p class="example-description">Testing with larger datasets and rapid updates.</p>
+    <div id="performance-example"></div>
+    <div class="controls">
+      <button id="add-100-items">Add 100 Items</button>
+      <button id="remove-all-items">Remove All Items</button>
+      <button id="rapid-updates">Rapid Updates (1000x)</button>
+    </div>
+  </div>
+
+  <script type="module">
+    import { 
+      createDoDontList, 
+      createDoList, 
+      createDontList, 
+      initializeDoDontLists,
+      initAllDoDontLists 
+    } from '../do-dont-list.js'
+
+    // Styling variants
+    const compactList = createDoDontList({
+      title: 'Quick Tips',
+      classes: 'public-good-do-dont-list--compact',
+      doItems: [
+        { text: 'Save frequently' },
+        { text: 'Use shortcuts' }
+      ],
+      dontItems: [
+        { text: 'Ignore backups' }
+      ]
+    })
+    document.getElementById('compact-example').appendChild(compactList.element)
+
+    const borderedList = createDoDontList({
+      title: 'Important Rules',
+      classes: 'public-good-do-dont-list--bordered',
+      doItems: [
+        { text: 'Read instructions' },
+        { text: 'Ask for help' }
+      ],
+      dontItems: [
+        { text: 'Assume you know everything' }
+      ]
+    })
+    document.getElementById('bordered-example').appendChild(borderedList.element)
+
+    const cardList = createDoDontList({
+      title: 'Pro Tips',
+      classes: 'public-good-do-dont-list--card',
+      doItems: [
+        { text: 'Practice regularly' },
+        { text: 'Learn from mistakes' }
+      ],
+      dontItems: [
+        { text: 'Give up easily' }
+      ]
+    })
+    document.getElementById('card-example').appendChild(cardList.element)
+
+    // Complex content example
+    const complexList = createDoDontList({
+      title: 'Advanced Development Practices',
+      doItems: [
+        {
+          text: 'Code documentation',
+          html: `
+            <div>
+              <h4 style="margin: 0 0 0.5rem 0;">Write comprehensive documentation</h4>
+              <p>Include:</p>
+              <ul>
+                <li><strong>API documentation</strong> with examples</li>
+                <li><strong>Setup instructions</strong> for new developers</li>
+                <li><strong>Architecture decisions</strong> and rationale</li>
+              </ul>
+              <p>Tools: <a href="https://jsdoc.app/" target="_blank">JSDoc</a>, <a href="https://www.gitbook.com/" target="_blank">GitBook</a>, <a href="https://docusaurus.io/" target="_blank">Docusaurus</a></p>
+            </div>
+          `
+        },
+        {
+          text: 'Code reviews',
+          html: `
+            <div>
+              <h4 style="margin: 0 0 0.5rem 0;">Conduct thorough code reviews</h4>
+              <p>Review for:</p>
+              <ul>
+                <li>Code quality and readability</li>
+                <li>Security vulnerabilities</li>
+                <li>Performance implications</li>
+                <li>Test coverage</li>
+              </ul>
+            </div>
+          `
+        }
+      ],
+      dontItems: [
+        {
+          text: 'Premature optimization',
+          html: `
+            <div>
+              <h4 style="margin: 0 0 0.5rem 0;">Don't optimize prematurely</h4>
+              <p>As Donald Knuth said: <em>"Premature optimization is the root of all evil."</em></p>
+              <p>Instead:</p>
+              <ul>
+                <li>Write clear, readable code first</li>
+                <li>Profile to find actual bottlenecks</li>
+                <li>Optimize based on real performance data</li>
+              </ul>
+            </div>
+          `
+        }
+      ]
+    })
+    document.getElementById('complex-content-example').appendChild(complexList.element)
+
+    // Multiple lists in context
+    const accessibilityBasics = createDoDontList({
+      title: 'Basic Accessibility',
+      doItems: [
+        { text: 'Use semantic HTML elements' },
+        { text: 'Provide alt text for images' },
+        { text: 'Ensure sufficient color contrast' }
+      ],
+      dontItems: [
+        { text: 'Rely solely on color to convey information' },
+        { text: 'Use placeholder text as labels' }
+      ]
+    })
+    document.getElementById('accessibility-basics').appendChild(accessibilityBasics.element)
+
+    const accessibilityAdvanced = createDoDontList({
+      title: 'Advanced Accessibility',
+      doItems: [
+        { text: 'Implement proper focus management' },
+        { text: 'Use ARIA labels appropriately' },
+        { text: 'Support keyboard navigation' }
+      ],
+      dontItems: [
+        { text: 'Remove focus indicators' },
+        { text: 'Overuse ARIA attributes' }
+      ]
+    })
+    document.getElementById('accessibility-advanced').appendChild(accessibilityAdvanced.element)
+
+    const accessibilityTesting = createDoList([
+      'Test with screen readers',
+      'Use automated accessibility tools',
+      'Conduct user testing with disabled users',
+      'Validate with WCAG guidelines'
+    ], { title: 'Accessibility Testing' })
+    document.getElementById('accessibility-testing').appendChild(accessibilityTesting.element)
+
+    // Interactive demo
+    const interactiveList = createDoDontList({
+      title: 'Interactive Guidelines',
+      doItems: [
+        { text: 'Initial do item' }
+      ],
+      dontItems: [
+        { text: 'Initial don\'t item' }
+      ]
+    })
+    document.getElementById('interactive-example').appendChild(interactiveList.element)
+
+    // Event logging
+    const eventLog = document.getElementById('event-log')
+    let eventCount = 0
+
+    function logEvent(message) {
+      eventCount++
+      const timestamp = new Date().toLocaleTimeString()
+      eventLog.textContent += `[${timestamp}] ${eventCount}: ${message}\n`
+      eventLog.scrollTop = eventLog.scrollHeight
+    }
+
+    // Interactive controls
+    document.getElementById('add-do-interactive').addEventListener('click', () => {
+      const text = document.getElementById('new-do-text').value.trim()
+      if (text) {
+        interactiveList.addDoItem({ text })
+        document.getElementById('new-do-text').value = ''
+        logEvent(`Added do item: "${text}"`)
+      }
+    })
+
+    document.getElementById('add-dont-interactive').addEventListener('click', () => {
+      const text = document.getElementById('new-dont-text').value.trim()
+      if (text) {
+        interactiveList.addDontItem({ text })
+        document.getElementById('new-dont-text').value = ''
+        logEvent(`Added don't item: "${text}"`)
+      }
+    })
+
+    document.getElementById('clear-all').addEventListener('click', () => {
+      const doItems = interactiveList.getDoItems()
+      const dontItems = interactiveList.getDontItems()
+      
+      for (let i = doItems.length - 1; i >= 0; i--) {
+        interactiveList.removeDoItem(i)
+      }
+      for (let i = dontItems.length - 1; i >= 0; i--) {
+        interactiveList.removeDontItem(i)
+      }
+      
+      logEvent(`Cleared all items (${doItems.length} do, ${dontItems.length} don't)`)
+    })
+
+    document.getElementById('reset-demo').addEventListener('click', () => {
+      document.getElementById('clear-all').click()
+      interactiveList.addDoItem({ text: 'Initial do item' })
+      interactiveList.addDontItem({ text: 'Initial don\'t item' })
+      logEvent('Reset demo to initial state')
+    })
+
+    document.getElementById('clear-log').addEventListener('click', () => {
+      eventLog.textContent = ''
+      eventCount = 0
+    })
+
+    // Performance test
+    const performanceList = createDoDontList({
+      title: 'Performance Test List',
+      doItems: [],
+      dontItems: []
+    })
+    document.getElementById('performance-example').appendChild(performanceList.element)
+
+    document.getElementById('add-100-items').addEventListener('click', () => {
+      const startTime = performance.now()
+      
+      for (let i = 0; i < 50; i++) {
+        performanceList.addDoItem({ text: `Performance do item ${i + 1}` })
+        performanceList.addDontItem({ text: `Performance don't item ${i + 1}` })
+      }
+      
+      const endTime = performance.now()
+      logEvent(`Added 100 items in ${(endTime - startTime).toFixed(2)}ms`)
+    })
+
+    document.getElementById('remove-all-items').addEventListener('click', () => {
+      const startTime = performance.now()
+      const doCount = performanceList.getDoItems().length
+      const dontCount = performanceList.getDontItems().length
+      
+      for (let i = doCount - 1; i >= 0; i--) {
+        performanceList.removeDoItem(i)
+      }
+      for (let i = dontCount - 1; i >= 0; i--) {
+        performanceList.removeDontItem(i)
+      }
+      
+      const endTime = performance.now()
+      logEvent(`Removed ${doCount + dontCount} items in ${(endTime - startTime).toFixed(2)}ms`)
+    })
+
+    document.getElementById('rapid-updates').addEventListener('click', () => {
+      const startTime = performance.now()
+      
+      for (let i = 0; i < 1000; i++) {
+        performanceList.addDoItem({ text: `Rapid item ${i}` })
+        if (i % 2 === 0) {
+          performanceList.removeDoItem(0)
+        }
+      }
+      
+      const endTime = performance.now()
+      logEvent(`Performed 1000 rapid updates in ${(endTime - startTime).toFixed(2)}ms`)
+    })
+
+    // Data attribute initialization
+    document.getElementById('init-data-attributes').addEventListener('click', () => {
+      const components = initializeDoDontLists()
+      logEvent(`Initialized ${components.length} components from data attributes`)
+    })
+
+    // Global event listeners
+    document.addEventListener('public-good:do-dont-list:item-added', (event) => {
+      logEvent(`Event: Item added (${event.detail.type}) - "${event.detail.item.text}"`)
+    })
+
+    document.addEventListener('public-good:do-dont-list:item-removed', (event) => {
+      logEvent(`Event: Item removed (${event.detail.type}) at index ${event.detail.index}`)
+    })
+
+    // Allow Enter key to add items
+    document.getElementById('new-do-text').addEventListener('keypress', (e) => {
+      if (e.key === 'Enter') {
+        document.getElementById('add-do-interactive').click()
+      }
+    })
+
+    document.getElementById('new-dont-text').addEventListener('keypress', (e) => {
+      if (e.key === 'Enter') {
+        document.getElementById('add-dont-interactive').click()
+      }
+    })
+
+    // Initial log entry
+    logEvent('Advanced examples page loaded')
+  </script>
+</body>
+</html>

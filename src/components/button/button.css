@@ -1,0 +1,332 @@
+/**
+ * Button Component Styles
+ * Converted from NHS UK Design System button component
+ */
+
+.public-good-button {
+  /* Reset browser defaults */
+  -webkit-appearance: none;
+  appearance: none;
+  background: none;
+  border: none;
+  margin: 0;
+  padding: 0;
+  
+  /* Core button styling */
+  background-color: var(--public-good-color-button-primary);
+  border: var(--public-good-border-width-medium) solid transparent;
+  border-radius: var(--public-good-border-radius-medium);
+  box-shadow: 0 4px 0 var(--public-good-color-button-shadow);
+  box-sizing: border-box;
+  color: var(--public-good-color-text-inverse);
+  cursor: pointer;
+  display: inline-block;
+  font-family: inherit;
+  font-size: var(--public-good-body-size);
+  font-weight: var(--public-good-font-weight-bold);
+  line-height: var(--public-good-body-line-height);
+  min-height: 44px;
+  overflow: visible;
+  padding: var(--public-good-spacing-button-padding-y) var(--public-good-spacing-button-padding-x);
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  vertical-align: top;
+  width: 100%;
+  
+  /* Mobile-first: full width */
+  @media (min-width: 768px) {
+    width: auto;
+    padding: 12px var(--public-good-spacing-button-padding-x);
+  }
+}
+
+/* Remove Firefox button padding */
+.public-good-button::-moz-focus-inner {
+  border: 0;
+  padding: 0;
+}
+
+/* Hover states */
+.public-good-button:hover {
+  background-color: var(--public-good-color-button-primary-hover);
+  text-decoration: none;
+}
+
+.public-good-button:hover,
+.public-good-button:visited {
+  color: var(--public-good-color-text-inverse);
+}
+
+/* Focus states */
+.public-good-button:focus {
+  outline: var(--public-good-spacing-focus-width) solid var(--public-good-color-focus);
+  outline-offset: var(--public-good-spacing-focus-offset);
+  background-color: var(--public-good-color-focus);
+  color: var(--public-good-color-text);
+  box-shadow: 0 4px 0 var(--public-good-color-text);
+  text-decoration: none;
+}
+
+/* Active/pressed states */
+.public-good-button:active,
+.public-good-button:active:focus {
+  background-color: var(--public-good-color-button-primary-active);
+  box-shadow: none;
+  top: 4px;
+  transform: translateY(0);
+}
+
+/* Expand click target to include shadow */
+.public-good-button::before {
+  content: "";
+  display: block;
+  position: absolute;
+  top: -2px;
+  right: -2px;
+  bottom: -6px; /* Include shadow in click area */
+  left: -2px;
+  background: transparent;
+  border-radius: var(--public-good-border-radius-medium);
+}
+
+/* Adjust click target when active */
+.public-good-button:active::before {
+  top: -6px;
+  bottom: -2px;
+}
+
+/* Button Variants */
+
+/* Secondary Button */
+.public-good-button--secondary {
+  background-color: var(--public-good-color-button-secondary);
+  color: var(--public-good-color-button-secondary-text);
+  box-shadow: 0 4px 0 var(--public-good-color-button-secondary-shadow);
+}
+
+.public-good-button--secondary:hover {
+  background-color: var(--public-good-color-button-secondary-hover);
+  color: var(--public-good-color-button-secondary-text);
+}
+
+.public-good-button--secondary:active,
+.public-good-button--secondary:active:focus {
+  background-color: var(--public-good-color-button-secondary-active);
+  border-color: var(--public-good-color-button-secondary-border);
+}
+
+.public-good-button--secondary:focus {
+  color: var(--public-good-color-text);
+}
+
+/* Secondary Solid Button (for use on grey backgrounds) */
+.public-good-button--secondary-solid {
+  background-color: var(--public-good-color-button-secondary-solid);
+  color: var(--public-good-color-button-secondary-text);
+  box-shadow: 0 4px 0 var(--public-good-color-button-secondary-shadow);
+}
+
+.public-good-button--secondary-solid:hover {
+  background-color: var(--public-good-color-button-secondary-hover);
+  color: var(--public-good-color-button-secondary-text);
+}
+
+.public-good-button--secondary-solid:active,
+.public-good-button--secondary-solid:active:focus {
+  background-color: var(--public-good-color-button-secondary-active);
+}
+
+/* Reverse Button (for dark backgrounds) */
+.public-good-button--reverse {
+  background-color: var(--public-good-color-button-reverse);
+  color: var(--public-good-color-button-reverse-text);
+  box-shadow: 0 4px 0 var(--public-good-color-button-reverse-shadow);
+}
+
+.public-good-button--reverse:hover {
+  background-color: var(--public-good-color-button-reverse-hover);
+  color: var(--public-good-color-button-reverse-text);
+}
+
+.public-good-button--reverse:active,
+.public-good-button--reverse:active:focus {
+  background-color: var(--public-good-color-button-reverse-active);
+}
+
+.public-good-button--reverse:focus {
+  color: var(--public-good-color-text);
+}
+
+/* Warning Button (for destructive actions) */
+.public-good-button--warning {
+  background-color: var(--public-good-color-button-warning);
+  color: var(--public-good-color-text-inverse);
+  box-shadow: 0 4px 0 var(--public-good-color-button-warning-shadow);
+}
+
+.public-good-button--warning:hover {
+  background-color: var(--public-good-color-button-warning-hover);
+  color: var(--public-good-color-text-inverse);
+}
+
+.public-good-button--warning:active,
+.public-good-button--warning:active:focus {
+  background-color: var(--public-good-color-button-warning-active);
+}
+
+.public-good-button--warning:focus {
+  color: var(--public-good-color-text);
+}
+
+/* Success Button */
+.public-good-button--success {
+  background-color: var(--public-good-color-button-success);
+  color: var(--public-good-color-text-inverse);
+  box-shadow: 0 4px 0 var(--public-good-color-button-success-shadow);
+}
+
+.public-good-button--success:hover {
+  background-color: var(--public-good-color-button-success-hover);
+  color: var(--public-good-color-text-inverse);
+}
+
+.public-good-button--success:active,
+.public-good-button--success:active:focus {
+  background-color: var(--public-good-color-button-success-active);
+}
+
+.public-good-button--success:focus {
+  color: var(--public-good-color-text);
+}
+
+/* Disabled State */
+.public-good-button:disabled,
+.public-good-button--disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.public-good-button:disabled:hover,
+.public-good-button--disabled:hover {
+  background-color: var(--public-good-color-button-primary);
+}
+
+/* Loading State */
+.public-good-button--loading {
+  position: relative;
+  pointer-events: none;
+}
+
+.public-good-button__spinner {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  margin-right: 8px;
+  border: 2px solid transparent;
+  border-top: 2px solid currentColor;
+  border-radius: 50%;
+  animation: public-good-spin 0.8s linear infinite;
+  vertical-align: text-bottom;
+}
+
+@keyframes public-good-spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Button Group */
+.public-good-button-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--public-good-spacing-3);
+}
+
+.public-good-button-group--horizontal {
+  flex-direction: row;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.public-good-button-group--horizontal .public-good-button {
+  width: auto;
+}
+
+@media (min-width: 768px) {
+  .public-good-button-group {
+    flex-direction: row;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  
+  .public-good-button-group .public-good-button {
+    width: auto;
+  }
+}
+
+/* Link buttons should not have full width on mobile */
+a.public-good-button {
+  width: auto;
+  display: inline-block;
+}
+
+/* Input buttons */
+input.public-good-button {
+  line-height: 1;
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .public-good-button {
+    border: 2px solid;
+  }
+  
+  .public-good-button:focus {
+    outline: 3px solid;
+    outline-offset: 2px;
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .public-good-button {
+    transition: none;
+  }
+  
+  .public-good-button__spinner {
+    animation: none;
+  }
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+  .public-good-button:not(.public-good-button--reverse) {
+    background-color: var(--public-good-color-button-primary-dark, var(--public-good-color-button-primary));
+    box-shadow: 0 4px 0 var(--public-good-color-button-shadow-dark, var(--public-good-color-button-shadow));
+  }
+  
+  .public-good-button:not(.public-good-button--reverse):hover {
+    background-color: var(--public-good-color-button-primary-hover-dark, var(--public-good-color-button-primary-hover));
+  }
+}
+
+/* RTL support */
+[dir="rtl"] .public-good-button__spinner {
+  margin-right: 0;
+  margin-left: 8px;
+}
+
+/* Print styles */
+@media print {
+  .public-good-button {
+    background: transparent !important;
+    color: black !important;
+    box-shadow: none !important;
+    border: 2px solid black !important;
+  }
+  
+  .public-good-button::before {
+    display: none;
+  }
+}

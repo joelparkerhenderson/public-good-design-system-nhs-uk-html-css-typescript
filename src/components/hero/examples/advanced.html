@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hero Component - Advanced Examples</title>
+    <link rel="stylesheet" href="../../../core/base.css">
+    <link rel="stylesheet" href="../hero.css">
+    <style>
+        body {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+        .example {
+            margin-bottom: 3rem;
+        }
+        .example h3 {
+            margin: 2rem;
+            color: #0066cc;
+        }
+        .example-description {
+            margin: 0 2rem 1rem;
+            color: #666;
+        }
+        .demo-controls {
+            margin: 2rem;
+            padding: 1rem;
+            background: #f5f5f5;
+            border-radius: 4px;
+        }
+        .demo-controls button {
+            margin: 0.25rem;
+            padding: 0.5rem 1rem;
+            border: 1px solid #ccc;
+            background: white;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.9rem;
+        }
+        .demo-controls button:hover {
+            background: #f0f0f0;
+        }
+        .demo-controls input, .demo-controls select, .demo-controls textarea {
+            margin: 0.25rem;
+            padding: 0.5rem;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-family: inherit;
+        }
+        .demo-controls textarea {
+            width: 100%;
+            max-width: 400px;
+            height: 80px;
+            resize: vertical;
+        }
+        .form-group {
+            margin-bottom: 1rem;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+        }
+        .status-display {
+            margin: 1rem 2rem;
+            padding: 1rem;
+            background: #e8f4fd;
+            border-radius: 4px;
+            font-family: monospace;
+            font-size: 0.9em;
+        }
+        /* Mock grid and utility classes */
+        .public-good-width-container {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+        .public-good-grid-row {
+            display: flex;
+            flex-wrap: wrap;
+            margin: 0 -0.5rem;
+        }
+        .public-good-grid-column-two-thirds {
+            flex: 0 0 66.666%;
+            max-width: 66.666%;
+            padding: 0 0.5rem;
+        }
+        @media (max-width: 40em) {
+            .public-good-grid-column-two-thirds {
+                flex: 0 0 100%;
+                max-width: 100%;
+            }
+        }
+        .public-good-body-l {
+            font-size: 1.125rem;
+            line-height: 1.4;
+            margin: 0;
+        }
+        @media (min-width: 40.0625em) {
+            .public-good-body-l {
+                font-size: 1.25rem;
+            }
+        }
+        .public-good-link {
+            color: white;
+            text-decoration: underline;
+        }
+        .public-good-link:hover {
+            text-decoration-thickness: 2px;
+        }
+        /* Color variables */
+        :root {
+            --public-good-color-blue: #005eb8;
+            --public-good-color-white: #ffffff;
+            --public-good-color-black: #212b32;
+            --public-good-color-border: #d8dde0;
+            --public-good-color-focus: #ffeb3b;
+            --public-good-spacing-3: 16px;
+            --public-good-spacing-4: 24px;
+            --public-good-spacing-5: 32px;
+            --public-good-spacing-6: 40px;
+            --public-good-spacing-8: 64px;
+            --public-good-spacing-9: 80px;
+        }
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <h1 style="margin: 2rem;">Hero Component - Advanced Examples</h1>
+    
+    <div class="example">
+        <h3>Dynamic Hero Management</h3>
+        <p class="example-description">Demonstrates programmatic control of hero content and styling.</p>
+        
+        <div id="dynamic-hero-container">
+            <!-- Hero will be created programmatically -->
+        </div>
+
+        <div class="demo-controls">
+            <h4>Hero Controls</h4>
+            <div class="form-group">
+                <label for="hero-heading">Hero Heading:</label>
+                <input type="text" id="hero-heading" value="Dynamic Hero Title" placeholder="Enter heading...">
+            </div>
+            <div class="form-group">
+                <label for="hero-content">Hero Content:</label>
+                <textarea id="hero-content" placeholder="Enter hero content...">This hero can be updated dynamically using JavaScript.</textarea>
+            </div>
+            <div class="form-group">
+                <label for="hero-image">Background Image URL:</label>
+                <select id="hero-image">
+                    <option value="">No background image</option>
+                    <option value="https://images.unsplash.com/photo-1559757148-5c350d0d3c56?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&h=400&q=80">Healthcare facility</option>
+                    <option value="https://images.unsplash.com/photo-1576091160399-112ba8d25d1f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&h=400&q=80">Medical team</option>
+                    <option value="https://images.unsplash.com/photo-1587825140708-dfaf72ae4b04?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&h=400&q=80">Hospital corridor</option>
+                </select>
+            </div>
+            <div style="margin-top: 1rem;">
+                <button id="create-hero">Create Hero</button>
+                <button id="update-hero">Update Content</button>
+                <button id="toggle-image">Toggle Image</button>
+                <button id="hide-hero">Hide Hero</button>
+                <button id="show-hero">Show Hero</button>
+            </div>
+        </div>
+
+        <div class="status-display" id="hero-status">
+            Click "Create Hero" to start the demo.
+        </div>
+    </div>
+
+    <div class="example">
+        <h3>Multiple Hero Variants</h3>
+        <p class="example-description">Different hero configurations and their use cases.</p>
+        
+        <div class="demo-controls">
+            <h4>Hero Variants</h4>
+            <button id="show-simple">Simple Hero</button>
+            <button id="show-with-image">Image Hero</button>
+            <button id="show-with-content">Content Hero</button>
+            <button id="show-minimal">Minimal Hero</button>
+            <button id="clear-variants">Clear All</button>
+        </div>
+
+        <div id="variants-container">
+            <!-- Heroes will be added here -->
+        </div>
+    </div>
+
+    <div class="example">
+        <h3>Hero Content Management</h3>
+        <p class="example-description">Demonstrates content updates and state management.</p>
+        
+        <section class="public-good-hero public-good-hero--image public-good-hero--image-description" 
+                 id="managed-hero"
+                 style="background-image: url('https://images.unsplash.com/photo-1576091160399-112ba8d25d1f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&h=400&q=80');">
+            <div class="public-good-hero__overlay">
+                <div class="public-good-width-container">
+                    <div class="public-good-grid-row">
+                        <div class="public-good-grid-column-two-thirds">
+                            <div class="public-good-hero-content">
+                                <h1 class="public-good-hero__heading">Managed Hero</h1>
+                                <p class="public-good-body-l public-good-u-margin-bottom-0">This hero demonstrates content management features.</p>
+                                <span class="public-good-hero__arrow" aria-hidden="true"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="demo-controls">
+            <h4>Content Management</h4>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem;">
+                <button id="update-heading-1">Update Heading</button>
+                <button id="update-content-1">Update Content</button>
+                <button id="add-html-content">Add HTML Content</button>
+                <button id="remove-image">Remove Image</button>
+                <button id="restore-image">Restore Image</button>
+                <button id="get-hero-info">Get Hero Info</button>
+            </div>
+        </div>
+
+        <div class="status-display" id="management-status">
+            Hero information will appear here when you interact with the controls.
+        </div>
+    </div>
+
+    <div class="example">
+        <h3>Responsive Hero Behavior</h3>
+        <p class="example-description">Hero that adapts to different screen sizes and content types.</p>
+        
+        <div class="demo-controls">
+            <h4>Responsive Testing</h4>
+            <p>Resize your browser window to see how the hero adapts to different screen sizes.</p>
+            <button id="toggle-responsive-content">Toggle Content Length</button>
+            <button id="cycle-backgrounds">Cycle Backgrounds</button>
+        </div>
+
+        <section class="public-good-hero public-good-hero--image public-good-hero--image-description" 
+                 id="responsive-hero"
+                 style="background-image: url('https://images.unsplash.com/photo-1559757148-5c350d0d3c56?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&h=400&q=80');">
+            <div class="public-good-hero__overlay">
+                <div class="public-good-width-container">
+                    <div class="public-good-grid-row">
+                        <div class="public-good-grid-column-two-thirds">
+                            <div class="public-good-hero-content">
+                                <h1 class="public-good-hero__heading">Responsive Hero</h1>
+                                <p class="public-good-body-l public-good-u-margin-bottom-0">Adapts to different screen sizes.</p>
+                                <span class="public-good-hero__arrow" aria-hidden="true"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script type="module">
+        import { 
+            Hero,
+            createHero, 
+            createSimpleHero,
+            createImageHero,
+            initializeHeroes 
+        } from '../hero.js';
+        
+        let dynamicHeroInstance = null;
+        let managedHeroInstance = null;
+        let responsiveHeroInstance = null;
+        let isLongContent = false;
+        let currentBackgroundIndex = 0;
+        
+        const backgrounds = [
+            'https://images.unsplash.com/photo-1559757148-5c350d0d3c56?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&h=400&q=80',
+            'https://images.unsplash.com/photo-1576091160399-112ba8d25d1f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&h=400&q=80',
+            'https://images.unsplash.com/photo-1587825140708-dfaf72ae4b04?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&h=400&q=80'
+        ];
+
+        document.addEventListener('DOMContentLoaded', () => {
+            setupDynamicHeroDemo();
+            setupVariantsDemo();
+            setupManagedHeroDemo();
+            setupResponsiveDemo();
+        });
+        
+        function setupDynamicHeroDemo() {
+            const container = document.getElementById('dynamic-hero-container');
+            const status = document.getElementById('hero-status');
+            const headingInput = document.getElementById('hero-heading');
+            const contentInput = document.getElementById('hero-content');
+            const imageSelect = document.getElementById('hero-image');
+            
+            document.getElementById('create-hero').addEventListener('click', () => {
+                const heroElement = createHero({
+                    heading: headingInput.value,
+                    text: contentInput.value,
+                    imageURL: imageSelect.value || undefined
+                });
+                
+                container.innerHTML = '';
+                container.appendChild(heroElement);
+                
+                dynamicHeroInstance = new Hero(heroElement);
+                
+                updateStatus();
+            });
+            
+            document.getElementById('update-hero').addEventListener('click', () => {
+                if (!dynamicHeroInstance) {
+                    status.textContent = 'Create a hero first!';
+                    return;
+                }
+                
+                dynamicHeroInstance.updateHeading(headingInput.value);
+                dynamicHeroInstance.updateContent(contentInput.value);
+                
+                updateStatus();
+            });
+            
+            document.getElementById('toggle-image').addEventListener('click', () => {
+                if (!dynamicHeroInstance) {
+                    status.textContent = 'Create a hero first!';
+                    return;
+                }
+                
+                if (dynamicHeroInstance.hasImage()) {
+                    dynamicHeroInstance.updateImage(null);
+                } else {
+                    const imageURL = imageSelect.value || backgrounds[0];
+                    dynamicHeroInstance.updateImage(imageURL);
+                }
+                
+                updateStatus();
+            });
+            
+            document.getElementById('hide-hero').addEventListener('click', () => {
+                if (dynamicHeroInstance) {
+                    dynamicHeroInstance.hide();
+                    updateStatus();
+                }
+            });
+            
+            document.getElementById('show-hero').addEventListener('click', () => {
+                if (dynamicHeroInstance) {
+                    dynamicHeroInstance.show();
+                    updateStatus();
+                }
+            });
+            
+            function updateStatus() {
+                if (!dynamicHeroInstance) {
+                    status.textContent = 'No hero instance created.';
+                    return;
+                }
+                
+                status.innerHTML = `
+                    <strong>Hero Status:</strong><br>
+                    Heading: "${dynamicHeroInstance.getHeading()}"<br>
+                    Content: "${dynamicHeroInstance.getContent()}"<br>
+                    Has Image: ${dynamicHeroInstance.hasImage()}<br>
+                    Visible: ${dynamicHeroInstance.isVisible()}
+                `;
+            }
+        }
+        
+        function setupVariantsDemo() {
+            const container = document.getElementById('variants-container');
+            
+            document.getElementById('show-simple').addEventListener('click', () => {
+                const hero = createSimpleHero('Simple Hero', 'Clean and minimal design.');
+                container.appendChild(hero);
+            });
+            
+            document.getElementById('show-with-image').addEventListener('click', () => {
+                const hero = createImageHero(backgrounds[1]);
+                container.appendChild(hero);
+            });
+            
+            document.getElementById('show-with-content').addEventListener('click', () => {
+                const hero = createImageHero(
+                    backgrounds[2],
+                    'Content Hero',
+                    'Hero with both image and content overlay.'
+                );
+                container.appendChild(hero);
+            });
+            
+            document.getElementById('show-minimal').addEventListener('click', () => {
+                const hero = createHero({
+                    heading: 'Minimal Hero',
+                    headingLevel: 2
+                });
+                container.appendChild(hero);
+            });
+            
+            document.getElementById('clear-variants').addEventListener('click', () => {
+                container.innerHTML = '';
+            });
+        }
+        
+        function setupManagedHeroDemo() {
+            const managedHero = document.getElementById('managed-hero');
+            const status = document.getElementById('management-status');
+            managedHeroInstance = new Hero(managedHero);
+            
+            let headingCounter = 1;
+            let contentCounter = 1;
+            
+            document.getElementById('update-heading-1').addEventListener('click', () => {
+                managedHeroInstance.updateHeading(`Updated Heading ${headingCounter++}`);
+                updateManagedStatus();
+            });
+            
+            document.getElementById('update-content-1').addEventListener('click', () => {
+                managedHeroInstance.updateContent(`Updated content ${contentCounter++}.`);
+                updateManagedStatus();
+            });
+            
+            document.getElementById('add-html-content').addEventListener('click', () => {
+                const htmlContent = `
+                    <p class="public-good-body-l">Rich <strong>HTML content</strong> with formatting.</p>
+                    <p><a href="#" class="public-good-link">Learn more</a> about our services.</p>
+                `;
+                managedHeroInstance.updateContent(htmlContent, true);
+                updateManagedStatus();
+            });
+            
+            document.getElementById('remove-image').addEventListener('click', () => {
+                managedHeroInstance.updateImage(null);
+                updateManagedStatus();
+            });
+            
+            document.getElementById('restore-image').addEventListener('click', () => {
+                managedHeroInstance.updateImage(backgrounds[1]);
+                updateManagedStatus();
+            });
+            
+            document.getElementById('get-hero-info').addEventListener('click', () => {
+                updateManagedStatus();
+            });
+            
+            function updateManagedStatus() {
+                status.innerHTML = `
+                    <strong>Managed Hero Info:</strong><br>
+                    Heading: "${managedHeroInstance.getHeading()}"<br>
+                    Content: "${managedHeroInstance.getContent()}"<br>
+                    Has Image: ${managedHeroInstance.hasImage()}<br>
+                    Visible: ${managedHeroInstance.isVisible()}
+                `;
+            }
+        }
+        
+        function setupResponsiveDemo() {
+            const responsiveHero = document.getElementById('responsive-hero');
+            responsiveHeroInstance = new Hero(responsiveHero);
+            
+            document.getElementById('toggle-responsive-content').addEventListener('click', () => {
+                if (isLongContent) {
+                    responsiveHeroInstance.updateContent('Adapts to different screen sizes.');
+                    isLongContent = false;
+                } else {
+                    responsiveHeroInstance.updateContent('This hero demonstrates responsive behavior by adapting its layout and content presentation to different screen sizes and device orientations. The content adjusts fluidly while maintaining readability and visual hierarchy.');
+                    isLongContent = true;
+                }
+            });
+            
+            document.getElementById('cycle-backgrounds').addEventListener('click', () => {
+                currentBackgroundIndex = (currentBackgroundIndex + 1) % backgrounds.length;
+                responsiveHeroInstance.updateImage(backgrounds[currentBackgroundIndex]);
+            });
+        }
+        
+        // Initialize any heroes with data attributes
+        const instances = initializeHeroes();
+        console.log(`Initialized ${instances.length} hero components`);
+    </script>
+</body>
+</html>

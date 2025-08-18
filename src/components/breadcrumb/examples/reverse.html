@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reverse Breadcrumb Example</title>
+  <link rel="stylesheet" href="../../../index.css">
+</head>
+<body>
+  <div class="example-container">
+    <h1>Reverse Breadcrumb Example</h1>
+    
+    <p>The reverse breadcrumb variant is designed for use on dark backgrounds, such as emergency information pages or high-priority content sections.</p>
+    
+    <div class="dark-section">
+      <h2>Emergency Information</h2>
+      <div id="emergency-breadcrumb-container"></div>
+      <p>This is an example of content that might appear on an emergency information page with a dark background.</p>
+    </div>
+    
+    <div class="blue-section">
+      <h2>Important Health Information</h2>
+      <div id="health-breadcrumb-container"></div>
+      <p>Important health guidance and information for public health emergencies.</p>
+    </div>
+    
+    <div class="comparison-section">
+      <h2>Comparison: Normal vs Reverse</h2>
+      
+      <h3>Normal Breadcrumb</h3>
+      <div class="normal-background">
+        <div id="normal-breadcrumb-container"></div>
+      </div>
+      
+      <h3>Reverse Breadcrumb</h3>
+      <div class="reverse-background">
+        <div id="reverse-breadcrumb-container"></div>
+      </div>
+    </div>
+    
+    <style>
+      .example-container {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 2rem;
+      }
+      
+      h1 {
+        color: var(--public-good-color-primary);
+        margin-bottom: 2rem;
+      }
+      
+      h2 {
+        margin-top: 2rem;
+        margin-bottom: 1rem;
+        color: var(--public-good-color-text-inverse);
+      }
+      
+      h3 {
+        margin-top: 1.5rem;
+        margin-bottom: 0.5rem;
+        color: var(--public-good-color-text);
+      }
+      
+      p {
+        margin-bottom: 1rem;
+      }
+      
+      .dark-section {
+        background-color: var(--public-good-color-emergency);
+        padding: 2rem;
+        margin: 2rem 0;
+        border-radius: 8px;
+        color: var(--public-good-color-text-inverse);
+      }
+      
+      .blue-section {
+        background-color: var(--public-good-color-primary);
+        padding: 2rem;
+        margin: 2rem 0;
+        border-radius: 8px;
+        color: var(--public-good-color-text-inverse);
+      }
+      
+      .comparison-section {
+        margin-top: 3rem;
+      }
+      
+      .normal-background {
+        background-color: var(--public-good-color-background);
+        padding: 1rem;
+        border: 1px solid var(--public-good-color-border);
+        border-radius: 4px;
+        margin-bottom: 1rem;
+      }
+      
+      .reverse-background {
+        background-color: var(--public-good-color-primary);
+        padding: 1rem;
+        border-radius: 4px;
+        margin-bottom: 1rem;
+      }
+      
+      #emergency-breadcrumb-container,
+      #health-breadcrumb-container,
+      #normal-breadcrumb-container,
+      #reverse-breadcrumb-container {
+        margin-bottom: 1rem;
+      }
+    </style>
+  </div>
+
+  <script type="module">
+    import { createBreadcrumb } from '../breadcrumb.js'
+    
+    // Emergency breadcrumb
+    const emergencyBreadcrumb = createBreadcrumb({
+      items: [
+        { text: 'Home', href: '/' },
+        { text: 'Emergency', href: '/emergency' },
+        { text: 'COVID-19 guidance' }
+      ],
+      classes: 'public-good-breadcrumb--reverse'
+    })
+    
+    document.getElementById('emergency-breadcrumb-container').appendChild(emergencyBreadcrumb.element)
+    
+    // Health information breadcrumb
+    const healthBreadcrumb = createBreadcrumb({
+      items: [
+        { text: 'Home', href: '/' },
+        { text: 'Health alerts', href: '/health-alerts' },
+        { text: 'Public health emergency', href: '/health-alerts/emergency' },
+        { text: 'Current guidance' }
+      ],
+      classes: 'public-good-breadcrumb--reverse'
+    })
+    
+    document.getElementById('health-breadcrumb-container').appendChild(healthBreadcrumb.element)
+    
+    // Normal breadcrumb for comparison
+    const normalBreadcrumb = createBreadcrumb({
+      items: [
+        { text: 'Home', href: '/' },
+        { text: 'Services', href: '/services' },
+        { text: 'Find a GP' }
+      ]
+    })
+    
+    document.getElementById('normal-breadcrumb-container').appendChild(normalBreadcrumb.element)
+    
+    // Reverse breadcrumb for comparison
+    const reverseBreadcrumb = createBreadcrumb({
+      items: [
+        { text: 'Home', href: '/' },
+        { text: 'Services', href: '/services' },
+        { text: 'Find a GP' }
+      ],
+      classes: 'public-good-breadcrumb--reverse'
+    })
+    
+    document.getElementById('reverse-breadcrumb-container').appendChild(reverseBreadcrumb.element)
+    
+    // Add event listeners for analytics
+    document.addEventListener('public-good:breadcrumb:click', (event) => {
+      console.log('Breadcrumb clicked:', event.detail)
+    })
+  </script>
+</body>
+</html>

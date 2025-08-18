@@ -1,0 +1,90 @@
+/**
+ * Public Good Design System - Typography Tokens
+ * Converted from NHS UK Design System typography
+ */
+
+:root {
+  /* Font families */
+  --public-good-font-family-base: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --public-good-font-family-mono: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
+
+  /* Font weights */
+  --public-good-font-weight-light: 300;
+  --public-good-font-weight-regular: 400;
+  --public-good-font-weight-medium: 500;
+  --public-good-font-weight-semibold: 600;
+  --public-good-font-weight-bold: 700;
+
+  /* Font sizes */
+  --public-good-font-size-12: 0.75rem;    /* 12px */
+  --public-good-font-size-14: 0.875rem;   /* 14px */
+  --public-good-font-size-16: 1rem;       /* 16px */
+  --public-good-font-size-18: 1.125rem;   /* 18px */
+  --public-good-font-size-20: 1.25rem;    /* 20px */
+  --public-good-font-size-24: 1.5rem;     /* 24px */
+  --public-good-font-size-28: 1.75rem;    /* 28px */
+  --public-good-font-size-32: 2rem;       /* 32px */
+  --public-good-font-size-40: 2.5rem;     /* 40px */
+  --public-good-font-size-48: 3rem;       /* 48px */
+
+  /* Line heights */
+  --public-good-line-height-tight: 1.1;
+  --public-good-line-height-normal: 1.4;
+  --public-good-line-height-relaxed: 1.6;
+  --public-good-line-height-loose: 1.8;
+
+  /* Letter spacing */
+  --public-good-letter-spacing-tight: -0.025em;
+  --public-good-letter-spacing-normal: 0;
+  --public-good-letter-spacing-wide: 0.025em;
+
+  /* Heading styles */
+  --public-good-heading-1-size: var(--public-good-font-size-48);
+  --public-good-heading-1-weight: var(--public-good-font-weight-bold);
+  --public-good-heading-1-line-height: var(--public-good-line-height-tight);
+
+  --public-good-heading-2-size: var(--public-good-font-size-40);
+  --public-good-heading-2-weight: var(--public-good-font-weight-bold);
+  --public-good-heading-2-line-height: var(--public-good-line-height-tight);
+
+  --public-good-heading-3-size: var(--public-good-font-size-32);
+  --public-good-heading-3-weight: var(--public-good-font-weight-bold);
+  --public-good-heading-3-line-height: var(--public-good-line-height-tight);
+
+  --public-good-heading-4-size: var(--public-good-font-size-28);
+  --public-good-heading-4-weight: var(--public-good-font-weight-bold);
+  --public-good-heading-4-line-height: var(--public-good-line-height-normal);
+
+  --public-good-heading-5-size: var(--public-good-font-size-24);
+  --public-good-heading-5-weight: var(--public-good-font-weight-bold);
+  --public-good-heading-5-line-height: var(--public-good-line-height-normal);
+
+  --public-good-heading-6-size: var(--public-good-font-size-20);
+  --public-good-heading-6-weight: var(--public-good-font-weight-bold);
+  --public-good-heading-6-line-height: var(--public-good-line-height-normal);
+
+  /* Body text */
+  --public-good-body-size: var(--public-good-font-size-16);
+  --public-good-body-weight: var(--public-good-font-weight-regular);
+  --public-good-body-line-height: var(--public-good-line-height-normal);
+
+  --public-good-body-large-size: var(--public-good-font-size-18);
+  --public-good-body-large-weight: var(--public-good-font-weight-regular);
+  --public-good-body-large-line-height: var(--public-good-line-height-normal);
+
+  --public-good-body-small-size: var(--public-good-font-size-14);
+  --public-good-body-small-weight: var(--public-good-font-weight-regular);
+  --public-good-body-small-line-height: var(--public-good-line-height-normal);
+}
+
+/* Mobile responsive adjustments */
+@media (max-width: 768px) {
+  :root {
+    --public-good-heading-1-size: var(--public-good-font-size-32);
+    --public-good-heading-2-size: var(--public-good-font-size-28);
+    --public-good-heading-3-size: var(--public-good-font-size-24);
+    --public-good-heading-4-size: var(--public-good-font-size-20);
+    --public-good-heading-5-size: var(--public-good-font-size-18);
+    --public-good-heading-6-size: var(--public-good-font-size-16);
+  }
+}

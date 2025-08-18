@@ -1,0 +1,352 @@
+/**
+ * Public Good Design System - Fieldset Component Styles
+ * CSS implementation for accessible form field grouping
+ * Based on NHS UK Design System fieldset patterns
+ */
+
+/* Fieldset container */
+.public-good-fieldset {
+  border: 0;
+  margin: 0;
+  padding: 0;
+  margin-bottom: var(--public-good-spacing-6);
+  min-width: 0; /* Reset default min-width */
+}
+
+/* Legend styling */
+.public-good-fieldset__legend {
+  font-size: var(--public-good-body-size);
+  font-weight: var(--public-good-font-weight-bold);
+  line-height: var(--public-good-body-line-height);
+  color: var(--public-good-color-text);
+  margin-bottom: var(--public-good-spacing-4);
+  padding: 0;
+  width: 100%;
+  display: block;
+}
+
+/* Page heading legend */
+.public-good-fieldset__legend--page-heading {
+  margin-bottom: var(--public-good-spacing-5);
+}
+
+/* Heading inside legend */
+.public-good-fieldset__heading {
+  font-size: var(--public-good-heading-1-size);
+  font-weight: var(--public-good-heading-1-weight);
+  line-height: var(--public-good-heading-1-line-height);
+  margin: 0;
+  color: var(--public-good-color-text);
+}
+
+/* Different heading levels */
+.public-good-fieldset__legend--page-heading .public-good-fieldset__heading {
+  font-size: var(--public-good-heading-1-size);
+  font-weight: var(--public-good-heading-1-weight);
+  line-height: var(--public-good-heading-1-line-height);
+}
+
+/* H2 in legend */
+.public-good-fieldset__legend h2.public-good-fieldset__heading {
+  font-size: var(--public-good-heading-2-size);
+  font-weight: var(--public-good-heading-2-weight);
+  line-height: var(--public-good-heading-2-line-height);
+}
+
+/* H3 in legend */
+.public-good-fieldset__legend h3.public-good-fieldset__heading {
+  font-size: var(--public-good-heading-3-size);
+  font-weight: var(--public-good-heading-3-weight);
+  line-height: var(--public-good-heading-3-line-height);
+}
+
+/* H4 in legend */
+.public-good-fieldset__legend h4.public-good-fieldset__heading {
+  font-size: var(--public-good-heading-4-size);
+  font-weight: var(--public-good-heading-4-weight);
+  line-height: var(--public-good-heading-4-line-height);
+}
+
+/* H5 in legend */
+.public-good-fieldset__legend h5.public-good-fieldset__heading {
+  font-size: var(--public-good-heading-5-size);
+  font-weight: var(--public-good-heading-5-weight);
+  line-height: var(--public-good-heading-5-line-height);
+}
+
+/* H6 in legend */
+.public-good-fieldset__legend h6.public-good-fieldset__heading {
+  font-size: var(--public-good-heading-6-size);
+  font-weight: var(--public-good-heading-6-weight);
+  line-height: var(--public-good-heading-6-line-height);
+}
+
+/* Content container */
+.public-good-fieldset__content {
+  margin: 0;
+  padding: 0;
+}
+
+/* Form group spacing within fieldset */
+.public-good-fieldset .public-good-form-group {
+  margin-bottom: var(--public-good-spacing-5);
+}
+
+.public-good-fieldset .public-good-form-group:last-child {
+  margin-bottom: 0;
+}
+
+/* Disabled fieldset styling */
+.public-good-fieldset:disabled {
+  opacity: 0.6;
+}
+
+.public-good-fieldset:disabled .public-good-fieldset__legend {
+  color: var(--public-good-color-text-muted);
+}
+
+.public-good-fieldset:disabled input,
+.public-good-fieldset:disabled textarea,
+.public-good-fieldset:disabled select,
+.public-good-fieldset:disabled button {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Error state for fieldset */
+.public-good-fieldset--error {
+  border-left: var(--public-good-border-width-thick) solid #d5281b;
+  padding-left: var(--public-good-spacing-4);
+}
+
+.public-good-fieldset--error .public-good-fieldset__legend {
+  color: #d5281b;
+}
+
+/* Responsive design */
+@media (max-width: 640px) {
+  .public-good-fieldset {
+    margin-bottom: var(--public-good-spacing-5);
+  }
+  
+  .public-good-fieldset__legend {
+    font-size: var(--public-good-body-small-size);
+    margin-bottom: var(--public-good-spacing-3);
+  }
+  
+  .public-good-fieldset__legend--page-heading {
+    margin-bottom: var(--public-good-spacing-4);
+  }
+  
+  .public-good-fieldset__heading {
+    font-size: var(--public-good-heading-2-size);
+  }
+  
+  .public-good-fieldset .public-good-form-group {
+    margin-bottom: var(--public-good-spacing-4);
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .public-good-fieldset__legend,
+  .public-good-fieldset__heading {
+    color: var(--public-good-color-text);
+    font-weight: var(--public-good-font-weight-bold);
+  }
+  
+  .public-good-fieldset--error {
+    border-left-color: #000000;
+    background-color: #ffff00;
+    padding: var(--public-good-spacing-3) var(--public-good-spacing-4);
+  }
+  
+  .public-good-fieldset--error .public-good-fieldset__legend {
+    color: #000000;
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .public-good-fieldset * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Print styles */
+@media print {
+  .public-good-fieldset {
+    color: black !important;
+    background: white !important;
+    border: 1px solid black;
+    padding: 10px;
+    margin-bottom: 20px;
+    page-break-inside: avoid;
+  }
+  
+  .public-good-fieldset__legend,
+  .public-good-fieldset__heading {
+    color: black !important;
+    font-weight: bold !important;
+  }
+  
+  .public-good-fieldset--error {
+    border: 2px solid black !important;
+    background: white !important;
+  }
+}
+
+/* Dark theme support */
+@media (prefers-color-scheme: dark) {
+  .public-good-fieldset__legend,
+  .public-good-fieldset__heading {
+    color: var(--public-good-color-text-inverse, #ffffff);
+  }
+  
+  .public-good-fieldset--error {
+    border-left-color: #ff6b6b;
+  }
+  
+  .public-good-fieldset--error .public-good-fieldset__legend {
+    color: #ff6b6b;
+  }
+}
+
+/* Variant: Compact fieldset */
+.public-good-fieldset--compact {
+  margin-bottom: var(--public-good-spacing-4);
+}
+
+.public-good-fieldset--compact .public-good-fieldset__legend {
+  font-size: var(--public-good-body-small-size);
+  margin-bottom: var(--public-good-spacing-3);
+}
+
+.public-good-fieldset--compact .public-good-form-group {
+  margin-bottom: var(--public-good-spacing-3);
+}
+
+/* Variant: Large fieldset */
+.public-good-fieldset--large {
+  margin-bottom: var(--public-good-spacing-8);
+}
+
+.public-good-fieldset--large .public-good-fieldset__legend {
+  font-size: var(--public-good-body-large-size);
+  margin-bottom: var(--public-good-spacing-6);
+}
+
+.public-good-fieldset--large .public-good-form-group {
+  margin-bottom: var(--public-good-spacing-6);
+}
+
+/* Variant: Bordered fieldset */
+.public-good-fieldset--bordered {
+  border: var(--public-good-border-width-thin) solid var(--public-good-color-border);
+  border-radius: var(--public-good-border-radius-medium);
+  padding: var(--public-good-spacing-5);
+}
+
+.public-good-fieldset--bordered .public-good-fieldset__legend {
+  background-color: var(--public-good-color-background);
+  padding: 0 var(--public-good-spacing-2);
+  margin-left: calc(-1 * var(--public-good-spacing-2));
+  position: relative;
+}
+
+/* Variant: Card style fieldset */
+.public-good-fieldset--card {
+  background-color: var(--public-good-color-background-secondary);
+  border-radius: var(--public-good-border-radius-large);
+  padding: var(--public-good-spacing-6);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Date input styling within fieldset */
+.public-good-fieldset .public-good-date-input {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--public-good-spacing-3);
+}
+
+.public-good-fieldset .public-good-date-input__item {
+  flex: 0 0 auto;
+}
+
+.public-good-fieldset .public-good-date-input__label {
+  font-size: var(--public-good-body-small-size);
+  margin-bottom: var(--public-good-spacing-2);
+}
+
+.public-good-fieldset .public-good-date-input__input {
+  width: 60px;
+  text-align: center;
+}
+
+.public-good-fieldset .public-good-date-input__input[maxlength="4"] {
+  width: 80px;
+}
+
+/* Address form styling within fieldset */
+.public-good-fieldset .public-good-address-form .public-good-form-group {
+  margin-bottom: var(--public-good-spacing-4);
+}
+
+/* Checkbox and radio groups within fieldset */
+.public-good-fieldset .public-good-checkboxes,
+.public-good-fieldset .public-good-radios {
+  margin-top: var(--public-good-spacing-3);
+}
+
+.public-good-fieldset .public-good-checkboxes__item,
+.public-good-fieldset .public-good-radios__item {
+  margin-bottom: var(--public-good-spacing-3);
+}
+
+/* Focus management for fieldset */
+.public-good-fieldset:focus-within .public-good-fieldset__legend {
+  outline: var(--public-good-spacing-focus-width) solid var(--public-good-color-focus);
+  outline-offset: var(--public-good-spacing-focus-offset);
+}
+
+/* Animation for dynamic content changes */
+@keyframes public-good-fieldset-content-appear {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.public-good-fieldset__content--animated {
+  animation: public-good-fieldset-content-appear 0.3s ease-out;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .public-good-fieldset__content--animated {
+    animation: none;
+  }
+}
+
+/* Legend positioning fixes for various browsers */
+.public-good-fieldset__legend {
+  /* Fix for IE11 and older browsers */
+  zoom: 1;
+  *display: inline;
+}
+
+/* Ensure legend doesn't get cut off */
+.public-good-fieldset {
+  padding-top: 0;
+}
+
+.public-good-fieldset__legend {
+  margin-top: 0;
+  margin-left: 0;
+  margin-right: 0;
+}

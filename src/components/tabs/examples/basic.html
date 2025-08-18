@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tabs Component - Basic Examples</title>
+    <link rel="stylesheet" href="../../../core/base.css">
+    <link rel="stylesheet" href="../tabs.css">
+    <style>
+        body {
+            margin: 0;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f8f9fa;
+        }
+        .example-notice {
+            background: #e8f4fd;
+            color: #003d7a;
+            padding: 1rem;
+            margin: 1rem;
+            border-left: 4px solid #0066cc;
+            border-radius: 0 4px 4px 0;
+        }
+        .example-notice strong {
+            color: #003d7a;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        .example-section {
+            margin-bottom: 3rem;
+            padding: 2rem;
+            background: white;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+        .example-section h2 {
+            margin-top: 0;
+            color: #0066cc;
+            border-bottom: 2px solid #0066cc;
+            padding-bottom: 0.5rem;
+        }
+        .example-section h3 {
+            color: #495057;
+            margin-top: 2rem;
+        }
+        .demo-controls {
+            margin: 1rem 0;
+            padding: 1rem;
+            background: #f8f9fa;
+            border-radius: 4px;
+            border-left: 4px solid #17a2b8;
+        }
+        .demo-controls button {
+            margin: 0.25rem;
+            padding: 0.5rem 1rem;
+            background: #0066cc;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.875rem;
+        }
+        .demo-controls button:hover {
+            background: #003d7a;
+        }
+        .demo-controls button:disabled {
+            background: #6c757d;
+            cursor: not-allowed;
+        }
+        .code-block {
+            background: #2d3748;
+            color: #e2e8f0;
+            padding: 1rem;
+            border-radius: 4px;
+            font-family: 'Courier New', Consolas, Monaco, monospace;
+            font-size: 0.875rem;
+            overflow-x: auto;
+            margin: 1rem 0;
+        }
+        .keyboard-hint {
+            background: #fff3cd;
+            color: #856404;
+            padding: 1rem;
+            border-radius: 4px;
+            margin: 1rem 0;
+            border-left: 4px solid #ffc107;
+        }
+        /* Color variables for examples */
+        :root {
+            --public-good-color-text: #212b32;
+            --public-good-color-text-secondary: #666666;
+            --public-good-color-link: #0066cc;
+            --public-good-color-link-hover: #003d7a;
+            --public-good-color-focus: #ffeb3b;
+            --public-good-spacing-1: 8px;
+            --public-good-spacing-2: 12px;
+            --public-good-spacing-3: 16px;
+            --public-good-spacing-4: 24px;
+            --public-good-spacing-5: 32px;
+        }
+        /* Mobile responsive */
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+            .example-section {
+                padding: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="example-notice">
+            <strong>Interactive Examples:</strong> These tabs demonstrate keyboard navigation, accessibility features, and different styling variants. Try using Tab, Arrow keys, Enter, and Space to navigate.
+        </div>
+
+        <div class="example-section">
+            <h1>Tabs Component - Basic Examples</h1>
+            <p>This page demonstrates the Tabs component with various configurations including basic tabs, vertical orientation, different styles, and keyboard navigation features.</p>
+
+            <div class="keyboard-hint">
+                <strong>💡 Keyboard Navigation:</strong> 
+                Use Tab to focus on tabs, Arrow keys to navigate between tabs, Enter/Space to activate, Home/End to jump to first/last tab.
+            </div>
+        </div>
+
+        <div class="example-section">
+            <h2>Basic Tabs</h2>
+            <p>A standard horizontal tab interface for organizing related content.</p>
+            
+            <div class="public-good-tabs" data-module="public-good-tabs">
+                <h2 class="public-good-tabs__title">Contents</h2>
+                <ul class="public-good-tabs__list" role="tablist">
+                    <li class="public-good-tabs__list-item public-good-tabs__list-item--selected">
+                        <button class="public-good-tabs__tab" role="tab" id="symptoms-tab" aria-controls="symptoms-panel" aria-selected="true" tabindex="0">
+                            Symptoms
+                        </button>
+                    </li>
+                    <li class="public-good-tabs__list-item">
+                        <button class="public-good-tabs__tab" role="tab" id="causes-tab" aria-controls="causes-panel" aria-selected="false" tabindex="-1">
+                            Causes
+                        </button>
+                    </li>
+                    <li class="public-good-tabs__list-item">
+                        <button class="public-good-tabs__tab" role="tab" id="treatment-tab" aria-controls="treatment-panel" aria-selected="false" tabindex="-1">
+                            Treatment
+                        </button>
+                    </li>
+                    <li class="public-good-tabs__list-item">
+                        <button class="public-good-tabs__tab" role="tab" id="prevention-tab" aria-controls="prevention-panel" aria-selected="false" tabindex="-1">
+                            Prevention
+                        </button>
+                    </li>
+                </ul>
+                
+                <div class="public-good-tabs__panel" role="tabpanel" id="symptoms-panel" aria-labelledby="symptoms-tab" tabindex="0">
+                    <h3>Common Symptoms</h3>
+                    <p>Recognizing the early signs and symptoms is crucial for proper healthcare management.</p>
+                    <ul>
+                        <li><strong>Fever:</strong> Body temperature above 38°C (100.4°F)</li>
+                        <li><strong>Fatigue:</strong> Unusual tiredness or lack of energy</li>
+                        <li><strong>Cough:</strong> Persistent dry or productive cough</li>
+                        <li><strong>Headache:</strong> Mild to severe head pain</li>
+                        <li><strong>Muscle aches:</strong> General body discomfort</li>
+                    </ul>
+                    <p><strong>When to seek medical attention:</strong> Contact your healthcare provider if symptoms persist for more than 48 hours or worsen significantly.</p>
+                </div>
+                
+                <div class="public-good-tabs__panel" role="tabpanel" id="causes-panel" aria-labelledby="causes-tab" tabindex="0" hidden>
+                    <h3>Common Causes</h3>
+                    <p>Understanding the underlying causes helps in prevention and treatment approaches.</p>
+                    <ul>
+                        <li><strong>Viral infections:</strong> Most common cause of acute symptoms</li>
+                        <li><strong>Bacterial infections:</strong> May require antibiotic treatment</li>
+                        <li><strong>Environmental factors:</strong> Exposure to allergens or pollutants</li>
+                        <li><strong>Lifestyle factors:</strong> Poor diet, lack of sleep, stress</li>
+                        <li><strong>Genetic predisposition:</strong> Family history of similar conditions</li>
+                    </ul>
+                    <p><strong>Risk factors:</strong> Age, compromised immune system, chronic conditions, and seasonal changes may increase susceptibility.</p>
+                </div>
+                
+                <div class="public-good-tabs__panel" role="tabpanel" id="treatment-panel" aria-labelledby="treatment-tab" tabindex="0" hidden>
+                    <h3>Treatment Options</h3>
+                    <p>Treatment approaches vary based on the specific condition and severity of symptoms.</p>
+                    
+                    <h4>Self-care measures:</h4>
+                    <ul>
+                        <li>Rest and adequate sleep (7-9 hours per night)</li>
+                        <li>Stay hydrated with water and clear fluids</li>
+                        <li>Use a humidifier or steam inhalation</li>
+                        <li>Over-the-counter pain relievers as directed</li>
+                    </ul>
+                    
+                    <h4>When to consult a healthcare provider:</h4>
+                    <ul>
+                        <li>Symptoms persist beyond one week</li>
+                        <li>High fever (above 39°C/102.2°F)</li>
+                        <li>Difficulty breathing or chest pain</li>
+                        <li>Signs of dehydration</li>
+                    </ul>
+                </div>
+                
+                <div class="public-good-tabs__panel" role="tabpanel" id="prevention-panel" aria-labelledby="prevention-tab" tabindex="0" hidden>
+                    <h3>Prevention Strategies</h3>
+                    <p>Preventive measures are the most effective way to maintain good health and avoid complications.</p>
+                    
+                    <h4>Daily habits:</h4>
+                    <ul>
+                        <li><strong>Hand hygiene:</strong> Wash hands frequently with soap and water for 20 seconds</li>
+                        <li><strong>Healthy diet:</strong> Consume fruits, vegetables, and whole grains</li>
+                        <li><strong>Regular exercise:</strong> At least 150 minutes of moderate activity per week</li>
+                        <li><strong>Adequate sleep:</strong> Maintain consistent sleep schedule</li>
+                    </ul>
+                    
+                    <h4>Environmental measures:</h4>
+                    <ul>
+                        <li>Avoid crowded places during peak seasons</li>
+                        <li>Keep living spaces clean and well-ventilated</li>
+                        <li>Use air purifiers if necessary</li>
+                        <li>Practice social distancing when appropriate</li>
+                    </ul>
+                    
+                    <p><strong>Vaccination:</strong> Stay up to date with recommended vaccines as advised by your healthcare provider.</p>
+                </div>
+            </div>
+
+            <div class="code-block">
+&lt;div class="public-good-tabs" data-module="public-good-tabs"&gt;
+  &lt;h2 class="public-good-tabs__title"&gt;Contents&lt;/h2&gt;
+  &lt;ul class="public-good-tabs__list" role="tablist"&gt;
+    &lt;li class="public-good-tabs__list-item public-good-tabs__list-item--selected"&gt;
+      &lt;button class="public-good-tabs__tab" role="tab" id="tab1" aria-controls="panel1" aria-selected="true" tabindex="0"&gt;
+        Tab 1
+      &lt;/button&gt;
+    &lt;/li&gt;
+    &lt;li class="public-good-tabs__list-item"&gt;
+      &lt;button class="public-good-tabs__tab" role="tab" id="tab2" aria-controls="panel2" aria-selected="false" tabindex="-1"&gt;
+        Tab 2
+      &lt;/button&gt;
+    &lt;/li&gt;
+  &lt;/ul&gt;
+  &lt;div class="public-good-tabs__panel" role="tabpanel" id="panel1" aria-labelledby="tab1" tabindex="0"&gt;
+    Panel 1 content
+  &lt;/div&gt;
+  &lt;div class="public-good-tabs__panel" role="tabpanel" id="panel2" aria-labelledby="tab2" tabindex="0" hidden&gt;
+    Panel 2 content
+  &lt;/div&gt;
+&lt;/div&gt;
+            </div>
+        </div>
+
+        <div class="example-section">
+            <h2>Compact Tabs</h2>
+            <p>A space-efficient variant with reduced padding for areas where space is limited.</p>
+            
+            <div class="public-good-tabs public-good-tabs--compact" data-module="public-good-tabs">
+                <ul class="public-good-tabs__list" role="tablist" aria-label="Patient record sections">
+                    <li class="public-good-tabs__list-item public-good-tabs__list-item--selected">
+                        <button class="public-good-tabs__tab" role="tab" id="overview-tab" aria-controls="overview-panel" aria-selected="true" tabindex="0">
+                            Overview
+                        </button>
+                    </li>
+                    <li class="public-good-tabs__list-item">
+                        <button class="public-good-tabs__tab" role="tab" id="history-tab" aria-controls="history-panel" aria-selected="false" tabindex="-1">
+                            Medical History
+                        </button>
+                    </li>
+                    <li class="public-good-tabs__list-item">
+                        <button class="public-good-tabs__tab" role="tab" id="medications-tab" aria-controls="medications-panel" aria-selected="false" tabindex="-1">
+                            Medications
+                        </button>
+                    </li>
+                    <li class="public-good-tabs__list-item">
+                        <button class="public-good-tabs__tab" role="tab" id="allergies-tab" aria-controls="allergies-panel" aria-selected="false" tabindex="-1">
+                            Allergies
+                        </button>
+                    </li>
+                </ul>
+                
+                <div class="public-good-tabs__panel" role="tabpanel" id="overview-panel" aria-labelledby="overview-tab" tabindex="0">
+                    <h3>Patient Overview</h3>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1rem 0;">
+                        <div><strong>Patient ID:</strong> P123456</div>
+                        <div><strong>Date of Birth:</strong> 15/03/1985</div>
+                        <div><strong>Gender:</strong> Female</div>
+                        <div><strong>Blood Type:</strong> O+</div>
+                        <div><strong>NHS Number:</strong> 123 456 7890</div>
+                        <div><strong>GP Practice:</strong> Riverside Medical Centre</div>
+                    </div>
+                    <p><strong>Last Visit:</strong> 08/08/2024 - Routine check-up completed, all vitals normal.</p>
+                </div>
+                
+                <div class="public-good-tabs__panel" role="tabpanel" id="history-panel" aria-labelledby="history-tab" tabindex="0" hidden>
+                    <h3>Medical History</h3>
+                    <ul>
+                        <li><strong>2023:</strong> Appendectomy - Successful laparoscopic procedure</li>
+                        <li><strong>2021:</strong> COVID-19 vaccination - Full course completed</li>
+                        <li><strong>2020:</strong> Minor fracture (left wrist) - Healed completely</li>
+                        <li><strong>2018:</strong> Pregnancy and delivery - Healthy baby girl</li>
+                    </ul>
+                    <p><strong>Chronic Conditions:</strong> None currently documented</p>
+                </div>
+                
+                <div class="public-good-tabs__panel" role="tabpanel" id="medications-panel" aria-labelledby="medications-tab" tabindex="0" hidden>
+                    <h3>Current Medications</h3>
+                    <p><strong>Status:</strong> No regular medications currently prescribed.</p>
+                    
+                    <h4>Recent Prescriptions:</h4>
+                    <ul>
+                        <li><strong>Paracetamol 500mg:</strong> As needed for pain relief (July 2024)</li>
+                        <li><strong>Amoxicillin 250mg:</strong> Course completed for minor infection (June 2024)</li>
+                    </ul>
+                    
+                    <p><strong>Note:</strong> Patient advised to take over-the-counter supplements: Vitamin D3, Multivitamin</p>
+                </div>
+                
+                <div class="public-good-tabs__panel" role="tabpanel" id="allergies-panel" aria-labelledby="allergies-tab" tabindex="0" hidden>
+                    <h3>Known Allergies</h3>
+                    <div style="background: #f8d7da; color: #721c24; padding: 1rem; border-radius: 4px; border-left: 4px solid #dc3545;">
+                        <strong>⚠️ Penicillin Allergy</strong><br>
+                        Reaction: Skin rash, mild swelling<br>
+                        Severity: Moderate<br>
+                        Date recorded: March 2018
+                    </div>
+                    
+                    <h4>Environmental Allergies:</h4>
+                    <ul>
+                        <li><strong>Pollen:</strong> Seasonal hay fever (Spring/Summer)</li>
+                        <li><strong>Cat dander:</strong> Mild reaction - sneezing, watery eyes</li>
+                    </ul>
+                    
+                    <p><strong>Emergency Contacts:</strong> In case of severe allergic reaction, contact emergency services immediately.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="example-section">
+            <h2>Vertical Tabs</h2>
+            <p>Tabs arranged vertically, useful for navigation sidebars and narrow layouts.</p>
+            
+            <div class="public-good-tabs public-good-tabs--vertical" data-module="public-good-tabs" data-orientation="vertical">
+                <ul class="public-good-tabs__list" role="tablist" aria-orientation="vertical" aria-label="Service information">
+                    <li class="public-good-tabs__list-item public-good-tabs__list-item--selected">
+                        <button class="public-good-tabs__tab" role="tab" id="emergency-tab" aria-controls="emergency-panel" aria-selected="true" tabindex="0">
+                            Emergency Services
+                        </button>
+                    </li>
+                    <li class="public-good-tabs__list-item">
+                        <button class="public-good-tabs__tab" role="tab" id="appointments-tab" aria-controls="appointments-panel" aria-selected="false" tabindex="-1">
+                            Appointments
+                        </button>
+                    </li>
+                    <li class="public-good-tabs__list-item">
+                        <button class="public-good-tabs__tab" role="tab" id="prescriptions-tab" aria-controls="prescriptions-panel" aria-selected="false" tabindex="-1">
+                            Prescriptions
+                        </button>
+                    </li>
+                    <li class="public-good-tabs__list-item">
+                        <button class="public-good-tabs__tab" role="tab" id="results-tab" aria-controls="results-panel" aria-selected="false" tabindex="-1">
+                            Test Results
+                        </button>
+                    </li>
+                </ul>
+                
+                <div class="public-good-tabs__panel" role="tabpanel" id="emergency-panel" aria-labelledby="emergency-tab" tabindex="0">
+                    <h3>Emergency Services</h3>
+                    <div style="background: #f8d7da; color: #721c24; padding: 1rem; border-radius: 4px; margin-bottom: 1rem;">
+                        <strong>🚨 Call 999 for life-threatening emergencies</strong>
+                    </div>
+                    
+                    <h4>When to call 999:</h4>
+                    <ul>
+                        <li>Chest pain or difficulty breathing</li>
+                        <li>Severe bleeding that won't stop</li>
+                        <li>Loss of consciousness</li>
+                        <li>Severe allergic reaction</li>
+                        <li>Signs of stroke or heart attack</li>
+                    </ul>
+                    
+                    <h4>Non-emergency options:</h4>
+                    <ul>
+                        <li><strong>111:</strong> NHS helpline for urgent but non-life-threatening situations</li>
+                        <li><strong>Out of hours GP:</strong> Contact your local practice</li>
+                        <li><strong>Walk-in centres:</strong> For minor injuries and illnesses</li>
+                    </ul>
+                </div>
+                
+                <div class="public-good-tabs__panel" role="tabpanel" id="appointments-panel" aria-labelledby="appointments-tab" tabindex="0" hidden>
+                    <h3>Booking Appointments</h3>
+                    <p>Schedule your healthcare appointments through multiple convenient channels.</p>
+                    
+                    <h4>How to book:</h4>
+                    <ul>
+                        <li><strong>Online:</strong> Use the NHS App or your GP practice website</li>
+                        <li><strong>Phone:</strong> Call your GP practice during opening hours</li>
+                        <li><strong>In person:</strong> Visit the reception desk</li>
+                    </ul>
+                    
+                    <h4>Appointment types:</h4>
+                    <ul>
+                        <li>Routine check-ups (book 2-3 weeks in advance)</li>
+                        <li>Urgent appointments (same day or next day)</li>
+                        <li>Telephone consultations</li>
+                        <li>Video consultations</li>
+                    </ul>
+                    
+                    <p><strong>Tip:</strong> Book routine appointments well in advance to ensure availability at your preferred time.</p>
+                </div>
+                
+                <div class="public-good-tabs__panel" role="tabpanel" id="prescriptions-panel" aria-labelledby="prescriptions-tab" tabindex="0" hidden>
+                    <h3>Prescription Services</h3>
+                    <p>Manage your repeat prescriptions efficiently and safely.</p>
+                    
+                    <h4>How to order:</h4>
+                    <ul>
+                        <li><strong>NHS App:</strong> Order and track prescriptions digitally</li>
+                        <li><strong>Online:</strong> Most GP practices offer online ordering</li>
+                        <li><strong>Phone:</strong> Call your practice with prescription details</li>
+                        <li><strong>Post:</strong> Send your repeat slip by mail</li>
+                    </ul>
+                    
+                    <h4>Collection options:</h4>
+                    <ul>
+                        <li>GP practice pharmacy</li>
+                        <li>Local pharmacy (with Electronic Prescription Service)</li>
+                        <li>Home delivery (available from some pharmacies)</li>
+                    </ul>
+                    
+                    <div style="background: #d1ecf1; color: #0c5460; padding: 1rem; border-radius: 4px;">
+                        <strong>💡 Tip:</strong> Order your repeat prescription at least 48 hours before you run out to avoid interruptions in treatment.
+                    </div>
+                </div>
+                
+                <div class="public-good-tabs__panel" role="tabpanel" id="results-panel" aria-labelledby="results-tab" tabindex="0" hidden>
+                    <h3>Test Results</h3>
+                    <p>Access and understand your medical test results.</p>
+                    
+                    <h4>How to get results:</h4>
+                    <ul>
+                        <li><strong>NHS App:</strong> View results as soon as they're available</li>
+                        <li><strong>Phone:</strong> Call your GP practice after the specified time</li>
+                        <li><strong>In person:</strong> Collect printed results from reception</li>
+                        <li><strong>Patient portal:</strong> Online access through your practice website</li>
+                    </ul>
+                    
+                    <h4>Typical timeframes:</h4>
+                    <ul>
+                        <li><strong>Blood tests:</strong> 2-7 days</li>
+                        <li><strong>Urine tests:</strong> 1-3 days</li>
+                        <li><strong>X-rays:</strong> 1-2 weeks</li>
+                        <li><strong>MRI/CT scans:</strong> 1-2 weeks</li>
+                        <li><strong>Biopsy results:</strong> 2-3 weeks</li>
+                    </ul>
+                    
+                    <p><strong>Understanding results:</strong> Your healthcare provider will explain any abnormal results and discuss next steps during your follow-up appointment.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="example-section">
+            <h2>Pills Style Tabs</h2>
+            <p>A modern pill-style variant that works well in cards and smaller containers.</p>
+            
+            <div class="public-good-tabs public-good-tabs--pills" data-module="public-good-tabs">
+                <ul class="public-good-tabs__list" role="tablist" aria-label="Health metrics">
+                    <li class="public-good-tabs__list-item public-good-tabs__list-item--selected">
+                        <button class="public-good-tabs__tab" role="tab" id="vitals-tab" aria-controls="vitals-panel" aria-selected="true" tabindex="0">
+                            Vital Signs
+                        </button>
+                    </li>
+                    <li class="public-good-tabs__list-item">
+                        <button class="public-good-tabs__tab" role="tab" id="activity-tab" aria-controls="activity-panel" aria-selected="false" tabindex="-1">
+                            Activity
+                        </button>
+                    </li>
+                    <li class="public-good-tabs__list-item">
+                        <button class="public-good-tabs__tab" role="tab" id="nutrition-tab" aria-controls="nutrition-panel" aria-selected="false" tabindex="-1">
+                            Nutrition
+                        </button>
+                    </li>
+                </ul>
+                
+                <div class="public-good-tabs__panel" role="tabpanel" id="vitals-panel" aria-labelledby="vitals-tab" tabindex="0">
+                    <h3>Vital Signs Monitoring</h3>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem;">
+                        <div style="background: #e8f5e8; padding: 1rem; border-radius: 4px; text-align: center;">
+                            <strong style="color: #155724;">Blood Pressure</strong><br>
+                            <span style="font-size: 1.5rem; font-weight: bold;">120/80</span><br>
+                            <small>mmHg - Normal</small>
+                        </div>
+                        <div style="background: #e8f5e8; padding: 1rem; border-radius: 4px; text-align: center;">
+                            <strong style="color: #155724;">Heart Rate</strong><br>
+                            <span style="font-size: 1.5rem; font-weight: bold;">72</span><br>
+                            <small>bpm - Normal</small>
+                        </div>
+                        <div style="background: #e8f5e8; padding: 1rem; border-radius: 4px; text-align: center;">
+                            <strong style="color: #155724;">Temperature</strong><br>
+                            <span style="font-size: 1.5rem; font-weight: bold;">36.8°C</span><br>
+                            <small>Normal</small>
+                        </div>
+                    </div>
+                    <p style="margin-top: 1rem;"><strong>Last measured:</strong> Today at 14:30 | <strong>Trend:</strong> Stable over the past week</p>
+                </div>
+                
+                <div class="public-good-tabs__panel" role="tabpanel" id="activity-panel" aria-labelledby="activity-tab" tabindex="0" hidden>
+                    <h3>Physical Activity</h3>
+                    <div style="background: #d4edda; padding: 1rem; border-radius: 4px; margin-bottom: 1rem;">
+                        <strong style="color: #155724;">Today's Goal: 8,000 steps ✅</strong><br>
+                        <strong>Steps taken: 8,247</strong> (103% of goal)
+                    </div>
+                    
+                    <h4>Weekly Summary:</h4>
+                    <ul>
+                        <li>Average daily steps: 7,654</li>
+                        <li>Active minutes: 45 minutes/day</li>
+                        <li>Workouts completed: 4/7 days</li>
+                        <li>Calories burned: 2,140 per day average</li>
+                    </ul>
+                    
+                    <h4>Recommendations:</h4>
+                    <p>Great progress this week! Try to maintain consistency with your walking routine. Consider adding 2 strength training sessions per week for optimal health benefits.</p>
+                </div>
+                
+                <div class="public-good-tabs__panel" role="tabpanel" id="nutrition-panel" aria-labelledby="nutrition-tab" tabindex="0" hidden>
+                    <h3>Nutrition Tracking</h3>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem;">
+                        <div style="background: #f8f9fa; padding: 1rem; border-radius: 4px;">
+                            <strong>Daily Calories</strong><br>
+                            1,847 / 2,000 (92%)
+                        </div>
+                        <div style="background: #f8f9fa; padding: 1rem; border-radius: 4px;">
+                            <strong>Water Intake</strong><br>
+                            1.8L / 2.5L (72%)
+                        </div>
+                    </div>
+                    
+                    <h4>Macronutrient Breakdown:</h4>
+                    <ul>
+                        <li><strong>Carbohydrates:</strong> 45% (recommended: 45-65%)</li>
+                        <li><strong>Protein:</strong> 22% (recommended: 10-35%)</li>
+                        <li><strong>Fat:</strong> 33% (recommended: 20-35%)</li>
+                    </ul>
+                    
+                    <div style="background: #d1ecf1; color: #0c5460; padding: 1rem; border-radius: 4px;">
+                        <strong>💧 Hydration Reminder:</strong> You're doing well! Try to drink one more glass of water before bedtime.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="example-section">
+            <h2>Progressive Enhancement</h2>
+            <p>When JavaScript is disabled, tabs gracefully degrade to show all content with navigation links.</p>
+            
+            <div class="public-good-tabs">
+                <h2 class="public-good-tabs__title">Health Information</h2>
+                <ul class="public-good-tabs__list" role="tablist">
+                    <li class="public-good-tabs__list-item">
+                        <a class="public-good-tabs__tab" href="#diet-panel">Diet & Nutrition</a>
+                    </li>
+                    <li class="public-good-tabs__list-item">
+                        <a class="public-good-tabs__tab" href="#exercise-panel">Exercise</a>
+                    </li>
+                    <li class="public-good-tabs__list-item">
+                        <a class="public-good-tabs__tab" href="#sleep-panel">Sleep</a>
+                    </li>
+                </ul>
+                
+                <div class="public-good-tabs__panel" id="diet-panel" aria-label="Diet & Nutrition">
+                    <h3>Diet & Nutrition</h3>
+                    <p>Proper nutrition is fundamental to maintaining good health and preventing chronic diseases.</p>
+                    <ul>
+                        <li>Eat a variety of fruits and vegetables daily</li>
+                        <li>Choose whole grains over refined grains</li>
+                        <li>Include lean proteins in your meals</li>
+                        <li>Limit processed foods and added sugars</li>
+                        <li>Stay hydrated with water throughout the day</li>
+                    </ul>
+                </div>
+                
+                <div class="public-good-tabs__panel" id="exercise-panel" aria-label="Exercise">
+                    <h3>Regular Exercise</h3>
+                    <p>Physical activity is essential for maintaining physical and mental health.</p>
+                    <ul>
+                        <li>Aim for at least 150 minutes of moderate activity per week</li>
+                        <li>Include strength training exercises twice per week</li>
+                        <li>Find activities you enjoy to stay motivated</li>
+                        <li>Start slowly and gradually increase intensity</li>
+                        <li>Consider activities like walking, cycling, or swimming</li>
+                    </ul>
+                </div>
+                
+                <div class="public-good-tabs__panel" id="sleep-panel" aria-label="Sleep">
+                    <h3>Quality Sleep</h3>
+                    <p>Adequate sleep is crucial for physical recovery and mental wellbeing.</p>
+                    <ul>
+                        <li>Aim for 7-9 hours of sleep per night</li>
+                        <li>Maintain a consistent sleep schedule</li>
+                        <li>Create a comfortable sleep environment</li>
+                        <li>Limit screen time before bedtime</li>
+                        <li>Avoid caffeine and large meals before sleep</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="example-section">
+            <h2>Accessibility Features</h2>
+            <p>All tabs include comprehensive accessibility features:</p>
+            <ul>
+                <li><strong>ARIA attributes:</strong> Proper roles, states, and properties for screen readers</li>
+                <li><strong>Keyboard navigation:</strong> Arrow keys, Home/End, Enter/Space support</li>
+                <li><strong>Focus management:</strong> Clear focus indicators and logical tab order</li>
+                <li><strong>Screen reader support:</strong> Clear announcements of tab states and content</li>
+                <li><strong>Progressive enhancement:</strong> Works without JavaScript</li>
+            </ul>
+
+            <h3>Testing Your Tabs</h3>
+            <ol>
+                <li><strong>Keyboard Test:</strong> Use Tab to focus tabs, Arrow keys to navigate, Enter/Space to activate</li>
+                <li><strong>Screen Reader Test:</strong> Test with NVDA, JAWS, or VoiceOver</li>
+                <li><strong>Mobile Test:</strong> Check touch interaction and responsive behavior</li>
+                <li><strong>No-JS Test:</strong> Disable JavaScript to verify graceful degradation</li>
+                <li><strong>High Contrast Test:</strong> Check visibility in high contrast mode</li>
+            </ol>
+        </div>
+    </div>
+
+    <script type="module">
+        import { 
+            Tabs,
+            initializeTabs,
+            validateTabsAccessibility
+        } from '../tabs.js';
+        
+        document.addEventListener('DOMContentLoaded', () => {
+            // Initialize all tabs with data-module attribute
+            const instances = initializeTabs();
+            console.log(`Initialized ${instances.length} tabs instances`);
+
+            // Add event listeners for tab changes
+            instances.forEach(instance => {
+                const element = instance.getElement();
+                element.addEventListener('tabs:changed', (event) => {
+                    console.log('Tab changed:', {
+                        activeIndex: event.detail.activeIndex,
+                        previousIndex: event.detail.previousIndex,
+                        activeTab: event.detail.activeTab.textContent,
+                        tabsTitle: element.querySelector('.public-good-tabs__title')?.textContent || 'Unnamed tabs'
+                    });
+                });
+            });
+
+            // Validate tabs accessibility
+            const validation = validateTabsAccessibility();
+            console.log('Tabs accessibility validation:', validation);
+            
+            if (validation.issues.length === 0) {
+                console.log('✓ All tabs are accessible');
+            } else {
+                console.warn('Tabs accessibility issues found:', validation.issues);
+            }
+
+            // Log instructions for testing
+            console.log(`
+Tabs Testing Instructions:
+1. Use Tab key to focus on tab buttons
+2. Use Arrow keys (Left/Right or Up/Down) to navigate between tabs
+3. Use Enter or Space to activate a tab
+4. Use Home/End to jump to first/last tab
+5. Check that panels update correctly when tabs change
+
+Found ${validation.tabs.length} tabs containers with ${instances.length} interactive instances.
+
+Keyboard shortcuts:
+• Tab: Focus tabs
+• Arrow Keys: Navigate between tabs  
+• Enter/Space: Activate tab
+• Home: Go to first tab
+• End: Go to last tab
+            `);
+
+            // Keyboard navigation help
+            document.addEventListener('keydown', (event) => {
+                if (event.key === 'F1') {
+                    event.preventDefault();
+                    alert(`
+Tabs Keyboard Navigation Help:
+• Tab: Move focus to tabs interface
+• Left/Right Arrow: Navigate between horizontal tabs
+• Up/Down Arrow: Navigate between vertical tabs
+• Home: Jump to first tab
+• End: Jump to last tab
+• Enter/Space: Activate focused tab
+• Delete: Remove tab (if removable)
+
+Accessibility Features:
+• Screen readers announce tab states and content
+• Focus indicators show current position
+• ARIA attributes provide context
+• Progressive enhancement works without JavaScript
+                    `);
+                }
+            });
+
+            // Show help hint
+            setTimeout(() => {
+                if (!sessionStorage.getItem('tabs-help-shown')) {
+                    console.log('💡 Press F1 for keyboard navigation help');
+                    sessionStorage.setItem('tabs-help-shown', 'true');
+                }
+            }, 2000);
+        });
+    </script>
+</body>
+</html>

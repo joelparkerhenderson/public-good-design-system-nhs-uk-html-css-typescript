@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Error Message - Basic Examples</title>
+  <link rel="stylesheet" href="../../../index.css">
+  <style>
+    body {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 2rem;
+      font-family: var(--public-good-font-family);
+      line-height: 1.6;
+      color: var(--public-good-color-text);
+    }
+    
+    .example-section {
+      margin-bottom: 3rem;
+      padding-bottom: 2rem;
+      border-bottom: 1px solid var(--public-good-color-border);
+    }
+    
+    .example-section:last-child {
+      border-bottom: none;
+    }
+    
+    .example-title {
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      color: var(--public-good-color-text);
+    }
+    
+    .example-description {
+      margin-bottom: 2rem;
+      color: var(--public-good-color-text-secondary);
+    }
+    
+    .public-good-form-group {
+      margin-bottom: 1.5rem;
+    }
+    
+    .public-good-label {
+      display: block;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+    
+    .public-good-input {
+      display: block;
+      width: 100%;
+      padding: 0.75rem;
+      border: 2px solid #d8dde0;
+      border-radius: 4px;
+      font-size: 1rem;
+      font-family: inherit;
+    }
+    
+    .public-good-input:focus {
+      outline: 3px solid #ffeb3b;
+      outline-offset: 0;
+      border-color: #0f172a;
+    }
+    
+    .demo-button {
+      background: #005eb8;
+      color: white;
+      border: none;
+      padding: 0.75rem 1.5rem;
+      border-radius: 4px;
+      font-size: 1rem;
+      cursor: pointer;
+      margin: 0.5rem 0.5rem 0.5rem 0;
+    }
+    
+    .demo-button:hover {
+      background: #004494;
+    }
+    
+    .demo-button.secondary {
+      background: #f0f4f5;
+      color: #005eb8;
+      border: 2px solid #005eb8;
+    }
+    
+    .demo-button.secondary:hover {
+      background: #e8edee;
+    }
+  </style>
+</head>
+<body>
+  <h1>Error Message - Basic Examples</h1>
+  <p>This page demonstrates basic usage of the Error Message component from the Public Good Design System.</p>
+
+  <div class="example-section">
+    <h2 class="example-title">Simple Error Messages</h2>
+    <p class="example-description">Basic error messages without form field associations.</p>
+    <div id="simple-errors-example"></div>
+  </div>
+
+  <div class="example-section">
+    <h2 class="example-title">Form Field Error Messages</h2>
+    <p class="example-description">Error messages associated with specific form fields using aria-describedby.</p>
+    
+    <form id="demo-form">
+      <div class="public-good-form-group">
+        <label for="email" class="public-good-label">Email address</label>
+        <input type="email" id="email" class="public-good-input" />
+      </div>
+      
+      <div class="public-good-form-group">
+        <label for="password" class="public-good-label">Password</label>
+        <input type="password" id="password" class="public-good-input" />
+      </div>
+      
+      <div class="public-good-form-group">
+        <label for="confirm-password" class="public-good-label">Confirm password</label>
+        <input type="password" id="confirm-password" class="public-good-input" />
+      </div>
+      
+      <button type="submit" class="demo-button">Submit</button>
+    </form>
+  </div>
+
+  <div class="example-section">
+    <h2 class="example-title">Dynamic Error Messages</h2>
+    <p class="example-description">Error messages that can be shown, hidden, and updated dynamically.</p>
+    
+    <div class="public-good-form-group">
+      <label for="dynamic-input" class="public-good-label">Test input</label>
+      <input type="text" id="dynamic-input" class="public-good-input" placeholder="Type something..." />
+    </div>
+    
+    <div id="dynamic-error-container"></div>
+    
+    <div style="margin-top: 1rem;">
+      <button id="show-error-btn" class="demo-button">Show Error</button>
+      <button id="hide-error-btn" class="demo-button">Hide Error</button>
+      <button id="update-error-btn" class="demo-button">Update Message</button>
+      <button id="associate-error-btn" class="demo-button secondary">Associate with Input</button>
+    </div>
+  </div>
+
+  <div class="example-section">
+    <h2 class="example-title">Error Message Variants</h2>
+    <p class="example-description">Different styling variants for various use cases.</p>
+    <div id="variants-example"></div>
+  </div>
+
+  <div class="example-section">
+    <h2 class="example-title">Error Summary</h2>
+    <p class="example-description">Error summary component for displaying multiple errors at the top of a form.</p>
+    <div id="error-summary-example"></div>
+  </div>
+
+  <div class="example-section">
+    <h2 class="example-title">Real-time Validation</h2>
+    <p class="example-description">Example of real-time form validation with error messages.</p>
+    
+    <form id="validation-form">
+      <div class="public-good-form-group">
+        <label for="username" class="public-good-label">Username</label>
+        <input type="text" id="username" class="public-good-input" placeholder="Enter username" />
+      </div>
+      
+      <div class="public-good-form-group">
+        <label for="email-validation" class="public-good-label">Email</label>
+        <input type="email" id="email-validation" class="public-good-input" placeholder="Enter email" />
+      </div>
+      
+      <div class="public-good-form-group">
+        <label for="age" class="public-good-label">Age</label>
+        <input type="number" id="age" class="public-good-input" min="18" max="120" placeholder="Enter age" />
+      </div>
+    </form>
+  </div>
+
+  <script type="module">
+    import { 
+      createErrorMessage, 
+      createSimpleErrorMessage, 
+      createFieldErrorMessage,
+      createFormErrorMessages,
+      showErrorMessages,
+      hideErrorMessages,
+      addErrorStateToElement,
+      removeErrorStateFromElement
+    } from '../error-message.js'
+
+    // Simple error messages
+    const simpleErrors = [
+      createSimpleErrorMessage('This is a basic error message'),
+      createSimpleErrorMessage('Another error message with more detailed information about what went wrong'),
+      createSimpleErrorMessage('Short error')
+    ]
+    
+    const simpleContainer = document.getElementById('simple-errors-example')
+    simpleErrors.forEach(error => simpleContainer.appendChild(error.element))
+
+    // Form field error messages
+    let formErrors = []
+    
+    document.getElementById('demo-form').addEventListener('submit', (e) => {
+      e.preventDefault()
+      
+      // Clear existing errors
+      clearFormErrors()
+      
+      const email = document.getElementById('email').value
+      const password = document.getElementById('password').value
+      const confirmPassword = document.getElementById('confirm-password').value
+      
+      const errors = []
+      
+      // Email validation
+      if (!email) {
+        errors.push({ elementId: 'email', message: 'Email address is required' })
+      } else if (!email.includes('@')) {
+        errors.push({ elementId: 'email', message: 'Please enter a valid email address' })
+      }
+      
+      // Password validation
+      if (!password) {
+        errors.push({ elementId: 'password', message: 'Password is required' })
+      } else if (password.length < 8) {
+        errors.push({ elementId: 'password', message: 'Password must be at least 8 characters long' })
+      }
+      
+      // Confirm password validation
+      if (!confirmPassword) {
+        errors.push({ elementId: 'confirm-password', message: 'Please confirm your password' })
+      } else if (password !== confirmPassword) {
+        errors.push({ elementId: 'confirm-password', message: 'Passwords do not match' })
+      }
+      
+      if (errors.length > 0) {
+        showFormErrors(errors)
+      } else {
+        alert('Form submitted successfully!')
+      }
+    })
+    
+    function showFormErrors(errors) {
+      formErrors = createFormErrorMessages(errors)
+      
+      errors.forEach((error, index) => {
+        const formGroup = document.getElementById(error.elementId).closest('.public-good-form-group')
+        formGroup.appendChild(formErrors[index].element)
+        addErrorStateToElement(error.elementId)
+        formGroup.classList.add('public-good-form-group--error')
+      })
+    }
+    
+    function clearFormErrors() {
+      formErrors.forEach(error => error.destroy())
+      formErrors = []
+      
+      // Remove error states
+      const formGroups = document.querySelectorAll('.public-good-form-group--error')
+      formGroups.forEach(group => {
+        group.classList.remove('public-good-form-group--error')
+        const input = group.querySelector('input')
+        if (input) {
+          removeErrorStateFromElement(input.id)
+        }
+      })
+    }
+
+    // Dynamic error messages
+    let dynamicError = createSimpleErrorMessage('This is a dynamic error message')
+    dynamicError.hide()
+    document.getElementById('dynamic-error-container').appendChild(dynamicError.element)
+    
+    let messageCounter = 1
+    
+    document.getElementById('show-error-btn').addEventListener('click', () => {
+      dynamicError.show()
+    })
+    
+    document.getElementById('hide-error-btn').addEventListener('click', () => {
+      dynamicError.hide()
+    })
+    
+    document.getElementById('update-error-btn').addEventListener('click', () => {
+      messageCounter++
+      dynamicError.setMessage(\`Updated error message #\${messageCounter}\`)
+    })
+    
+    document.getElementById('associate-error-btn').addEventListener('click', () => {
+      if (dynamicError.config.targetElementId === 'dynamic-input') {
+        // Remove association
+        dynamicError.associateWithElement('')
+        removeErrorStateFromElement('dynamic-input')
+        document.getElementById('associate-error-btn').textContent = 'Associate with Input'
+      } else {
+        // Add association
+        dynamicError.associateWithElement('dynamic-input')
+        addErrorStateToElement('dynamic-input')
+        document.getElementById('associate-error-btn').textContent = 'Remove Association'
+      }
+    })
+
+    // Error message variants
+    const variants = [
+      createErrorMessage({
+        message: 'Compact error message',
+        classes: 'public-good-error-message--compact'
+      }),
+      createErrorMessage({
+        message: 'Large error message with more emphasis',
+        classes: 'public-good-error-message--large'
+      }),
+      createErrorMessage({
+        message: 'Inline error message',
+        classes: 'public-good-error-message--inline'
+      }),
+      createErrorMessage({
+        message: 'Animated error message',
+        classes: 'public-good-error-message--animated'
+      })
+    ]
+    
+    const variantsContainer = document.getElementById('variants-example')
+    variants.forEach(variant => variantsContainer.appendChild(variant.element))
+
+    // Error summary
+    const errorSummary = document.createElement('div')
+    errorSummary.className = 'public-good-error-summary'
+    errorSummary.setAttribute('tabindex', '-1')
+    errorSummary.innerHTML = \`
+      <h2 class="public-good-error-summary__title">There is a problem</h2>
+      <ul class="public-good-error-summary__list">
+        <li class="public-good-error-summary__list-item">
+          <a href="#email" class="public-good-error-summary__link">Please enter a valid email address</a>
+        </li>
+        <li class="public-good-error-summary__list-item">
+          <a href="#password" class="public-good-error-summary__link">Password must be at least 8 characters long</a>
+        </li>
+        <li class="public-good-error-summary__list-item">
+          <a href="#confirm-password" class="public-good-error-summary__link">Passwords do not match</a>
+        </li>
+      </ul>
+    \`
+    document.getElementById('error-summary-example').appendChild(errorSummary)
+
+    // Real-time validation
+    const validationRules = {
+      username: {
+        required: true,
+        minLength: 3,
+        pattern: /^[a-zA-Z0-9_]+$/
+      },
+      'email-validation': {
+        required: true,
+        pattern: /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+      },
+      age: {
+        required: true,
+        min: 18,
+        max: 120
+      }
+    }
+    
+    const validationErrors = {}
+    
+    Object.keys(validationRules).forEach(fieldId => {
+      const field = document.getElementById(fieldId)
+      
+      field.addEventListener('blur', () => validateField(fieldId))
+      field.addEventListener('input', () => {
+        // Clear error on input to provide immediate feedback
+        if (validationErrors[fieldId]) {
+          clearFieldError(fieldId)
+        }
+      })
+    })
+    
+    function validateField(fieldId) {
+      const field = document.getElementById(fieldId)
+      const value = field.value.trim()
+      const rules = validationRules[fieldId]
+      
+      clearFieldError(fieldId)
+      
+      if (rules.required && !value) {
+        showFieldError(fieldId, 'This field is required')
+        return false
+      }
+      
+      if (value && rules.minLength && value.length < rules.minLength) {
+        showFieldError(fieldId, \`Must be at least \${rules.minLength} characters long\`)
+        return false
+      }
+      
+      if (value && rules.pattern && !rules.pattern.test(value)) {
+        let message = 'Please enter a valid value'
+        if (fieldId === 'username') {
+          message = 'Username can only contain letters, numbers, and underscores'
+        } else if (fieldId === 'email-validation') {
+          message = 'Please enter a valid email address'
+        }
+        showFieldError(fieldId, message)
+        return false
+      }
+      
+      if (value && rules.min && parseInt(value) < rules.min) {
+        showFieldError(fieldId, \`Must be at least \${rules.min}\`)
+        return false
+      }
+      
+      if (value && rules.max && parseInt(value) > rules.max) {
+        showFieldError(fieldId, \`Must be no more than \${rules.max}\`)
+        return false
+      }
+      
+      return true
+    }
+    
+    function showFieldError(fieldId, message) {
+      const field = document.getElementById(fieldId)
+      const formGroup = field.closest('.public-good-form-group')
+      
+      const error = createFieldErrorMessage(message, fieldId)
+      formGroup.appendChild(error.element)
+      
+      addErrorStateToElement(fieldId)
+      formGroup.classList.add('public-good-form-group--error')
+      
+      validationErrors[fieldId] = error
+    }
+    
+    function clearFieldError(fieldId) {
+      if (validationErrors[fieldId]) {
+        validationErrors[fieldId].destroy()
+        delete validationErrors[fieldId]
+        
+        const field = document.getElementById(fieldId)
+        const formGroup = field.closest('.public-good-form-group')
+        
+        removeErrorStateFromElement(fieldId)
+        if (!formGroup.querySelector('.public-good-error-message')) {
+          formGroup.classList.remove('public-good-form-group--error')
+        }
+      }
+    }
+
+    // Event listeners for analytics
+    document.addEventListener('public-good:error-message:changed', (event) => {
+      console.log('Error message changed:', event.detail)
+    })
+
+    document.addEventListener('public-good:error-message:shown', (event) => {
+      console.log('Error message shown:', event.detail)
+    })
+
+    document.addEventListener('public-good:error-message:hidden', (event) => {
+      console.log('Error message hidden:', event.detail)
+    })
+
+    document.addEventListener('public-good:error-message:associated', (event) => {
+      console.log('Error message associated:', event.detail)
+    })
+  </script>
+</body>
+</html>

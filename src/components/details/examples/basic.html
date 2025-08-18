@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Details Component - Basic Examples</title>
+  <link rel="stylesheet" href="../../../index.css">
+  <style>
+    body {
+      font-family: var(--public-good-font-family);
+      margin: 0;
+      padding: var(--public-good-spacing-6);
+      background-color: var(--public-good-color-background);
+    }
+    
+    .example-section {
+      margin-bottom: var(--public-good-spacing-8);
+    }
+    
+    .example-title {
+      font-size: var(--public-good-font-size-lg);
+      font-weight: var(--public-good-font-weight-bold);
+      margin-bottom: var(--public-good-spacing-4);
+      color: var(--public-good-color-text);
+    }
+    
+    .example-description {
+      margin-bottom: var(--public-good-spacing-5);
+      color: var(--public-good-color-text-secondary);
+    }
+  </style>
+</head>
+<body>
+  <h1>Details Component - Basic Examples</h1>
+  
+  <div class="example-section">
+    <h2 class="example-title">Basic Details</h2>
+    <p class="example-description">Simple collapsible content with summary and hidden text.</p>
+    
+    <div id="basic-details"></div>
+  </div>
+
+  <div class="example-section">
+    <h2 class="example-title">Details with HTML Content</h2>
+    <p class="example-description">Details component containing rich HTML content.</p>
+    
+    <div id="html-details"></div>
+  </div>
+
+  <div class="example-section">
+    <h2 class="example-title">Pre-opened Details</h2>
+    <p class="example-description">Details component that starts in an open state.</p>
+    
+    <div id="open-details"></div>
+  </div>
+
+  <div class="example-section">
+    <h2 class="example-title">Custom Styled Details</h2>
+    <p class="example-description">Details component with custom styling applied.</p>
+    
+    <div id="styled-details"></div>
+    
+    <style>
+      .custom-details {
+        border-color: var(--public-good-color-blue);
+        background-color: #f0f8ff;
+      }
+      
+      .custom-summary {
+        background-color: var(--public-good-color-blue);
+        color: white;
+      }
+      
+      .custom-summary:hover {
+        background-color: var(--public-good-color-blue-dark);
+      }
+      
+      .custom-content {
+        background-color: white;
+        border-left: 4px solid var(--public-good-color-blue);
+        padding-left: var(--public-good-spacing-5);
+      }
+    </style>
+  </div>
+
+  <div class="example-section">
+    <h2 class="example-title">No Border Variant</h2>
+    <p class="example-description">Details component without border styling.</p>
+    
+    <div id="no-border-details"></div>
+  </div>
+
+  <div class="example-section">
+    <h2 class="example-title">Compact Variant</h2>
+    <p class="example-description">Details component with reduced padding for compact layouts.</p>
+    
+    <div id="compact-details"></div>
+  </div>
+
+  <script type="module">
+    import { 
+      createDetails, 
+      createSimpleDetails,
+      createDetailsWithHTML 
+    } from '../details.js'
+    
+    // Basic details
+    const basicDetails = createSimpleDetails(
+      'What is the NHS App?',
+      'The NHS App is a simple and secure way to access a range of NHS services on your smartphone or tablet.'
+    )
+    document.getElementById('basic-details').appendChild(basicDetails.element)
+    
+    // Details with HTML content
+    const htmlDetails = createDetailsWithHTML(
+      'Help with fees',
+      `
+        <p>You may be able to get help with health costs if you:</p>
+        <ul>
+          <li>get certain benefits</li>
+          <li>are under 16</li>
+          <li>are 16 to 18 and in full-time education</li>
+          <li>are pregnant or have had a baby in the previous 12 months</li>
+        </ul>
+        <p><a href="#" onclick="alert('Link clicked'); return false;">Check if you can get help with health costs</a></p>
+      `
+    )
+    document.getElementById('html-details').appendChild(htmlDetails.element)
+    
+    // Pre-opened details
+    const openDetails = createDetails({
+      summaryText: 'Important information about your appointment',
+      content: 'Please arrive 10 minutes before your appointment time. Bring a list of any medications you are currently taking.',
+      open: true
+    })
+    document.getElementById('open-details').appendChild(openDetails.element)
+    
+    // Custom styled details
+    const styledDetails = createDetails({
+      summaryText: 'Technical specifications',
+      content: 'This device operates at 50-60Hz frequency and requires a minimum of 110V power supply. Maximum operating temperature is 40°C.',
+      classes: 'custom-details',
+      summaryClasses: 'custom-summary',
+      contentClasses: 'custom-content'
+    })
+    document.getElementById('styled-details').appendChild(styledDetails.element)
+    
+    // No border variant
+    const noBorderDetails = createDetails({
+      summaryText: 'Additional resources',
+      content: 'You can find more information about this topic in our comprehensive guide available on the website.',
+      classes: 'public-good-details--no-border'
+    })
+    document.getElementById('no-border-details').appendChild(noBorderDetails.element)
+    
+    // Compact variant
+    const compactDetails = createDetails({
+      summaryText: 'Quick tip',
+      content: 'Press Ctrl+F (or Cmd+F on Mac) to search for specific content on this page.',
+      classes: 'public-good-details--compact'
+    })
+    document.getElementById('compact-details').appendChild(compactDetails.element)
+    
+    // Add event listeners for demonstration
+    document.addEventListener('public-good:details:toggle', (event) => {
+      console.log('Details toggled:', {
+        id: event.detail.id,
+        isOpen: event.detail.isOpen,
+        summaryText: event.detail.summaryText
+      })
+    })
+    
+    // Add demonstration controls
+    const demoControls = document.createElement('div')
+    demoControls.innerHTML = `
+      <div style="margin-top: 2rem; padding: 1rem; background: #f0f4f5; border-radius: 4px;">
+        <h3>Interactive Controls</h3>
+        <button id="open-all" class="public-good-button public-good-button--secondary" style="margin-right: 0.5rem;">Open All</button>
+        <button id="close-all" class="public-good-button public-good-button--secondary" style="margin-right: 0.5rem;">Close All</button>
+        <button id="toggle-all" class="public-good-button public-good-button--secondary" style="margin-right: 0.5rem;">Toggle All</button>
+        <button id="update-content" class="public-good-button public-good-button--secondary">Update Content</button>
+        <div id="status-display" style="margin-top: 1rem; font-weight: bold;"></div>
+      </div>
+    `
+    document.body.appendChild(demoControls)
+    
+    // Store details components for controls
+    const allDetails = [
+      basicDetails,
+      htmlDetails,
+      openDetails,
+      styledDetails,
+      noBorderDetails,
+      compactDetails
+    ]
+    
+    // Open all
+    document.getElementById('open-all').addEventListener('click', () => {
+      allDetails.forEach(details => details.open())
+      document.getElementById('status-display').textContent = 'All details opened'
+    })
+    
+    // Close all
+    document.getElementById('close-all').addEventListener('click', () => {
+      allDetails.forEach(details => details.close())
+      document.getElementById('status-display').textContent = 'All details closed'
+    })
+    
+    // Toggle all
+    document.getElementById('toggle-all').addEventListener('click', () => {
+      allDetails.forEach(details => details.toggle())
+      document.getElementById('status-display').textContent = 'All details toggled'
+    })
+    
+    // Update content
+    document.getElementById('update-content').addEventListener('click', () => {
+      const timestamp = new Date().toLocaleTimeString()
+      
+      basicDetails.setSummaryText(`Updated at ${timestamp}`)
+      basicDetails.setContent(`This content was updated at ${timestamp}. The details component supports dynamic content updates.`)
+      
+      document.getElementById('status-display').textContent = `Content updated at ${timestamp}`
+    })
+    
+    // Status tracking
+    let toggleCount = 0
+    document.addEventListener('public-good:details:toggle', (event) => {
+      toggleCount++
+      
+      const statusEl = document.getElementById('status-display')
+      const openCount = allDetails.filter(d => d.isOpen()).length
+      statusEl.textContent = `Toggles: ${toggleCount} | Open: ${openCount}/${allDetails.length}`
+    })
+    
+    // Accessibility demonstration
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'h' && event.ctrlKey) {
+        event.preventDefault()
+        
+        // Focus first details summary for keyboard users
+        const firstSummary = document.querySelector('.public-good-details__summary')
+        if (firstSummary) {
+          firstSummary.focus()
+          console.log('Focused first details summary for keyboard navigation')
+        }
+      }
+    })
+    
+    // Auto-save state to localStorage
+    const saveState = () => {
+      const state = allDetails.map((details, index) => ({
+        index,
+        isOpen: details.isOpen(),
+        summaryText: details.config.summaryText
+      }))
+      localStorage.setItem('detailsState', JSON.stringify(state))
+    }
+    
+    const loadState = () => {
+      const savedState = localStorage.getItem('detailsState')
+      if (savedState) {
+        try {
+          const state = JSON.parse(savedState)
+          state.forEach((item, index) => {
+            if (allDetails[index]) {
+              if (item.isOpen) {
+                allDetails[index].open()
+              } else {
+                allDetails[index].close()
+              }
+            }
+          })
+          console.log('Restored details state from localStorage')
+        } catch (error) {
+          console.warn('Error loading saved state:', error)
+        }
+      }
+    }
+    
+    // Auto-save on changes
+    document.addEventListener('public-good:details:toggle', saveState)
+    
+    // Load saved state
+    setTimeout(loadState, 100)
+    
+    // Performance monitoring
+    const observer = new MutationObserver((mutations) => {
+      mutations.forEach((mutation) => {
+        if (mutation.type === 'attributes' && mutation.attributeName === 'open') {
+          const target = mutation.target
+          console.log('Details state changed:', {
+            element: target,
+            isOpen: target.hasAttribute('open'),
+            timestamp: performance.now()
+          })
+        }
+      })
+    })
+    
+    // Observe all details elements
+    allDetails.forEach(details => {
+      observer.observe(details.element, { attributes: true })
+    })
+    
+    console.log('Details component examples loaded successfully')
+  </script>
+</body>
+</html>

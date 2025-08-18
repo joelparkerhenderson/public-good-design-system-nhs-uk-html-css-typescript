@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Review Date Component - Basic Example</title>
+  <link rel="stylesheet" href="../../../core/styles/base.css">
+  <link rel="stylesheet" href="../review-date.css">
+</head>
+<body>
+  <div class="public-good-width-container">
+    <main class="public-good-main-wrapper" id="main-content">
+      <div class="public-good-grid-row">
+        <div class="public-good-grid-column-two-thirds">
+          
+          <h1>Review Date Component - Basic Example</h1>
+          
+          <p>This example demonstrates the basic Review Date component showing page currency information.</p>
+
+          <h2>Standard Review Date</h2>
+          <p>This is the most common pattern used on NHS.UK pages:</p>
+          
+          <div class="public-good-example">
+            <p class="public-good-review-date public-good-body-s public-good-u-secondary-text-color public-good-u-margin-top-7 public-good-u-margin-bottom-0">
+              Page last reviewed: 15 March 2023<br>
+              Next review due: 15 March 2026
+            </p>
+          </div>
+
+          <details class="public-good-details">
+            <summary class="public-good-details__summary">
+              <span class="public-good-details__summary-text">View code</span>
+            </summary>
+            <div class="public-good-details__text">
+              <pre><code>&lt;p class="public-good-review-date public-good-body-s public-good-u-secondary-text-color public-good-u-margin-top-7 public-good-u-margin-bottom-0"&gt;
+  Page last reviewed: 15 March 2023&lt;br&gt;
+  Next review due: 15 March 2026
+&lt;/p&gt;</code></pre>
+            </div>
+          </details>
+
+          <h2>JavaScript Implementation</h2>
+          <p>Create review dates programmatically:</p>
+          
+          <div id="js-review-date-1"></div>
+          
+          <details class="public-good-details">
+            <summary class="public-good-details__summary">
+              <span class="public-good-details__summary-text">View JavaScript</span>
+            </summary>
+            <div class="public-good-details__text">
+              <pre><code>import { createSimpleReviewDate } from './review-date'
+
+const reviewDate = createSimpleReviewDate('2023-06-15', '2026-06-15')
+document.getElementById('js-review-date-1').appendChild(reviewDate.element)</code></pre>
+            </div>
+          </details>
+
+          <h2>Last Reviewed Only</h2>
+          <p>Sometimes you only need to show when content was last updated:</p>
+          
+          <div id="js-review-date-2"></div>
+          
+          <details class="public-good-details">
+            <summary class="public-good-details__summary">
+              <span class="public-good-details__summary-text">View JavaScript</span>
+            </summary>
+            <div class="public-good-details__text">
+              <pre><code>import { createLastReviewedOnly } from './review-date'
+
+const reviewDate = createLastReviewedOnly('2023-09-20')
+document.getElementById('js-review-date-2').appendChild(reviewDate.element)</code></pre>
+            </div>
+          </details>
+
+          <h2>Data Attribute Initialization</h2>
+          <p>Initialize review dates from HTML data attributes:</p>
+          
+          <div 
+            data-public-good-review-date
+            data-last-reviewed="2023-12-01"
+            data-next-review="2026-12-01"
+            data-classes="public-good-body-s public-good-u-secondary-text-color public-good-u-margin-top-7"
+          ></div>
+          
+          <details class="public-good-details">
+            <summary class="public-good-details__summary">
+              <span class="public-good-details__summary-text">View HTML</span>
+            </summary>
+            <div class="public-good-details__text">
+              <pre><code>&lt;div 
+  data-public-good-review-date
+  data-last-reviewed="2023-12-01"
+  data-next-review="2026-12-01"
+  data-classes="public-good-body-s public-good-u-secondary-text-color public-good-u-margin-top-7"
+&gt;&lt;/div&gt;</code></pre>
+            </div>
+          </details>
+
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script type="module">
+    import { 
+      createSimpleReviewDate, 
+      createLastReviewedOnly,
+      initializeReviewDates
+    } from '../review-date.js'
+
+    // Create programmatic review dates
+    const reviewDate1 = createSimpleReviewDate('2023-06-15', '2026-06-15')
+    document.getElementById('js-review-date-1').appendChild(reviewDate1.element)
+
+    const reviewDate2 = createLastReviewedOnly('2023-09-20')
+    document.getElementById('js-review-date-2').appendChild(reviewDate2.element)
+
+    // Initialize data attribute components
+    initializeReviewDates()
+  </script>
+</body>
+</html>

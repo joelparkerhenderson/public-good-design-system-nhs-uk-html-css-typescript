@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notification Banner Component - Basic Examples</title>
+    <link rel="stylesheet" href="../../../core/base.css">
+    <link rel="stylesheet" href="../notification-banner.css">
+    <style>
+        body {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 2rem;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background-color: #fafafa;
+        }
+        .example {
+            margin-bottom: 3rem;
+            padding: 2rem;
+            background: white;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+        .example h3 {
+            margin-top: 0;
+            color: #0066cc;
+            font-size: 1.5rem;
+        }
+        .example-description {
+            margin-bottom: 1.5rem;
+            color: #666;
+            font-size: 1rem;
+            line-height: 1.5;
+        }
+        .code-preview {
+            margin-top: 1rem;
+            padding: 1rem;
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            white-space: pre-wrap;
+            color: #495057;
+        }
+        /* Mock page content for context */
+        .mock-page-header {
+            background: #0066cc;
+            color: white;
+            padding: 1rem 2rem;
+            margin: -2rem -2rem 2rem -2rem;
+            border-radius: 8px 8px 0 0;
+        }
+        .mock-content {
+            padding: 1rem 0;
+            border-top: 1px solid #e0e0e0;
+            color: #666;
+        }
+        /* Color variables for examples */
+        :root {
+            --public-good-color-text: #212b32;
+            --public-good-color-text-secondary: #666666;
+            --public-good-color-link: #0066cc;
+            --public-good-color-link-hover: #003d7a;
+            --public-good-color-link-visited: #4c2c92;
+            --public-good-color-focus: #ffeb3b;
+            --public-good-spacing-1: 8px;
+            --public-good-spacing-2: 12px;
+            --public-good-spacing-3: 16px;
+            --public-good-spacing-4: 24px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Notification Banner Component - Basic Examples</h1>
+    
+    <div class="example">
+        <h3>Default Notification Banner</h3>
+        <p class="example-description">A basic notification banner with standard styling for general information.</p>
+        
+        <div class="public-good-notification-banner" role="region" aria-labelledby="default-title">
+            <h2 class="public-good-notification-banner__title" id="default-title">System Notification</h2>
+            <div class="public-good-notification-banner__content">
+                This is a standard notification banner with default styling. It provides important information to users without being overly prominent.
+            </div>
+        </div>
+
+        <div class="mock-content">
+            <p>This is regular page content that appears below the notification.</p>
+        </div>
+    </div>
+
+    <div class="example">
+        <h3>Success Notification</h3>
+        <p class="example-description">A success notification for positive feedback and confirmations.</p>
+        
+        <div class="public-good-notification-banner public-good-notification-banner--success" 
+             role="status" aria-labelledby="success-title">
+            <h2 class="public-good-notification-banner__title" id="success-title">Success</h2>
+            <div class="public-good-notification-banner__content">
+                Your settings have been saved successfully. All changes are now active.
+            </div>
+        </div>
+
+        <div class="mock-content">
+            <p>Success notifications use green styling and a "status" ARIA role for screen readers.</p>
+        </div>
+    </div>
+
+    <div class="example">
+        <h3>Warning Notification</h3>
+        <p class="example-description">A warning notification to alert users about potential issues or required actions.</p>
+        
+        <div class="public-good-notification-banner public-good-notification-banner--warning" 
+             role="alert" aria-labelledby="warning-title">
+            <h2 class="public-good-notification-banner__title" id="warning-title">Action Required</h2>
+            <div class="public-good-notification-banner__content">
+                Your session will expire in 10 minutes due to inactivity. Please save your work to avoid losing changes.
+            </div>
+        </div>
+
+        <div class="mock-content">
+            <p>Warning notifications use amber styling and an "alert" ARIA role for immediate attention.</p>
+        </div>
+    </div>
+
+    <div class="example">
+        <h3>Error Notification</h3>
+        <p class="example-description">An error notification for communicating problems that need user attention.</p>
+        
+        <div class="public-good-notification-banner public-good-notification-banner--error" 
+             role="alert" aria-labelledby="error-title">
+            <h2 class="public-good-notification-banner__title" id="error-title">Error</h2>
+            <div class="public-good-notification-banner__content">
+                Unable to save your changes due to a connection error. Please check your internet connection and try again.
+            </div>
+        </div>
+
+        <div class="mock-content">
+            <p>Error notifications use red styling with high contrast for critical issues.</p>
+        </div>
+    </div>
+
+    <div class="example">
+        <h3>Info Notification</h3>
+        <p class="example-description">An info notification for helpful tips, updates, or additional information.</p>
+        
+        <div class="public-good-notification-banner public-good-notification-banner--info" 
+             role="status" aria-labelledby="info-title">
+            <h2 class="public-good-notification-banner__title" id="info-title">Information</h2>
+            <div class="public-good-notification-banner__content">
+                System maintenance is scheduled for tonight from 2:00 AM to 4:00 AM. Some features may be temporarily unavailable.
+            </div>
+        </div>
+
+        <div class="mock-content">
+            <p>Info notifications use blue styling for informational content that isn't urgent.</p>
+        </div>
+    </div>
+
+    <div class="example">
+        <h3>Dismissible Notification</h3>
+        <p class="example-description">A notification with a close button that users can dismiss.</p>
+        
+        <div class="public-good-notification-banner public-good-notification-banner--info" 
+             role="status" aria-labelledby="dismissible-title">
+            <h2 class="public-good-notification-banner__title" id="dismissible-title">Did you know?</h2>
+            <div class="public-good-notification-banner__content">
+                You can customize your dashboard by dragging and dropping widgets. Try it out!
+            </div>
+            <button class="public-good-notification-banner__close" type="button" aria-label="Dismiss notification">
+                <span class="public-good-notification-banner__close-icon" aria-hidden="true">×</span>
+            </button>
+        </div>
+
+        <div class="mock-content">
+            <p>Dismissible notifications include a close button for user control. Click the × to dismiss.</p>
+        </div>
+    </div>
+
+    <div class="example">
+        <h3>HTML Content Notification</h3>
+        <p class="example-description">A notification that contains HTML content including links and formatting.</p>
+        
+        <div class="public-good-notification-banner public-good-notification-banner--warning" 
+             role="alert" aria-labelledby="html-title">
+            <h2 class="public-good-notification-banner__title" id="html-title">Account Verification</h2>
+            <div class="public-good-notification-banner__content">
+                <p>Please <a href="#verify">verify your email address</a> to enable all features.</p>
+                <p>Didn't receive the email? <a href="#resend">Resend verification email</a>.</p>
+            </div>
+            <button class="public-good-notification-banner__close" type="button" aria-label="Dismiss notification">
+                <span class="public-good-notification-banner__close-icon" aria-hidden="true">×</span>
+            </button>
+        </div>
+
+        <div class="mock-content">
+            <p>HTML content allows for rich formatting, links, and structured information within notifications.</p>
+        </div>
+    </div>
+
+    <div class="example">
+        <h3>Notification with List Content</h3>
+        <p class="example-description">A notification containing a list of items or multiple pieces of information.</p>
+        
+        <div class="public-good-notification-banner public-good-notification-banner--error" 
+             role="alert" aria-labelledby="list-title">
+            <h2 class="public-good-notification-banner__title" id="list-title">Validation Errors</h2>
+            <div class="public-good-notification-banner__content">
+                <p>Please correct the following errors:</p>
+                <ul>
+                    <li>Email address is required</li>
+                    <li>Password must be at least 8 characters</li>
+                    <li>Terms and conditions must be accepted</li>
+                </ul>
+            </div>
+            <button class="public-good-notification-banner__close" type="button" aria-label="Dismiss notification">
+                <span class="public-good-notification-banner__close-icon" aria-hidden="true">×</span>
+            </button>
+        </div>
+
+        <div class="mock-content">
+            <p>List content is commonly used for form validation errors or multiple related messages.</p>
+        </div>
+    </div>
+
+    <div class="example">
+        <h3>Compact Notification</h3>
+        <p class="example-description">A compact notification with reduced padding for less prominent messaging.</p>
+        
+        <div class="public-good-notification-banner public-good-notification-banner--success public-good-notification-banner--compact" 
+             role="status" aria-labelledby="compact-title">
+            <h2 class="public-good-notification-banner__title" id="compact-title">Saved</h2>
+            <div class="public-good-notification-banner__content">
+                Draft automatically saved at 3:45 PM
+            </div>
+        </div>
+
+        <div class="mock-content">
+            <p>Compact notifications take up less space and are suitable for frequent or less critical updates.</p>
+        </div>
+    </div>
+
+    <div class="example">
+        <h3>Notification Without Title</h3>
+        <p class="example-description">A simple notification with just content and no separate title.</p>
+        
+        <div class="public-good-notification-banner public-good-notification-banner--info" 
+             role="status" tabindex="0">
+            <div class="public-good-notification-banner__content">
+                <strong>New feature available:</strong> You can now export your data in multiple formats from the settings page.
+            </div>
+            <button class="public-good-notification-banner__close" type="button" aria-label="Dismiss notification">
+                <span class="public-good-notification-banner__close-icon" aria-hidden="true">×</span>
+            </button>
+        </div>
+
+        <div class="mock-content">
+            <p>Notifications don't always need a separate title - content can be self-contained.</p>
+        </div>
+    </div>
+
+    <script type="module">
+        import { 
+            NotificationBanner,
+            initializeNotificationBanners 
+        } from '../notification-banner.js';
+        
+        document.addEventListener('DOMContentLoaded', () => {
+            // Add click handlers to all close buttons
+            const closeButtons = document.querySelectorAll('.public-good-notification-banner__close');
+            
+            closeButtons.forEach(button => {
+                button.addEventListener('click', (event) => {
+                    event.preventDefault();
+                    const banner = button.closest('.public-good-notification-banner');
+                    
+                    // Animate out
+                    banner.style.animation = 'public-good-notification-banner-dismiss 0.3s ease-out forwards';
+                    
+                    setTimeout(() => {
+                        banner.style.display = 'none';
+                        
+                        // Show message about dismissal
+                        const example = banner.closest('.example');
+                        const mockContent = example.querySelector('.mock-content');
+                        
+                        if (mockContent && !mockContent.querySelector('.dismissed-message')) {
+                            const message = document.createElement('p');
+                            message.className = 'dismissed-message';
+                            message.style.cssText = 'color: #007f3b; font-style: italic; margin-top: 1rem;';
+                            message.textContent = '✓ Notification dismissed successfully';
+                            mockContent.appendChild(message);
+                        }
+                    }, 300);
+                });
+            });
+
+            // Add keyboard support for close buttons
+            closeButtons.forEach(button => {
+                button.addEventListener('keydown', (event) => {
+                    if (event.key === 'Enter' || event.key === ' ') {
+                        event.preventDefault();
+                        button.click();
+                    }
+                });
+            });
+
+            // Add hover effects for demonstration
+            const notifications = document.querySelectorAll('.public-good-notification-banner');
+            notifications.forEach(banner => {
+                let originalStyle = '';
+                
+                banner.addEventListener('mouseenter', () => {
+                    if (!banner.style.animation.includes('dismiss')) {
+                        originalStyle = banner.style.transform;
+                        banner.style.transform = 'translateY(-2px)';
+                        banner.style.transition = 'transform 0.2s ease';
+                    }
+                });
+                
+                banner.addEventListener('mouseleave', () => {
+                    if (!banner.style.animation.includes('dismiss')) {
+                        banner.style.transform = originalStyle;
+                    }
+                });
+            });
+
+            // Log information about the notifications
+            console.log(`Initialized ${notifications.length} notification banner examples`);
+            
+            notifications.forEach((banner, index) => {
+                const type = banner.classList.contains('public-good-notification-banner--success') ? 'success' :
+                            banner.classList.contains('public-good-notification-banner--warning') ? 'warning' :
+                            banner.classList.contains('public-good-notification-banner--error') ? 'error' :
+                            banner.classList.contains('public-good-notification-banner--info') ? 'info' : 'default';
+                            
+                const title = banner.querySelector('.public-good-notification-banner__title')?.textContent || 'No title';
+                const isDismissible = !!banner.querySelector('.public-good-notification-banner__close');
+                
+                console.log(`Banner ${index + 1}: ${type} - "${title}" - ${isDismissible ? 'Dismissible' : 'Static'}`);
+            });
+        });
+    </script>
+</body>
+</html>

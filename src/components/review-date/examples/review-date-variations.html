@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Review Date Component - Variations</title>
+  <link rel="stylesheet" href="../../../core/styles/base.css">
+  <link rel="stylesheet" href="../review-date.css">
+</head>
+<body>
+  <div class="public-good-width-container">
+    <main class="public-good-main-wrapper" id="main-content">
+      <div class="public-good-grid-row">
+        <div class="public-good-grid-column-two-thirds">
+          
+          <h1>Review Date Component - Variations</h1>
+          
+          <p>This example demonstrates different styling and format variations of the Review Date component.</p>
+
+          <h2>Date Format Variations</h2>
+          
+          <h3>Long Format (Default)</h3>
+          <div id="long-format"></div>
+          
+          <h3>Short Format</h3>
+          <div id="short-format"></div>
+          
+          <h3>Custom Format</h3>
+          <div id="custom-format"></div>
+
+          <h2>Layout Variations</h2>
+          
+          <h3>Compact Style</h3>
+          <p class="public-good-review-date public-good-review-date--compact">
+            Page last reviewed: 15 March 2023<br>
+            Next review due: 15 March 2026
+          </p>
+
+          <h3>Inline Style</h3>
+          <p class="public-good-review-date public-good-review-date--inline">
+            Page last reviewed: 15 March 2023 • Next review due: 15 March 2026
+          </p>
+
+          <h3>Footer Style</h3>
+          <p class="public-good-review-date public-good-review-date--footer">
+            Page last reviewed: 15 March 2023<br>
+            Next review due: 15 March 2026
+          </p>
+
+          <h2>Status Variations</h2>
+          
+          <h3>Highlighted (Attention Needed)</h3>
+          <p class="public-good-review-date public-good-review-date--highlighted">
+            Page last reviewed: 15 March 2023<br>
+            Next review due: 15 March 2026
+          </p>
+
+          <h3>Warning (Due Soon)</h3>
+          <p class="public-good-review-date public-good-review-date--warning">
+            Page last reviewed: 15 January 2023<br>
+            Next review due: 15 January 2024
+          </p>
+
+          <h3>Critical (Overdue)</h3>
+          <p class="public-good-review-date public-good-review-date--critical">
+            Page last reviewed: 15 March 2022<br>
+            Next review due: 15 March 2023
+          </p>
+
+          <h2>Size Variations</h2>
+          
+          <h3>Extra Small</h3>
+          <p class="public-good-review-date public-good-body-xs">
+            Page last reviewed: 15 March 2023<br>
+            Next review due: 15 March 2026
+          </p>
+
+          <h3>Small (Default)</h3>
+          <p class="public-good-review-date public-good-body-s">
+            Page last reviewed: 15 March 2023<br>
+            Next review due: 15 March 2026
+          </p>
+
+          <h2>Custom Prefixes</h2>
+          
+          <div id="document-prefix"></div>
+          <div id="article-prefix"></div>
+          <div id="guidance-prefix"></div>
+
+          <h2>Interactive Example</h2>
+          <p>This review date can be updated dynamically:</p>
+          
+          <div id="dynamic-review-date"></div>
+          
+          <div class="public-good-form-group">
+            <label class="public-good-label" for="new-date">
+              Update last reviewed date:
+            </label>
+            <input class="public-good-input" id="new-date" type="date" value="2023-06-01">
+            <button class="public-good-button" id="update-btn">Update Date</button>
+          </div>
+
+          <div class="public-good-form-group">
+            <fieldset class="public-good-fieldset">
+              <legend class="public-good-fieldset__legend">Date Format:</legend>
+              <div class="public-good-radios public-good-radios--inline">
+                <div class="public-good-radios__item">
+                  <input class="public-good-radios__input" id="format-long" name="format" type="radio" value="long" checked>
+                  <label class="public-good-label public-good-radios__label" for="format-long">Long</label>
+                </div>
+                <div class="public-good-radios__item">
+                  <input class="public-good-radios__input" id="format-short" name="format" type="radio" value="short">
+                  <label class="public-good-label public-good-radios__label" for="format-short">Short</label>
+                </div>
+                <div class="public-good-radios__item">
+                  <input class="public-good-radios__input" id="format-custom" name="format" type="radio" value="custom">
+                  <label class="public-good-label public-good-radios__label" for="format-custom">DD/MM/YYYY</label>
+                </div>
+              </div>
+            </fieldset>
+          </div>
+
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script type="module">
+    import { 
+      createReviewDate, 
+      createShortReviewDate,
+      createCustomReviewDate
+    } from '../review-date.js'
+
+    // Date format variations
+    const longFormat = createReviewDate({
+      lastReviewed: '2023-03-15',
+      nextReview: '2026-03-15',
+      dateFormat: 'long'
+    })
+    document.getElementById('long-format').appendChild(longFormat.element)
+
+    const shortFormat = createShortReviewDate('2023-03-15', '2026-03-15')
+    document.getElementById('short-format').appendChild(shortFormat.element)
+
+    const customFormat = createCustomReviewDate(
+      '2023-03-15', 
+      '2026-03-15', 
+      { year: 'numeric', month: '2-digit', day: '2-digit' }
+    )
+    document.getElementById('custom-format').appendChild(customFormat.element)
+
+    // Custom prefixes
+    const documentReview = createReviewDate({
+      lastReviewed: '2023-05-10',
+      nextReview: '2026-05-10',
+      prefix: 'Document'
+    })
+    document.getElementById('document-prefix').appendChild(documentReview.element)
+
+    const articleReview = createReviewDate({
+      lastReviewed: '2023-08-22',
+      nextReview: '2026-08-22',
+      prefix: 'Article'
+    })
+    document.getElementById('article-prefix').appendChild(articleReview.element)
+
+    const guidanceReview = createReviewDate({
+      lastReviewed: '2023-11-30',
+      nextReview: '2024-11-30',
+      prefix: 'Guidance'
+    })
+    document.getElementById('guidance-prefix').appendChild(guidanceReview.element)
+
+    // Dynamic example
+    const dynamicReview = createReviewDate({
+      lastReviewed: '2023-06-01',
+      nextReview: '2026-06-01'
+    })
+    document.getElementById('dynamic-review-date').appendChild(dynamicReview.element)
+
+    // Update functionality
+    document.getElementById('update-btn').addEventListener('click', () => {
+      const newDate = document.getElementById('new-date').value
+      if (newDate) {
+        dynamicReview.updateLastReviewed(newDate)
+        
+        // Calculate new next review date (3 years later)
+        const nextReviewDate = new Date(newDate)
+        nextReviewDate.setFullYear(nextReviewDate.getFullYear() + 3)
+        dynamicReview.updateNextReview(nextReviewDate)
+      }
+    })
+
+    // Format change functionality
+    document.querySelectorAll('input[name="format"]').forEach(radio => {
+      radio.addEventListener('change', () => {
+        if (radio.checked) {
+          switch (radio.value) {
+            case 'long':
+              dynamicReview.setDateFormat('long')
+              break
+            case 'short':
+              dynamicReview.setDateFormat('short')
+              break
+            case 'custom':
+              dynamicReview.setDateFormat('custom', { 
+                year: 'numeric', 
+                month: '2-digit', 
+                day: '2-digit' 
+              })
+              break
+          }
+        }
+      })
+    })
+
+    // Add event listeners to demonstrate events
+    dynamicReview.element.addEventListener('public-good:review-date:last-reviewed-changed', (event) => {
+      console.log('Last reviewed changed:', event.detail)
+    })
+
+    dynamicReview.element.addEventListener('public-good:review-date:next-review-changed', (event) => {
+      console.log('Next review changed:', event.detail)
+    })
+
+    dynamicReview.element.addEventListener('public-good:review-date:format-changed', (event) => {
+      console.log('Format changed:', event.detail)
+    })
+  </script>
+</body>
+</html>

@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hint Component - Basic Examples</title>
+    <link rel="stylesheet" href="../../../core/base.css">
+    <link rel="stylesheet" href="../hint.css">
+    <style>
+        body {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+        .example {
+            margin-bottom: 3rem;
+            padding: 2rem;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+        }
+        .example h3 {
+            margin-top: 0;
+            color: #0066cc;
+        }
+        .example-description {
+            margin-bottom: 1rem;
+            color: #666;
+        }
+        /* Mock form styling for examples */
+        .public-good-form-group {
+            margin-bottom: 1.5rem;
+        }
+        .public-good-label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+        .public-good-input, .public-good-textarea, .public-good-select {
+            width: 100%;
+            max-width: 400px;
+            padding: 0.5rem;
+            border: 2px solid #ccc;
+            border-radius: 4px;
+            font-family: inherit;
+            font-size: 1rem;
+        }
+        .public-good-input:focus, .public-good-textarea:focus, .public-good-select:focus {
+            outline: 3px solid #ffeb3b;
+            outline-offset: 0;
+            border-color: #0066cc;
+        }
+        .public-good-fieldset {
+            border: 2px solid #ccc;
+            border-radius: 4px;
+            padding: 1rem;
+            margin: 1rem 0;
+        }
+        .public-good-fieldset__legend {
+            font-weight: bold;
+            font-size: 1.1rem;
+            padding: 0 0.5rem;
+        }
+        .public-good-radio, .public-good-checkbox {
+            margin-right: 0.5rem;
+        }
+        .radio-option, .checkbox-option {
+            margin-bottom: 0.5rem;
+        }
+        /* Color variables for examples */
+        :root {
+            --public-good-color-text-secondary: #666666;
+            --public-good-color-link: #0066cc;
+            --public-good-color-link-hover: #003d7a;
+            --public-good-color-link-visited: #4c2c92;
+            --public-good-color-black: #212b32;
+            --public-good-color-focus: #ffeb3b;
+            --public-good-color-grey-4: #f0f0f0;
+            --public-good-color-grey-5: #f8f8f8;
+            --public-good-color-border: #d8dde0;
+            --public-good-color-success: #00703c;
+            --public-good-color-warning: #f47738;
+            --public-good-color-error: #d5281b;
+            --public-good-spacing-1: 8px;
+            --public-good-spacing-2: 12px;
+            --public-good-spacing-3: 16px;
+            --public-good-spacing-4: 24px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Hint Component - Basic Examples</h1>
+    
+    <div class="example">
+        <h3>Basic Text Hint</h3>
+        <p class="example-description">Simple hint text to provide guidance to users.</p>
+        
+        <div class="public-good-form-group">
+            <label class="public-good-label" for="basic-input">Full name</label>
+            <div class="public-good-hint">Enter your full name as it appears on official documents</div>
+            <input class="public-good-input" id="basic-input" name="fullName" type="text">
+        </div>
+    </div>
+
+    <div class="example">
+        <h3>Hint with HTML Content</h3>
+        <p class="example-description">Hint containing HTML formatting and links.</p>
+        
+        <div class="public-good-form-group">
+            <label class="public-good-label" for="email-input">Email address</label>
+            <div class="public-good-hint">
+                We'll use this to send you <strong>important updates</strong>. 
+                See our <a href="#privacy">privacy policy</a> for more information.
+            </div>
+            <input class="public-good-input" id="email-input" name="email" type="email">
+        </div>
+    </div>
+
+    <div class="example">
+        <h3>Hint with Fieldset and Legend</h3>
+        <p class="example-description">Hint text positioned after a fieldset legend for grouped form controls.</p>
+        
+        <fieldset class="public-good-fieldset">
+            <legend class="public-good-fieldset__legend">Contact preferences</legend>
+            <div class="public-good-hint">Select all the ways you'd like us to contact you</div>
+            <div class="checkbox-option">
+                <input class="public-good-checkbox" id="email-contact" name="contact" type="checkbox" value="email">
+                <label for="email-contact">Email</label>
+            </div>
+            <div class="checkbox-option">
+                <input class="public-good-checkbox" id="phone-contact" name="contact" type="checkbox" value="phone">
+                <label for="phone-contact">Phone</label>
+            </div>
+            <div class="checkbox-option">
+                <input class="public-good-checkbox" id="post-contact" name="contact" type="checkbox" value="post">
+                <label for="post-contact">Post</label>
+            </div>
+        </fieldset>
+    </div>
+
+    <div class="example">
+        <h3>Multiple Hints</h3>
+        <p class="example-description">Multiple hint elements providing different types of guidance.</p>
+        
+        <div class="public-good-form-group">
+            <label class="public-good-label" for="password-input">Create password</label>
+            <div class="public-good-hint">Your password must be at least 8 characters long</div>
+            <div class="public-good-hint">Include a mix of upper and lowercase letters, numbers, and symbols</div>
+            <input class="public-good-input" id="password-input" name="password" type="password">
+        </div>
+    </div>
+
+    <div class="example">
+        <h3>Hint with Code Examples</h3>
+        <p class="example-description">Hint containing code snippets or technical information.</p>
+        
+        <div class="public-good-form-group">
+            <label class="public-good-label" for="api-key-input">API Key</label>
+            <div class="public-good-hint">
+                Enter your API key in the format <code>pk_live_abc123def456</code> or <code>pk_test_xyz789uvw012</code>
+            </div>
+            <input class="public-good-input" id="api-key-input" name="apiKey" type="text" placeholder="pk_">
+        </div>
+    </div>
+
+    <div class="example">
+        <h3>Hint with Lists</h3>
+        <p class="example-description">Hint containing structured information as lists.</p>
+        
+        <div class="public-good-form-group">
+            <label class="public-good-label" for="file-input">Upload document</label>
+            <div class="public-good-hint">
+                Accepted file formats:
+                <ul>
+                    <li>PDF (.pdf)</li>
+                    <li>Word documents (.doc, .docx)</li>
+                    <li>Images (.jpg, .png)</li>
+                </ul>
+                Maximum file size: 10MB
+            </div>
+            <input class="public-good-input" id="file-input" name="document" type="file" accept=".pdf,.doc,.docx,.jpg,.png">
+        </div>
+    </div>
+
+    <div class="example">
+        <h3>Textarea with Hint</h3>
+        <p class="example-description">Hint for a textarea field with character guidance.</p>
+        
+        <div class="public-good-form-group">
+            <label class="public-good-label" for="description-textarea">Description</label>
+            <div class="public-good-hint">
+                Provide a brief description of your request. Keep it concise but include all relevant details.
+            </div>
+            <textarea class="public-good-textarea" id="description-textarea" name="description" rows="4"></textarea>
+        </div>
+    </div>
+
+    <div class="example">
+        <h3>Radio Buttons with Hint</h3>
+        <p class="example-description">Hint for radio button groups.</p>
+        
+        <fieldset class="public-good-fieldset">
+            <legend class="public-good-fieldset__legend">Delivery method</legend>
+            <div class="public-good-hint">Choose how you'd like to receive your order</div>
+            <div class="radio-option">
+                <input class="public-good-radio" id="delivery-standard" name="delivery" type="radio" value="standard">
+                <label for="delivery-standard">Standard delivery (5-7 days)</label>
+            </div>
+            <div class="radio-option">
+                <input class="public-good-radio" id="delivery-express" name="delivery" type="radio" value="express">
+                <label for="delivery-express">Express delivery (1-2 days)</label>
+            </div>
+            <div class="radio-option">
+                <input class="public-good-radio" id="delivery-pickup" name="delivery" type="radio" value="pickup">
+                <label for="delivery-pickup">Click and collect</label>
+            </div>
+        </fieldset>
+    </div>
+
+    <div class="example">
+        <h3>Select with Hint</h3>
+        <p class="example-description">Hint for select dropdown fields.</p>
+        
+        <div class="public-good-form-group">
+            <label class="public-good-label" for="country-select">Country</label>
+            <div class="public-good-hint">Select the country where you currently reside</div>
+            <select class="public-good-select" id="country-select" name="country">
+                <option value="">-- Please select --</option>
+                <option value="GB">United Kingdom</option>
+                <option value="US">United States</option>
+                <option value="CA">Canada</option>
+                <option value="AU">Australia</option>
+                <option value="DE">Germany</option>
+                <option value="FR">France</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="example">
+        <h3>Accessible Hint Association</h3>
+        <p class="example-description">Hint properly associated with form field using aria-describedby.</p>
+        
+        <div class="public-good-form-group">
+            <label class="public-good-label" for="accessible-input">National Insurance number</label>
+            <div class="public-good-hint" id="ni-hint">
+                For example, QQ123456C. You can find this on your National Insurance card or payslip.
+            </div>
+            <input class="public-good-input" 
+                   id="accessible-input" 
+                   name="nationalInsurance" 
+                   type="text" 
+                   aria-describedby="ni-hint"
+                   placeholder="QQ123456C">
+        </div>
+    </div>
+
+    <script type="module">
+        import { initializeHints } from '../hint.js';
+        
+        document.addEventListener('DOMContentLoaded', () => {
+            // Initialize all hint components with data-module attribute
+            const hints = document.querySelectorAll('[data-module="public-good-hint"]');
+            console.log(`Found ${hints.length} hint components to initialize`);
+            
+            const instances = initializeHints();
+            console.log(`Initialized ${instances.length} hint instances`);
+            
+            // Example: Show how to access hint instances
+            instances.forEach((instance, index) => {
+                console.log(`Hint ${index + 1}:`, {
+                    text: instance.getText().substring(0, 50) + '...',
+                    id: instance.getId(),
+                    visible: instance.isVisible()
+                });
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,68 @@
+/**
+ * Public Good Design System - Breakpoint Tokens
+ * Converted from NHS UK Design System breakpoints
+ */
+
+:root {
+  /* Breakpoint values */
+  --public-good-breakpoint-mobile: 320px;
+  --public-good-breakpoint-mobile-large: 375px;
+  --public-good-breakpoint-tablet: 768px;
+  --public-good-breakpoint-desktop: 1024px;
+  --public-good-breakpoint-desktop-large: 1200px;
+  --public-good-breakpoint-desktop-xlarge: 1440px;
+
+  /* Container max-widths */
+  --public-good-container-mobile: 100%;
+  --public-good-container-tablet: 768px;
+  --public-good-container-desktop: 1024px;
+  --public-good-container-desktop-large: 1200px;
+  --public-good-container-max: 1440px;
+
+  /* Grid system */
+  --public-good-grid-columns: 12;
+  --public-good-grid-gap: var(--public-good-spacing-4);
+  --public-good-grid-gap-large: var(--public-good-spacing-6);
+}
+
+/* Custom media queries for modern CSS */
+@custom-media --public-good-mobile (min-width: 320px);
+@custom-media --public-good-mobile-large (min-width: 375px);
+@custom-media --public-good-tablet (min-width: 768px);
+@custom-media --public-good-desktop (min-width: 1024px);
+@custom-media --public-good-desktop-large (min-width: 1200px);
+@custom-media --public-good-desktop-xlarge (min-width: 1440px);
+
+/* Responsive utilities using container queries when supported */
+@supports (container-type: inline-size) {
+  .public-good-container {
+    container-type: inline-size;
+  }
+}
+
+/* Common responsive patterns */
+.public-good-responsive-text {
+  font-size: var(--public-good-body-size);
+}
+
+@media (min-width: 768px) {
+  .public-good-responsive-text {
+    font-size: var(--public-good-body-large-size);
+  }
+}
+
+.public-good-responsive-spacing {
+  padding: var(--public-good-spacing-4);
+}
+
+@media (min-width: 768px) {
+  .public-good-responsive-spacing {
+    padding: var(--public-good-spacing-6);
+  }
+}
+
+@media (min-width: 1024px) {
+  .public-good-responsive-spacing {
+    padding: var(--public-good-spacing-8);
+  }
+}

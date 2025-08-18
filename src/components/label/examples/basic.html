@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Label Component - Basic Examples</title>
+    <link rel="stylesheet" href="../../../core/base.css">
+    <link rel="stylesheet" href="../label.css">
+    <style>
+        body {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+        .example {
+            margin-bottom: 3rem;
+            padding: 2rem;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+        }
+        .example h3 {
+            margin-top: 0;
+            color: #0066cc;
+        }
+        .example-description {
+            margin-bottom: 1rem;
+            color: #666;
+        }
+        /* Mock form styling for examples */
+        .public-good-form-group {
+            margin-bottom: 1.5rem;
+        }
+        .public-good-input, .public-good-textarea, .public-good-select {
+            width: 100%;
+            max-width: 400px;
+            padding: 0.5rem;
+            border: 2px solid #ccc;
+            border-radius: 4px;
+            font-family: inherit;
+            font-size: 1rem;
+        }
+        .public-good-input:focus, .public-good-textarea:focus, .public-good-select:focus {
+            outline: 3px solid #ffeb3b;
+            outline-offset: 0;
+            border-color: #0066cc;
+        }
+        .public-good-fieldset {
+            border: 2px solid #ccc;
+            border-radius: 4px;
+            padding: 1rem;
+            margin: 1rem 0;
+        }
+        .public-good-fieldset__legend {
+            font-weight: bold;
+            font-size: 1.1rem;
+            padding: 0 0.5rem;
+        }
+        .public-good-radio, .public-good-checkbox {
+            margin-right: 0.5rem;
+        }
+        .radio-option, .checkbox-option {
+            margin-bottom: 0.5rem;
+        }
+        .public-good-hint {
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+        /* Color variables for examples */
+        :root {
+            --public-good-color-text: #212b32;
+            --public-good-color-text-secondary: #666666;
+            --public-good-color-text-disabled: #999999;
+            --public-good-color-link: #0066cc;
+            --public-good-color-link-hover: #003d7a;
+            --public-good-color-link-visited: #4c2c92;
+            --public-good-color-black: #212b32;
+            --public-good-color-focus: #ffeb3b;
+            --public-good-color-error: #d5281b;
+            --public-good-spacing-1: 8px;
+            --public-good-spacing-2: 12px;
+            --public-good-spacing-3: 16px;
+            --public-good-spacing-4: 24px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Label Component - Basic Examples</h1>
+    
+    <div class="example">
+        <h3>Basic Text Labels</h3>
+        <p class="example-description">Standard form field labels with different content types.</p>
+        
+        <div class="public-good-form-group">
+            <label class="public-good-label" for="basic-text">Full name</label>
+            <input class="public-good-input" id="basic-text" name="fullName" type="text">
+        </div>
+
+        <div class="public-good-form-group">
+            <label class="public-good-label" for="email-input">Email address</label>
+            <input class="public-good-input" id="email-input" name="email" type="email">
+        </div>
+
+        <div class="public-good-form-group">
+            <label class="public-good-label" for="phone-input">Phone number</label>
+            <input class="public-good-input" id="phone-input" name="phone" type="tel">
+        </div>
+    </div>
+
+    <div class="example">
+        <h3>Label with HTML Content</h3>
+        <p class="example-description">Labels containing HTML formatting, links, and emphasis.</p>
+        
+        <div class="public-good-form-group">
+            <label class="public-good-label" for="terms-input">
+                I agree to the <a href="#terms">terms and conditions</a> <strong>(required)</strong>
+            </label>
+            <input class="public-good-checkbox" id="terms-input" name="terms" type="checkbox">
+        </div>
+
+        <div class="public-good-form-group">
+            <label class="public-good-label" for="optional-input">
+                Additional comments <em>(optional)</em>
+            </label>
+            <textarea class="public-good-textarea" id="optional-input" name="comments" rows="3"></textarea>
+        </div>
+    </div>
+
+    <div class="example">
+        <h3>Label Sizes</h3>
+        <p class="example-description">Different label sizes for various contexts and hierarchy.</p>
+        
+        <div class="public-good-form-group">
+            <label class="public-good-label public-good-label--xs" for="xs-input">Extra small label</label>
+            <input class="public-good-input" id="xs-input" name="xsField" type="text">
+        </div>
+
+        <div class="public-good-form-group">
+            <label class="public-good-label" for="default-input">Default size label</label>
+            <input class="public-good-input" id="default-input" name="defaultField" type="text">
+        </div>
+
+        <div class="public-good-form-group">
+            <label class="public-good-label public-good-label--s" for="small-input">Small label (bold)</label>
+            <input class="public-good-input" id="small-input" name="smallField" type="text">
+        </div>
+
+        <div class="public-good-form-group">
+            <label class="public-good-label public-good-label--m" for="medium-input">Medium label</label>
+            <input class="public-good-input" id="medium-input" name="mediumField" type="text">
+        </div>
+
+        <div class="public-good-form-group">
+            <label class="public-good-label public-good-label--l" for="large-input">Large label</label>
+            <input class="public-good-input" id="large-input" name="largeField" type="text">
+        </div>
+
+        <div class="public-good-form-group">
+            <label class="public-good-label public-good-label--xl" for="xlarge-input">Extra large label</label>
+            <input class="public-good-input" id="xlarge-input" name="xlargeField" type="text">
+        </div>
+    </div>
+
+    <div class="example">
+        <h3>Labels with Hints</h3>
+        <p class="example-description">Labels combined with hint text for additional guidance.</p>
+        
+        <div class="public-good-form-group">
+            <label class="public-good-label" for="hint-input">National Insurance number</label>
+            <div class="public-good-hint">For example, QQ123456C</div>
+            <input class="public-good-input" id="hint-input" name="ni" type="text" placeholder="QQ123456C">
+        </div>
+
+        <div class="public-good-form-group">
+            <label class="public-good-label" for="password-input">Create password</label>
+            <div class="public-good-hint">Must be at least 8 characters with uppercase, lowercase, number, and symbol</div>
+            <input class="public-good-input" id="password-input" name="password" type="password">
+        </div>
+    </div>
+
+    <div class="example">
+        <h3>Page Heading Label</h3>
+        <p class="example-description">Label that also serves as the main page heading.</p>
+        
+        <h1 class="public-good-label-wrapper">
+            <label class="public-good-label public-good-label--xl" for="heading-input">
+                What is your NHS number?
+            </label>
+        </h1>
+        <div class="public-good-hint">Your NHS number is a 10 digit number, like 485 777 3456</div>
+        <input class="public-good-input" id="heading-input" name="nhsNumber" type="text">
+    </div>
+
+    <div class="example">
+        <h3>Labels for Different Input Types</h3>
+        <p class="example-description">Labels associated with various form control types.</p>
+        
+        <div class="public-good-form-group">
+            <label class="public-good-label" for="textarea-field">Description</label>
+            <textarea class="public-good-textarea" id="textarea-field" name="description" rows="4"></textarea>
+        </div>
+
+        <div class="public-good-form-group">
+            <label class="public-good-label" for="select-field">Country</label>
+            <select class="public-good-select" id="select-field" name="country">
+                <option value="">-- Please select --</option>
+                <option value="GB">United Kingdom</option>
+                <option value="US">United States</option>
+                <option value="CA">Canada</option>
+                <option value="AU">Australia</option>
+            </select>
+        </div>
+
+        <div class="public-good-form-group">
+            <label class="public-good-label" for="date-field">Date of birth</label>
+            <input class="public-good-input" id="date-field" name="dateOfBirth" type="date">
+        </div>
+
+        <div class="public-good-form-group">
+            <label class="public-good-label" for="file-field">Upload document</label>
+            <input class="public-good-input" id="file-field" name="document" type="file" accept=".pdf,.doc,.docx">
+        </div>
+    </div>
+
+    <div class="example">
+        <h3>Fieldset with Legend Labels</h3>
+        <p class="example-description">Labels used as legends for grouped form controls.</p>
+        
+        <fieldset class="public-good-fieldset">
+            <legend class="public-good-label public-good-label--m">Contact preferences</legend>
+            <div class="public-good-hint">Select all the ways you'd like us to contact you</div>
+            <div class="checkbox-option">
+                <input class="public-good-checkbox" id="email-contact" name="contact" type="checkbox" value="email">
+                <label class="public-good-label" for="email-contact">Email</label>
+            </div>
+            <div class="checkbox-option">
+                <input class="public-good-checkbox" id="phone-contact" name="contact" type="checkbox" value="phone">
+                <label class="public-good-label" for="phone-contact">Phone</label>
+            </div>
+            <div class="checkbox-option">
+                <input class="public-good-checkbox" id="post-contact" name="contact" type="checkbox" value="post">
+                <label class="public-good-label" for="post-contact">Post</label>
+            </div>
+        </fieldset>
+
+        <fieldset class="public-good-fieldset">
+            <legend class="public-good-label public-good-label--m">Delivery method</legend>
+            <div class="radio-option">
+                <input class="public-good-radio" id="delivery-standard" name="delivery" type="radio" value="standard">
+                <label class="public-good-label" for="delivery-standard">Standard delivery (5-7 days)</label>
+            </div>
+            <div class="radio-option">
+                <input class="public-good-radio" id="delivery-express" name="delivery" type="radio" value="express">
+                <label class="public-good-label" for="delivery-express">Express delivery (1-2 days)</label>
+            </div>
+            <div class="radio-option">
+                <input class="public-good-radio" id="delivery-pickup" name="delivery" type="radio" value="pickup">
+                <label class="public-good-label" for="delivery-pickup">Click and collect</label>
+            </div>
+        </fieldset>
+    </div>
+
+    <div class="example">
+        <h3>Label States and Indicators</h3>
+        <p class="example-description">Labels with required/optional indicators and different states.</p>
+        
+        <div class="public-good-form-group">
+            <label class="public-good-label public-good-label--required" for="required-field">Email address</label>
+            <input class="public-good-input" id="required-field" name="requiredEmail" type="email" required>
+        </div>
+
+        <div class="public-good-form-group">
+            <label class="public-good-label public-good-label--optional" for="optional-field">Middle name</label>
+            <input class="public-good-input" id="optional-field" name="middleName" type="text">
+        </div>
+
+        <div class="public-good-form-group">
+            <label class="public-good-label public-good-label--disabled" for="disabled-field">Disabled field</label>
+            <input class="public-good-input" id="disabled-field" name="disabledField" type="text" disabled>
+        </div>
+    </div>
+
+    <script type="module">
+        import { initializeLabels } from '../label.js';
+        
+        document.addEventListener('DOMContentLoaded', () => {
+            // Initialize all label components with data-module attribute
+            const labels = document.querySelectorAll('[data-module="public-good-label"]');
+            console.log(`Found ${labels.length} label components to initialize`);
+            
+            const instances = initializeLabels();
+            console.log(`Initialized ${instances.length} label instances`);
+            
+            // Example: Show how to access label instances
+            instances.forEach((instance, index) => {
+                console.log(`Label ${index + 1}:`, {
+                    text: instance.getText().substring(0, 30) + '...',
+                    for: instance.getFor(),
+                    size: instance.getSize(),
+                    isPageHeading: instance.isPageHeading(),
+                    visible: instance.isVisible()
+                });
+            });
+        });
+    </script>
+</body>
+</html>

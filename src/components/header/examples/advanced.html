@@ -1,0 +1,828 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Header Component - Advanced Examples</title>
+  <link rel="stylesheet" href="../../index.css">
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      line-height: 1.6;
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      background-color: #f5f5f5;
+    }
+    
+    .main-content {
+      flex: 1;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 40px 20px;
+      background: white;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    
+    h1 {
+      color: #333;
+      border-bottom: 2px solid #0078d4;
+      padding-bottom: 10px;
+    }
+    
+    .example {
+      margin: 30px 0;
+      padding: 20px;
+      border: 1px solid #e1e5e9;
+      border-radius: 4px;
+      background: #fafbfc;
+    }
+    
+    .example h3 {
+      margin-top: 0;
+      color: #0078d4;
+    }
+    
+    .controls {
+      background: #e9ecef;
+      padding: 20px;
+      border-radius: 4px;
+      margin-bottom: 20px;
+    }
+    
+    .controls h4 {
+      margin-top: 0;
+      color: #495057;
+    }
+    
+    .button {
+      background-color: #0078d4;
+      color: white;
+      border: none;
+      padding: 8px 16px;
+      font-size: 14px;
+      border-radius: 4px;
+      cursor: pointer;
+      margin: 5px 5px 5px 0;
+      transition: background-color 0.15s;
+    }
+    
+    .button:hover {
+      background-color: #106ebe;
+    }
+    
+    .button--secondary {
+      background-color: #6c757d;
+    }
+    
+    .button--secondary:hover {
+      background-color: #5a6268;
+    }
+    
+    .button--small {
+      padding: 6px 12px;
+      font-size: 12px;
+    }
+    
+    .demo-content {
+      min-height: 200px;
+      background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 8px;
+      margin: 20px 0;
+      padding: 40px;
+      text-align: center;
+    }
+    
+    .demo-content h2 {
+      margin: 0 0 20px 0;
+      font-size: 2em;
+    }
+    
+    .output {
+      background: #f8f9fa;
+      border: 1px solid #dee2e6;
+      border-radius: 4px;
+      padding: 15px;
+      margin-top: 20px;
+      font-family: 'Courier New', monospace;
+      white-space: pre-wrap;
+      overflow-x: auto;
+      max-height: 200px;
+      overflow-y: auto;
+    }
+    
+    .header-container {
+      margin: 20px 0;
+      padding: 20px;
+      border: 2px dashed #007bff;
+      border-radius: 8px;
+      background: #f8f9ff;
+    }
+    
+    .page-container {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .page-content {
+      flex: 1;
+    }
+
+    .preview-frame {
+      border: 2px solid #0078d4;
+      border-radius: 8px;
+      overflow: hidden;
+      margin: 20px 0;
+      background: white;
+    }
+
+    .preview-frame h4 {
+      background: #0078d4;
+      color: white;
+      margin: 0;
+      padding: 10px 20px;
+      font-size: 16px;
+    }
+
+    .search-demo {
+      padding: 20px;
+      background: #f8f9fa;
+      border-top: 1px solid #dee2e6;
+    }
+
+    .autocomplete-list {
+      background: white;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      margin-top: 10px;
+      max-height: 150px;
+      overflow-y: auto;
+    }
+
+    .autocomplete-item {
+      padding: 10px 15px;
+      cursor: pointer;
+      border-bottom: 1px solid #eee;
+    }
+
+    .autocomplete-item:hover {
+      background: #f0f0f0;
+    }
+
+    .autocomplete-item:last-child {
+      border-bottom: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="page-container">
+    <div class="page-content">
+      <div class="main-content">
+        <h1>Header Component - Advanced Examples</h1>
+        <p>This page demonstrates advanced usage patterns, dynamic behavior, and programmatic control of the Header component.</p>
+
+        <div class="example">
+          <h3>Dynamic Header Management</h3>
+          <div class="controls">
+            <h4>Interactive Controls</h4>
+            <button type="button" class="button button--small" onclick="createDynamicHeader()">Create Dynamic Header</button>
+            <button type="button" class="button button--small" onclick="addNavLink()">Add Nav Link</button>
+            <button type="button" class="button button--small" onclick="removeNavLink()">Remove Nav Link</button>
+            <button type="button" class="button button--small" onclick="updateService()">Update Service Name</button>
+            <button type="button" class="button button--small" onclick="toggleMobileMenu()">Toggle Mobile Menu</button>
+            <button type="button" class="button button--secondary button--small" onclick="clearDynamicHeader()">Clear Header</button>
+          </div>
+          
+          <div id="dynamic-header-container" class="header-container">
+            <p><em>Dynamic header will appear here...</em></p>
+          </div>
+          <div class="output" id="event-log">Event log will appear here...</div>
+        </div>
+
+        <div class="example">
+          <h3>Programmatically Created Headers</h3>
+          <div class="controls">
+            <h4>Create Different Types</h4>
+            <button type="button" class="button button--small" onclick="createNHSHeaderExample()">Create NHS Header</button>
+            <button type="button" class="button button--small" onclick="createTransactionalHeaderExample()">Create Transactional Header</button>
+            <button type="button" class="button button--small" onclick="createOrganisationalHeaderExample()">Create Organisational Header</button>
+            <button type="button" class="button button--small" onclick="createMinimalHeaderExample()">Create Minimal Header</button>
+            <button type="button" class="button button--secondary button--small" onclick="clearProgrammaticHeaders()">Clear All</button>
+          </div>
+          
+          <div id="programmatic-container"></div>
+        </div>
+
+        <div class="example">
+          <h3>Search with Autocomplete</h3>
+          <p>Advanced search functionality with suggestions and autocomplete:</p>
+          
+          <div class="preview-frame">
+            <h4>NHS Health Information Search</h4>
+            <div id="search-header-container"></div>
+            <div class="search-demo">
+              <p><strong>Try typing:</strong> "covid", "diabetes", "mental health", "vaccine", "symptoms"</p>
+              <div id="search-suggestions" class="autocomplete-list" style="display: none;"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="example">
+          <h3>Complex Navigation Structure</h3>
+          <p>Header with primary and secondary navigation, external links, and current page indicators:</p>
+          
+          <div class="preview-frame">
+            <h4>NHS Comprehensive Portal</h4>
+            <div id="complex-nav-container"></div>
+            <div class="demo-content">
+              <div>
+                <h2>NHS Portal</h2>
+                <p>Comprehensive health information and services platform</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="example">
+          <h3>Mobile Menu Demonstration</h3>
+          <p>Resize your browser to see mobile menu behavior:</p>
+          
+          <div class="preview-frame">
+            <h4>Responsive Header (resize browser to test)</h4>
+            <div id="mobile-demo-container"></div>
+            <div class="demo-content">
+              <div>
+                <h2>Mobile-First Design</h2>
+                <p>Header automatically adapts to different screen sizes</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="example">
+          <h3>Accessibility Features</h3>
+          <p>All headers provide comprehensive accessibility support:</p>
+          
+          <div class="preview-frame">
+            <h4>Accessibility Demonstration</h4>
+            <div id="accessibility-container"></div>
+            <div class="demo-content">
+              <div>
+                <h2>Accessible Design</h2>
+                <p>Try keyboard navigation with Tab, Enter, and Arrow keys</p>
+              </div>
+            </div>
+          </div>
+          
+          <p><strong>Accessibility Features:</strong></p>
+          <ul>
+            <li><kbd>Tab</kbd> - Navigate through header elements</li>
+            <li><kbd>Enter</kbd> or <kbd>Space</kbd> - Activate links and buttons</li>
+            <li><kbd>Escape</kbd> - Close mobile menu</li>
+            <li>Screen reader support with proper ARIA labels</li>
+            <li>High contrast mode support</li>
+            <li>Focus indicators for keyboard users</li>
+          </ul>
+        </div>
+
+        <div class="example">
+          <h3>Custom Styling and Variants</h3>
+          <p>Headers with custom classes and styling options:</p>
+          
+          <div class="preview-frame">
+            <h4>Custom Styled Headers</h4>
+            <div id="custom-styling-container"></div>
+          </div>
+        </div>
+
+        <div class="example">
+          <h3>Event System Demonstration</h3>
+          <p>Monitor header events in real-time:</p>
+          
+          <div class="controls">
+            <h4>Event Triggers</h4>
+            <button type="button" class="button button--small" onclick="triggerNavUpdate()">Update Current Page</button>
+            <button type="button" class="button button--small" onclick="triggerServiceUpdate()">Update Service Name</button>
+            <button type="button" class="button button--small" onclick="triggerNavAdd()">Add Navigation Item</button>
+          </div>
+          
+          <div id="events-header-container" class="header-container"></div>
+          <div class="output" id="events-log">Events will appear here...</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script type="module">
+    import { 
+      createHeader, 
+      initializeHeaders, 
+      createNHSHeader,
+      createTransactionalHeader,
+      createOrganisationalHeader,
+      createMinimalHeader
+    } from '../header.js'
+    
+    let dynamicHeader = null
+    let eventLogElement = null
+    let eventsLogElement = null
+    let eventsHeader = null
+    const programmaticHeaders = []
+    
+    // Initialize on DOM ready
+    document.addEventListener('DOMContentLoaded', () => {
+      eventLogElement = document.getElementById('event-log')
+      eventsLogElement = document.getElementById('events-log')
+      
+      // Create initial examples
+      createSearchExample()
+      createComplexNavExample()
+      createMobileDemoExample()
+      createAccessibilityExample()
+      createCustomStylingExample()
+      createEventsExample()
+      
+      // Setup keyboard navigation
+      setupAdvancedKeyboardNavigation()
+    })
+    
+    function logEvent(message, logElement = eventLogElement) {
+      if (logElement) {
+        const timestamp = new Date().toLocaleTimeString()
+        logElement.textContent = `[${timestamp}] ${message}\n` + logElement.textContent
+      }
+    }
+    
+    function addHeaderEventListeners(header, label, logElement = eventLogElement) {
+      header.element.addEventListener('public-good:header:navigation-link-added', (event) => {
+        logEvent(`${label}: Navigation link added - "${event.detail.link.text}"`, logElement)
+      })
+      
+      header.element.addEventListener('public-good:header:navigation-link-removed', (event) => {
+        logEvent(`${label}: Navigation link removed - ${event.detail.href}`, logElement)
+      })
+      
+      header.element.addEventListener('public-good:header:service-name-updated', (event) => {
+        logEvent(`${label}: Service name updated - "${event.detail.name}"`, logElement)
+      })
+      
+      header.element.addEventListener('public-good:header:mobile-menu-toggled', (event) => {
+        logEvent(`${label}: Mobile menu ${event.detail.open ? 'opened' : 'closed'}`, logElement)
+      })
+      
+      header.element.addEventListener('public-good:header:current-page-updated', (event) => {
+        logEvent(`${label}: Current page updated - ${event.detail.href}`, logElement)
+      })
+    }
+    
+    function createSearchExample() {
+      const container = document.getElementById('search-header-container')
+      const searchHeader = createNHSHeader('NHS Health Information Portal', [], {
+        search: {
+          action: '/search',
+          placeholder: 'Search health conditions, treatments, services...',
+          autocomplete: true,
+          suggestions: [
+            'COVID-19 information',
+            'Diabetes symptoms',
+            'Mental health support',
+            'Vaccine information',
+            'Cold and flu symptoms',
+            'Heart disease',
+            'Cancer screening',
+            'Pregnancy advice',
+            'Children\'s health',
+            'Healthy eating'
+          ]
+        }
+      })
+      
+      container.appendChild(searchHeader.element)
+      
+      // Add search autocomplete demo
+      const searchInput = searchHeader.element.querySelector('.public-good-header__search-input')
+      const suggestionsContainer = document.getElementById('search-suggestions')
+      
+      if (searchInput && suggestionsContainer) {
+        const suggestions = [
+          'COVID-19 information',
+          'Diabetes symptoms',
+          'Mental health support',
+          'Vaccine information',
+          'Cold and flu symptoms'
+        ]
+        
+        searchInput.addEventListener('input', () => {
+          const query = searchInput.value.toLowerCase()
+          suggestionsContainer.innerHTML = ''
+          
+          if (query.length > 0) {
+            const filtered = suggestions.filter(s => s.toLowerCase().includes(query)).slice(0, 5)
+            
+            if (filtered.length > 0) {
+              filtered.forEach(suggestion => {
+                const item = document.createElement('div')
+                item.className = 'autocomplete-item'
+                item.textContent = suggestion
+                item.addEventListener('click', () => {
+                  searchInput.value = suggestion
+                  suggestionsContainer.style.display = 'none'
+                })
+                suggestionsContainer.appendChild(item)
+              })
+              suggestionsContainer.style.display = 'block'
+            } else {
+              suggestionsContainer.style.display = 'none'
+            }
+          } else {
+            suggestionsContainer.style.display = 'none'
+          }
+        })
+      }
+    }
+    
+    function createComplexNavExample() {
+      const container = document.getElementById('complex-nav-container')
+      const complexHeader = createNHSHeader('NHS Comprehensive Portal', [
+        { text: 'Home', href: '/', current: true },
+        { text: 'Health A-Z', href: '/health-az' },
+        { text: 'NHS services', href: '/services' },
+        { text: 'Live Well', href: '/live-well' },
+        { text: 'Mental health', href: '/mental-health' },
+        { text: 'Care and support', href: '/care-support' }
+      ], {
+        secondaryNavigation: {
+          links: [
+            { text: 'About NHS', href: '/about' },
+            { text: 'Contact us', href: '/contact' },
+            { text: 'Complaints', href: '/complaints' },
+            { text: 'Accessibility', href: '/accessibility' },
+            { text: 'Privacy', href: '/privacy' },
+            { text: 'NHS App', href: 'https://www.nhs.uk/nhs-app/', openInNewTab: true }
+          ]
+        }
+      })
+      
+      container.appendChild(complexHeader.element)
+    }
+    
+    function createMobileDemoExample() {
+      const container = document.getElementById('mobile-demo-container')
+      const mobileHeader = createNHSHeader('Mobile Responsive Service', [
+        { text: 'Home', href: '/' },
+        { text: 'Services', href: '/services' },
+        { text: 'Health A-Z', href: '/health-az' },
+        { text: 'NHS services', href: '/nhs-services' },
+        { text: 'Live Well', href: '/live-well' },
+        { text: 'Mental health', href: '/mental-health' },
+        { text: 'Care and support', href: '/care-support' },
+        { text: 'Medicines A-Z', href: '/medicines' }
+      ], {
+        search: {
+          action: '/search',
+          placeholder: 'Search'
+        }
+      })
+      
+      container.appendChild(mobileHeader.element)
+    }
+    
+    function createAccessibilityExample() {
+      const container = document.getElementById('accessibility-container')
+      const accessibilityHeader = createNHSHeader('Accessibility Demo', [
+        { text: 'Accessible Home', href: '/' },
+        { text: 'Screen Reader Support', href: '/screen-reader' },
+        { text: 'Keyboard Navigation', href: '/keyboard' },
+        { text: 'High Contrast', href: '/contrast' }
+      ])
+      
+      container.appendChild(accessibilityHeader.element)
+      
+      // Add accessibility enhancements
+      const navLinks = accessibilityHeader.element.querySelectorAll('.public-good-header__navigation-link')
+      navLinks.forEach((link, index) => {
+        link.addEventListener('focus', () => {
+          link.style.outline = '3px solid #ffbf47'
+          link.style.outlineOffset = '2px'
+        })
+        
+        link.addEventListener('blur', () => {
+          link.style.outline = ''
+          link.style.outlineOffset = ''
+        })
+      })
+    }
+    
+    function createCustomStylingExample() {
+      const container = document.getElementById('custom-styling-container')
+      
+      // Create multiple styled variants
+      const variants = [
+        { 
+          variant: 'nhs-default', 
+          serviceName: 'NHS Default Variant',
+          classes: 'public-good-header--compact'
+        },
+        { 
+          variant: 'transactional', 
+          serviceName: 'Transactional Variant'
+        },
+        { 
+          variant: 'organisational', 
+          serviceName: 'Organisation Portal',
+          logo: { text: 'ORG', href: '/' }
+        },
+        { 
+          variant: 'minimal', 
+          serviceName: 'Minimal Service'
+        }
+      ]
+      
+      variants.forEach(config => {
+        const header = createHeader({
+          ...config,
+          navigation: {
+            links: [
+              { text: 'Example', href: '/example' }
+            ]
+          }
+        })
+        
+        const wrapper = document.createElement('div')
+        wrapper.style.marginBottom = '20px'
+        wrapper.style.border = '1px solid #dee2e6'
+        wrapper.style.borderRadius = '4px'
+        wrapper.style.overflow = 'hidden'
+        
+        const label = document.createElement('div')
+        label.style.background = '#f8f9fa'
+        label.style.padding = '8px 16px'
+        label.style.fontSize = '14px'
+        label.style.fontWeight = 'bold'
+        label.style.borderBottom = '1px solid #dee2e6'
+        label.textContent = `${config.variant} variant`
+        
+        wrapper.appendChild(label)
+        wrapper.appendChild(header.element)
+        container.appendChild(wrapper)
+      })
+    }
+    
+    function createEventsExample() {
+      const container = document.getElementById('events-header-container')
+      eventsHeader = createNHSHeader('Events Demo Service', [
+        { text: 'Home', href: '/', current: true },
+        { text: 'About', href: '/about' }
+      ])
+      
+      container.appendChild(eventsHeader.element)
+      addHeaderEventListeners(eventsHeader, 'Events Demo', eventsLogElement)
+    }
+    
+    function setupAdvancedKeyboardNavigation() {
+      document.addEventListener('keydown', (event) => {
+        if (event.key === 'Home' && event.ctrlKey) {
+          // Jump to first header when Ctrl+Home is pressed
+          const firstHeader = document.querySelector('.public-good-header')
+          if (firstHeader) {
+            firstHeader.scrollIntoView({ behavior: 'smooth' })
+            const firstLink = firstHeader.querySelector('.public-good-header__navigation-link')
+            if (firstLink) {
+              firstLink.focus()
+            }
+          }
+        }
+      })
+    }
+    
+    // Global functions for button controls
+    window.createDynamicHeader = function() {
+      const container = document.getElementById('dynamic-header-container')
+      
+      if (dynamicHeader) {
+        dynamicHeader.destroy()
+      }
+      
+      dynamicHeader = createHeader({
+        variant: 'nhs-default',
+        serviceName: {
+          name: 'Dynamic Service',
+          href: '/dynamic'
+        },
+        navigation: {
+          links: [
+            { text: 'Home', href: '/', current: true },
+            { text: 'Dynamic', href: '/dynamic' }
+          ]
+        },
+        search: {
+          action: '/search',
+          placeholder: 'Search dynamically...'
+        }
+      })
+      
+      container.innerHTML = ''
+      container.appendChild(dynamicHeader.element)
+      addHeaderEventListeners(dynamicHeader, 'Dynamic Header')
+      logEvent('Dynamic header created')
+    }
+    
+    window.addNavLink = function() {
+      if (dynamicHeader) {
+        const randomId = Math.random().toString(36).substr(2, 9)
+        dynamicHeader.addNavigationLink({
+          text: `Link ${randomId}`,
+          href: `/link-${randomId}`
+        })
+      }
+    }
+    
+    window.removeNavLink = function() {
+      if (dynamicHeader) {
+        const links = dynamicHeader.getNavigationLinks()
+        if (links.length > 1) {
+          dynamicHeader.removeNavigationLink(links[links.length - 1].href)
+        }
+      }
+    }
+    
+    window.updateService = function() {
+      if (dynamicHeader) {
+        const timestamp = new Date().getTime()
+        dynamicHeader.updateServiceName(`Updated Service ${timestamp}`, '/updated')
+      }
+    }
+    
+    window.toggleMobileMenu = function() {
+      if (dynamicHeader) {
+        dynamicHeader.toggleMobileMenu()
+      }
+    }
+    
+    window.clearDynamicHeader = function() {
+      if (dynamicHeader) {
+        dynamicHeader.destroy()
+        dynamicHeader = null
+        document.getElementById('dynamic-header-container').innerHTML = '<p><em>Dynamic header cleared</em></p>'
+        logEvent('Dynamic header cleared')
+      }
+    }
+    
+    window.createNHSHeaderExample = function() {
+      const container = document.getElementById('programmatic-container')
+      const header = createNHSHeader('NHS Programmatic Service', [
+        { text: 'Health A-Z', href: '/health-az' },
+        { text: 'Services', href: '/services' }
+      ])
+      
+      const wrapper = document.createElement('div')
+      wrapper.style.marginBottom = '20px'
+      wrapper.style.border = '2px solid #005eb8'
+      wrapper.style.borderRadius = '8px'
+      wrapper.style.overflow = 'hidden'
+      
+      const label = document.createElement('div')
+      label.style.background = '#005eb8'
+      label.style.color = 'white'
+      label.style.padding = '8px 16px'
+      label.style.fontSize = '14px'
+      label.style.fontWeight = 'bold'
+      label.textContent = 'Programmatically Created NHS Header'
+      
+      wrapper.appendChild(label)
+      wrapper.appendChild(header.element)
+      container.appendChild(wrapper)
+      programmaticHeaders.push({ header, wrapper })
+      
+      addHeaderEventListeners(header, `NHS Programmatic ${programmaticHeaders.length}`)
+    }
+    
+    window.createTransactionalHeaderExample = function() {
+      const container = document.getElementById('programmatic-container')
+      const header = createTransactionalHeader('Transaction Service', '/back')
+      
+      const wrapper = document.createElement('div')
+      wrapper.style.marginBottom = '20px'
+      wrapper.style.border = '2px solid #666'
+      wrapper.style.borderRadius = '8px'
+      wrapper.style.overflow = 'hidden'
+      
+      const label = document.createElement('div')
+      label.style.background = '#666'
+      label.style.color = 'white'
+      label.style.padding = '8px 16px'
+      label.style.fontSize = '14px'
+      label.style.fontWeight = 'bold'
+      label.textContent = 'Programmatically Created Transactional Header'
+      
+      wrapper.appendChild(label)
+      wrapper.appendChild(header.element)
+      container.appendChild(wrapper)
+      programmaticHeaders.push({ header, wrapper })
+      
+      addHeaderEventListeners(header, `Transactional Programmatic ${programmaticHeaders.length}`)
+    }
+    
+    window.createOrganisationalHeaderExample = function() {
+      const container = document.getElementById('programmatic-container')
+      const header = createOrganisationalHeader('My Organisation', {
+        text: 'ORG',
+        href: '/'
+      }, [
+        { text: 'About', href: '/about' },
+        { text: 'Services', href: '/services' }
+      ])
+      
+      const wrapper = document.createElement('div')
+      wrapper.style.marginBottom = '20px'
+      wrapper.style.border = '2px solid #28a745'
+      wrapper.style.borderRadius = '8px'
+      wrapper.style.overflow = 'hidden'
+      
+      const label = document.createElement('div')
+      label.style.background = '#28a745'
+      label.style.color = 'white'
+      label.style.padding = '8px 16px'
+      label.style.fontSize = '14px'
+      label.style.fontWeight = 'bold'
+      label.textContent = 'Programmatically Created Organisational Header'
+      
+      wrapper.appendChild(label)
+      wrapper.appendChild(header.element)
+      container.appendChild(wrapper)
+      programmaticHeaders.push({ header, wrapper })
+      
+      addHeaderEventListeners(header, `Organisational Programmatic ${programmaticHeaders.length}`)
+    }
+    
+    window.createMinimalHeaderExample = function() {
+      const container = document.getElementById('programmatic-container')
+      const header = createMinimalHeader('Minimal Service')
+      
+      const wrapper = document.createElement('div')
+      wrapper.style.marginBottom = '20px'
+      wrapper.style.border = '2px solid #17a2b8'
+      wrapper.style.borderRadius = '8px'
+      wrapper.style.overflow = 'hidden'
+      
+      const label = document.createElement('div')
+      label.style.background = '#17a2b8'
+      label.style.color = 'white'
+      label.style.padding = '8px 16px'
+      label.style.fontSize = '14px'
+      label.style.fontWeight = 'bold'
+      label.textContent = 'Programmatically Created Minimal Header'
+      
+      wrapper.appendChild(label)
+      wrapper.appendChild(header.element)
+      container.appendChild(wrapper)
+      programmaticHeaders.push({ header, wrapper })
+      
+      addHeaderEventListeners(header, `Minimal Programmatic ${programmaticHeaders.length}`)
+    }
+    
+    window.clearProgrammaticHeaders = function() {
+      programmaticHeaders.forEach(({ header, wrapper }) => {
+        header.destroy()
+        wrapper.remove()
+      })
+      programmaticHeaders.length = 0
+      logEvent('All programmatic headers cleared')
+    }
+    
+    window.triggerNavUpdate = function() {
+      if (eventsHeader) {
+        const links = eventsHeader.getNavigationLinks()
+        const randomLink = links[Math.floor(Math.random() * links.length)]
+        if (randomLink) {
+          eventsHeader.updateCurrentPage(randomLink.href)
+        }
+      }
+    }
+    
+    window.triggerServiceUpdate = function() {
+      if (eventsHeader) {
+        const timestamp = Date.now()
+        eventsHeader.updateServiceName(`Events Demo ${timestamp}`)
+      }
+    }
+    
+    window.triggerNavAdd = function() {
+      if (eventsHeader) {
+        const randomId = Math.random().toString(36).substr(2, 5)
+        eventsHeader.addNavigationLink({
+          text: `Nav ${randomId}`,
+          href: `/nav-${randomId}`
+        })
+      }
+    }
+  </script>
+</body>
+</html>

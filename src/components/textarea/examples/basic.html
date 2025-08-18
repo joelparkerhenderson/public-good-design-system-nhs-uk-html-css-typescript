@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Textarea Component - Basic Examples</title>
+  <link rel="stylesheet" href="../textarea.css">
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 2rem;
+      line-height: 1.6;
+    }
+    .example {
+      margin-bottom: 2rem;
+      padding: 1.5rem;
+      border: 1px solid #e0e0e0;
+      border-radius: 8px;
+      background-color: #fafafa;
+    }
+    .example h3 {
+      margin-top: 0;
+      color: #333;
+    }
+    .code-example {
+      background-color: #f5f5f5;
+      padding: 1rem;
+      border-radius: 4px;
+      margin-top: 1rem;
+      font-family: 'Courier New', monospace;
+      font-size: 0.9rem;
+      overflow-x: auto;
+    }
+    .demo-section {
+      margin-bottom: 1rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid #e0e0e0;
+    }
+    .demo-section:last-child {
+      border-bottom: none;
+      margin-bottom: 0;
+      padding-bottom: 0;
+    }
+    /* Form styles for better presentation */
+    .public-good-form-group {
+      margin-bottom: 1.5rem;
+    }
+    .public-good-label {
+      display: block;
+      font-weight: 700;
+      margin-bottom: 0.25rem;
+      color: #0b0c0c;
+    }
+    .public-good-hint {
+      display: block;
+      margin-bottom: 0.25rem;
+      color: #626a6e;
+      font-size: 0.9em;
+    }
+    .public-good-error-message {
+      display: block;
+      margin-bottom: 0.25rem;
+      color: #d4351c;
+      font-weight: 700;
+    }
+    .public-good-form-group--error .public-good-label {
+      color: #d4351c;
+    }
+  </style>
+</head>
+<body>
+  <h1>Textarea Component - Basic Examples</h1>
+  <p>The textarea component allows users to enter multi-line text. Use it for longer responses that may span several lines.</p>
+
+  <div class="example">
+    <h3>Basic Textarea</h3>
+    <div class="demo-section">
+      <div class="public-good-form-group">
+        <label for="basic-textarea" class="public-good-label">Comments</label>
+        <textarea id="basic-textarea" class="public-good-textarea" rows="4" placeholder="Enter your comments here"></textarea>
+      </div>
+    </div>
+    <div class="code-example">
+&lt;div class="public-good-form-group"&gt;
+  &lt;label for="basic-textarea" class="public-good-label"&gt;Comments&lt;/label&gt;
+  &lt;textarea id="basic-textarea" class="public-good-textarea" rows="4" 
+            placeholder="Enter your comments here"&gt;&lt;/textarea&gt;
+&lt;/div&gt;
+    </div>
+  </div>
+
+  <div class="example">
+    <h3>Textarea with Hint Text</h3>
+    <div class="demo-section">
+      <div class="public-good-form-group">
+        <label for="hint-textarea" class="public-good-label">Describe your symptoms</label>
+        <div id="hint-textarea-hint" class="public-good-hint">Include when they started and how severe they are</div>
+        <textarea id="hint-textarea" class="public-good-textarea" rows="5" 
+                  aria-describedby="hint-textarea-hint"></textarea>
+      </div>
+    </div>
+    <div class="code-example">
+&lt;div class="public-good-form-group"&gt;
+  &lt;label for="hint-textarea" class="public-good-label"&gt;Describe your symptoms&lt;/label&gt;
+  &lt;div id="hint-textarea-hint" class="public-good-hint"&gt;Include when they started and how severe they are&lt;/div&gt;
+  &lt;textarea id="hint-textarea" class="public-good-textarea" rows="5" 
+            aria-describedby="hint-textarea-hint"&gt;&lt;/textarea&gt;
+&lt;/div&gt;
+    </div>
+  </div>
+
+  <div class="example">
+    <h3>Required Textarea</h3>
+    <div class="demo-section">
+      <div class="public-good-form-group">
+        <label for="required-textarea" class="public-good-label">
+          Reason for application <span style="color: #d4351c;">(required)</span>
+        </label>
+        <textarea id="required-textarea" class="public-good-textarea" rows="4" required 
+                  aria-required="true"></textarea>
+      </div>
+    </div>
+    <div class="code-example">
+&lt;div class="public-good-form-group"&gt;
+  &lt;label for="required-textarea" class="public-good-label"&gt;
+    Reason for application &lt;span style="color: #d4351c;"&gt;(required)&lt;/span&gt;
+  &lt;/label&gt;
+  &lt;textarea id="required-textarea" class="public-good-textarea" rows="4" 
+            required aria-required="true"&gt;&lt;/textarea&gt;
+&lt;/div&gt;
+    </div>
+  </div>
+
+  <div class="example">
+    <h3>Textarea with Error State</h3>
+    <div class="demo-section">
+      <div class="public-good-form-group public-good-form-group--error">
+        <label for="error-textarea" class="public-good-label">Additional information</label>
+        <span id="error-textarea-error" class="public-good-error-message">Enter more information</span>
+        <textarea id="error-textarea" class="public-good-textarea public-good-textarea--error" 
+                  rows="4" aria-describedby="error-textarea-error" aria-invalid="true">Too brief</textarea>
+      </div>
+    </div>
+    <div class="code-example">
+&lt;div class="public-good-form-group public-good-form-group--error"&gt;
+  &lt;label for="error-textarea" class="public-good-label"&gt;Additional information&lt;/label&gt;
+  &lt;span id="error-textarea-error" class="public-good-error-message"&gt;Enter more information&lt;/span&gt;
+  &lt;textarea id="error-textarea" class="public-good-textarea public-good-textarea--error" 
+            rows="4" aria-describedby="error-textarea-error" aria-invalid="true"&gt;Too brief&lt;/textarea&gt;
+&lt;/div&gt;
+    </div>
+  </div>
+
+  <div class="example">
+    <h3>Textarea with Character Count</h3>
+    <div class="demo-section">
+      <div class="public-good-form-group">
+        <label for="count-textarea" class="public-good-label">Brief description</label>
+        <div id="count-textarea-hint" class="public-good-hint">Keep it concise and to the point</div>
+        <textarea id="count-textarea" class="public-good-textarea" rows="3" maxlength="200"
+                  aria-describedby="count-textarea-hint count-textarea-count"></textarea>
+        <div id="count-textarea-count" class="public-good-character-count__status" aria-live="polite">
+          You have 200 characters remaining
+        </div>
+      </div>
+    </div>
+    <div class="code-example">
+&lt;div class="public-good-form-group"&gt;
+  &lt;label for="count-textarea" class="public-good-label"&gt;Brief description&lt;/label&gt;
+  &lt;div id="count-textarea-hint" class="public-good-hint"&gt;Keep it concise and to the point&lt;/div&gt;
+  &lt;textarea id="count-textarea" class="public-good-textarea" rows="3" maxlength="200"
+            aria-describedby="count-textarea-hint count-textarea-count"&gt;&lt;/textarea&gt;
+  &lt;div id="count-textarea-count" class="public-good-character-count__status" aria-live="polite"&gt;
+    You have 200 characters remaining
+  &lt;/div&gt;
+&lt;/div&gt;
+    </div>
+  </div>
+
+  <div class="example">
+    <h3>Size Variants</h3>
+    <div class="demo-section">
+      <h4>Small Textarea</h4>
+      <div class="public-good-form-group">
+        <label for="small-textarea" class="public-good-label">Short note</label>
+        <textarea id="small-textarea" class="public-good-textarea public-good-textarea--small" 
+                  rows="2"></textarea>
+      </div>
+      
+      <h4>Large Textarea</h4>
+      <div class="public-good-form-group">
+        <label for="large-textarea" class="public-good-label">Detailed description</label>
+        <textarea id="large-textarea" class="public-good-textarea public-good-textarea--large" 
+                  rows="6"></textarea>
+      </div>
+    </div>
+    <div class="code-example">
+&lt;!-- Small --&gt;
+&lt;textarea class="public-good-textarea public-good-textarea--small"&gt;&lt;/textarea&gt;
+
+&lt;!-- Large --&gt;
+&lt;textarea class="public-good-textarea public-good-textarea--large"&gt;&lt;/textarea&gt;
+    </div>
+  </div>
+
+  <div class="example">
+    <h3>Resize Options</h3>
+    <div class="demo-section">
+      <h4>No Resize</h4>
+      <div class="public-good-form-group">
+        <label for="no-resize-textarea" class="public-good-label">Fixed size</label>
+        <textarea id="no-resize-textarea" class="public-good-textarea public-good-textarea--no-resize" 
+                  rows="3"></textarea>
+      </div>
+      
+      <h4>Horizontal Resize Only</h4>
+      <div class="public-good-form-group">
+        <label for="horizontal-resize-textarea" class="public-good-label">Horizontal resize</label>
+        <textarea id="horizontal-resize-textarea" class="public-good-textarea public-good-textarea--resize-horizontal" 
+                  rows="3"></textarea>
+      </div>
+    </div>
+    <div class="code-example">
+&lt;!-- No resize --&gt;
+&lt;textarea class="public-good-textarea public-good-textarea--no-resize"&gt;&lt;/textarea&gt;
+
+&lt;!-- Horizontal resize only --&gt;
+&lt;textarea class="public-good-textarea public-good-textarea--resize-horizontal"&gt;&lt;/textarea&gt;
+    </div>
+  </div>
+
+  <div class="example">
+    <h3>Disabled and Readonly States</h3>
+    <div class="demo-section">
+      <h4>Disabled</h4>
+      <div class="public-good-form-group public-good-form-group--disabled">
+        <label for="disabled-textarea" class="public-good-label">Disabled textarea</label>
+        <textarea id="disabled-textarea" class="public-good-textarea" rows="3" 
+                  disabled>This textarea is disabled</textarea>
+      </div>
+      
+      <h4>Readonly</h4>
+      <div class="public-good-form-group public-good-form-group--readonly">
+        <label for="readonly-textarea" class="public-good-label">Readonly textarea</label>
+        <textarea id="readonly-textarea" class="public-good-textarea" rows="3" 
+                  readonly>This textarea is readonly</textarea>
+      </div>
+    </div>
+    <div class="code-example">
+&lt;!-- Disabled --&gt;
+&lt;textarea class="public-good-textarea" disabled&gt;Disabled content&lt;/textarea&gt;
+
+&lt;!-- Readonly --&gt;
+&lt;textarea class="public-good-textarea" readonly&gt;Readonly content&lt;/textarea&gt;
+    </div>
+  </div>
+
+  <div class="example">
+    <h3>Width Utilities</h3>
+    <div class="demo-section">
+      <h4>Fixed Width (20 characters)</h4>
+      <div class="public-good-form-group">
+        <label for="width-20-textarea" class="public-good-label">Short response</label>
+        <textarea id="width-20-textarea" class="public-good-textarea public-good-textarea--width-20" 
+                  rows="2"></textarea>
+      </div>
+      
+      <h4>Fixed Width (10 characters)</h4>
+      <div class="public-good-form-group">
+        <label for="width-10-textarea" class="public-good-label">Code snippet</label>
+        <textarea id="width-10-textarea" class="public-good-textarea public-good-textarea--width-10" 
+                  rows="3"></textarea>
+      </div>
+    </div>
+    <div class="code-example">
+&lt;!-- 20 character width --&gt;
+&lt;textarea class="public-good-textarea public-good-textarea--width-20"&gt;&lt;/textarea&gt;
+
+&lt;!-- 10 character width --&gt;
+&lt;textarea class="public-good-textarea public-good-textarea--width-10"&gt;&lt;/textarea&gt;
+    </div>
+  </div>
+
+  <div class="example">
+    <h3>Usage Guidelines</h3>
+    <div class="demo-section">
+      <h4>✅ When to use textareas</h4>
+      <ul>
+        <li>For longer responses that may span multiple lines</li>
+        <li>When users need to provide detailed information</li>
+        <li>For comments, descriptions, or explanations</li>
+        <li>When you expect more than a sentence of input</li>
+      </ul>
+      
+      <h4>✅ Best practices</h4>
+      <ul>
+        <li>Use clear, descriptive labels</li>
+        <li>Provide helpful hint text when needed</li>
+        <li>Set appropriate number of rows for expected content</li>
+        <li>Use character limits when necessary</li>
+        <li>Show character count for limited inputs</li>
+      </ul>
+      
+      <h4>❌ When not to use</h4>
+      <ul>
+        <li>For short, single-line inputs (use text input instead)</li>
+        <li>For structured data entry (use specific input types)</li>
+        <li>When you need formatted text input (consider rich text editor)</li>
+        <li>For passwords or sensitive data</li>
+      </ul>
+    </div>
+  </div>
+
+  <script type="module">
+    // Add basic character counting functionality for demonstration
+    document.addEventListener('DOMContentLoaded', () => {
+      const textareaWithCount = document.getElementById('count-textarea');
+      const countElement = document.getElementById('count-textarea-count');
+      
+      if (textareaWithCount && countElement) {
+        const maxLength = parseInt(textareaWithCount.getAttribute('maxlength') || '0', 10);
+        
+        function updateCount() {
+          const currentLength = textareaWithCount.value.length;
+          const remaining = maxLength - currentLength;
+          
+          if (remaining < 0) {
+            countElement.textContent = `${Math.abs(remaining)} characters over limit`;
+            countElement.classList.add('public-good-character-count__status--error');
+            textareaWithCount.classList.add('public-good-textarea--error');
+          } else {
+            countElement.textContent = remaining === 1 
+              ? 'You have 1 character remaining'
+              : `You have ${remaining} characters remaining`;
+            countElement.classList.remove('public-good-character-count__status--error');
+            textareaWithCount.classList.remove('public-good-textarea--error');
+          }
+        }
+        
+        textareaWithCount.addEventListener('input', updateCount);
+        updateCount(); // Initial count
+      }
+      
+      // Add some interactivity for demonstration
+      document.querySelectorAll('.public-good-textarea').forEach(textarea => {
+        textarea.addEventListener('focus', () => {
+          console.log('Textarea focused:', textarea.id);
+        });
+      });
+    });
+  </script>
+</body>
+</html>

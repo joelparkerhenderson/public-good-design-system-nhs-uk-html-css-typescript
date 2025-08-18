@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Warning Callout Component - Basic Examples</title>
+  <link rel="stylesheet" href="../warning-callout.css">
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 2rem;
+      line-height: 1.6;
+    }
+    .example {
+      margin-bottom: 2rem;
+      padding: 1.5rem;
+      border: 1px solid #e0e0e0;
+      border-radius: 8px;
+      background-color: #fafafa;
+    }
+    .example h3 {
+      margin-top: 0;
+      color: #333;
+    }
+    .code-example {
+      background-color: #f5f5f5;
+      padding: 1rem;
+      border-radius: 4px;
+      margin-top: 1rem;
+      font-family: 'Courier New', monospace;
+      font-size: 0.9rem;
+      overflow-x: auto;
+    }
+    .demo-section {
+      margin-bottom: 1rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid #e0e0e0;
+    }
+    .demo-section:last-child {
+      border-bottom: none;
+      margin-bottom: 0;
+      padding-bottom: 0;
+    }
+    .page-content {
+      margin: 2rem 0;
+      padding: 1rem;
+      background-color: white;
+      border-radius: 4px;
+    }
+    .page-content h2 {
+      color: #333;
+      border-bottom: 2px solid #0066cc;
+      padding-bottom: 0.5rem;
+    }
+    /* Screen reader only utility */
+    .public-good-warning-callout-sr-only {
+      position: absolute !important;
+      width: 1px !important;
+      height: 1px !important;
+      padding: 0 !important;
+      margin: -1px !important;
+      overflow: hidden !important;
+      clip: rect(0, 0, 0, 0) !important;
+      white-space: nowrap !important;
+      border: 0 !important;
+    }
+  </style>
+</head>
+<body>
+  <h1>Warning Callout Component - Basic Examples</h1>
+  <p>Use warning callouts to help users identify and understand important warning content on the page, even if they do not read the whole page.</p>
+
+  <div class="example">
+    <h3>Basic Warning Callout</h3>
+    <div class="demo-section">
+      <div class="public-good-warning-callout">
+        <h3 class="public-good-warning-callout__label">
+          <span role="text">
+            <span class="public-good-warning-callout-sr-only">Important: </span>
+            School, nursery or work
+          </span>
+        </h3>
+        <p>Stay away from school, nursery or work until all the spots have crusted over. This is usually 5 days after the spots appeared.</p>
+      </div>
+    </div>
+    <div class="code-example">
+&lt;div class="public-good-warning-callout"&gt;
+  &lt;h3 class="public-good-warning-callout__label"&gt;
+    &lt;span role="text"&gt;
+      &lt;span class="public-good-warning-callout-sr-only"&gt;Important: &lt;/span&gt;
+      School, nursery or work
+    &lt;/span&gt;
+  &lt;/h3&gt;
+  &lt;p&gt;Stay away from school, nursery or work until all the spots have crusted over.&lt;/p&gt;
+&lt;/div&gt;
+    </div>
+  </div>
+
+  <div class="example">
+    <h3>Warning Callout with Multiple Paragraphs</h3>
+    <div class="demo-section">
+      <div class="public-good-warning-callout">
+        <h3 class="public-good-warning-callout__label">
+          <span role="text">
+            <span class="public-good-warning-callout-sr-only">Important: </span>
+            If you have symptoms
+          </span>
+        </h3>
+        <div class="public-good-warning-callout__content">
+          <p>Contact your GP or call 111 if you experience any of the following symptoms:</p>
+          <ul>
+            <li>High fever (over 38°C)</li>
+            <li>Difficulty breathing</li>
+            <li>Severe headache</li>
+            <li>Persistent chest pain</li>
+          </ul>
+          <p>Do not wait if symptoms worsen. Seek immediate medical attention.</p>
+        </div>
+      </div>
+    </div>
+    <div class="code-example">
+&lt;div class="public-good-warning-callout"&gt;
+  &lt;h3 class="public-good-warning-callout__label"&gt;
+    &lt;span role="text"&gt;
+      &lt;span class="public-good-warning-callout-sr-only"&gt;Important: &lt;/span&gt;
+      If you have symptoms
+    &lt;/span&gt;
+  &lt;/h3&gt;
+  &lt;div class="public-good-warning-callout__content"&gt;
+    &lt;p&gt;Contact your GP or call 111 if you experience any of the following symptoms:&lt;/p&gt;
+    &lt;ul&gt;
+      &lt;li&gt;High fever (over 38°C)&lt;/li&gt;
+      &lt;li&gt;Difficulty breathing&lt;/li&gt;
+      &lt;li&gt;Severe headache&lt;/li&gt;
+      &lt;li&gt;Persistent chest pain&lt;/li&gt;
+    &lt;/ul&gt;
+    &lt;p&gt;Do not wait if symptoms worsen. Seek immediate medical attention.&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+    </div>
+  </div>
+
+  <div class="example">
+    <h3>Warning Callout with Link</h3>
+    <div class="demo-section">
+      <div class="public-good-warning-callout">
+        <h3 class="public-good-warning-callout__label">
+          <span role="text">
+            <span class="public-good-warning-callout-sr-only">Important: </span>
+            Register your interest
+          </span>
+        </h3>
+        <p>Registration closes on Friday 15 March. <a href="#register">Register your interest now</a> to avoid disappointment.</p>
+      </div>
+    </div>
+    <div class="code-example">
+&lt;div class="public-good-warning-callout"&gt;
+  &lt;h3 class="public-good-warning-callout__label"&gt;
+    &lt;span role="text"&gt;
+      &lt;span class="public-good-warning-callout-sr-only"&gt;Important: &lt;/span&gt;
+      Register your interest
+    &lt;/span&gt;
+  &lt;/h3&gt;
+  &lt;p&gt;Registration closes on Friday 15 March. &lt;a href="#register"&gt;Register your interest now&lt;/a&gt; to avoid disappointment.&lt;/p&gt;
+&lt;/div&gt;
+    </div>
+  </div>
+
+  <div class="example">
+    <h3>Size Variants</h3>
+    <div class="demo-section">
+      <h4>Compact Warning Callout</h4>
+      <div class="public-good-warning-callout public-good-warning-callout--compact">
+        <h4 class="public-good-warning-callout__label">
+          <span role="text">
+            <span class="public-good-warning-callout-sr-only">Important: </span>
+            Limited time offer
+          </span>
+        </h4>
+        <p>This compact callout takes up less space while still drawing attention to important information.</p>
+      </div>
+      
+      <h4>Critical Warning Callout</h4>
+      <div class="public-good-warning-callout public-good-warning-callout--critical">
+        <h3 class="public-good-warning-callout__label">
+          <span role="text">
+            <span class="public-good-warning-callout-sr-only">Critical: </span>
+            Urgent action required
+          </span>
+        </h3>
+        <p>This critical variant provides enhanced visual prominence for the most important warnings that require immediate attention.</p>
+      </div>
+
+      <h4>Subtle Warning Callout</h4>
+      <div class="public-good-warning-callout public-good-warning-callout--subtle">
+        <h4 class="public-good-warning-callout__label">
+          <span role="text">
+            <span class="public-good-warning-callout-sr-only">Note: </span>
+            Please note
+          </span>
+        </h4>
+        <p>This subtle variant is less prominent but still clearly indicates important information that users should be aware of.</p>
+      </div>
+    </div>
+    <div class="code-example">
+&lt;!-- Compact --&gt;
+&lt;div class="public-good-warning-callout public-good-warning-callout--compact"&gt;
+  &lt;h4 class="public-good-warning-callout__label"&gt;...&lt;/h4&gt;
+  &lt;p&gt;Compact content...&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;!-- Critical --&gt;
+&lt;div class="public-good-warning-callout public-good-warning-callout--critical"&gt;
+  &lt;h3 class="public-good-warning-callout__label"&gt;...&lt;/h3&gt;
+  &lt;p&gt;Critical content...&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;!-- Subtle --&gt;
+&lt;div class="public-good-warning-callout public-good-warning-callout--subtle"&gt;
+  &lt;h4 class="public-good-warning-callout__label"&gt;...&lt;/h4&gt;
+  &lt;p&gt;Subtle content...&lt;/p&gt;
+&lt;/div&gt;
+    </div>
+  </div>
+
+  <div class="example">
+    <h3>Different Heading Levels</h3>
+    <div class="demo-section">
+      <h4>H2 Heading</h4>
+      <div class="public-good-warning-callout">
+        <h2 class="public-good-warning-callout__label">
+          <span role="text">
+            <span class="public-good-warning-callout-sr-only">Important: </span>
+            Service disruption
+          </span>
+        </h2>
+        <p>Our online services will be unavailable from 9pm to 6am for essential maintenance.</p>
+      </div>
+
+      <h4>H4 Heading</h4>
+      <div class="public-good-warning-callout">
+        <h4 class="public-good-warning-callout__label">
+          <span role="text">
+            <span class="public-good-warning-callout-sr-only">Important: </span>
+            Browser compatibility
+          </span>
+        </h4>
+        <p>For the best experience, use a modern web browser such as Chrome, Firefox, Safari, or Edge.</p>
+      </div>
+    </div>
+    <div class="code-example">
+&lt;!-- H2 heading --&gt;
+&lt;div class="public-good-warning-callout"&gt;
+  &lt;h2 class="public-good-warning-callout__label"&gt;
+    &lt;span role="text"&gt;
+      &lt;span class="public-good-warning-callout-sr-only"&gt;Important: &lt;/span&gt;
+      Service disruption
+    &lt;/span&gt;
+  &lt;/h2&gt;
+  &lt;p&gt;Content here...&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;!-- H4 heading --&gt;
+&lt;div class="public-good-warning-callout"&gt;
+  &lt;h4 class="public-good-warning-callout__label"&gt;
+    &lt;span role="text"&gt;
+      &lt;span class="public-good-warning-callout-sr-only"&gt;Important: &lt;/span&gt;
+      Browser compatibility
+    &lt;/span&gt;
+  &lt;/h4&gt;
+  &lt;p&gt;Content here...&lt;/p&gt;
+&lt;/div&gt;
+    </div>
+  </div>
+
+  <div class="example">
+    <h3>In Context Usage</h3>
+    <div class="demo-section">
+      <div class="page-content">
+        <h2>Vaccination Information</h2>
+        <p>Getting vaccinated is one of the most important steps you can take to protect yourself and your family from serious diseases.</p>
+        
+        <div class="public-good-warning-callout">
+          <h3 class="public-good-warning-callout__label">
+            <span role="text">
+              <span class="public-good-warning-callout-sr-only">Important: </span>
+              Allergic reactions
+            </span>
+          </h3>
+          <p>Tell your healthcare provider if you have had severe allergic reactions to any vaccines in the past. They will monitor you closely after vaccination.</p>
+        </div>
+
+        <h3>Who should get vaccinated?</h3>
+        <p>Most people can safely receive vaccines. However, there are some exceptions and precautions to consider.</p>
+
+        <h3>Side effects</h3>
+        <p>Most people experience only mild side effects after vaccination, such as soreness at the injection site or mild fatigue.</p>
+
+        <div class="public-good-warning-callout public-good-warning-callout--subtle">
+          <h4 class="public-good-warning-callout__label">
+            <span role="text">
+              <span class="public-good-warning-callout-sr-only">Note: </span>
+              Keep records
+            </span>
+          </h4>
+          <p>Keep a record of all your vaccinations. You may need this information for travel, school, or work requirements.</p>
+        </div>
+      </div>
+    </div>
+    <div class="code-example">
+&lt;div class="page-content"&gt;
+  &lt;h2&gt;Main Content Heading&lt;/h2&gt;
+  &lt;p&gt;Regular content...&lt;/p&gt;
+  
+  &lt;div class="public-good-warning-callout"&gt;
+    &lt;h3 class="public-good-warning-callout__label"&gt;
+      &lt;span role="text"&gt;
+        &lt;span class="public-good-warning-callout-sr-only"&gt;Important: &lt;/span&gt;
+        Warning heading
+      &lt;/span&gt;
+    &lt;/h3&gt;
+    &lt;p&gt;Important warning information...&lt;/p&gt;
+  &lt;/div&gt;
+  
+  &lt;h3&gt;Next Section&lt;/h3&gt;
+  &lt;p&gt;More regular content...&lt;/p&gt;
+&lt;/div&gt;
+    </div>
+  </div>
+
+  <div class="example">
+    <h3>Usage Guidelines</h3>
+    <div class="demo-section">
+      <h4>✅ When to use warning callouts</h4>
+      <ul>
+        <li>Information that is time critical</li>
+        <li>Content that could significantly impact the user's health or wellbeing</li>
+        <li>To address common misconceptions</li>
+        <li>When users might miss important information in body text</li>
+        <li>To highlight exceptions to general rules</li>
+      </ul>
+      
+      <h4>✅ Best practices</h4>
+      <ul>
+        <li>Give the callout a short, clearly worded heading</li>
+        <li>Make the callout concise, specific and self-contained</li>
+        <li>Avoid having more than 2 callouts on a page</li>
+        <li>Use appropriate heading levels that fit the page hierarchy</li>
+        <li>Always include the visually hidden prefix for screen readers</li>
+        <li>Use role="text" to ensure screen readers read the heading as one unit</li>
+      </ul>
+      
+      <h4>❌ When not to use</h4>
+      <ul>
+        <li>On transactional pages (use other components instead)</li>
+        <li>For general information that isn't critical or time-sensitive</li>
+        <li>To replace proper page structure or clear content organization</li>
+        <li>For promotional content or calls to action</li>
+        <li>When the information can be better presented in the main content</li>
+      </ul>
+
+      <h4>❌ Don't</h4>
+      <ul>
+        <li>Introduce a callout with "If this happens..." - explain the circumstances</li>
+        <li>Use more than 2 warning callouts on a single page</li>
+        <li>Rely on color alone to convey the warning</li>
+        <li>Use vague or unclear headings</li>
+        <li>Forget the visually hidden prefix for screen readers</li>
+      </ul>
+    </div>
+  </div>
+
+  <script type="module">
+    // Add basic interactivity for demonstration
+    document.addEventListener('DOMContentLoaded', () => {
+      // Add click tracking to warning callouts for demonstration
+      document.querySelectorAll('.public-good-warning-callout').forEach((callout, index) => {
+        callout.addEventListener('click', (event) => {
+          console.log(`Warning callout ${index + 1} clicked:`, callout.querySelector('.public-good-warning-callout__label')?.textContent?.trim());
+        });
+
+        // Add focus highlighting for keyboard navigation
+        callout.addEventListener('focusin', (event) => {
+          callout.style.outline = '3px solid #fd0';
+          callout.style.outlineOffset = '2px';
+        });
+
+        callout.addEventListener('focusout', (event) => {
+          callout.style.outline = '';
+          callout.style.outlineOffset = '';
+        });
+      });
+
+      // Demonstrate programmatic announcement
+      document.addEventListener('keydown', (event) => {
+        if (event.key === 'w' && event.ctrlKey) {
+          event.preventDefault();
+          const firstCallout = document.querySelector('.public-good-warning-callout');
+          if (firstCallout) {
+            const heading = firstCallout.querySelector('.public-good-warning-callout__label')?.textContent;
+            const content = firstCallout.querySelector('p')?.textContent;
+            
+            // Create temporary live region for announcement
+            const announcement = document.createElement('div');
+            announcement.setAttribute('aria-live', 'polite');
+            announcement.style.position = 'absolute';
+            announcement.style.left = '-10000px';
+            announcement.textContent = `Warning: ${heading}. ${content}`;
+            
+            document.body.appendChild(announcement);
+            
+            setTimeout(() => {
+              document.body.removeChild(announcement);
+            }, 1000);
+            
+            console.log('Warning announced to screen readers (Ctrl+W pressed)');
+          }
+        }
+      });
+    });
+  </script>
+</body>
+</html>

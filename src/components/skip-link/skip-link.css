@@ -1,0 +1,294 @@
+/**
+ * Skip Link Component
+ * Converted from NHS UK Design System to Public Good Design System
+ * 
+ * Styles for skip links that help keyboard users bypass navigation
+ * and jump directly to main content.
+ */
+
+.public-good-skip-link {
+  position: absolute;
+  left: -9999px;
+  top: auto;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  z-index: var(--public-good-z-index-skip-link, 9999);
+  
+  /* Link styling */
+  background-color: var(--public-good-color-focus, #ffeb3b);
+  color: var(--public-good-color-text, #212b32);
+  font-family: var(--public-good-font-family, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif);
+  font-size: var(--public-good-font-size-body, 1rem);
+  font-weight: var(--public-good-font-weight-normal, 400);
+  line-height: var(--public-good-line-height-body, 1.5);
+  text-decoration: none;
+  
+  /* Padding and spacing */
+  padding: var(--public-good-spacing-2, 12px) var(--public-good-spacing-3, 16px);
+  
+  /* Border and visual styling */
+  border: 2px solid var(--public-good-color-text, #212b32);
+  border-radius: var(--public-good-border-radius, 4px);
+  
+  /* Interaction states */
+  transition: none; /* Skip links should appear instantly */
+}
+
+/* Visible state when focused */
+.public-good-skip-link:focus,
+.public-good-skip-link--focused {
+  position: absolute;
+  left: var(--public-good-spacing-3, 16px);
+  top: var(--public-good-spacing-3, 16px);
+  width: auto;
+  height: auto;
+  overflow: visible;
+  clip: auto;
+  clip-path: none;
+}
+
+/* Hover state (only when visible) */
+.public-good-skip-link:focus:hover,
+.public-good-skip-link--focused:hover {
+  background-color: var(--public-good-color-focus-hover, #f4e642);
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+}
+
+/* Active state */
+.public-good-skip-link:active {
+  background-color: var(--public-good-color-focus-active, #e6d835);
+  transform: translateY(1px);
+}
+
+/* Container for multiple skip links */
+.public-good-skip-links {
+  position: relative;
+  z-index: var(--public-good-z-index-skip-link, 9999);
+}
+
+.public-good-skip-links .public-good-skip-link {
+  display: block;
+  margin-bottom: var(--public-good-spacing-1, 8px);
+}
+
+.public-good-skip-links .public-good-skip-link:last-child {
+  margin-bottom: 0;
+}
+
+/* Alternative positioning for skip links */
+.public-good-skip-link--fixed {
+  position: fixed;
+  left: -9999px;
+  top: 0;
+}
+
+.public-good-skip-link--fixed:focus,
+.public-good-skip-link--fixed.public-good-skip-link--focused {
+  position: fixed;
+  left: var(--public-good-spacing-3, 16px);
+  top: var(--public-good-spacing-3, 16px);
+}
+
+/* Center positioning variant */
+.public-good-skip-link--center {
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.public-good-skip-link--center:focus,
+.public-good-skip-link--center.public-good-skip-link--focused {
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+/* Compact variant with less padding */
+.public-good-skip-link--compact {
+  padding: var(--public-good-spacing-1, 8px) var(--public-good-spacing-2, 12px);
+  font-size: var(--public-good-font-size-small, 0.875rem);
+}
+
+/* High contrast variant */
+.public-good-skip-link--high-contrast {
+  background-color: var(--public-good-color-black, #000000);
+  color: var(--public-good-color-white, #ffffff);
+  border-color: var(--public-good-color-white, #ffffff);
+}
+
+.public-good-skip-link--high-contrast:focus:hover,
+.public-good-skip-link--high-contrast.public-good-skip-link--focused:hover {
+  background-color: var(--public-good-color-white, #ffffff);
+  color: var(--public-good-color-black, #000000);
+  border-color: var(--public-good-color-black, #000000);
+}
+
+/* Screen reader only text (for additional context) */
+.public-good-skip-link .sr-only {
+  position: absolute;
+  left: -10000px;
+  top: auto;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+.public-good-skip-link:focus .sr-only,
+.public-good-skip-link--focused .sr-only {
+  position: static;
+  width: auto;
+  height: auto;
+  overflow: visible;
+}
+
+/* Focus indicator improvements */
+.public-good-skip-link:focus-visible {
+  outline: 3px solid var(--public-good-color-focus-outline, #0066cc);
+  outline-offset: 2px;
+}
+
+/* Smooth scroll behavior when supported */
+@media (prefers-reduced-motion: no-preference) {
+  .public-good-skip-link {
+    scroll-behavior: smooth;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .public-good-skip-link {
+    background-color: var(--public-good-color-white, #ffffff);
+    color: var(--public-good-color-black, #000000);
+    border: 3px solid var(--public-good-color-black, #000000);
+    font-weight: var(--public-good-font-weight-bold, 700);
+  }
+  
+  .public-good-skip-link:focus:hover,
+  .public-good-skip-link--focused:hover {
+    background-color: var(--public-good-color-black, #000000);
+    color: var(--public-good-color-white, #ffffff);
+    border-color: var(--public-good-color-white, #ffffff);
+  }
+}
+
+/* Forced colors mode support (Windows High Contrast) */
+@media (forced-colors: active) {
+  .public-good-skip-link {
+    background-color: ButtonText;
+    color: ButtonFace;
+    border-color: ButtonText;
+    forced-color-adjust: none;
+  }
+  
+  .public-good-skip-link:focus,
+  .public-good-skip-link--focused {
+    background-color: Highlight;
+    color: HighlightText;
+    border-color: HighlightText;
+  }
+}
+
+/* Print styles */
+@media print {
+  .public-good-skip-link,
+  .public-good-skip-links {
+    display: none !important;
+  }
+}
+
+/* Mobile responsive adjustments */
+@media (max-width: 768px) {
+  .public-good-skip-link:focus,
+  .public-good-skip-link--focused {
+    left: var(--public-good-spacing-2, 12px);
+    top: var(--public-good-spacing-2, 12px);
+    right: var(--public-good-spacing-2, 12px);
+    width: auto;
+    max-width: calc(100% - var(--public-good-spacing-4, 24px));
+    font-size: var(--public-good-font-size-body, 1rem);
+  }
+  
+  .public-good-skip-link--fixed:focus,
+  .public-good-skip-link--fixed.public-good-skip-link--focused {
+    left: var(--public-good-spacing-2, 12px);
+    right: var(--public-good-spacing-2, 12px);
+    top: var(--public-good-spacing-2, 12px);
+    width: auto;
+  }
+}
+
+/* Extra small mobile devices */
+@media (max-width: 480px) {
+  .public-good-skip-link:focus,
+  .public-good-skip-link--focused {
+    left: var(--public-good-spacing-1, 8px);
+    top: var(--public-good-spacing-1, 8px);
+    right: var(--public-good-spacing-1, 8px);
+    padding: var(--public-good-spacing-2, 12px);
+    font-size: var(--public-good-font-size-small, 0.875rem);
+  }
+}
+
+/* Animation for smooth appearance (respects reduced motion) */
+@media (prefers-reduced-motion: no-preference) {
+  .public-good-skip-link:focus,
+  .public-good-skip-link--focused {
+    animation: skipLinkAppear 0.2s ease-out;
+  }
+}
+
+@keyframes skipLinkAppear {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Reduced motion fallback */
+@media (prefers-reduced-motion: reduce) {
+  .public-good-skip-link {
+    transition: none;
+    animation: none;
+  }
+  
+  .public-good-skip-link:focus,
+  .public-good-skip-link--focused {
+    animation: none;
+    transform: none;
+  }
+  
+  @keyframes skipLinkAppear {
+    from { opacity: 1; }
+    to { opacity: 1; }
+  }
+}
+
+/* Color variables for skip links */
+:root {
+  --public-good-z-index-skip-link: 9999;
+  --public-good-color-focus: #ffeb3b;
+  --public-good-color-focus-hover: #f4e642;
+  --public-good-color-focus-active: #e6d835;
+  --public-good-color-focus-outline: #0066cc;
+  --public-good-color-white: #ffffff;
+  --public-good-color-black: #000000;
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+  .public-good-skip-link {
+    background-color: var(--public-good-color-focus, #ffeb3b);
+    color: var(--public-good-color-black, #000000);
+    border-color: var(--public-good-color-black, #000000);
+  }
+  
+  .public-good-skip-link--high-contrast {
+    background-color: var(--public-good-color-white, #ffffff);
+    color: var(--public-good-color-black, #000000);
+    border-color: var(--public-good-color-black, #000000);
+  }
+}

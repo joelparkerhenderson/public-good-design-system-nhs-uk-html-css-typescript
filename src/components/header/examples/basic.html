@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Header Component - Basic Examples</title>
+  <link rel="stylesheet" href="../../index.css">
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      line-height: 1.6;
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+      background-color: #ffffff;
+    }
+    
+    .main-content {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 40px 20px;
+    }
+    
+    h1 {
+      color: #333;
+      border-bottom: 2px solid #0078d4;
+      padding-bottom: 10px;
+      margin-top: 0;
+    }
+    
+    .example {
+      margin: 30px 0;
+      padding: 20px;
+      border: 1px solid #e1e5e9;
+      border-radius: 4px;
+      background: #fafbfc;
+    }
+    
+    .example h3 {
+      margin-top: 0;
+      color: #0078d4;
+    }
+    
+    .demo-page {
+      min-height: 60vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      margin: 20px 0;
+      border-radius: 8px;
+      padding: 40px;
+    }
+    
+    .demo-page h2 {
+      margin: 0 0 20px 0;
+      font-size: 2.5em;
+    }
+    
+    .demo-page p {
+      font-size: 1.2em;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    /* Mock page layout */
+    .page-container {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .page-content {
+      flex: 1;
+    }
+
+    /* Header examples styling */
+    .header-example {
+      margin: 20px 0;
+      border: 2px solid #0078d4;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .header-example h4 {
+      background: #0078d4;
+      color: white;
+      margin: 0;
+      padding: 10px 20px;
+      font-size: 16px;
+    }
+
+    .header-demo-content {
+      background: #f8f9fa;
+      padding: 40px 20px;
+      text-align: center;
+      color: #495057;
+    }
+  </style>
+</head>
+<body>
+  <div class="page-container">
+    <!-- NHS Default Header Example -->
+    <div class="header-example">
+      <h4>NHS Default Header</h4>
+      <div data-public-good-header 
+           data-variant="nhs-default"
+           data-service-name="NHS Digital Service"
+           data-navigation='[
+             {"text": "Home", "href": "/", "current": true},
+             {"text": "Health A-Z", "href": "/health-az"},
+             {"text": "NHS services", "href": "/services"},
+             {"text": "Live Well", "href": "/live-well"}
+           ]'>
+      </div>
+      <div class="header-demo-content">
+        <p>This is the standard NHS header with navigation and service name.</p>
+      </div>
+    </div>
+
+    <div class="page-content">
+      <div class="main-content">
+        <h1>Header Component - Basic Examples</h1>
+        <p>This page demonstrates the basic usage patterns for the Header component in different variants and configurations.</p>
+
+        <div class="example">
+          <h3>NHS Header with Search</h3>
+          <p>NHS header with integrated search functionality:</p>
+          <div class="header-example">
+            <div data-public-good-header 
+                 data-variant="nhs-default"
+                 data-service-name="NHS Health Portal"
+                 data-search-action="/search"
+                 data-search-placeholder="Search health information"
+                 data-navigation='[
+                   {"text": "Home", "href": "/"},
+                   {"text": "Conditions", "href": "/conditions"},
+                   {"text": "Medicines", "href": "/medicines"}
+                 ]'>
+            </div>
+            <div class="header-demo-content">
+              <p>Header with search functionality for finding health information.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="example">
+          <h3>Transactional Header</h3>
+          <p>Minimal header for transaction flows and services:</p>
+          <div class="header-example">
+            <div data-public-good-header 
+                 data-variant="transactional"
+                 data-service-name="Apply for health records"
+                 data-navigation='[
+                   {"text": "Back", "href": "/previous-step"}
+                 ]'>
+            </div>
+            <div class="header-demo-content">
+              <p>Clean, minimal header for focused user journeys and transactions.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="example">
+          <h3>Organisational Header</h3>
+          <p>Header for organisational websites with custom branding:</p>
+          <div class="header-example">
+            <div data-public-good-header 
+                 data-variant="organisational"
+                 data-logo-text="Health Authority"
+                 data-logo-href="/"
+                 data-service-name="Public Health Portal"
+                 data-service-href="/portal"
+                 data-navigation='[
+                   {"text": "About", "href": "/about"},
+                   {"text": "Services", "href": "/services"},
+                   {"text": "News", "href": "/news"},
+                   {"text": "Contact", "href": "/contact"}
+                 ]'>
+            </div>
+            <div class="header-demo-content">
+              <p>Header with custom branding for organisational websites.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="example">
+          <h3>Minimal Header</h3>
+          <p>Very simple header with just service name:</p>
+          <div class="header-example">
+            <div data-public-good-header 
+                 data-variant="minimal"
+                 data-service-name="Simple Service">
+            </div>
+            <div class="header-demo-content">
+              <p>Minimal header for simple services and internal tools.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="example">
+          <h3>Header with External Links</h3>
+          <p>Header including links that open in new tabs:</p>
+          <div class="header-example">
+            <div data-public-good-header 
+                 data-variant="nhs-default"
+                 data-service-name="NHS External Links Demo"
+                 data-navigation='[
+                   {"text": "Home", "href": "/"},
+                   {"text": "NHS Website", "href": "https://www.nhs.uk", "openInNewTab": true},
+                   {"text": "NHS App", "href": "https://www.nhs.uk/nhs-app/", "openInNewTab": true},
+                   {"text": "Contact", "href": "/contact"}
+                 ]'>
+            </div>
+            <div class="header-demo-content">
+              <p>Navigation with both internal and external links.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="example">
+          <h3>Header with Secondary Navigation</h3>
+          <p>Header with both primary and secondary navigation sections:</p>
+          <div class="header-example">
+            <div data-public-good-header 
+                 data-variant="nhs-default"
+                 data-service-name="NHS Complex Service"
+                 data-navigation='[
+                   {"text": "Home", "href": "/", "current": true},
+                   {"text": "Services", "href": "/services"},
+                   {"text": "About", "href": "/about"}
+                 ]'
+                 data-secondary-navigation='[
+                   {"text": "Help", "href": "/help"},
+                   {"text": "Accessibility", "href": "/accessibility"},
+                   {"text": "Privacy", "href": "/privacy"},
+                   {"text": "Terms", "href": "/terms"}
+                 ]'>
+            </div>
+            <div class="header-demo-content">
+              <p>Header with both primary navigation and secondary utility links.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="example">
+          <h3>Header without Container</h3>
+          <p>Header that spans the full width without container wrapper:</p>
+          <div class="header-example">
+            <div data-public-good-header 
+                 data-variant="nhs-default"
+                 data-service-name="Full Width Service"
+                 data-container="false"
+                 data-navigation='[
+                   {"text": "Full Width", "href": "/full-width"},
+                   {"text": "No Container", "href": "/no-container"}
+                 ]'>
+            </div>
+            <div class="header-demo-content">
+              <p>Header without container wrapper for full-width layouts.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="example">
+          <h3>Responsive Design</h3>
+          <p>All headers automatically adapt to mobile devices with collapsible navigation:</p>
+          <div class="header-example">
+            <div data-public-good-header 
+                 data-variant="nhs-default"
+                 data-service-name="Mobile Responsive Service"
+                 data-search-action="/search"
+                 data-navigation='[
+                   {"text": "Home", "href": "/"},
+                   {"text": "Services", "href": "/services"},
+                   {"text": "Health A-Z", "href": "/health-az"},
+                   {"text": "NHS services", "href": "/nhs-services"},
+                   {"text": "Live Well", "href": "/live-well"},
+                   {"text": "Mental health", "href": "/mental-health"},
+                   {"text": "Care and support", "href": "/care-support"}
+                 ]'>
+            </div>
+            <div class="header-demo-content">
+              <p>Try resizing your browser window to see the mobile menu in action.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script type="module">
+    import { initializeHeaders } from '../header.js'
+    
+    // Initialize all headers on the page
+    document.addEventListener('DOMContentLoaded', () => {
+      const headers = initializeHeaders()
+      console.log(`Initialized ${headers.length} headers`)
+      
+      // Add some interactivity to demonstrate the components
+      headers.forEach((header, index) => {
+        // Log events for demonstration
+        header.element.addEventListener('public-good:header:navigation-link-added', (event) => {
+          console.log('Header navigation link added:', event.detail)
+        })
+        
+        header.element.addEventListener('public-good:header:mobile-menu-toggled', (event) => {
+          console.log('Mobile menu toggled:', event.detail)
+        })
+        
+        header.element.addEventListener('public-good:header:service-name-updated', (event) => {
+          console.log('Service name updated:', event.detail)
+        })
+
+        // Add hover effects for demonstration
+        const navLinks = header.element.querySelectorAll('.public-good-header__navigation-link')
+        navLinks.forEach(link => {
+          link.addEventListener('mouseenter', () => {
+            link.style.transform = 'translateY(-1px)'
+            link.style.transition = 'transform 0.15s ease'
+          })
+          
+          link.addEventListener('mouseleave', () => {
+            link.style.transform = 'translateY(0)'
+          })
+        })
+      })
+    })
+    
+    // Add keyboard navigation enhancement
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Home') {
+        // Jump to first header when Home key is pressed
+        const firstHeader = document.querySelector('.public-good-header')
+        if (firstHeader) {
+          firstHeader.scrollIntoView({ behavior: 'smooth' })
+          const firstLink = firstHeader.querySelector('.public-good-header__navigation-link')
+          if (firstLink) {
+            firstLink.focus()
+          }
+        }
+      }
+    })
+
+    // Demonstrate search functionality
+    document.addEventListener('submit', (event) => {
+      if (event.target.classList.contains('public-good-header__search-form')) {
+        event.preventDefault()
+        const searchInput = event.target.querySelector('.public-good-header__search-input')
+        if (searchInput && searchInput.value) {
+          alert(`Search submitted: "${searchInput.value}"`)
+        }
+      }
+    })
+  </script>
+</body>
+</html>

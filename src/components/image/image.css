@@ -1,0 +1,275 @@
+/**
+ * Image Component Styles
+ * 
+ * Provides styling for accessible image components with responsive behavior,
+ * captions, and error states following NHS UK Design System patterns.
+ */
+
+/* Base image figure styling */
+.public-good-image {
+  margin: 0 0 var(--public-good-spacing-5) 0;
+  max-width: 100%;
+}
+
+/* Image element styling */
+.public-good-image__img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  border: 0;
+  vertical-align: top;
+}
+
+/* Figure caption styling */
+.public-good-image__caption {
+  color: var(--public-good-color-text-secondary);
+  font-size: var(--public-good-body-small-size);
+  font-weight: var(--public-good-body-small-weight);
+  line-height: var(--public-good-body-small-line-height);
+  margin-top: var(--public-good-spacing-3);
+  padding: 0;
+}
+
+/* Responsive image behavior */
+@media (max-width: 768px) {
+  .public-good-image {
+    margin-bottom: var(--public-good-spacing-4);
+  }
+  
+  .public-good-image__caption {
+    font-size: var(--public-good-body-small-size);
+    margin-top: var(--public-good-spacing-2);
+  }
+}
+
+/* Loading states */
+.public-good-image__img[loading="lazy"] {
+  /* Ensure lazy loaded images don't cause layout shift */
+  min-height: 200px;
+  background-color: var(--public-good-color-background-secondary);
+  background-image: linear-gradient(
+    45deg,
+    transparent 35%,
+    rgba(255, 255, 255, 0.2) 35%,
+    rgba(255, 255, 255, 0.2) 65%,
+    transparent 65%
+  );
+  background-size: 20px 20px;
+  animation: public-good-image-loading 1s linear infinite;
+}
+
+.public-good-image--loaded .public-good-image__img[loading="lazy"] {
+  min-height: auto;
+  background: none;
+  animation: none;
+}
+
+@keyframes public-good-image-loading {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 20px 20px;
+  }
+}
+
+/* Error states */
+.public-good-image--error {
+  border: var(--public-good-border-width-thin) solid var(--public-good-color-error);
+  border-radius: var(--public-good-border-radius-medium);
+  padding: var(--public-good-spacing-4);
+  background-color: var(--public-good-color-error-background);
+}
+
+.public-good-image--error .public-good-image__img {
+  display: none;
+}
+
+.public-good-image--error::before {
+  content: "⚠️ " attr(data-error-text, "Image could not be loaded");
+  display: block;
+  color: var(--public-good-color-error);
+  font-weight: var(--public-good-font-weight-medium);
+  text-align: center;
+  padding: var(--public-good-spacing-4);
+  background-color: var(--public-good-color-background);
+  border-radius: var(--public-good-border-radius-small);
+  border: var(--public-good-border-width-thin) dashed var(--public-good-color-error);
+}
+
+/* Image variants */
+.public-good-image--small {
+  max-width: 300px;
+}
+
+.public-good-image--medium {
+  max-width: 600px;
+}
+
+.public-good-image--large {
+  max-width: 100%;
+}
+
+.public-good-image--centered {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.public-good-image--rounded .public-good-image__img {
+  border-radius: var(--public-good-border-radius-medium);
+}
+
+.public-good-image--bordered .public-good-image__img {
+  border: var(--public-good-border-width-thin) solid var(--public-good-color-border);
+}
+
+.public-good-image--shadow .public-good-image__img {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Focus states for accessibility */
+.public-good-image__img:focus {
+  outline: var(--public-good-spacing-focus-width) solid var(--public-good-color-focus);
+  outline-offset: var(--public-good-spacing-focus-offset);
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .public-good-image__img {
+    border: var(--public-good-border-width-thin) solid var(--public-good-color-text);
+  }
+  
+  .public-good-image__caption {
+    color: var(--public-good-color-text);
+    font-weight: var(--public-good-font-weight-medium);
+  }
+  
+  .public-good-image--error {
+    border-color: var(--public-good-color-text);
+    background-color: var(--public-good-color-background);
+  }
+  
+  .public-good-image--error::before {
+    color: var(--public-good-color-text);
+    border-color: var(--public-good-color-text);
+  }
+}
+
+/* Reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  .public-good-image__img[loading="lazy"] {
+    animation: none;
+  }
+}
+
+/* Print styles */
+@media print {
+  .public-good-image {
+    margin-bottom: var(--public-good-spacing-3);
+    break-inside: avoid;
+  }
+  
+  .public-good-image__img {
+    max-width: 100%;
+    display: block;
+  }
+  
+  .public-good-image__caption {
+    color: black;
+    font-size: 12pt;
+    margin-top: var(--public-good-spacing-2);
+  }
+  
+  .public-good-image--error {
+    display: none;
+  }
+}
+
+/* Dark theme support */
+@media (prefers-color-scheme: dark) {
+  .public-good-image__img[loading="lazy"] {
+    background-color: var(--public-good-color-background-secondary, #2a2a2a);
+  }
+  
+  .public-good-image__caption {
+    color: var(--public-good-color-text-secondary, #cccccc);
+  }
+}
+
+/* Grid layouts for multiple images */
+.public-good-image-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: var(--public-good-spacing-5);
+  margin: var(--public-good-spacing-5) 0;
+}
+
+.public-good-image-grid .public-good-image {
+  margin-bottom: 0;
+}
+
+/* Responsive grid adjustments */
+@media (max-width: 768px) {
+  .public-good-image-grid {
+    grid-template-columns: 1fr;
+    gap: var(--public-good-spacing-4);
+    margin: var(--public-good-spacing-4) 0;
+  }
+}
+
+/* Stacked image layout (NHS recommended) */
+.public-good-image-stack {
+  display: flex;
+  flex-direction: column;
+  gap: var(--public-good-spacing-5);
+  margin: var(--public-good-spacing-5) 0;
+}
+
+.public-good-image-stack .public-good-image {
+  margin-bottom: 0;
+}
+
+@media (max-width: 768px) {
+  .public-good-image-stack {
+    gap: var(--public-good-spacing-4);
+    margin: var(--public-good-spacing-4) 0;
+  }
+}
+
+/* Hero image variant */
+.public-good-image--hero {
+  margin: 0 0 var(--public-good-spacing-6) 0;
+  max-width: 100%;
+}
+
+.public-good-image--hero .public-good-image__img {
+  width: 100%;
+  height: auto;
+  min-height: 300px;
+  object-fit: cover;
+}
+
+.public-good-image--hero .public-good-image__caption {
+  font-size: var(--public-good-body-size);
+  margin-top: var(--public-good-spacing-4);
+  padding: var(--public-good-spacing-3);
+  background-color: var(--public-good-color-background-secondary);
+  border-radius: var(--public-good-border-radius-small);
+}
+
+/* Thumbnail variant */
+.public-good-image--thumbnail {
+  max-width: 150px;
+  margin: 0 var(--public-good-spacing-3) var(--public-good-spacing-3) 0;
+  display: inline-block;
+  vertical-align: top;
+}
+
+.public-good-image--thumbnail .public-good-image__img {
+  border-radius: var(--public-good-border-radius-small);
+}
+
+.public-good-image--thumbnail .public-good-image__caption {
+  font-size: var(--public-good-font-size-small);
+  margin-top: var(--public-good-spacing-2);
+}

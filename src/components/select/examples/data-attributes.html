@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Select - Data Attributes Example</title>
+  <link rel="stylesheet" href="../../../styles/index.css">
+  <link rel="stylesheet" href="../select.css">
+</head>
+<body>
+  <div class="public-good-width-container">
+    <main class="public-good-main-wrapper">
+      <div class="public-good-grid-row">
+        <div class="public-good-grid-column-two-thirds">
+          <h1>Select - Data Attributes Example</h1>
+          
+          <p class="public-good-body-l">
+            You can initialize select components using data attributes in your HTML. 
+            This is useful when you want to enhance existing HTML with JavaScript.
+          </p>
+
+          <h2>Basic select with data attributes</h2>
+          <div 
+            data-public-good-select
+            data-name="region"
+            data-label="Which region do you live in?"
+            data-hint="Choose the region that best describes your location"
+            data-options='[
+              {"value":"north","text":"North"},
+              {"value":"south","text":"South"},
+              {"value":"east","text":"East"},
+              {"value":"west","text":"West"},
+              {"value":"central","text":"Central"}
+            ]'
+          ></div>
+
+          <h2>Required select with data attributes</h2>
+          <div 
+            data-public-good-select
+            data-name="department"
+            data-label="Which department do you need?"
+            data-required="true"
+            data-options='[
+              {"value":"","text":"Choose department"},
+              {"value":"emergency","text":"Emergency Department"},
+              {"value":"outpatients","text":"Outpatients"},
+              {"value":"pharmacy","text":"Pharmacy"},
+              {"value":"radiology","text":"Radiology"},
+              {"value":"pathology","text":"Pathology"}
+            ]'
+          ></div>
+
+          <h2>Multiple select with data attributes</h2>
+          <div 
+            data-public-good-select
+            data-name="services"
+            data-label="Which services are you interested in?"
+            data-multiple="true"
+            data-size="4"
+            data-hint="You can select multiple services"
+            data-options='[
+              {"value":"gp","text":"GP services"},
+              {"value":"mental-health","text":"Mental health support"},
+              {"value":"dentistry","text":"Dentistry"},
+              {"value":"physiotherapy","text":"Physiotherapy"},
+              {"value":"counselling","text":"Counselling"}
+            ]'
+          ></div>
+
+          <h2>HTML Code</h2>
+          <pre><code>&lt;div 
+  data-public-good-select
+  data-name="region"
+  data-label="Which region do you live in?"
+  data-hint="Choose the region that best describes your location"
+  data-options='[
+    {"value":"north","text":"North"},
+    {"value":"south","text":"South"}
+  ]'
+&gt;&lt;/div&gt;</code></pre>
+
+          <h2>Available data attributes</h2>
+          <ul>
+            <li><code>data-public-good-select</code> - Required to initialize the component</li>
+            <li><code>data-name</code> - The name attribute for the select element</li>
+            <li><code>data-label</code> - The label text</li>
+            <li><code>data-hint</code> - Optional hint text</li>
+            <li><code>data-error</code> - Error message text</li>
+            <li><code>data-options</code> - JSON array of option objects</li>
+            <li><code>data-required</code> - Set to "true" for required select</li>
+            <li><code>data-disabled</code> - Set to "true" for disabled select</li>
+            <li><code>data-multiple</code> - Set to "true" for multiple selection</li>
+            <li><code>data-size</code> - Number of visible options for multiple select</li>
+            <li><code>data-classes</code> - Additional CSS classes</li>
+          </ul>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script type="module">
+    // Components are automatically initialized via data attributes
+    // The initialization happens in the select.js file
+    import '../select.js'
+    
+    console.log('Select components initialized from data attributes')
+  </script>
+</body>
+</html>

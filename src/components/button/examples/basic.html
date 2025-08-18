@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Basic Button Examples</title>
+  <link rel="stylesheet" href="../../../index.css">
+</head>
+<body>
+  <div class="example-container">
+    <h1>Basic Button Examples</h1>
+    
+    <h2>Primary Buttons</h2>
+    <p>Use primary buttons for the main action on a page or form.</p>
+    
+    <div class="example-section">
+      <div id="primary-button-container"></div>
+      <div id="primary-submit-container"></div>
+      <div id="primary-link-container"></div>
+    </div>
+    
+    <h2>Secondary Buttons</h2>
+    <p>Use secondary buttons for secondary actions or when you need a less prominent button.</p>
+    
+    <div class="example-section">
+      <div id="secondary-button-container"></div>
+      <div id="secondary-link-container"></div>
+    </div>
+    
+    <h2>Button Types</h2>
+    <p>Different HTML elements can be styled as buttons.</p>
+    
+    <div class="example-section">
+      <div id="button-element-container"></div>
+      <div id="input-element-container"></div>
+      <div id="link-element-container"></div>
+    </div>
+    
+    <h2>Button States</h2>
+    <p>Buttons can have different states including disabled and loading.</p>
+    
+    <div class="example-section">
+      <div id="disabled-button-container"></div>
+      <div id="loading-button-container"></div>
+      <button id="toggle-loading" class="public-good-button public-good-button--secondary">Toggle Loading</button>
+    </div>
+    
+    <h2>Using Data Attributes</h2>
+    <p>Buttons can be initialized from HTML data attributes.</p>
+    
+    <div class="example-section">
+      <div data-public-good-button 
+           data-text="Save changes" 
+           data-variant="primary"
+           data-type="submit">
+      </div>
+      
+      <div data-public-good-button 
+           data-text="Cancel" 
+           data-variant="secondary"
+           data-type="button">
+      </div>
+      
+      <div data-public-good-button 
+           data-text="Go to homepage" 
+           data-href="/"
+           data-element="a">
+      </div>
+    </div>
+    
+    <style>
+      .example-container {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 2rem;
+      }
+      
+      h1 {
+        color: var(--public-good-color-primary);
+        margin-bottom: 2rem;
+      }
+      
+      h2 {
+        margin-top: 2rem;
+        margin-bottom: 0.5rem;
+        color: var(--public-good-color-text);
+      }
+      
+      p {
+        margin-bottom: 1rem;
+        color: var(--public-good-color-text-secondary);
+      }
+      
+      .example-section {
+        margin-bottom: 2rem;
+        padding: 1.5rem;
+        border: 1px solid var(--public-good-color-border);
+        border-radius: 4px;
+        background: var(--public-good-color-background);
+      }
+      
+      .example-section > div {
+        margin-bottom: 1rem;
+      }
+      
+      .example-section > div:last-child {
+        margin-bottom: 0;
+      }
+      
+      [data-public-good-button] {
+        margin-right: 1rem;
+        margin-bottom: 0.5rem;
+      }
+      
+      #toggle-loading {
+        margin-top: 1rem;
+      }
+    </style>
+  </div>
+
+  <script type="module">
+    import { 
+      createButton, 
+      createSubmitButton, 
+      createLinkButton 
+    } from '../button.js'
+    
+    // Primary buttons
+    const primaryButton = createButton({
+      text: 'Save and continue',
+      variant: 'primary'
+    })
+    document.getElementById('primary-button-container').appendChild(primaryButton.element)
+    
+    const submitButton = createSubmitButton({
+      text: 'Submit form'
+    })
+    document.getElementById('primary-submit-container').appendChild(submitButton.element)
+    
+    const primaryLink = createLinkButton('/next-page', {
+      text: 'Continue to next page',
+      variant: 'primary'
+    })
+    document.getElementById('primary-link-container').appendChild(primaryLink.element)
+    
+    // Secondary buttons
+    const secondaryButton = createButton({
+      text: 'Find my location',
+      variant: 'secondary',
+      type: 'button'
+    })
+    document.getElementById('secondary-button-container').appendChild(secondaryButton.element)
+    
+    const secondaryLink = createLinkButton('/help', {
+      text: 'Get help',
+      variant: 'secondary'
+    })
+    document.getElementById('secondary-link-container').appendChild(secondaryLink.element)
+    
+    // Different element types
+    const buttonElement = createButton({
+      text: 'Button element',
+      element: 'button',
+      type: 'button'
+    })
+    document.getElementById('button-element-container').appendChild(buttonElement.element)
+    
+    const inputElement = createButton({
+      text: 'Input element',
+      element: 'input',
+      type: 'submit'
+    })
+    document.getElementById('input-element-container').appendChild(inputElement.element)
+    
+    const linkElement = createButton({
+      text: 'Link element',
+      element: 'a',
+      href: '/example-page'
+    })
+    document.getElementById('link-element-container').appendChild(linkElement.element)
+    
+    // Button states
+    const disabledButton = createButton({
+      text: 'Disabled button',
+      disabled: true
+    })
+    document.getElementById('disabled-button-container').appendChild(disabledButton.element)
+    
+    const loadingButton = createButton({
+      text: 'Processing...'
+    })
+    loadingButton.setLoading(true)
+    document.getElementById('loading-button-container').appendChild(loadingButton.element)
+    
+    // Toggle loading state
+    const toggleButton = document.getElementById('toggle-loading')
+    let isLoading = true
+    
+    toggleButton.addEventListener('click', () => {
+      isLoading = !isLoading
+      loadingButton.setLoading(isLoading)
+      toggleButton.textContent = isLoading ? 'Stop Loading' : 'Start Loading'
+    })
+    
+    // Add event listeners for analytics
+    document.addEventListener('public-good:button:click', (event) => {
+      console.log('Button clicked:', event.detail)
+    })
+  </script>
+</body>
+</html>

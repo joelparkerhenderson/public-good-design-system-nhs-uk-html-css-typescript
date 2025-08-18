@@ -1,0 +1,914 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notification Banner Component - Advanced Examples</title>
+    <link rel="stylesheet" href="../../../core/base.css">
+    <link rel="stylesheet" href="../notification-banner.css">
+    <style>
+        body {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background-color: #fafafa;
+        }
+        .example {
+            margin-bottom: 3rem;
+            padding: 2rem;
+            background: white;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+        .example h3 {
+            margin-top: 0;
+            color: #0066cc;
+            font-size: 1.5rem;
+        }
+        .example-description {
+            margin-bottom: 1.5rem;
+            color: #666;
+            font-size: 1rem;
+            line-height: 1.5;
+        }
+        .demo-controls {
+            margin: 1rem 0;
+            padding: 1rem;
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 4px;
+        }
+        .demo-controls h4 {
+            margin: 0 0 0.5rem 0;
+            font-size: 1rem;
+            color: #495057;
+        }
+        .demo-controls button {
+            margin: 0.25rem;
+            padding: 0.5rem 1rem;
+            border: 1px solid #ccc;
+            background: white;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: background-color 0.2s ease;
+        }
+        .demo-controls button:hover {
+            background: #f0f0f0;
+        }
+        .demo-controls button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        .demo-controls input, .demo-controls select, .demo-controls textarea {
+            margin: 0.25rem;
+            padding: 0.5rem;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-family: inherit;
+            width: 100%;
+            max-width: 300px;
+        }
+        .form-group {
+            margin-bottom: 1rem;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 0.25rem;
+            font-weight: 500;
+            color: #495057;
+        }
+        .status-display {
+            margin: 1rem 0;
+            padding: 1rem;
+            background: #e8f4fd;
+            border: 1px solid #bae6fd;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            color: #003d7a;
+        }
+        .two-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-top: 1rem;
+        }
+        .notification-container {
+            min-height: 100px;
+            padding: 1rem;
+            border: 2px dashed #ddd;
+            border-radius: 4px;
+            background: #fafafa;
+        }
+        .notification-container:empty::before {
+            content: "Notifications will appear here";
+            color: #999;
+            font-style: italic;
+        }
+        /* Mock form styling */
+        .mock-form {
+            padding: 1rem;
+            border: 1px solid #e0e0e0;
+            border-radius: 4px;
+            background: white;
+        }
+        .mock-form .form-group {
+            margin-bottom: 1rem;
+        }
+        .mock-form input, .mock-form textarea, .mock-form select {
+            width: 100%;
+            padding: 0.5rem;
+            border: 2px solid #ccc;
+            border-radius: 4px;
+            font-family: inherit;
+            font-size: 1rem;
+        }
+        .mock-form input:focus, .mock-form textarea:focus, .mock-form select:focus {
+            outline: 3px solid #ffeb3b;
+            outline-offset: 0;
+            border-color: #0066cc;
+        }
+        .mock-form input.error {
+            border-color: #d5281b;
+            background-color: #fdf2f2;
+        }
+        .mock-form button {
+            background: #0066cc;
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background-color 0.2s ease;
+        }
+        .mock-form button:hover {
+            background: #003d7a;
+        }
+        /* Fixed position demo */
+        .fixed-demo {
+            position: relative;
+            height: 200px;
+            overflow: hidden;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            background: white;
+        }
+        .fixed-demo-content {
+            padding: 1rem;
+            height: 300px;
+            overflow-y: auto;
+        }
+        /* Loading spinner */
+        .spinner {
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+            border: 2px solid #f3f3f3;
+            border-top: 2px solid #0066cc;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        /* Color variables */
+        :root {
+            --public-good-color-text: #212b32;
+            --public-good-color-text-secondary: #666666;
+            --public-good-color-link: #0066cc;
+            --public-good-color-link-hover: #003d7a;
+            --public-good-color-focus: #ffeb3b;
+            --public-good-spacing-1: 8px;
+            --public-good-spacing-2: 12px;
+            --public-good-spacing-3: 16px;
+            --public-good-spacing-4: 24px;
+        }
+        .hidden {
+            display: none;
+        }
+        .loading-notification .spinner {
+            flex-shrink: 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>Notification Banner Component - Advanced Examples</h1>
+    
+    <div class="example">
+        <h3>Dynamic Notification Creator</h3>
+        <p class="example-description">Create and customize notifications dynamically with different types, content, and behaviors.</p>
+        
+        <div class="two-column">
+            <div>
+                <h4>Notification Builder</h4>
+                <div class="demo-controls">
+                    <div class="form-group">
+                        <label for="notification-type">Type:</label>
+                        <select id="notification-type">
+                            <option value="default">Default</option>
+                            <option value="success">Success</option>
+                            <option value="warning">Warning</option>
+                            <option value="error">Error</option>
+                            <option value="info">Info</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="notification-title">Title (optional):</label>
+                        <input type="text" id="notification-title" placeholder="Enter notification title...">
+                    </div>
+                    <div class="form-group">
+                        <label for="notification-content">Content:</label>
+                        <textarea id="notification-content" rows="3" placeholder="Enter notification content..."></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>
+                            <input type="checkbox" id="notification-dismissible"> Dismissible
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <label>
+                            <input type="checkbox" id="notification-auto-focus"> Auto-focus
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <label for="auto-dismiss-delay">Auto-dismiss delay (ms, 0 = disabled):</label>
+                        <input type="number" id="auto-dismiss-delay" value="0" min="0" step="1000">
+                    </div>
+                    <div style="margin-top: 1rem;">
+                        <button id="create-notification">Create Notification</button>
+                        <button id="clear-notifications">Clear All</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div>
+                <h4>Generated Notifications</h4>
+                <div id="notification-container" class="notification-container"></div>
+            </div>
+        </div>
+
+        <div class="status-display" id="creation-status">
+            Use the controls to create custom notifications.
+        </div>
+    </div>
+
+    <div class="example">
+        <h3>Form Validation Integration</h3>
+        <p class="example-description">Demonstrates integration with form validation, showing error and success notifications.</p>
+        
+        <div id="form-notifications" class="notification-container" style="margin-bottom: 1rem;"></div>
+        
+        <form class="mock-form" id="validation-form">
+            <div class="form-group">
+                <label for="user-email">Email Address:</label>
+                <input type="email" id="user-email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="user-password">Password:</label>
+                <input type="password" id="user-password" name="password" required minlength="8">
+            </div>
+            <div class="form-group">
+                <label for="user-confirm-password">Confirm Password:</label>
+                <input type="password" id="user-confirm-password" name="confirmPassword" required>
+            </div>
+            <div class="form-group">
+                <label>
+                    <input type="checkbox" id="terms-agreement" name="terms" required>
+                    I agree to the terms and conditions
+                </label>
+            </div>
+            <div class="form-group">
+                <button type="submit">Register Account</button>
+            </div>
+        </form>
+
+        <div class="demo-controls">
+            <h4>Form Actions</h4>
+            <button id="simulate-success">Simulate Success</button>
+            <button id="simulate-server-error">Simulate Server Error</button>
+            <button id="clear-form-notifications">Clear Notifications</button>
+        </div>
+    </div>
+
+    <div class="example">
+        <h3>Auto-dismiss with Interaction Handling</h3>
+        <p class="example-description">Auto-dismissing notifications that pause on hover or focus.</p>
+        
+        <div id="auto-dismiss-container" class="notification-container" style="margin-bottom: 1rem;"></div>
+        
+        <div class="demo-controls">
+            <h4>Auto-dismiss Controls</h4>
+            <button id="show-auto-dismiss">Show 5-second Auto-dismiss</button>
+            <button id="show-pause-demo">Show Pauseable Notification</button>
+            <button id="show-loading-demo">Show Loading State</button>
+        </div>
+
+        <div class="status-display" id="auto-dismiss-status">
+            Auto-dismiss notifications will appear above.
+        </div>
+    </div>
+
+    <div class="example">
+        <h3>Persistent Notifications</h3>
+        <p class="example-description">Notifications that remember dismissal using localStorage.</p>
+        
+        <div id="persistent-container" class="notification-container" style="margin-bottom: 1rem;"></div>
+        
+        <div class="demo-controls">
+            <h4>Persistence Controls</h4>
+            <button id="show-cookie-notice">Show Cookie Notice</button>
+            <button id="show-update-notice">Show Update Notice</button>
+            <button id="clear-persistent-storage">Clear Storage</button>
+        </div>
+
+        <div class="status-display" id="persistent-status">
+            Persistent notifications remember when you dismiss them.
+        </div>
+    </div>
+
+    <div class="example">
+        <h3>Fixed Position Notifications</h3>
+        <p class="example-description">Notifications positioned at the top or bottom of the viewport or container.</p>
+        
+        <div class="two-column">
+            <div>
+                <h4>Fixed Position Demo</h4>
+                <div class="demo-controls">
+                    <button id="show-fixed-top">Show Fixed Top</button>
+                    <button id="show-fixed-bottom">Show Fixed Bottom</button>
+                    <button id="clear-fixed">Clear Fixed Notifications</button>
+                </div>
+                
+                <div class="fixed-demo" id="fixed-demo-container">
+                    <div class="fixed-demo-content">
+                        <h4>Demo Content Area</h4>
+                        <p>This is a scrollable content area that demonstrates how fixed position notifications appear over content.</p>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                        <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                        <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+                        <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                        <p>Scroll down to see more content and how fixed notifications overlay it.</p>
+                        <p>More content here to demonstrate scrolling behavior with fixed notifications.</p>
+                        <p>The notifications should remain fixed in position as you scroll this content area.</p>
+                        <p>End of demo content area.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div>
+                <h4>Fixed Position Notes</h4>
+                <ul>
+                    <li><strong>Fixed Top:</strong> Positioned at the top of the container with higher z-index</li>
+                    <li><strong>Fixed Bottom:</strong> Positioned at the bottom, useful for cookie notices</li>
+                    <li><strong>Scrolling:</strong> Fixed notifications stay in position during scroll</li>
+                    <li><strong>Accessibility:</strong> Proper focus management and ARIA roles maintained</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="example">
+        <h3>Programmatic Control</h3>
+        <p class="example-description">Demonstrate full programmatic control over notification banners.</p>
+        
+        <div class="two-column">
+            <div>
+                <div id="programmatic-container" class="notification-container" style="margin-bottom: 1rem;"></div>
+                
+                <div class="demo-controls">
+                    <h4>Banner Controls</h4>
+                    <button id="create-programmatic">Create Banner</button>
+                    <button id="update-content">Update Content</button>
+                    <button id="change-type">Change Type</button>
+                    <button id="toggle-visibility">Toggle Visibility</button>
+                    <button id="focus-banner">Focus Banner</button>
+                    <button id="destroy-banner">Destroy Banner</button>
+                </div>
+            </div>
+            
+            <div>
+                <h4>Banner Status</h4>
+                <div class="status-display" id="programmatic-status">
+                    No banner created yet.
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="example">
+        <h3>Event Handling</h3>
+        <p class="example-description">Listen to notification events for integration with analytics or other systems.</p>
+        
+        <div id="event-container" class="notification-container" style="margin-bottom: 1rem;"></div>
+        
+        <div class="demo-controls">
+            <h4>Event Demo</h4>
+            <button id="create-event-banner">Create Event Banner</button>
+            <button id="clear-event-log">Clear Event Log</button>
+        </div>
+
+        <div class="status-display" id="event-log">
+            Events will be logged here.
+        </div>
+    </div>
+
+    <script type="module">
+        import { 
+            NotificationBanner,
+            createNotificationBanner,
+            createSuccessNotification,
+            createErrorNotification,
+            createWarningNotification,
+            createInfoNotification,
+            showTemporaryNotification,
+            initializeNotificationBanners
+        } from '../notification-banner.js';
+        
+        let currentProgrammaticBanner = null;
+        let eventCounter = 0;
+        
+        document.addEventListener('DOMContentLoaded', () => {
+            setupDynamicCreator();
+            setupFormValidation();
+            setupAutoDismissDemo();
+            setupPersistentDemo();
+            setupFixedPositionDemo();
+            setupProgrammaticControl();
+            setupEventHandling();
+        });
+        
+        function setupDynamicCreator() {
+            const container = document.getElementById('notification-container');
+            const status = document.getElementById('creation-status');
+            
+            document.getElementById('create-notification').addEventListener('click', () => {
+                const type = document.getElementById('notification-type').value;
+                const title = document.getElementById('notification-title').value.trim();
+                const content = document.getElementById('notification-content').value.trim();
+                const dismissible = document.getElementById('notification-dismissible').checked;
+                const autoFocus = document.getElementById('notification-auto-focus').checked;
+                const autoDelay = parseInt(document.getElementById('auto-dismiss-delay').value) || 0;
+                
+                if (!content) {
+                    alert('Please enter notification content');
+                    return;
+                }
+                
+                const options = {
+                    text: content,
+                    type: type === 'default' ? 'default' : type,
+                    dismissible,
+                    autoFocus
+                };
+                
+                if (title) {
+                    options.titleText = title;
+                }
+                
+                const banner = createNotificationBanner(options);
+                container.appendChild(banner);
+                
+                const config = {};
+                if (autoDelay > 0) {
+                    config.autoDismissDelay = autoDelay;
+                }
+                
+                const instance = new NotificationBanner(banner, config);
+                
+                // Clear form
+                document.getElementById('notification-content').value = '';
+                document.getElementById('notification-title').value = '';
+                
+                status.textContent = `Created ${type} notification${autoDelay > 0 ? ` with ${autoDelay}ms auto-dismiss` : ''}`;
+                
+                // Add event listeners for demonstration
+                banner.addEventListener('notificationBanner:dismiss', () => {
+                    status.textContent = `${type} notification was dismissed`;
+                });
+            });
+            
+            document.getElementById('clear-notifications').addEventListener('click', () => {
+                container.innerHTML = '';
+                status.textContent = 'All notifications cleared';
+            });
+        }
+        
+        function setupFormValidation() {
+            const form = document.getElementById('validation-form');
+            const container = document.getElementById('form-notifications');
+            
+            form.addEventListener('submit', (event) => {
+                event.preventDefault();
+                
+                const email = document.getElementById('user-email').value;
+                const password = document.getElementById('user-password').value;
+                const confirmPassword = document.getElementById('user-confirm-password').value;
+                const terms = document.getElementById('terms-agreement').checked;
+                
+                const errors = [];
+                
+                // Clear previous styling
+                form.querySelectorAll('.error').forEach(el => el.classList.remove('error'));
+                
+                if (!email || !email.includes('@')) {
+                    errors.push('Valid email address is required');
+                    document.getElementById('user-email').classList.add('error');
+                }
+                
+                if (password.length < 8) {
+                    errors.push('Password must be at least 8 characters');
+                    document.getElementById('user-password').classList.add('error');
+                }
+                
+                if (password !== confirmPassword) {
+                    errors.push('Passwords do not match');
+                    document.getElementById('user-confirm-password').classList.add('error');
+                }
+                
+                if (!terms) {
+                    errors.push('You must agree to the terms and conditions');
+                }
+                
+                // Clear existing notifications
+                container.innerHTML = '';
+                
+                if (errors.length > 0) {
+                    const errorHtml = errors.length === 1 
+                        ? errors[0]
+                        : `<ul>${errors.map(error => `<li>${error}</li>`).join('')}</ul>`;
+                    
+                    const banner = createNotificationBanner({
+                        html: errorHtml,
+                        type: 'error',
+                        titleText: 'Please correct the following errors:',
+                        dismissible: true,
+                        autoFocus: true
+                    });
+                    
+                    container.appendChild(banner);
+                    new NotificationBanner(banner);
+                } else {
+                    const banner = createSuccessNotification('Account created successfully! Welcome to our service.', {
+                        dismissible: true
+                    });
+                    
+                    container.appendChild(banner);
+                    new NotificationBanner(banner, {
+                        autoDismissDelay: 5000
+                    });
+                    
+                    form.reset();
+                }
+            });
+            
+            // Simulate actions
+            document.getElementById('simulate-success').addEventListener('click', () => {
+                container.innerHTML = '';
+                const banner = createSuccessNotification('Operation completed successfully!', {
+                    dismissible: true
+                });
+                container.appendChild(banner);
+                new NotificationBanner(banner);
+            });
+            
+            document.getElementById('simulate-server-error').addEventListener('click', () => {
+                container.innerHTML = '';
+                const banner = createErrorNotification('Server error occurred. Please try again later.', {
+                    titleText: 'Server Error',
+                    dismissible: true
+                });
+                container.appendChild(banner);
+                new NotificationBanner(banner);
+            });
+            
+            document.getElementById('clear-form-notifications').addEventListener('click', () => {
+                container.innerHTML = '';
+                form.querySelectorAll('.error').forEach(el => el.classList.remove('error'));
+            });
+        }
+        
+        function setupAutoDismissDemo() {
+            const container = document.getElementById('auto-dismiss-container');
+            const status = document.getElementById('auto-dismiss-status');
+            
+            document.getElementById('show-auto-dismiss').addEventListener('click', () => {
+                container.innerHTML = '';
+                
+                const banner = createInfoNotification('This notification will auto-dismiss in 5 seconds.', {
+                    dismissible: true
+                });
+                
+                container.appendChild(banner);
+                
+                const instance = new NotificationBanner(banner, {
+                    autoDismissDelay: 5000
+                });
+                
+                status.textContent = 'Auto-dismiss notification created (5 seconds)';
+                
+                banner.addEventListener('notificationBanner:dismiss', () => {
+                    status.textContent = 'Auto-dismiss notification was dismissed';
+                });
+            });
+            
+            document.getElementById('show-pause-demo').addEventListener('click', () => {
+                container.innerHTML = '';
+                
+                const banner = createWarningNotification('Hover or focus me to pause auto-dismiss! (10 seconds)', {
+                    dismissible: true
+                });
+                
+                container.appendChild(banner);
+                
+                const instance = new NotificationBanner(banner, {
+                    autoDismissDelay: 10000
+                });
+                
+                status.textContent = 'Pauseable auto-dismiss notification created - try hovering over it!';
+                
+                banner.addEventListener('notificationBanner:dismiss', () => {
+                    status.textContent = 'Pauseable notification was dismissed';
+                });
+            });
+            
+            document.getElementById('show-loading-demo').addEventListener('click', () => {
+                container.innerHTML = '';
+                
+                // Show loading
+                const loadingBanner = createInfoNotification('Loading data...', {
+                    html: `<div style="display: flex; align-items: center; gap: 12px;">
+                        <div class="spinner" aria-hidden="true"></div>
+                        Processing your request...
+                    </div>`
+                });
+                
+                container.appendChild(loadingBanner);
+                const loadingInstance = new NotificationBanner(loadingBanner);
+                
+                status.textContent = 'Loading state shown';
+                
+                // Simulate loading completion after 3 seconds
+                setTimeout(() => {
+                    loadingInstance.dismiss();
+                    
+                    setTimeout(() => {
+                        const successBanner = createSuccessNotification('Data loaded successfully!', {
+                            dismissible: true
+                        });
+                        
+                        container.appendChild(successBanner);
+                        new NotificationBanner(successBanner, {
+                            autoDismissDelay: 3000
+                        });
+                        
+                        status.textContent = 'Loading complete - success notification shown';
+                    }, 300);
+                }, 3000);
+            });
+        }
+        
+        function setupPersistentDemo() {
+            const container = document.getElementById('persistent-container');
+            const status = document.getElementById('persistent-status');
+            
+            document.getElementById('show-cookie-notice').addEventListener('click', () => {
+                container.innerHTML = '';
+                
+                const banner = createInfoNotification('', {
+                    html: 'We use cookies to improve your experience. <a href="#">Learn more about our privacy policy</a>.',
+                    titleText: 'Cookie Notice',
+                    dismissible: true,
+                    classes: 'cookie-notice'
+                });
+                
+                container.appendChild(banner);
+                
+                const instance = new NotificationBanner(banner, {
+                    persistDismissal: true,
+                    storageKey: 'demo-cookie-notice'
+                });
+                
+                status.textContent = 'Cookie notice shown (dismissal will be remembered)';
+                
+                banner.addEventListener('notificationBanner:dismiss', () => {
+                    status.textContent = 'Cookie notice dismissed and remembered';
+                });
+            });
+            
+            document.getElementById('show-update-notice').addEventListener('click', () => {
+                container.innerHTML = '';
+                
+                const banner = createNotificationBanner({
+                    text: 'A new version of the application is available. Please refresh to update.',
+                    type: 'warning',
+                    titleText: 'Update Available',
+                    dismissible: true
+                });
+                
+                container.appendChild(banner);
+                
+                const instance = new NotificationBanner(banner, {
+                    persistDismissal: true,
+                    storageKey: 'demo-update-notice'
+                });
+                
+                status.textContent = 'Update notice shown (dismissal will be remembered)';
+                
+                banner.addEventListener('notificationBanner:dismiss', () => {
+                    status.textContent = 'Update notice dismissed and remembered';
+                });
+            });
+            
+            document.getElementById('clear-persistent-storage').addEventListener('click', () => {
+                localStorage.removeItem('demo-cookie-notice');
+                localStorage.removeItem('demo-update-notice');
+                container.innerHTML = '';
+                status.textContent = 'Persistent storage cleared - notices will show again';
+            });
+        }
+        
+        function setupFixedPositionDemo() {
+            const demoContainer = document.getElementById('fixed-demo-container');
+            
+            document.getElementById('show-fixed-top').addEventListener('click', () => {
+                const banner = createWarningNotification('This is a fixed top notification', {
+                    titleText: 'Fixed Top',
+                    dismissible: true,
+                    classes: 'public-good-notification-banner--fixed-top'
+                });
+                
+                demoContainer.appendChild(banner);
+                new NotificationBanner(banner);
+            });
+            
+            document.getElementById('show-fixed-bottom').addEventListener('click', () => {
+                const banner = createInfoNotification('This is a fixed bottom notification', {
+                    titleText: 'Fixed Bottom',
+                    dismissible: true,
+                    classes: 'public-good-notification-banner--fixed-bottom'
+                });
+                
+                demoContainer.appendChild(banner);
+                new NotificationBanner(banner);
+            });
+            
+            document.getElementById('clear-fixed').addEventListener('click', () => {
+                const fixedBanners = demoContainer.querySelectorAll('.public-good-notification-banner--fixed-top, .public-good-notification-banner--fixed-bottom');
+                fixedBanners.forEach(banner => banner.remove());
+            });
+        }
+        
+        function setupProgrammaticControl() {
+            const container = document.getElementById('programmatic-container');
+            const status = document.getElementById('programmatic-status');
+            
+            const types = ['default', 'success', 'warning', 'error', 'info'];
+            let typeIndex = 0;
+            
+            function updateStatus() {
+                if (currentProgrammaticBanner) {
+                    status.innerHTML = `
+                        <strong>Banner Status:</strong><br>
+                        Type: ${currentProgrammaticBanner.getType()}<br>
+                        Title: "${currentProgrammaticBanner.getTitle()}"<br>
+                        Content: "${currentProgrammaticBanner.getContent().substring(0, 50)}..."<br>
+                        Visible: ${currentProgrammaticBanner.isVisible()}<br>
+                        Dismissible: ${currentProgrammaticBanner.isDismissible()}
+                    `;
+                } else {
+                    status.textContent = 'No banner created yet.';
+                }
+            }
+            
+            document.getElementById('create-programmatic').addEventListener('click', () => {
+                if (currentProgrammaticBanner) {
+                    currentProgrammaticBanner.destroy();
+                }
+                
+                const banner = createNotificationBanner({
+                    text: 'This is a programmatically controlled banner.',
+                    titleText: 'Programmatic Banner',
+                    type: 'info',
+                    dismissible: true
+                });
+                
+                container.appendChild(banner);
+                currentProgrammaticBanner = new NotificationBanner(banner);
+                
+                updateStatus();
+            });
+            
+            document.getElementById('update-content').addEventListener('click', () => {
+                if (!currentProgrammaticBanner) {
+                    alert('Create a banner first');
+                    return;
+                }
+                
+                const newContent = `Updated content at ${new Date().toLocaleTimeString()}`;
+                currentProgrammaticBanner.updateContent(newContent);
+                currentProgrammaticBanner.updateTitle('Updated Banner');
+                
+                updateStatus();
+            });
+            
+            document.getElementById('change-type').addEventListener('click', () => {
+                if (!currentProgrammaticBanner) {
+                    alert('Create a banner first');
+                    return;
+                }
+                
+                typeIndex = (typeIndex + 1) % types.length;
+                currentProgrammaticBanner.setType(types[typeIndex]);
+                
+                updateStatus();
+            });
+            
+            document.getElementById('toggle-visibility').addEventListener('click', () => {
+                if (!currentProgrammaticBanner) {
+                    alert('Create a banner first');
+                    return;
+                }
+                
+                if (currentProgrammaticBanner.isVisible()) {
+                    currentProgrammaticBanner.hide();
+                } else {
+                    currentProgrammaticBanner.show();
+                }
+                
+                updateStatus();
+            });
+            
+            document.getElementById('focus-banner').addEventListener('click', () => {
+                if (!currentProgrammaticBanner) {
+                    alert('Create a banner first');
+                    return;
+                }
+                
+                currentProgrammaticBanner.focus();
+                status.textContent = 'Banner focused (check with screen reader)';
+                setTimeout(updateStatus, 2000);
+            });
+            
+            document.getElementById('destroy-banner').addEventListener('click', () => {
+                if (!currentProgrammaticBanner) {
+                    alert('Create a banner first');
+                    return;
+                }
+                
+                currentProgrammaticBanner.destroy();
+                currentProgrammaticBanner = null;
+                container.innerHTML = '';
+                
+                updateStatus();
+            });
+        }
+        
+        function setupEventHandling() {
+            const container = document.getElementById('event-container');
+            const eventLog = document.getElementById('event-log');
+            
+            function logEvent(message) {
+                eventCounter++;
+                const timestamp = new Date().toLocaleTimeString();
+                eventLog.innerHTML = `[${eventCounter}] ${timestamp}: ${message}<br>` + eventLog.innerHTML;
+            }
+            
+            document.getElementById('create-event-banner').addEventListener('click', () => {
+                const banner = createNotificationBanner({
+                    text: 'This banner will log events when shown or dismissed.',
+                    titleText: 'Event Banner',
+                    type: 'info',
+                    dismissible: true
+                });
+                
+                container.appendChild(banner);
+                
+                const instance = new NotificationBanner(banner, {
+                    autoDismissDelay: 8000
+                });
+                
+                // Listen to events
+                banner.addEventListener('notificationBanner:show', (event) => {
+                    logEvent('📢 Banner shown');
+                });
+                
+                banner.addEventListener('notificationBanner:dismiss', (event) => {
+                    logEvent('❌ Banner dismissed');
+                });
+                
+                logEvent('🆕 Event banner created');
+            });
+            
+            document.getElementById('clear-event-log').addEventListener('click', () => {
+                eventLog.innerHTML = 'Events will be logged here.';
+                eventCounter = 0;
+            });
+        }
+    </script>
+</body>
+</html>

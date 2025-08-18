@@ -1,0 +1,376 @@
+/**
+ * Notification Banner Component
+ * Public Good Design System
+ * 
+ * Styles for notification banners that display important system messages,
+ * announcements, or status updates.
+ */
+
+.public-good-notification-banner {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--public-good-spacing-3, 16px);
+  padding: var(--public-good-spacing-3, 16px) var(--public-good-spacing-4, 24px);
+  margin-bottom: var(--public-good-spacing-4, 24px);
+  background-color: var(--public-good-color-notification-background, #f0f4f5);
+  border: 1px solid var(--public-good-color-notification-border, #d8dde0);
+  border-left: 4px solid var(--public-good-color-notification-accent, #0066cc);
+  border-radius: var(--public-good-border-radius, 4px);
+  color: var(--public-good-color-text, #212b32);
+  font-family: var(--public-good-font-family, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif);
+  font-size: var(--public-good-font-size-body, 1rem);
+  line-height: var(--public-good-line-height-body, 1.5);
+  position: relative;
+  word-wrap: break-word;
+}
+
+/* Focus state for keyboard navigation */
+.public-good-notification-banner:focus {
+  outline: 3px solid var(--public-good-color-focus, #ffeb3b);
+  outline-offset: 0;
+  box-shadow: 0 0 0 3px var(--public-good-color-focus, #ffeb3b);
+}
+
+/* Remove focus outline when not keyboard focused */
+.public-good-notification-banner:focus:not(:focus-visible) {
+  outline: none;
+  box-shadow: none;
+}
+
+/* Title styling */
+.public-good-notification-banner__title {
+  margin: 0 0 var(--public-good-spacing-2, 12px) 0;
+  font-size: var(--public-good-font-size-h3, 1.25rem);
+  font-weight: var(--public-good-font-weight-bold, 700);
+  line-height: var(--public-good-line-height-heading, 1.2);
+  color: var(--public-good-color-text, #212b32);
+}
+
+/* Content area */
+.public-good-notification-banner__content {
+  flex: 1;
+  margin: 0;
+}
+
+.public-good-notification-banner__content p {
+  margin: 0 0 var(--public-good-spacing-2, 12px) 0;
+}
+
+.public-good-notification-banner__content p:last-child {
+  margin-bottom: 0;
+}
+
+.public-good-notification-banner__content ul,
+.public-good-notification-banner__content ol {
+  margin: 0 0 var(--public-good-spacing-2, 12px) 0;
+  padding-left: var(--public-good-spacing-4, 24px);
+}
+
+.public-good-notification-banner__content li {
+  margin-bottom: var(--public-good-spacing-1, 8px);
+}
+
+.public-good-notification-banner__content li:last-child {
+  margin-bottom: 0;
+}
+
+/* Links within notifications */
+.public-good-notification-banner__content a {
+  color: var(--public-good-color-link, #0066cc);
+  text-decoration: underline;
+}
+
+.public-good-notification-banner__content a:visited {
+  color: var(--public-good-color-link-visited, #4c2c92);
+}
+
+.public-good-notification-banner__content a:hover {
+  color: var(--public-good-color-link-hover, #003d7a);
+  text-decoration-thickness: 2px;
+}
+
+.public-good-notification-banner__content a:focus {
+  outline: 3px solid var(--public-good-color-focus, #ffeb3b);
+  outline-offset: 0;
+  background-color: var(--public-good-color-focus, #ffeb3b);
+  color: var(--public-good-color-text, #212b32);
+  text-decoration: none;
+}
+
+/* Close button */
+.public-good-notification-banner__close {
+  background: transparent;
+  border: none;
+  color: var(--public-good-color-text-secondary, #666666);
+  cursor: pointer;
+  font-size: 1.5rem;
+  font-weight: var(--public-good-font-weight-bold, 700);
+  line-height: 1;
+  padding: var(--public-good-spacing-1, 8px);
+  margin: 0;
+  min-width: auto;
+  position: relative;
+  flex-shrink: 0;
+  transition: color 0.2s ease, background-color 0.2s ease;
+}
+
+.public-good-notification-banner__close:hover {
+  color: var(--public-good-color-text, #212b32);
+  background-color: rgba(0, 0, 0, 0.1);
+  border-radius: var(--public-good-border-radius, 4px);
+}
+
+.public-good-notification-banner__close:focus {
+  outline: 3px solid var(--public-good-color-focus, #ffeb3b);
+  outline-offset: 0;
+  background-color: var(--public-good-color-focus, #ffeb3b);
+  color: var(--public-good-color-text, #212b32);
+  border-radius: var(--public-good-border-radius, 4px);
+}
+
+.public-good-notification-banner__close-icon {
+  display: block;
+  pointer-events: none;
+}
+
+/* Banner variants */
+
+/* Success notification */
+.public-good-notification-banner--success {
+  background-color: var(--public-good-color-success-background, #edf7ed);
+  border-color: var(--public-good-color-success-border, #c6e6c6);
+  border-left-color: var(--public-good-color-success, #007f3b);
+}
+
+.public-good-notification-banner--success .public-good-notification-banner__title {
+  color: var(--public-good-color-success-dark, #005f2b);
+}
+
+/* Warning notification */
+.public-good-notification-banner--warning {
+  background-color: var(--public-good-color-warning-background, #fffbf0);
+  border-color: var(--public-good-color-warning-border, #ffd700);
+  border-left-color: var(--public-good-color-warning, #f39c12);
+}
+
+.public-good-notification-banner--warning .public-good-notification-banner__title {
+  color: var(--public-good-color-warning-dark, #d68910);
+}
+
+/* Error notification */
+.public-good-notification-banner--error {
+  background-color: var(--public-good-color-error-background, #fdf2f2);
+  border-color: var(--public-good-color-error-border, #fecaca);
+  border-left-color: var(--public-good-color-error, #d5281b);
+}
+
+.public-good-notification-banner--error .public-good-notification-banner__title {
+  color: var(--public-good-color-error-dark, #b91c1c);
+}
+
+/* Info notification */
+.public-good-notification-banner--info {
+  background-color: var(--public-good-color-info-background, #e8f4fd);
+  border-color: var(--public-good-color-info-border, #bae6fd);
+  border-left-color: var(--public-good-color-info, #0066cc);
+}
+
+.public-good-notification-banner--info .public-good-notification-banner__title {
+  color: var(--public-good-color-info-dark, #003d7a);
+}
+
+/* Compact variant */
+.public-good-notification-banner--compact {
+  padding: var(--public-good-spacing-2, 12px) var(--public-good-spacing-3, 16px);
+  margin-bottom: var(--public-good-spacing-3, 16px);
+}
+
+.public-good-notification-banner--compact .public-good-notification-banner__title {
+  font-size: var(--public-good-font-size-body, 1rem);
+  margin-bottom: var(--public-good-spacing-1, 8px);
+}
+
+/* Fixed positioning variants */
+.public-good-notification-banner--fixed-top {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: var(--public-good-z-index-notification, 1000);
+  margin-bottom: 0;
+  border-radius: 0;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.public-good-notification-banner--fixed-bottom {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: var(--public-good-z-index-notification, 1000);
+  margin-bottom: 0;
+  border-radius: 0;
+  box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Animation for dismissal */
+@keyframes public-good-notification-banner-dismiss {
+  from {
+    opacity: 1;
+    max-height: 200px;
+    margin-bottom: var(--public-good-spacing-4, 24px);
+    padding-top: var(--public-good-spacing-3, 16px);
+    padding-bottom: var(--public-good-spacing-3, 16px);
+  }
+  to {
+    opacity: 0;
+    max-height: 0;
+    margin-bottom: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+    border-width: 0;
+  }
+}
+
+/* Animation for entrance */
+@keyframes public-good-notification-banner-enter {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.public-good-notification-banner--entering {
+  animation: public-good-notification-banner-enter 0.3s ease-out;
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .public-good-notification-banner {
+    border-width: 2px;
+  }
+  
+  .public-good-notification-banner--success {
+    background-color: #000000;
+    color: #00ff00;
+    border-color: #00ff00;
+  }
+  
+  .public-good-notification-banner--warning {
+    background-color: #000000;
+    color: #ffff00;
+    border-color: #ffff00;
+  }
+  
+  .public-good-notification-banner--error {
+    background-color: #000000;
+    color: #ff0000;
+    border-color: #ff0000;
+  }
+  
+  .public-good-notification-banner--info {
+    background-color: #000000;
+    color: #00ffff;
+    border-color: #00ffff;
+  }
+}
+
+/* Reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  .public-good-notification-banner {
+    animation: none;
+  }
+  
+  .public-good-notification-banner__close {
+    transition: none;
+  }
+  
+  @keyframes public-good-notification-banner-dismiss {
+    from {
+      opacity: 1;
+    }
+    to {
+      opacity: 0;
+    }
+  }
+}
+
+/* Print styles */
+@media print {
+  .public-good-notification-banner {
+    background: white !important;
+    border: 2px solid black !important;
+    color: black !important;
+    box-shadow: none;
+  }
+  
+  .public-good-notification-banner__close {
+    display: none;
+  }
+  
+  .public-good-notification-banner--fixed-top,
+  .public-good-notification-banner--fixed-bottom {
+    position: static;
+    box-shadow: none;
+  }
+}
+
+/* Mobile responsive adjustments */
+@media (max-width: 768px) {
+  .public-good-notification-banner {
+    padding: var(--public-good-spacing-2, 12px) var(--public-good-spacing-3, 16px);
+    gap: var(--public-good-spacing-2, 12px);
+    margin-bottom: var(--public-good-spacing-3, 16px);
+  }
+  
+  .public-good-notification-banner__title {
+    font-size: var(--public-good-font-size-body, 1rem);
+  }
+  
+  .public-good-notification-banner--fixed-top,
+  .public-good-notification-banner--fixed-bottom {
+    padding: var(--public-good-spacing-2, 12px);
+  }
+}
+
+/* Additional spacing utilities for notification banners */
+.public-good-notification-banner + .public-good-notification-banner {
+  margin-top: calc(var(--public-good-spacing-4, 24px) * -1 + var(--public-good-spacing-2, 12px));
+}
+
+.public-good-notification-banner--compact + .public-good-notification-banner--compact {
+  margin-top: calc(var(--public-good-spacing-3, 16px) * -1 + var(--public-good-spacing-1, 8px));
+}
+
+/* Color variables for notification banners */
+:root {
+  --public-good-color-notification-background: #f0f4f5;
+  --public-good-color-notification-border: #d8dde0;
+  --public-good-color-notification-accent: #0066cc;
+  
+  --public-good-color-success-background: #edf7ed;
+  --public-good-color-success-border: #c6e6c6;
+  --public-good-color-success: #007f3b;
+  --public-good-color-success-dark: #005f2b;
+  
+  --public-good-color-warning-background: #fffbf0;
+  --public-good-color-warning-border: #ffd700;
+  --public-good-color-warning: #f39c12;
+  --public-good-color-warning-dark: #d68910;
+  
+  --public-good-color-error-background: #fdf2f2;
+  --public-good-color-error-border: #fecaca;
+  --public-good-color-error: #d5281b;
+  --public-good-color-error-dark: #b91c1c;
+  
+  --public-good-color-info-background: #e8f4fd;
+  --public-good-color-info-border: #bae6fd;
+  --public-good-color-info: #0066cc;
+  --public-good-color-info-dark: #003d7a;
+  
+  --public-good-z-index-notification: 1000;
+}

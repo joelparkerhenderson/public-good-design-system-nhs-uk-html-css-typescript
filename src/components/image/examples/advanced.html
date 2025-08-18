@@ -1,0 +1,741 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Image Component - Advanced Examples</title>
+  <link rel="stylesheet" href="../../../index.css">
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      line-height: 1.6;
+      margin: 0;
+      padding: 0;
+      background-color: #f5f5f5;
+    }
+    
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+      background: white;
+      padding: 40px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    
+    h1 {
+      color: #333;
+      border-bottom: 3px solid #005eb8;
+      padding-bottom: 15px;
+      margin-bottom: 40px;
+      font-size: 2.5rem;
+    }
+    
+    .example {
+      margin: 40px 0;
+      padding: 30px;
+      border: 1px solid #e1e5e9;
+      border-radius: 12px;
+      background: #fafbfc;
+    }
+    
+    .example h3 {
+      margin-top: 0;
+      color: #005eb8;
+      font-size: 1.5rem;
+    }
+    
+    .controls {
+      background: #e9ecef;
+      padding: 20px;
+      border-radius: 8px;
+      margin-bottom: 20px;
+    }
+    
+    .controls h4 {
+      margin-top: 0;
+      color: #495057;
+    }
+    
+    .button {
+      background-color: #005eb8;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      font-size: 14px;
+      border-radius: 6px;
+      cursor: pointer;
+      margin: 5px 5px 5px 0;
+      transition: background-color 0.15s ease;
+    }
+    
+    .button:hover {
+      background-color: #004a99;
+    }
+    
+    .button--secondary {
+      background-color: #6c757d;
+    }
+    
+    .button--secondary:hover {
+      background-color: #5a6268;
+    }
+    
+    .button--small {
+      padding: 6px 12px;
+      font-size: 12px;
+    }
+    
+    .output {
+      background: #f8f9fa;
+      border: 1px solid #dee2e6;
+      border-radius: 6px;
+      padding: 15px;
+      margin-top: 20px;
+      font-family: 'Monaco', 'Consolas', monospace;
+      white-space: pre-wrap;
+      overflow-x: auto;
+      max-height: 200px;
+      overflow-y: auto;
+      font-size: 12px;
+    }
+    
+    .demo-container {
+      margin: 20px 0;
+      padding: 20px;
+      border: 2px dashed #007bff;
+      border-radius: 8px;
+      background: #f8f9ff;
+      min-height: 200px;
+    }
+    
+    .performance-metrics {
+      background: #d4edda;
+      border: 1px solid #c3e6cb;
+      border-radius: 6px;
+      padding: 15px;
+      margin: 20px 0;
+    }
+    
+    .error-demo {
+      background: #f8d7da;
+      border: 1px solid #f5c6cb;
+      border-radius: 6px;
+      padding: 15px;
+      margin: 20px 0;
+    }
+    
+    /* Sample image placeholders */
+    .sample-placeholder {
+      background: linear-gradient(45deg, #005eb8, #007acc);
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      border-radius: 8px;
+      transition: all 0.3s ease;
+    }
+    
+    .sample-placeholder:hover {
+      transform: scale(1.02);
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    }
+    
+    .grid-demo {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      margin: 20px 0;
+    }
+    
+    .responsive-demo {
+      margin: 20px 0;
+    }
+    
+    .responsive-demo img,
+    .responsive-demo .sample-placeholder {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+    
+    @media (max-width: 768px) {
+      .container {
+        padding: 20px;
+      }
+      
+      .grid-demo {
+        grid-template-columns: 1fr;
+      }
+    }
+    
+    .loading-indicator {
+      display: inline-block;
+      width: 20px;
+      height: 20px;
+      border: 3px solid rgba(0,94,184,.3);
+      border-radius: 50%;
+      border-top-color: #005eb8;
+      animation: spin 1s ease-in-out infinite;
+    }
+    
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Image Component - Advanced Examples</h1>
+    <p>Advanced usage patterns, dynamic behavior, responsive techniques, and performance optimization for the Image component.</p>
+
+    <div class="example">
+      <h3>Dynamic Image Management</h3>
+      <div class="controls">
+        <h4>Programmatic Image Control</h4>
+        <button type="button" class="button button--small" onclick="createDynamicImage()">Create Dynamic Image</button>
+        <button type="button" class="button button--small" onclick="updateImageSource()">Update Source</button>
+        <button type="button" class="button button--small" onclick="updateImageCaption()">Update Caption</button>
+        <button type="button" class="button button--small" onclick="addResponsiveSources()">Add Responsive Sources</button>
+        <button type="button" class="button button--small" onclick="reloadImage()">Reload Image</button>
+        <button type="button" class="button button--secondary button--small" onclick="clearDynamicImage()">Clear Image</button>
+      </div>
+      
+      <div id="dynamic-container" class="demo-container">
+        <p><em>Dynamic image will appear here...</em></p>
+      </div>
+      <div class="output" id="dynamic-log">Event log will appear here...</div>
+    </div>
+
+    <div class="example">
+      <h3>Responsive Image Techniques</h3>
+      <p>Advanced responsive image handling with multiple breakpoints and art direction:</p>
+      
+      <div class="responsive-demo">
+        <figure class="public-good-image" id="responsive-image">
+          <div class="sample-placeholder" style="height: 300px;">
+            Responsive Image Demo<br>
+            <small>Resize browser to see changes</small>
+          </div>
+          <figcaption class="public-good-image__caption">
+            This image adapts to different screen sizes and device capabilities.
+          </figcaption>
+        </figure>
+      </div>
+      
+      <div class="controls">
+        <h4>Responsive Controls</h4>
+        <button type="button" class="button button--small" onclick="simulateMobile()">Simulate Mobile</button>
+        <button type="button" class="button button--small" onclick="simulateTablet()">Simulate Tablet</button>
+        <button type="button" class="button button--small" onclick="simulateDesktop()">Simulate Desktop</button>
+        <button type="button" class="button button--small" onclick="checkCurrentSource()">Check Current Source</button>
+      </div>
+      
+      <div class="output" id="responsive-log"></div>
+    </div>
+
+    <div class="example">
+      <h3>Lazy Loading and Performance</h3>
+      <p>Demonstration of lazy loading, performance metrics, and optimization techniques:</p>
+      
+      <div class="performance-metrics">
+        <h4>Performance Metrics</h4>
+        <div id="performance-stats">
+          <div>Images loaded: <span id="images-loaded">0</span></div>
+          <div>Total load time: <span id="total-load-time">0ms</span></div>
+          <div>Average load time: <span id="avg-load-time">0ms</span></div>
+          <div>Failed loads: <span id="failed-loads">0</span></div>
+        </div>
+      </div>
+      
+      <div class="controls">
+        <h4>Lazy Loading Demo</h4>
+        <button type="button" class="button button--small" onclick="createLazyImages()">Create Lazy Images</button>
+        <button type="button" class="button button--small" onclick="scrollToBottom()">Scroll to Bottom</button>
+        <button type="button" class="button button--small" onclick="resetPerformanceMetrics()">Reset Metrics</button>
+      </div>
+      
+      <div id="lazy-container" class="demo-container" style="min-height: 400px; overflow-y: auto;">
+        <p><em>Lazy loaded images will appear here...</em></p>
+      </div>
+    </div>
+
+    <div class="example">
+      <h3>Error Handling and Fallbacks</h3>
+      <p>Robust error handling with fallback mechanisms and user feedback:</p>
+      
+      <div class="error-demo">
+        <h4>Error Handling Demo</h4>
+        <p>This section demonstrates how the component handles various error scenarios.</p>
+      </div>
+      
+      <div class="controls">
+        <h4>Error Simulation</h4>
+        <button type="button" class="button button--small" onclick="createBrokenImage()">Create Broken Image</button>
+        <button type="button" class="button button--small" onclick="createSlowImage()">Create Slow Loading Image</button>
+        <button type="button" class="button button--small" onclick="createNetworkError()">Simulate Network Error</button>
+        <button type="button" class="button button--small" onclick="retryFailedImages()">Retry Failed Images</button>
+      </div>
+      
+      <div id="error-container" class="demo-container">
+        <p><em>Error demonstration images will appear here...</em></p>
+      </div>
+      <div class="output" id="error-log">Error handling log will appear here...</div>
+    </div>
+
+    <div class="example">
+      <h3>Advanced Styling and Variants</h3>
+      <p>Custom styling options, themes, and visual variants:</p>
+      
+      <div class="grid-demo" id="variants-container">
+        <figure class="public-good-image public-good-image--hero">
+          <div class="sample-placeholder" style="height: 200px;">Hero Image</div>
+          <figcaption class="public-good-image__caption">Hero image variant with prominent styling.</figcaption>
+        </figure>
+        
+        <figure class="public-good-image public-good-image--thumbnail">
+          <div class="sample-placeholder" style="height: 100px;">Thumbnail</div>
+          <figcaption class="public-good-image__caption">Compact thumbnail variant.</figcaption>
+        </figure>
+        
+        <figure class="public-good-image public-good-image--rounded public-good-image--shadow">
+          <div class="sample-placeholder" style="height: 150px;">Rounded + Shadow</div>
+          <figcaption class="public-good-image__caption">Combined styling variants.</figcaption>
+        </figure>
+        
+        <figure class="public-good-image public-good-image--bordered">
+          <div class="sample-placeholder" style="height: 180px;">Bordered Image</div>
+          <figcaption class="public-good-image__caption">Image with visible border.</figcaption>
+        </figure>
+      </div>
+      
+      <div class="controls">
+        <h4>Dynamic Styling</h4>
+        <button type="button" class="button button--small" onclick="applyTheme('dark')">Dark Theme</button>
+        <button type="button" class="button button--small" onclick="applyTheme('high-contrast')">High Contrast</button>
+        <button type="button" class="button button--small" onclick="applyTheme('default')">Default Theme</button>
+        <button type="button" class="button button--small" onclick="toggleAnimations()">Toggle Animations</button>
+      </div>
+    </div>
+
+    <div class="example">
+      <h3>Accessibility and User Experience</h3>
+      <p>Advanced accessibility features and user experience enhancements:</p>
+      
+      <div class="controls">
+        <h4>Accessibility Testing</h4>
+        <button type="button" class="button button--small" onclick="testKeyboardNavigation()">Test Keyboard Navigation</button>
+        <button type="button" class="button button--small" onclick="testScreenReader()">Test Screen Reader</button>
+        <button type="button" class="button button--small" onclick="validateAltText()">Validate Alt Text</button>
+        <button type="button" class="button button--small" onclick="checkColorContrast()">Check Color Contrast</button>
+      </div>
+      
+      <figure class="public-good-image" tabindex="0" id="accessibility-image">
+        <div class="sample-placeholder" style="height: 200px;">
+          Accessible Image Demo<br>
+          <small>Try keyboard navigation</small>
+        </div>
+        <figcaption class="public-good-image__caption">
+          This image demonstrates comprehensive accessibility features including keyboard navigation, screen reader support, and proper semantic structure.
+        </figcaption>
+      </figure>
+      
+      <div class="output" id="accessibility-log">Accessibility test results will appear here...</div>
+    </div>
+
+    <div class="example">
+      <h3>Integration with Other Components</h3>
+      <p>How images work within cards, modals, and other design system components:</p>
+      
+      <div class="grid-demo">
+        <div class="public-good-card">
+          <figure class="public-good-image">
+            <div class="sample-placeholder" style="height: 150px;">Card Image</div>
+          </figure>
+          <div class="public-good-card__content">
+            <h4>Card with Image</h4>
+            <p>Images integrate seamlessly with card components.</p>
+          </div>
+        </div>
+        
+        <div class="public-good-card">
+          <div class="public-good-card__content">
+            <h4>Health Information</h4>
+            <figure class="public-good-image public-good-image--small">
+              <div class="sample-placeholder" style="height: 100px;">Inline Image</div>
+              <figcaption class="public-good-image__caption">Small inline image within content.</figcaption>
+            </figure>
+            <p>Content can flow around smaller images naturally.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="example">
+      <h3>Real-time Updates and Event Monitoring</h3>
+      <p>Monitor image events and update content dynamically:</p>
+      
+      <div class="controls">
+        <h4>Event Monitoring</h4>
+        <button type="button" class="button button--small" onclick="startEventMonitoring()">Start Monitoring</button>
+        <button type="button" class="button button--small" onclick="stopEventMonitoring()">Stop Monitoring</button>
+        <button type="button" class="button button--small" onclick="clearEventLog()">Clear Log</button>
+        <button type="button" class="button button--small" onclick="triggerCustomEvent()">Trigger Custom Event</button>
+      </div>
+      
+      <div id="monitored-container" class="demo-container">
+        <figure class="public-good-image" id="monitored-image">
+          <div class="sample-placeholder" style="height: 180px;">
+            Monitored Image<br>
+            <small>All events are logged</small>
+          </div>
+          <figcaption class="public-good-image__caption">This image's events are being monitored in real-time.</figcaption>
+        </figure>
+      </div>
+      
+      <div class="output" id="event-monitor-log">Event monitoring log will appear here...</div>
+    </div>
+  </div>
+
+  <script type="module">
+    import { 
+      createImage, 
+      createResponsiveImage, 
+      createImageWithCaption, 
+      createLazyImage,
+      initializeImages 
+    } from '../image.js'
+    
+    let dynamicImage = null
+    let eventMonitoring = false
+    let performanceStats = {
+      imagesLoaded: 0,
+      totalLoadTime: 0,
+      failedLoads: 0,
+      loadTimes: []
+    }
+    
+    // Initialize on DOM ready
+    document.addEventListener('DOMContentLoaded', () => {
+      console.log('Advanced Image Component Demo initialized')
+      updatePerformanceDisplay()
+      setupImageIntersectionObserver()
+    })
+    
+    function logEvent(message, logElementId = 'dynamic-log') {
+      const logElement = document.getElementById(logElementId)
+      if (logElement) {
+        const timestamp = new Date().toLocaleTimeString()
+        logElement.textContent = `[${timestamp}] ${message}\n` + logElement.textContent
+      }
+    }
+    
+    function addImageEventListeners(image, label) {
+      image.element.addEventListener('public-good:image:loaded', (event) => {
+        logEvent(`${label}: Image loaded successfully`)
+        performanceStats.imagesLoaded++
+        updatePerformanceDisplay()
+      })
+      
+      image.element.addEventListener('public-good:image:error', (event) => {
+        logEvent(`${label}: Image failed to load`, 'error-log')
+        performanceStats.failedLoads++
+        updatePerformanceDisplay()
+      })
+      
+      image.element.addEventListener('public-good:image:source-updated', (event) => {
+        logEvent(`${label}: Source updated to ${event.detail.newSrc}`)
+      })
+      
+      image.element.addEventListener('public-good:image:caption-updated', (event) => {
+        logEvent(`${label}: Caption updated`)
+      })
+    }
+    
+    function updatePerformanceDisplay() {
+      document.getElementById('images-loaded').textContent = performanceStats.imagesLoaded
+      document.getElementById('failed-loads').textContent = performanceStats.failedLoads
+      
+      const avgTime = performanceStats.loadTimes.length > 0 
+        ? Math.round(performanceStats.loadTimes.reduce((a, b) => a + b, 0) / performanceStats.loadTimes.length)
+        : 0
+      document.getElementById('avg-load-time').textContent = avgTime + 'ms'
+      document.getElementById('total-load-time').textContent = performanceStats.totalLoadTime + 'ms'
+    }
+    
+    function setupImageIntersectionObserver() {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            logEvent('Image entered viewport', 'event-monitor-log')
+          }
+        })
+      }, { threshold: 0.1 })
+      
+      document.querySelectorAll('.public-good-image').forEach(img => {
+        observer.observe(img)
+      })
+    }
+    
+    // Global functions for button controls
+    window.createDynamicImage = function() {
+      const container = document.getElementById('dynamic-container')
+      
+      if (dynamicImage) {
+        dynamicImage.destroy()
+      }
+      
+      dynamicImage = createImageWithCaption(
+        'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 200"><rect width="400" height="200" fill="%23005eb8"/><text x="200" y="100" text-anchor="middle" fill="white" font-size="20">Dynamic Image</text></svg>',
+        'Dynamically created image',
+        'This image was created programmatically using the Image component API.'
+      )
+      
+      container.innerHTML = ''
+      container.appendChild(dynamicImage.element)
+      addImageEventListeners(dynamicImage, 'Dynamic Image')
+      logEvent('Dynamic image created')
+    }
+    
+    window.updateImageSource = function() {
+      if (dynamicImage) {
+        const newSrc = `data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 200"><rect width="400" height="200" fill="%23007acc"/><text x="200" y="100" text-anchor="middle" fill="white" font-size="18">Updated: ${Date.now()}</text></svg>`
+        dynamicImage.updateSource(newSrc, 'Updated dynamic image')
+      }
+    }
+    
+    window.updateImageCaption = function() {
+      if (dynamicImage) {
+        const timestamp = new Date().toLocaleTimeString()
+        dynamicImage.updateCaption(`Caption updated at ${timestamp}`)
+      }
+    }
+    
+    window.addResponsiveSources = function() {
+      if (dynamicImage) {
+        const sources = [
+          { 
+            src: 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 200"><rect width="400" height="200" fill="%23004a99"/><text x="200" y="100" text-anchor="middle" fill="white" font-size="16">Small 400w</text></svg>', 
+            width: 400 
+          },
+          { 
+            src: 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 400"><rect width="800" height="400" fill="%23005eb8"/><text x="400" y="200" text-anchor="middle" fill="white" font-size="32">Large 800w</text></svg>', 
+            width: 800 
+          }
+        ]
+        dynamicImage.updateSources(sources)
+        logEvent('Responsive sources added')
+      }
+    }
+    
+    window.reloadImage = function() {
+      if (dynamicImage) {
+        dynamicImage.reload()
+        logEvent('Image reloaded')
+      }
+    }
+    
+    window.clearDynamicImage = function() {
+      if (dynamicImage) {
+        dynamicImage.destroy()
+        dynamicImage = null
+        document.getElementById('dynamic-container').innerHTML = '<p><em>Dynamic image cleared</em></p>'
+        logEvent('Dynamic image cleared')
+      }
+    }
+    
+    window.simulateMobile = function() {
+      logEvent('Simulating mobile viewport (375px)', 'responsive-log')
+      // In a real implementation, this would update the responsive image sources
+    }
+    
+    window.simulateTablet = function() {
+      logEvent('Simulating tablet viewport (768px)', 'responsive-log')
+    }
+    
+    window.simulateDesktop = function() {
+      logEvent('Simulating desktop viewport (1200px)', 'responsive-log')
+    }
+    
+    window.checkCurrentSource = function() {
+      const img = document.querySelector('#responsive-image img')
+      if (img) {
+        logEvent(`Current source: ${img.src}`, 'responsive-log')
+        logEvent(`Current srcset: ${img.srcset || 'None'}`, 'responsive-log')
+      }
+    }
+    
+    window.createLazyImages = function() {
+      const container = document.getElementById('lazy-container')
+      container.innerHTML = ''
+      
+      for (let i = 1; i <= 10; i++) {
+        const image = createLazyImage(
+          `data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 200"><rect width="300" height="200" fill="%23${(i * 123456).toString(16).substring(0, 6)}"/><text x="150" y="100" text-anchor="middle" fill="white" font-size="16">Lazy Image ${i}</text></svg>`,
+          `Lazy loaded image ${i}`,
+          {
+            caption: `This is lazy loaded image number ${i}.`,
+            figureClasses: 'public-good-image--small'
+          }
+        )
+        
+        const wrapper = document.createElement('div')
+        wrapper.style.marginBottom = '20px'
+        wrapper.appendChild(image.element)
+        container.appendChild(wrapper)
+        
+        addImageEventListeners(image, `Lazy Image ${i}`)
+      }
+      
+      logEvent('Created 10 lazy loaded images')
+    }
+    
+    window.scrollToBottom = function() {
+      const container = document.getElementById('lazy-container')
+      container.scrollTop = container.scrollHeight
+      logEvent('Scrolled to bottom of lazy container')
+    }
+    
+    window.resetPerformanceMetrics = function() {
+      performanceStats = {
+        imagesLoaded: 0,
+        totalLoadTime: 0,
+        failedLoads: 0,
+        loadTimes: []
+      }
+      updatePerformanceDisplay()
+      logEvent('Performance metrics reset')
+    }
+    
+    window.createBrokenImage = function() {
+      const container = document.getElementById('error-container')
+      const brokenImage = createImage({
+        src: '/non-existent-image-' + Date.now() + '.jpg',
+        alt: 'Broken image example',
+        caption: 'This image intentionally has a broken source to demonstrate error handling.'
+      })
+      
+      container.appendChild(brokenImage.element)
+      addImageEventListeners(brokenImage, 'Broken Image')
+      logEvent('Created broken image for error testing', 'error-log')
+    }
+    
+    window.createSlowImage = function() {
+      const container = document.getElementById('error-container')
+      // Simulate slow loading with a delayed data URL
+      setTimeout(() => {
+        const slowImage = createImage({
+          src: 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 200"><rect width="300" height="200" fill="%23ffc107"/><text x="150" y="100" text-anchor="middle" fill="black" font-size="14">Slow Loading Image</text></svg>',
+          alt: 'Slow loading image',
+          caption: 'This image was delayed to simulate slow network conditions.'
+        })
+        
+        container.appendChild(slowImage.element)
+        addImageEventListeners(slowImage, 'Slow Image')
+        logEvent('Slow loading image finally loaded', 'error-log')
+      }, 3000)
+      
+      // Show loading indicator
+      const loadingDiv = document.createElement('div')
+      loadingDiv.innerHTML = '<div class="loading-indicator"></div> Loading slow image...'
+      loadingDiv.style.padding = '20px'
+      loadingDiv.style.textAlign = 'center'
+      container.appendChild(loadingDiv)
+      
+      logEvent('Started slow loading image (3s delay)', 'error-log')
+    }
+    
+    window.createNetworkError = function() {
+      logEvent('Simulated network error - image load failed', 'error-log')
+    }
+    
+    window.retryFailedImages = function() {
+      const errorImages = document.querySelectorAll('.public-good-image--error')
+      errorImages.forEach((img, index) => {
+        logEvent(`Retrying failed image ${index + 1}`, 'error-log')
+        // In a real implementation, this would retry loading the image
+      })
+    }
+    
+    window.applyTheme = function(theme) {
+      document.body.className = theme === 'default' ? '' : `theme-${theme}`
+      logEvent(`Applied ${theme} theme`)
+    }
+    
+    window.toggleAnimations = function() {
+      document.body.style.transition = document.body.style.transition ? '' : 'none'
+      logEvent('Toggled animations')
+    }
+    
+    window.testKeyboardNavigation = function() {
+      const accessibleImage = document.getElementById('accessibility-image')
+      accessibleImage.focus()
+      logEvent('Focused on accessible image - test with Tab and Enter keys', 'accessibility-log')
+    }
+    
+    window.testScreenReader = function() {
+      const images = document.querySelectorAll('.public-good-image img')
+      images.forEach((img, index) => {
+        const alt = img.alt
+        const caption = img.parentElement.querySelector('figcaption')?.textContent
+        logEvent(`Image ${index + 1}: Alt="${alt}", Caption="${caption || 'None'}"`, 'accessibility-log')
+      })
+    }
+    
+    window.validateAltText = function() {
+      const images = document.querySelectorAll('.public-good-image img')
+      let validCount = 0
+      images.forEach((img, index) => {
+        const alt = img.alt
+        if (alt && alt.length > 0) {
+          validCount++
+          logEvent(`Image ${index + 1}: Valid alt text`, 'accessibility-log')
+        } else {
+          logEvent(`Image ${index + 1}: Missing or empty alt text!`, 'accessibility-log')
+        }
+      })
+      logEvent(`Validation complete: ${validCount}/${images.length} images have valid alt text`, 'accessibility-log')
+    }
+    
+    window.checkColorContrast = function() {
+      const captions = document.querySelectorAll('.public-good-image__caption')
+      captions.forEach((caption, index) => {
+        const styles = window.getComputedStyle(caption)
+        logEvent(`Caption ${index + 1}: Color ${styles.color}, Background ${styles.backgroundColor}`, 'accessibility-log')
+      })
+    }
+    
+    window.startEventMonitoring = function() {
+      eventMonitoring = true
+      logEvent('Event monitoring started', 'event-monitor-log')
+      
+      // Monitor all image events
+      document.addEventListener('public-good:image:loaded', (e) => {
+        if (eventMonitoring) logEvent('Global: Image loaded event detected', 'event-monitor-log')
+      })
+      
+      document.addEventListener('public-good:image:error', (e) => {
+        if (eventMonitoring) logEvent('Global: Image error event detected', 'event-monitor-log')
+      })
+    }
+    
+    window.stopEventMonitoring = function() {
+      eventMonitoring = false
+      logEvent('Event monitoring stopped', 'event-monitor-log')
+    }
+    
+    window.clearEventLog = function() {
+      document.getElementById('event-monitor-log').textContent = ''
+    }
+    
+    window.triggerCustomEvent = function() {
+      const monitoredImage = document.getElementById('monitored-image')
+      const customEvent = new CustomEvent('custom-image-event', {
+        detail: { timestamp: Date.now(), message: 'Custom event triggered' }
+      })
+      monitoredImage.dispatchEvent(customEvent)
+      logEvent('Custom event triggered on monitored image', 'event-monitor-log')
+    }
+  </script>
+</body>
+</html>

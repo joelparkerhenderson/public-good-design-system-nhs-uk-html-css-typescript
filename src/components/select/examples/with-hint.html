@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Select - With Hint Example</title>
+  <link rel="stylesheet" href="../../../styles/index.css">
+  <link rel="stylesheet" href="../select.css">
+</head>
+<body>
+  <div class="public-good-width-container">
+    <main class="public-good-main-wrapper">
+      <div class="public-good-grid-row">
+        <div class="public-good-grid-column-two-thirds">
+          <h1>Select - With Hint Example</h1>
+          
+          <p class="public-good-body-l">
+            Use hint text to help users understand what you need them to select.
+          </p>
+
+          <div id="hint-example"></div>
+          
+          <h2>Writing good hint text</h2>
+          <ul>
+            <li>be short and specific</li>
+            <li>explain what you need users to do</li>
+            <li>use active language</li>
+            <li>avoid repeating the label</li>
+          </ul>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script type="module">
+    import { createSelect } from '../select.js'
+
+    // Select with hint example
+    const hintSelect = createSelect({
+      name: 'appointment-time',
+      label: 'What time of day is best for you?',
+      hint: 'Choose the time when you are most likely to be available',
+      options: [
+        { value: 'morning', text: 'Morning (9am to 12pm)' },
+        { value: 'afternoon', text: 'Afternoon (12pm to 5pm)' },
+        { value: 'evening', text: 'Evening (5pm to 8pm)' }
+      ]
+    })
+
+    document.getElementById('hint-example').appendChild(hintSelect.element)
+
+    // Add event listener for demonstration
+    hintSelect.element.addEventListener('public-good:select:changed', (event) => {
+      console.log('Time selected:', event.detail.value)
+    })
+  </script>
+</body>
+</html>

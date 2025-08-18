@@ -1,0 +1,1087 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tabs Component - Advanced Examples</title>
+    <link rel="stylesheet" href="../../../core/base.css">
+    <link rel="stylesheet" href="../tabs.css">
+    <style>
+        body {
+            margin: 0;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f8f9fa;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        .example-section {
+            margin-bottom: 3rem;
+            padding: 2rem;
+            background: white;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+        .example-section h2 {
+            margin-top: 0;
+            color: #0066cc;
+            border-bottom: 2px solid #0066cc;
+            padding-bottom: 0.5rem;
+        }
+        .demo-controls {
+            margin: 1rem 0;
+            padding: 1rem;
+            background: #f8f9fa;
+            border-radius: 4px;
+            border-left: 4px solid #17a2b8;
+        }
+        .demo-controls button {
+            margin: 0.25rem;
+            padding: 0.5rem 1rem;
+            background: #0066cc;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.875rem;
+        }
+        .demo-controls button:hover {
+            background: #003d7a;
+        }
+        .demo-controls button:disabled {
+            background: #6c757d;
+            cursor: not-allowed;
+        }
+        .demo-controls input, .demo-controls select {
+            margin: 0.25rem;
+            padding: 0.5rem;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 0.875rem;
+        }
+        .tab-content-form {
+            display: grid;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+        .form-group label {
+            font-weight: 600;
+            color: #333;
+        }
+        .form-group input, .form-group select, .form-group textarea {
+            padding: 0.75rem;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-family: inherit;
+        }
+        .notification {
+            padding: 1rem;
+            border-radius: 4px;
+            margin: 1rem 0;
+            border-left: 4px solid;
+        }
+        .notification--success {
+            background: #d4edda;
+            color: #155724;
+            border-color: #28a745;
+        }
+        .notification--warning {
+            background: #fff3cd;
+            color: #856404;
+            border-color: #ffc107;
+        }
+        .notification--error {
+            background: #f8d7da;
+            color: #721c24;
+            border-color: #dc3545;
+        }
+        .removable-indicator {
+            display: inline-block;
+            margin-left: 0.5rem;
+            color: #dc3545;
+            font-size: 0.875rem;
+        }
+        /* Color variables for examples */
+        :root {
+            --public-good-color-text: #212b32;
+            --public-good-color-text-secondary: #666666;
+            --public-good-color-link: #0066cc;
+            --public-good-color-link-hover: #003d7a;
+            --public-good-color-focus: #ffeb3b;
+            --public-good-spacing-1: 8px;
+            --public-good-spacing-2: 12px;
+            --public-good-spacing-3: 16px;
+            --public-good-spacing-4: 24px;
+            --public-good-spacing-5: 32px;
+        }
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+            .example-section {
+                padding: 1rem;
+            }
+            .demo-controls {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+            .demo-controls button {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="example-section">
+            <h1>Tabs Component - Advanced Examples</h1>
+            <p>This page demonstrates advanced tabs functionality including dynamic tab creation, removal, state management, and complex interactions.</p>
+        </div>
+
+        <div class="example-section">
+            <h2>Dynamic Tab Management</h2>
+            <p>Create, modify, and remove tabs programmatically with full keyboard and accessibility support.</p>
+            
+            <div class="demo-controls">
+                <button onclick="addNewTab()">Add Tab</button>
+                <button onclick="removeSelectedTab()">Remove Active Tab</button>
+                <button onclick="disableTab()">Toggle Disable</button>
+                <button onclick="updateTabLabel()">Update Label</button>
+                <input type="text" id="tab-label-input" placeholder="New tab label" value="Dynamic Tab">
+                <select id="tab-position">
+                    <option value="end">Add at end</option>
+                    <option value="start">Add at start</option>
+                    <option value="after">Add after active</option>
+                </select>
+            </div>
+
+            <div id="dynamic-tabs-container"></div>
+
+            <div class="notification notification--warning" id="dynamic-status">
+                Use the controls above to dynamically manage tabs. Tabs marked with <span class="removable-indicator">×</span> can be removed with the Delete key.
+            </div>
+        </div>
+
+        <div class="example-section">
+            <h2>Multi-step Form with Tabs</h2>
+            <p>A practical example using tabs for a multi-step patient registration form with validation and state management.</p>
+            
+            <div class="demo-controls">
+                <button onclick="validateCurrentStep()">Validate Current Step</button>
+                <button onclick="goToNextStep()">Next Step</button>
+                <button onclick="goToPreviousStep()">Previous Step</button>
+                <button onclick="resetForm()">Reset Form</button>
+                <button onclick="saveFormData()">Save Progress</button>
+                <button onclick="loadFormData()">Load Saved Data</button>
+            </div>
+
+            <div id="form-tabs" class="public-good-tabs" data-module="public-good-tabs" data-enable-history="true" data-storage-key="patient-form-tabs">
+                <ul class="public-good-tabs__list" role="tablist" aria-label="Patient registration steps">
+                    <li class="public-good-tabs__list-item public-good-tabs__list-item--selected">
+                        <button class="public-good-tabs__tab" role="tab" id="personal-info-tab" aria-controls="personal-info-panel" aria-selected="true" tabindex="0">
+                            1. Personal Information
+                        </button>
+                    </li>
+                    <li class="public-good-tabs__list-item">
+                        <button class="public-good-tabs__tab" role="tab" id="medical-history-tab" aria-controls="medical-history-panel" aria-selected="false" tabindex="-1">
+                            2. Medical History
+                        </button>
+                    </li>
+                    <li class="public-good-tabs__list-item">
+                        <button class="public-good-tabs__tab" role="tab" id="emergency-contact-tab" aria-controls="emergency-contact-panel" aria-selected="false" tabindex="-1">
+                            3. Emergency Contact
+                        </button>
+                    </li>
+                    <li class="public-good-tabs__list-item">
+                        <button class="public-good-tabs__tab" role="tab" id="review-submit-tab" aria-controls="review-submit-panel" aria-selected="false" tabindex="-1">
+                            4. Review & Submit
+                        </button>
+                    </li>
+                </ul>
+                
+                <div class="public-good-tabs__panel" role="tabpanel" id="personal-info-panel" aria-labelledby="personal-info-tab" tabindex="0">
+                    <h3>Personal Information</h3>
+                    <div class="tab-content-form">
+                        <div class="form-group">
+                            <label for="first-name">First Name *</label>
+                            <input type="text" id="first-name" name="firstName" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="last-name">Last Name *</label>
+                            <input type="text" id="last-name" name="lastName" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="date-of-birth">Date of Birth *</label>
+                            <input type="date" id="date-of-birth" name="dateOfBirth" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="gender">Gender</label>
+                            <select id="gender" name="gender">
+                                <option value="">Please select</option>
+                                <option value="female">Female</option>
+                                <option value="male">Male</option>
+                                <option value="other">Other</option>
+                                <option value="prefer-not-to-say">Prefer not to say</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="nhs-number">NHS Number</label>
+                            <input type="text" id="nhs-number" name="nhsNumber" pattern="[0-9\s]{10,13}" placeholder="123 456 7890">
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Phone Number *</label>
+                            <input type="tel" id="phone" name="phone" required placeholder="01234 567890">
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email Address *</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="public-good-tabs__panel" role="tabpanel" id="medical-history-panel" aria-labelledby="medical-history-tab" tabindex="0" hidden>
+                    <h3>Medical History</h3>
+                    <div class="tab-content-form">
+                        <div class="form-group">
+                            <label for="current-medications">Current Medications</label>
+                            <textarea id="current-medications" name="currentMedications" rows="4" placeholder="Please list all medications you are currently taking, including dosages..."></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="allergies">Known Allergies</label>
+                            <textarea id="allergies" name="allergies" rows="3" placeholder="Please list any known allergies to medications, foods, or other substances..."></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="medical-conditions">Medical Conditions</label>
+                            <textarea id="medical-conditions" name="medicalConditions" rows="4" placeholder="Please list any current or past medical conditions..."></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="family-history">Family Medical History</label>
+                            <textarea id="family-history" name="familyHistory" rows="3" placeholder="Please describe any relevant family medical history..."></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label>
+                                <input type="checkbox" id="smoker" name="smoker" value="yes">
+                                Current smoker
+                            </label>
+                        </div>
+                        <div class="form-group">
+                            <label>
+                                <input type="checkbox" id="alcohol" name="alcohol" value="yes">
+                                Regular alcohol consumption
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="public-good-tabs__panel" role="tabpanel" id="emergency-contact-panel" aria-labelledby="emergency-contact-tab" tabindex="0" hidden>
+                    <h3>Emergency Contact</h3>
+                    <div class="tab-content-form">
+                        <div class="form-group">
+                            <label for="emergency-name">Full Name *</label>
+                            <input type="text" id="emergency-name" name="emergencyName" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="emergency-relationship">Relationship *</label>
+                            <select id="emergency-relationship" name="emergencyRelationship" required>
+                                <option value="">Please select</option>
+                                <option value="spouse">Spouse/Partner</option>
+                                <option value="parent">Parent</option>
+                                <option value="child">Child</option>
+                                <option value="sibling">Sibling</option>
+                                <option value="friend">Friend</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="emergency-phone">Phone Number *</label>
+                            <input type="tel" id="emergency-phone" name="emergencyPhone" required placeholder="01234 567890">
+                        </div>
+                        <div class="form-group">
+                            <label for="emergency-email">Email Address</label>
+                            <input type="email" id="emergency-email" name="emergencyEmail">
+                        </div>
+                        <div class="form-group">
+                            <label for="emergency-address">Address</label>
+                            <textarea id="emergency-address" name="emergencyAddress" rows="3" placeholder="Full address including postcode..."></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label>
+                                <input type="checkbox" id="emergency-authorized" name="emergencyAuthorized" value="yes">
+                                Authorized to receive medical information
+                            </label>
+                        </div>
+                        <div class="form-group">
+                            <label>
+                                <input type="checkbox" id="emergency-consent" name="emergencyConsent" value="yes">
+                                Can make medical decisions if unable to do so yourself
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="public-good-tabs__panel" role="tabpanel" id="review-submit-panel" aria-labelledby="review-submit-tab" tabindex="0" hidden>
+                    <h3>Review & Submit</h3>
+                    <p>Please review your information before submitting your registration.</p>
+                    
+                    <div id="form-summary" style="background: #f8f9fa; padding: 1.5rem; border-radius: 4px; margin: 1rem 0;">
+                        <h4>Registration Summary</h4>
+                        <div id="summary-content">
+                            <p><em>Complete the previous steps to see your information summary here.</em></p>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>
+                            <input type="checkbox" id="terms-consent" name="termsConsent" required>
+                            I agree to the terms and conditions and privacy policy *
+                        </label>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>
+                            <input type="checkbox" id="data-consent" name="dataConsent">
+                            I consent to my data being used for research purposes (optional)
+                        </label>
+                    </div>
+                    
+                    <div style="margin-top: 2rem;">
+                        <button type="button" onclick="submitRegistration()" style="background: #28a745; color: white; padding: 1rem 2rem; border: none; border-radius: 4px; font-size: 1rem; cursor: pointer;">
+                            Submit Registration
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div id="form-notifications" style="margin-top: 1rem;"></div>
+        </div>
+
+        <div class="example-section">
+            <h2>Nested Tabs Example</h2>
+            <p>Demonstrates tabs within tabs for complex hierarchical content organization.</p>
+            
+            <div class="public-good-tabs" data-module="public-good-tabs">
+                <ul class="public-good-tabs__list" role="tablist" aria-label="Department information">
+                    <li class="public-good-tabs__list-item public-good-tabs__list-item--selected">
+                        <button class="public-good-tabs__tab" role="tab" id="cardiology-dept-tab" aria-controls="cardiology-dept-panel" aria-selected="true" tabindex="0">
+                            Cardiology
+                        </button>
+                    </li>
+                    <li class="public-good-tabs__list-item">
+                        <button class="public-good-tabs__tab" role="tab" id="orthopedics-dept-tab" aria-controls="orthopedics-dept-panel" aria-selected="false" tabindex="-1">
+                            Orthopedics
+                        </button>
+                    </li>
+                    <li class="public-good-tabs__list-item">
+                        <button class="public-good-tabs__tab" role="tab" id="pediatrics-dept-tab" aria-controls="pediatrics-dept-panel" aria-selected="false" tabindex="-1">
+                            Pediatrics
+                        </button>
+                    </li>
+                </ul>
+                
+                <div class="public-good-tabs__panel" role="tabpanel" id="cardiology-dept-panel" aria-labelledby="cardiology-dept-tab" tabindex="0">
+                    <h3>Cardiology Department</h3>
+                    
+                    <div class="public-good-tabs public-good-tabs--compact" data-module="public-good-tabs">
+                        <ul class="public-good-tabs__list" role="tablist" aria-label="Cardiology services">
+                            <li class="public-good-tabs__list-item public-good-tabs__list-item--selected">
+                                <button class="public-good-tabs__tab" role="tab" id="cardio-services-tab" aria-controls="cardio-services-panel" aria-selected="true" tabindex="0">
+                                    Services
+                                </button>
+                            </li>
+                            <li class="public-good-tabs__list-item">
+                                <button class="public-good-tabs__tab" role="tab" id="cardio-staff-tab" aria-controls="cardio-staff-panel" aria-selected="false" tabindex="-1">
+                                    Staff
+                                </button>
+                            </li>
+                            <li class="public-good-tabs__list-item">
+                                <button class="public-good-tabs__tab" role="tab" id="cardio-schedule-tab" aria-controls="cardio-schedule-panel" aria-selected="false" tabindex="-1">
+                                    Schedule
+                                </button>
+                            </li>
+                        </ul>
+                        
+                        <div class="public-good-tabs__panel" role="tabpanel" id="cardio-services-panel" aria-labelledby="cardio-services-tab" tabindex="0">
+                            <h4>Cardiology Services</h4>
+                            <ul>
+                                <li>Echocardiograms</li>
+                                <li>Stress testing</li>
+                                <li>Cardiac catheterization</li>
+                                <li>Pacemaker implantation</li>
+                                <li>Heart failure management</li>
+                                <li>Preventive cardiology</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="public-good-tabs__panel" role="tabpanel" id="cardio-staff-panel" aria-labelledby="cardio-staff-tab" tabindex="0" hidden>
+                            <h4>Cardiology Staff</h4>
+                            <ul>
+                                <li><strong>Dr. Sarah Johnson</strong> - Senior Cardiologist</li>
+                                <li><strong>Dr. Michael Chen</strong> - Interventional Cardiologist</li>
+                                <li><strong>Dr. Emily Rodriguez</strong> - Heart Failure Specialist</li>
+                                <li><strong>Jane Smith, RN</strong> - Cardiac Care Coordinator</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="public-good-tabs__panel" role="tabpanel" id="cardio-schedule-panel" aria-labelledby="cardio-schedule-tab" tabindex="0" hidden>
+                            <h4>Department Schedule</h4>
+                            <p><strong>Clinic Hours:</strong> Monday-Friday, 8:00 AM - 5:00 PM</p>
+                            <p><strong>Emergency Services:</strong> 24/7 coverage available</p>
+                            <p><strong>Specialized Clinics:</strong></p>
+                            <ul>
+                                <li>Heart Failure Clinic - Wednesdays</li>
+                                <li>Pacemaker Clinic - Thursdays</li>
+                                <li>Preventive Cardiology - Fridays</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="public-good-tabs__panel" role="tabpanel" id="orthopedics-dept-panel" aria-labelledby="orthopedics-dept-tab" tabindex="0" hidden>
+                    <h3>Orthopedics Department</h3>
+                    
+                    <div class="public-good-tabs public-good-tabs--compact" data-module="public-good-tabs">
+                        <ul class="public-good-tabs__list" role="tablist" aria-label="Orthopedics services">
+                            <li class="public-good-tabs__list-item public-good-tabs__list-item--selected">
+                                <button class="public-good-tabs__tab" role="tab" id="ortho-services-tab" aria-controls="ortho-services-panel" aria-selected="true" tabindex="0">
+                                    Services
+                                </button>
+                            </li>
+                            <li class="public-good-tabs__list-item">
+                                <button class="public-good-tabs__tab" role="tab" id="ortho-staff-tab" aria-controls="ortho-staff-panel" aria-selected="false" tabindex="-1">
+                                    Staff
+                                </button>
+                            </li>
+                        </ul>
+                        
+                        <div class="public-good-tabs__panel" role="tabpanel" id="ortho-services-panel" aria-labelledby="ortho-services-tab" tabindex="0">
+                            <h4>Orthopedic Services</h4>
+                            <ul>
+                                <li>Joint replacement surgery</li>
+                                <li>Sports medicine</li>
+                                <li>Spine surgery</li>
+                                <li>Fracture treatment</li>
+                                <li>Arthroscopic procedures</li>
+                                <li>Physical therapy</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="public-good-tabs__panel" role="tabpanel" id="ortho-staff-panel" aria-labelledby="ortho-staff-tab" tabindex="0" hidden>
+                            <h4>Orthopedic Staff</h4>
+                            <ul>
+                                <li><strong>Dr. David Wilson</strong> - Joint Replacement Specialist</li>
+                                <li><strong>Dr. Lisa Thompson</strong> - Sports Medicine</li>
+                                <li><strong>Dr. Robert Brown</strong> - Spine Surgeon</li>
+                                <li><strong>Maria Garcia, PT</strong> - Physical Therapist</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="public-good-tabs__panel" role="tabpanel" id="pediatrics-dept-panel" aria-labelledby="pediatrics-dept-tab" tabindex="0" hidden>
+                    <h3>Pediatrics Department</h3>
+                    <p>Comprehensive healthcare for children from birth to 18 years.</p>
+                    
+                    <h4>Services Available:</h4>
+                    <ul>
+                        <li>Well-child visits and immunizations</li>
+                        <li>Sick visits and urgent care</li>
+                        <li>Developmental assessments</li>
+                        <li>School and sports physicals</li>
+                        <li>Adolescent medicine</li>
+                        <li>Behavioral health support</li>
+                    </ul>
+                    
+                    <p><strong>Special Programs:</strong></p>
+                    <ul>
+                        <li>Newborn care and breastfeeding support</li>
+                        <li>ADHD and learning disability assessment</li>
+                        <li>Childhood obesity prevention</li>
+                        <li>Teen health and wellness</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="example-section">
+            <h2>Accessibility Testing & Validation</h2>
+            <p>Test and validate the accessibility features of your tabs.</p>
+            
+            <div class="demo-controls">
+                <button onclick="runAccessibilityValidation()">Run Accessibility Check</button>
+                <button onclick="simulateScreenReaderNavigation()">Simulate Screen Reader</button>
+                <button onclick="testKeyboardNavigation()">Test Keyboard Navigation</button>
+                <button onclick="showTabsInformation()">Show Tabs Information</button>
+            </div>
+
+            <div id="validation-results" style="margin-top: 1rem; padding: 1rem; background: #f8f9fa; border-radius: 4px; display: none;">
+                <h4>Accessibility Results:</h4>
+                <div id="validation-content"></div>
+            </div>
+        </div>
+    </div>
+
+    <script type="module">
+        import { 
+            Tabs,
+            createTabs,
+            createTabsWithContent,
+            initializeTabs,
+            validateTabsAccessibility
+        } from '../tabs.js';
+        
+        let tabInstances = [];
+        let dynamicTabsInstance = null;
+        let formTabsInstance = null;
+        let tabCounter = 0;
+        
+        document.addEventListener('DOMContentLoaded', () => {
+            // Initialize all tabs
+            tabInstances = initializeTabs();
+            console.log(`Initialized ${tabInstances.length} tabs instances`);
+            
+            // Get specific instances
+            formTabsInstance = tabInstances.find(instance => 
+                instance.getElement().id === 'form-tabs'
+            );
+
+            // Set up dynamic tabs
+            setupDynamicTabs();
+            
+            // Set up form validation
+            setupFormValidation();
+            
+            // Add event listeners
+            tabInstances.forEach(instance => {
+                const element = instance.getElement();
+                element.addEventListener('tabs:changed', (event) => {
+                    console.log('Tab changed:', {
+                        activeIndex: event.detail.activeIndex,
+                        activeTab: event.detail.activeTab.textContent,
+                        container: element.id || 'unnamed'
+                    });
+                    
+                    // Update form summary if this is the form tabs
+                    if (element.id === 'form-tabs') {
+                        updateFormSummary();
+                    }
+                });
+            });
+
+            // Make functions available globally
+            window.addNewTab = addNewTab;
+            window.removeSelectedTab = removeSelectedTab;
+            window.disableTab = disableTab;
+            window.updateTabLabel = updateTabLabel;
+            window.validateCurrentStep = validateCurrentStep;
+            window.goToNextStep = goToNextStep;
+            window.goToPreviousStep = goToPreviousStep;
+            window.resetForm = resetForm;
+            window.saveFormData = saveFormData;
+            window.loadFormData = loadFormData;
+            window.submitRegistration = submitRegistration;
+            window.runAccessibilityValidation = runAccessibilityValidation;
+            window.simulateScreenReaderNavigation = simulateScreenReaderNavigation;
+            window.testKeyboardNavigation = testKeyboardNavigation;
+            window.showTabsInformation = showTabsInformation;
+
+            // Initial validation
+            setTimeout(() => {
+                const validation = validateTabsAccessibility();
+                console.log('Initial accessibility validation:', validation);
+            }, 100);
+        });
+        
+        function setupDynamicTabs() {
+            const container = document.getElementById('dynamic-tabs-container');
+            const tabsElement = createTabs({ title: 'Dynamic Tabs Demo' });
+            container.appendChild(tabsElement);
+            
+            dynamicTabsInstance = new Tabs(tabsElement, {
+                onTabChange: (activeIndex, tabElement) => {
+                    updateDynamicStatus(`Active tab: "${tabElement.textContent}" (index: ${activeIndex})`);
+                }
+            });
+            
+            // Add initial tabs
+            dynamicTabsInstance.addTab({
+                id: 'initial-tab-1',
+                label: 'Welcome',
+                content: '<h3>Welcome Tab</h3><p>This is the first dynamic tab. You can add more tabs using the controls above.</p>',
+                active: true
+            });
+            
+            dynamicTabsInstance.addTab({
+                id: 'initial-tab-2',
+                label: 'Information',
+                content: '<h3>Information Tab</h3><p>This tab contains some sample information content.</p>'
+            });
+        }
+        
+        function addNewTab() {
+            if (!dynamicTabsInstance) return;
+            
+            const labelInput = document.getElementById('tab-label-input');
+            const positionSelect = document.getElementById('tab-position');
+            
+            const label = labelInput.value.trim() || `Tab ${++tabCounter}`;
+            const content = `<h3>${label}</h3><p>This is a dynamically created tab. Press Delete while focused on the tab to remove it.</p>`;
+            
+            let insertAt;
+            switch (positionSelect.value) {
+                case 'start':
+                    insertAt = 0;
+                    break;
+                case 'after':
+                    insertAt = dynamicTabsInstance.getActiveTabIndex() + 1;
+                    break;
+                default:
+                    insertAt = undefined; // End
+            }
+            
+            dynamicTabsInstance.addTab({
+                id: `dynamic-tab-${Date.now()}`,
+                label: label,
+                content: content,
+                active: true,
+                attributes: { 'data-removable': '' }
+            }, insertAt);
+            
+            updateDynamicStatus(`Added tab "${label}" at position ${insertAt ?? 'end'}`);
+            labelInput.value = `Tab ${tabCounter + 1}`;
+        }
+        
+        function removeSelectedTab() {
+            if (!dynamicTabsInstance) return;
+            
+            const activeTab = dynamicTabsInstance.getActiveTab();
+            if (!activeTab || !activeTab.hasAttribute('data-removable')) {
+                updateDynamicStatus('Current tab cannot be removed', 'warning');
+                return;
+            }
+            
+            const tabLabel = activeTab.textContent;
+            const deleteEvent = new KeyboardEvent('keydown', { key: 'Delete' });
+            activeTab.dispatchEvent(deleteEvent);
+            
+            updateDynamicStatus(`Removed tab "${tabLabel}"`);
+        }
+        
+        function disableTab() {
+            if (!dynamicTabsInstance) return;
+            
+            const activeIndex = dynamicTabsInstance.getActiveTabIndex();
+            const activeTab = dynamicTabsInstance.getActiveTab();
+            
+            if (activeTab) {
+                const isDisabled = activeTab.hasAttribute('disabled');
+                dynamicTabsInstance.setTabDisabled(activeIndex, !isDisabled);
+                
+                updateDynamicStatus(`Tab "${activeTab.textContent}" ${isDisabled ? 'enabled' : 'disabled'}`);
+            }
+        }
+        
+        function updateTabLabel() {
+            if (!dynamicTabsInstance) return;
+            
+            const labelInput = document.getElementById('tab-label-input');
+            const newLabel = labelInput.value.trim();
+            
+            if (!newLabel) return;
+            
+            const activeIndex = dynamicTabsInstance.getActiveTabIndex();
+            const oldLabel = dynamicTabsInstance.getActiveTab()?.textContent;
+            
+            dynamicTabsInstance.setTabLabel(activeIndex, newLabel);
+            updateDynamicStatus(`Updated tab label from "${oldLabel}" to "${newLabel}"`);
+        }
+        
+        function updateDynamicStatus(message, type = 'success') {
+            const statusElement = document.getElementById('dynamic-status');
+            statusElement.className = `notification notification--${type}`;
+            statusElement.innerHTML = message + ' <span class="removable-indicator">×</span> indicates removable tabs.';
+        }
+        
+        function setupFormValidation() {
+            // Add real-time validation to form fields
+            const requiredFields = document.querySelectorAll('input[required], select[required]');
+            
+            requiredFields.forEach(field => {
+                field.addEventListener('blur', validateField);
+                field.addEventListener('change', validateField);
+            });
+        }
+        
+        function validateField(event) {
+            const field = event.target;
+            const isValid = field.checkValidity();
+            
+            field.style.borderColor = isValid ? '' : '#dc3545';
+            
+            // Remove existing validation message
+            const existingMessage = field.parentNode.querySelector('.validation-message');
+            if (existingMessage) {
+                existingMessage.remove();
+            }
+            
+            // Add validation message if invalid
+            if (!isValid && field.value.trim()) {
+                const message = document.createElement('div');
+                message.className = 'validation-message';
+                message.style.color = '#dc3545';
+                message.style.fontSize = '0.875rem';
+                message.style.marginTop = '0.25rem';
+                message.textContent = field.validationMessage;
+                field.parentNode.appendChild(message);
+            }
+        }
+        
+        function validateCurrentStep() {
+            if (!formTabsInstance) return;
+            
+            const activePanel = formTabsInstance.getActivePanel();
+            const requiredFields = activePanel.querySelectorAll('input[required], select[required]');
+            
+            let isValid = true;
+            let errorCount = 0;
+            
+            requiredFields.forEach(field => {
+                if (!field.checkValidity()) {
+                    isValid = false;
+                    errorCount++;
+                    field.style.borderColor = '#dc3545';
+                } else {
+                    field.style.borderColor = '';
+                }
+            });
+            
+            showNotification(
+                isValid 
+                    ? `Current step is valid ✓` 
+                    : `Found ${errorCount} validation errors in current step`,
+                isValid ? 'success' : 'error'
+            );
+        }
+        
+        function goToNextStep() {
+            if (!formTabsInstance) return;
+            
+            const currentIndex = formTabsInstance.getActiveTabIndex();
+            const maxIndex = formTabsInstance.getTabs().length - 1;
+            
+            if (currentIndex < maxIndex) {
+                formTabsInstance.setActiveTab(currentIndex + 1);
+                showNotification(`Moved to step ${currentIndex + 2}`, 'success');
+            } else {
+                showNotification('Already at the last step', 'warning');
+            }
+        }
+        
+        function goToPreviousStep() {
+            if (!formTabsInstance) return;
+            
+            const currentIndex = formTabsInstance.getActiveTabIndex();
+            
+            if (currentIndex > 0) {
+                formTabsInstance.setActiveTab(currentIndex - 1);
+                showNotification(`Moved to step ${currentIndex}`, 'success');
+            } else {
+                showNotification('Already at the first step', 'warning');
+            }
+        }
+        
+        function resetForm() {
+            const form = document.getElementById('form-tabs');
+            const inputs = form.querySelectorAll('input, select, textarea');
+            
+            inputs.forEach(input => {
+                if (input.type === 'checkbox' || input.type === 'radio') {
+                    input.checked = false;
+                } else {
+                    input.value = '';
+                }
+                input.style.borderColor = '';
+            });
+            
+            // Clear validation messages
+            const validationMessages = form.querySelectorAll('.validation-message');
+            validationMessages.forEach(msg => msg.remove());
+            
+            // Go to first step
+            if (formTabsInstance) {
+                formTabsInstance.setActiveTab(0);
+            }
+            
+            showNotification('Form reset successfully', 'success');
+            updateFormSummary();
+        }
+        
+        function saveFormData() {
+            const formData = collectFormData();
+            
+            try {
+                localStorage.setItem('patient-form-data', JSON.stringify(formData));
+                showNotification('Form data saved successfully', 'success');
+            } catch (error) {
+                showNotification('Failed to save form data', 'error');
+            }
+        }
+        
+        function loadFormData() {
+            try {
+                const saved = localStorage.getItem('patient-form-data');
+                if (!saved) {
+                    showNotification('No saved form data found', 'warning');
+                    return;
+                }
+                
+                const formData = JSON.parse(saved);
+                populateFormData(formData);
+                showNotification('Form data loaded successfully', 'success');
+                updateFormSummary();
+            } catch (error) {
+                showNotification('Failed to load form data', 'error');
+            }
+        }
+        
+        function collectFormData() {
+            const form = document.getElementById('form-tabs');
+            const formData = {};
+            
+            const inputs = form.querySelectorAll('input, select, textarea');
+            inputs.forEach(input => {
+                if (input.type === 'checkbox') {
+                    formData[input.name] = input.checked;
+                } else {
+                    formData[input.name] = input.value;
+                }
+            });
+            
+            return formData;
+        }
+        
+        function populateFormData(formData) {
+            Object.entries(formData).forEach(([name, value]) => {
+                const input = document.querySelector(`[name="${name}"]`);
+                if (input) {
+                    if (input.type === 'checkbox') {
+                        input.checked = value;
+                    } else {
+                        input.value = value;
+                    }
+                }
+            });
+        }
+        
+        function updateFormSummary() {
+            const formData = collectFormData();
+            const summaryContent = document.getElementById('summary-content');
+            
+            let html = '<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">';
+            
+            // Personal Information
+            if (formData.firstName || formData.lastName) {
+                html += `<div><strong>Name:</strong> ${formData.firstName} ${formData.lastName}</div>`;
+            }
+            if (formData.dateOfBirth) {
+                html += `<div><strong>Date of Birth:</strong> ${new Date(formData.dateOfBirth).toLocaleDateString()}</div>`;
+            }
+            if (formData.gender) {
+                html += `<div><strong>Gender:</strong> ${formData.gender}</div>`;
+            }
+            if (formData.phone) {
+                html += `<div><strong>Phone:</strong> ${formData.phone}</div>`;
+            }
+            if (formData.email) {
+                html += `<div><strong>Email:</strong> ${formData.email}</div>`;
+            }
+            if (formData.emergencyName) {
+                html += `<div><strong>Emergency Contact:</strong> ${formData.emergencyName}</div>`;
+            }
+            
+            html += '</div>';
+            
+            // Medical Information
+            if (formData.currentMedications || formData.allergies) {
+                html += '<div style="margin-top: 1rem;">';
+                html += '<strong>Medical Information:</strong><br>';
+                if (formData.allergies) {
+                    html += `<em>Allergies:</em> ${formData.allergies}<br>`;
+                }
+                if (formData.currentMedications) {
+                    html += `<em>Medications:</em> ${formData.currentMedications}`;
+                }
+                html += '</div>';
+            }
+            
+            summaryContent.innerHTML = html || '<p><em>Complete the previous steps to see your information summary here.</em></p>';
+        }
+        
+        function submitRegistration() {
+            const formData = collectFormData();
+            
+            if (!formData.termsConsent) {
+                showNotification('Please accept the terms and conditions', 'error');
+                return;
+            }
+            
+            // Validate required fields
+            const requiredFields = ['firstName', 'lastName', 'dateOfBirth', 'phone', 'email', 'emergencyName', 'emergencyRelationship', 'emergencyPhone'];
+            const missing = requiredFields.filter(field => !formData[field]);
+            
+            if (missing.length > 0) {
+                showNotification(`Please complete required fields: ${missing.join(', ')}`, 'error');
+                return;
+            }
+            
+            // Simulate submission
+            showNotification('Registration submitted successfully! ✓', 'success');
+            
+            // Clear saved data
+            localStorage.removeItem('patient-form-data');
+            
+            console.log('Form submission data:', formData);
+        }
+        
+        function showNotification(message, type = 'success') {
+            const container = document.getElementById('form-notifications');
+            
+            const notification = document.createElement('div');
+            notification.className = `notification notification--${type}`;
+            notification.textContent = message;
+            
+            container.appendChild(notification);
+            
+            setTimeout(() => {
+                notification.remove();
+            }, 5000);
+        }
+        
+        function runAccessibilityValidation() {
+            const validation = validateTabsAccessibility();
+            const resultsDiv = document.getElementById('validation-results');
+            const contentDiv = document.getElementById('validation-content');
+            
+            let html = `<p><strong>Found ${validation.tabs.length} tabs containers on the page.</strong></p>`;
+            
+            if (validation.issues.length === 0) {
+                html += '<p style="color: #28a745;">✓ All tabs pass accessibility validation!</p>';
+            } else {
+                html += '<p style="color: #dc3545;">❌ Accessibility issues found:</p>';
+                html += '<ul>';
+                validation.issues.forEach(issue => {
+                    html += `<li>${issue}</li>`;
+                });
+                html += '</ul>';
+            }
+            
+            html += '<h5>Accessibility Features Checked:</h5>';
+            html += '<ul>';
+            html += '<li>✓ Proper ARIA roles and attributes</li>';
+            html += '<li>✓ Keyboard navigation support</li>';
+            html += '<li>✓ Tab-panel associations</li>';
+            html += '<li>✓ Focus management</li>';
+            html += '<li>✓ Screen reader compatibility</li>';
+            html += '</ul>';
+            
+            contentDiv.innerHTML = html;
+            resultsDiv.style.display = 'block';
+            
+            console.log('Accessibility validation completed:', validation);
+        }
+        
+        function simulateScreenReaderNavigation() {
+            const tabContainers = document.querySelectorAll('[role="tablist"], .public-good-tabs');
+            let announcement = 'Screen Reader Simulation:\n\n';
+            
+            tabContainers.forEach((container, index) => {
+                const tablist = container.querySelector('[role="tablist"]') || container;
+                const tabs = tablist.querySelectorAll('[role="tab"]');
+                const panels = container.querySelectorAll('[role="tabpanel"]');
+                
+                announcement += `Tabs ${index + 1}: `;
+                
+                const label = tablist.getAttribute('aria-label') || tablist.getAttribute('aria-labelledby');
+                if (label) {
+                    announcement += `"${label}"\n`;
+                } else {
+                    announcement += 'Unlabeled tabs\n';
+                }
+                
+                announcement += `${tabs.length} tabs, `;
+                
+                const activeTab = Array.from(tabs).find(tab => tab.getAttribute('aria-selected') === 'true');
+                if (activeTab) {
+                    announcement += `"${activeTab.textContent}" selected\n`;
+                }
+                
+                announcement += '\nTabbed interface with arrow key navigation\n\n';
+            });
+            
+            alert(announcement);
+        }
+        
+        function testKeyboardNavigation() {
+            alert(`Keyboard Navigation Test:
+
+1. Press Tab to focus on the first tab in a tabs interface
+2. Use Left/Right Arrow keys to navigate between horizontal tabs
+3. Use Up/Down Arrow keys to navigate between vertical tabs
+4. Press Enter or Space to activate the focused tab
+5. Press Home to go to the first tab
+6. Press End to go to the last tab
+7. Press Delete to remove a tab (if removable)
+8. Continue with Tab to move to the tab panel content
+
+Try these shortcuts:
+• Tab: Navigate to tabs interface
+• Arrow Keys: Navigate between tabs
+• Enter/Space: Activate tab
+• Home/End: Jump to first/last tab
+• Delete: Remove tab (if allowed)
+
+The tabs should be fully navigable using only the keyboard.`);
+        }
+        
+        function showTabsInformation() {
+            const instances = tabInstances;
+            let info = `Tabs Information:\n\n`;
+            
+            instances.forEach((instance, index) => {
+                const element = instance.getElement();
+                const tabs = instance.getTabs();
+                const activeIndex = instance.getActiveTabIndex();
+                
+                info += `Instance ${index + 1}:\n`;
+                info += `  Element ID: ${element.id || 'unnamed'}\n`;
+                info += `  Total tabs: ${tabs.length}\n`;
+                info += `  Active tab: "${tabs[activeIndex]?.textContent}" (index: ${activeIndex})\n`;
+                info += `  Tab labels: [${tabs.map(tab => `"${tab.textContent}"`).join(', ')}]\n\n`;
+            });
+            
+            console.log(info);
+            alert(info);
+        }
+        
+        // Clean up on page unload
+        window.addEventListener('beforeunload', () => {
+            tabInstances.forEach(instance => {
+                try {
+                    instance.destroy();
+                } catch (e) {
+                    console.warn('Error destroying tabs instance:', e);
+                }
+            });
+        });
+    </script>
+</body>
+</html>

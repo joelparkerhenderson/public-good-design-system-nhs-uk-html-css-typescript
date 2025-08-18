@@ -1,0 +1,70 @@
+/**
+ * Public Good Design System - Spacing Tokens
+ * Converted from NHS UK Design System spacing scale
+ */
+
+:root {
+  /* Base spacing unit: 4px */
+  --public-good-spacing-base: 0.25rem;
+
+  /* Spacing scale */
+  --public-good-spacing-0: 0;
+  --public-good-spacing-1: calc(var(--public-good-spacing-base) * 1);  /* 4px */
+  --public-good-spacing-2: calc(var(--public-good-spacing-base) * 2);  /* 8px */
+  --public-good-spacing-3: calc(var(--public-good-spacing-base) * 3);  /* 12px */
+  --public-good-spacing-4: calc(var(--public-good-spacing-base) * 4);  /* 16px */
+  --public-good-spacing-5: calc(var(--public-good-spacing-base) * 5);  /* 20px */
+  --public-good-spacing-6: calc(var(--public-good-spacing-base) * 6);  /* 24px */
+  --public-good-spacing-7: calc(var(--public-good-spacing-base) * 7);  /* 28px */
+  --public-good-spacing-8: calc(var(--public-good-spacing-base) * 8);  /* 32px */
+  --public-good-spacing-9: calc(var(--public-good-spacing-base) * 9);  /* 36px */
+  --public-good-spacing-10: calc(var(--public-good-spacing-base) * 10); /* 40px */
+  --public-good-spacing-12: calc(var(--public-good-spacing-base) * 12); /* 48px */
+  --public-good-spacing-16: calc(var(--public-good-spacing-base) * 16); /* 64px */
+  --public-good-spacing-20: calc(var(--public-good-spacing-base) * 20); /* 80px */
+  --public-good-spacing-24: calc(var(--public-good-spacing-base) * 24); /* 96px */
+  --public-good-spacing-32: calc(var(--public-good-spacing-base) * 32); /* 128px */
+  --public-good-spacing-40: calc(var(--public-good-spacing-base) * 40); /* 160px */
+  --public-good-spacing-48: calc(var(--public-good-spacing-base) * 48); /* 192px */
+  --public-good-spacing-56: calc(var(--public-good-spacing-base) * 56); /* 224px */
+  --public-good-spacing-64: calc(var(--public-good-spacing-base) * 64); /* 256px */
+
+  /* Component-specific spacing */
+  --public-good-spacing-component-padding: var(--public-good-spacing-4);
+  --public-good-spacing-component-margin: var(--public-good-spacing-6);
+  --public-good-spacing-component-gap: var(--public-good-spacing-4);
+
+  /* Form spacing */
+  --public-good-spacing-form-element: var(--public-good-spacing-4);
+  --public-good-spacing-form-group: var(--public-good-spacing-6);
+  --public-good-spacing-form-section: var(--public-good-spacing-8);
+
+  /* Layout spacing */
+  --public-good-spacing-section: var(--public-good-spacing-12);
+  --public-good-spacing-page: var(--public-good-spacing-16);
+  --public-good-spacing-container: var(--public-good-spacing-6);
+
+  /* Button spacing */
+  --public-good-spacing-button-padding-x: var(--public-good-spacing-4);
+  --public-good-spacing-button-padding-y: var(--public-good-spacing-3);
+  --public-good-spacing-button-large-padding-x: var(--public-good-spacing-6);
+  --public-good-spacing-button-large-padding-y: var(--public-good-spacing-4);
+  --public-good-spacing-button-small-padding-x: var(--public-good-spacing-3);
+  --public-good-spacing-button-small-padding-y: var(--public-good-spacing-2);
+
+  /* Focus outline spacing */
+  --public-good-spacing-focus-offset: var(--public-good-spacing-1);
+  --public-good-spacing-focus-width: 3px;
+
+  /* Border radius */
+  --public-good-border-radius-none: 0;
+  --public-good-border-radius-small: 2px;
+  --public-good-border-radius-medium: 4px;
+  --public-good-border-radius-large: 8px;
+  --public-good-border-radius-round: 50%;
+
+  /* Border widths */
+  --public-good-border-width-thin: 1px;
+  --public-good-border-width-medium: 2px;
+  --public-good-border-width-thick: 4px;
+}

@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Task List Component - Basic Examples</title>
+  <link rel="stylesheet" href="../task-list.css">
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 2rem;
+      line-height: 1.6;
+    }
+    .example {
+      margin-bottom: 2rem;
+      padding: 1.5rem;
+      border: 1px solid #e0e0e0;
+      border-radius: 8px;
+      background-color: #fafafa;
+    }
+    .example h3 {
+      margin-top: 0;
+      color: #333;
+    }
+    .code-example {
+      background-color: #f5f5f5;
+      padding: 1rem;
+      border-radius: 4px;
+      margin-top: 1rem;
+      font-family: 'Courier New', monospace;
+      font-size: 0.9rem;
+      overflow-x: auto;
+    }
+    .demo-section {
+      margin-bottom: 1rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid #e0e0e0;
+    }
+    .demo-section:last-child {
+      border-bottom: none;
+      margin-bottom: 0;
+      padding-bottom: 0;
+    }
+  </style>
+</head>
+<body>
+  <h1>Task List Component - Basic Examples</h1>
+  <p>The task list component helps users navigate long, complex services by providing a structured way to track progress through multiple tasks.</p>
+
+  <div class="example">
+    <h3>Basic Task List</h3>
+    <div class="demo-section">
+      <div class="public-good-task-list">
+        <ul class="public-good-task-list__list">
+          <li class="public-good-task-list__item">
+            <a class="public-good-task-list__link" href="#task1">
+              <div class="public-good-task-list__name-and-hint">
+                <div class="public-good-task-list__name">Personal details</div>
+              </div>
+              <div class="public-good-task-list__status">
+                <strong>Completed</strong>
+              </div>
+            </a>
+          </li>
+          <li class="public-good-task-list__item">
+            <a class="public-good-task-list__link" href="#task2">
+              <div class="public-good-task-list__name-and-hint">
+                <div class="public-good-task-list__name">Contact information</div>
+              </div>
+              <div class="public-good-task-list__status">
+                <span class="public-good-task-list__status-incomplete">Incomplete</span>
+              </div>
+            </a>
+          </li>
+          <li class="public-good-task-list__item">
+            <div class="public-good-task-list__link public-good-task-list__link--disabled" aria-disabled="true">
+              <div class="public-good-task-list__name-and-hint">
+                <div class="public-good-task-list__name">Review and submit</div>
+              </div>
+              <div class="public-good-task-list__status">
+                <span class="public-good-task-list__status-cannot-start">Cannot start yet</span>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="code-example">
+&lt;div class="public-good-task-list"&gt;
+  &lt;ul class="public-good-task-list__list"&gt;
+    &lt;li class="public-good-task-list__item"&gt;
+      &lt;a class="public-good-task-list__link" href="#task1"&gt;
+        &lt;div class="public-good-task-list__name-and-hint"&gt;
+          &lt;div class="public-good-task-list__name"&gt;Personal details&lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div class="public-good-task-list__status"&gt;
+          &lt;strong&gt;Completed&lt;/strong&gt;
+        &lt;/div&gt;
+      &lt;/a&gt;
+    &lt;/li&gt;
+    &lt;!-- Additional tasks... --&gt;
+  &lt;/ul&gt;
+&lt;/div&gt;
+    </div>
+  </div>
+
+  <div class="example">
+    <h3>Task List with Hints</h3>
+    <div class="demo-section">
+      <div class="public-good-task-list">
+        <ul class="public-good-task-list__list">
+          <li class="public-good-task-list__item">
+            <a class="public-good-task-list__link" href="#eligibility">
+              <div class="public-good-task-list__name-and-hint">
+                <div class="public-good-task-list__name">Check if you're eligible</div>
+                <div class="public-good-task-list__hint">Based on your personal circumstances</div>
+              </div>
+              <div class="public-good-task-list__status">
+                <strong>Completed</strong>
+              </div>
+            </a>
+          </li>
+          <li class="public-good-task-list__item">
+            <a class="public-good-task-list__link" href="#documents">
+              <div class="public-good-task-list__name-and-hint">
+                <div class="public-good-task-list__name">Provide supporting documents</div>
+                <div class="public-good-task-list__hint">Upload photos of your documents</div>
+              </div>
+              <div class="public-good-task-list__status">
+                <span class="public-good-task-list__status-in-progress">In progress</span>
+              </div>
+            </a>
+          </li>
+          <li class="public-good-task-list__item">
+            <a class="public-good-task-list__link" href="#payment">
+              <div class="public-good-task-list__name-and-hint">
+                <div class="public-good-task-list__name">Set up payment method</div>
+                <div class="public-good-task-list__hint">Bank account or credit card details</div>
+              </div>
+              <div class="public-good-task-list__status">
+                <span class="public-good-task-list__status-incomplete">Incomplete</span>
+              </div>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="code-example">
+&lt;div class="public-good-task-list__name-and-hint"&gt;
+  &lt;div class="public-good-task-list__name"&gt;Check if you're eligible&lt;/div&gt;
+  &lt;div class="public-good-task-list__hint"&gt;Based on your personal circumstances&lt;/div&gt;
+&lt;/div&gt;
+    </div>
+  </div>
+
+  <div class="example">
+    <h3>Task Status Variants</h3>
+    <div class="demo-section">
+      <div class="public-good-task-list">
+        <ul class="public-good-task-list__list">
+          <li class="public-good-task-list__item">
+            <a class="public-good-task-list__link" href="#completed-task">
+              <div class="public-good-task-list__name-and-hint">
+                <div class="public-good-task-list__name">Completed task</div>
+              </div>
+              <div class="public-good-task-list__status">
+                <strong>Completed</strong>
+              </div>
+            </a>
+          </li>
+          <li class="public-good-task-list__item">
+            <a class="public-good-task-list__link" href="#in-progress-task">
+              <div class="public-good-task-list__name-and-hint">
+                <div class="public-good-task-list__name">In progress task</div>
+              </div>
+              <div class="public-good-task-list__status">
+                <span class="public-good-task-list__status-in-progress">In progress</span>
+              </div>
+            </a>
+          </li>
+          <li class="public-good-task-list__item">
+            <a class="public-good-task-list__link" href="#incomplete-task">
+              <div class="public-good-task-list__name-and-hint">
+                <div class="public-good-task-list__name">Incomplete task</div>
+              </div>
+              <div class="public-good-task-list__status">
+                <span class="public-good-task-list__status-incomplete">Incomplete</span>
+              </div>
+            </a>
+          </li>
+          <li class="public-good-task-list__item">
+            <div class="public-good-task-list__link public-good-task-list__link--disabled" aria-disabled="true">
+              <div class="public-good-task-list__name-and-hint">
+                <div class="public-good-task-list__name">Cannot start yet</div>
+              </div>
+              <div class="public-good-task-list__status">
+                <span class="public-good-task-list__status-cannot-start">Cannot start yet</span>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="code-example">
+&lt;!-- Completed --&gt;
+&lt;div class="public-good-task-list__status"&gt;
+  &lt;strong&gt;Completed&lt;/strong&gt;
+&lt;/div&gt;
+
+&lt;!-- In progress --&gt;
+&lt;div class="public-good-task-list__status"&gt;
+  &lt;span class="public-good-task-list__status-in-progress"&gt;In progress&lt;/span&gt;
+&lt;/div&gt;
+
+&lt;!-- Incomplete --&gt;
+&lt;div class="public-good-task-list__status"&gt;
+  &lt;span class="public-good-task-list__status-incomplete"&gt;Incomplete&lt;/span&gt;
+&lt;/div&gt;
+
+&lt;!-- Cannot start yet --&gt;
+&lt;div class="public-good-task-list__status"&gt;
+  &lt;span class="public-good-task-list__status-cannot-start"&gt;Cannot start yet&lt;/span&gt;
+&lt;/div&gt;
+    </div>
+  </div>
+
+  <div class="example">
+    <h3>Compact Task List</h3>
+    <div class="demo-section">
+      <div class="public-good-task-list public-good-task-list--compact">
+        <ul class="public-good-task-list__list">
+          <li class="public-good-task-list__item">
+            <a class="public-good-task-list__link" href="#compact1">
+              <div class="public-good-task-list__name-and-hint">
+                <div class="public-good-task-list__name">Basic information</div>
+                <div class="public-good-task-list__hint">Name, date of birth, address</div>
+              </div>
+              <div class="public-good-task-list__status">
+                <strong>Completed</strong>
+              </div>
+            </a>
+          </li>
+          <li class="public-good-task-list__item">
+            <a class="public-good-task-list__link" href="#compact2">
+              <div class="public-good-task-list__name-and-hint">
+                <div class="public-good-task-list__name">Contact details</div>
+                <div class="public-good-task-list__hint">Phone and email</div>
+              </div>
+              <div class="public-good-task-list__status">
+                <span class="public-good-task-list__status-incomplete">Incomplete</span>
+              </div>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="code-example">
+&lt;div class="public-good-task-list public-good-task-list--compact"&gt;
+  &lt;!-- Task items... --&gt;
+&lt;/div&gt;
+    </div>
+  </div>
+
+  <div class="example">
+    <h3>Large Task List</h3>
+    <div class="demo-section">
+      <div class="public-good-task-list public-good-task-list--large">
+        <ul class="public-good-task-list__list">
+          <li class="public-good-task-list__item">
+            <a class="public-good-task-list__link" href="#large1">
+              <div class="public-good-task-list__name-and-hint">
+                <div class="public-good-task-list__name">Application form</div>
+                <div class="public-good-task-list__hint">Complete the online application with all required fields</div>
+              </div>
+              <div class="public-good-task-list__status">
+                <strong>Completed</strong>
+              </div>
+            </a>
+          </li>
+          <li class="public-good-task-list__item">
+            <a class="public-good-task-list__link" href="#large2">
+              <div class="public-good-task-list__name-and-hint">
+                <div class="public-good-task-list__name">Document verification</div>
+                <div class="public-good-task-list__hint">Upload clear photos of your identification documents</div>
+              </div>
+              <div class="public-good-task-list__status">
+                <span class="public-good-task-list__status-in-progress">In progress</span>
+              </div>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="code-example">
+&lt;div class="public-good-task-list public-good-task-list--large"&gt;
+  &lt;!-- Task items... --&gt;
+&lt;/div&gt;
+    </div>
+  </div>
+
+  <div class="example">
+    <h3>Task List with Progress</h3>
+    <div class="demo-section">
+      <div class="public-good-task-list public-good-task-list--with-progress">
+        <div class="public-good-task-list__progress">
+          <div class="public-good-task-list__progress-text">Application progress: 2 of 4 tasks completed</div>
+          <div class="public-good-task-list__progress-bar">
+            <div class="public-good-task-list__progress-fill" style="width: 50%"></div>
+          </div>
+        </div>
+        <ul class="public-good-task-list__list">
+          <li class="public-good-task-list__item">
+            <a class="public-good-task-list__link" href="#progress1">
+              <div class="public-good-task-list__name-and-hint">
+                <div class="public-good-task-list__name">Personal information</div>
+              </div>
+              <div class="public-good-task-list__status">
+                <strong>Completed</strong>
+              </div>
+            </a>
+          </li>
+          <li class="public-good-task-list__item">
+            <a class="public-good-task-list__link" href="#progress2">
+              <div class="public-good-task-list__name-and-hint">
+                <div class="public-good-task-list__name">Employment history</div>
+              </div>
+              <div class="public-good-task-list__status">
+                <strong>Completed</strong>
+              </div>
+            </a>
+          </li>
+          <li class="public-good-task-list__item">
+            <a class="public-good-task-list__link" href="#progress3">
+              <div class="public-good-task-list__name-and-hint">
+                <div class="public-good-task-list__name">References</div>
+              </div>
+              <div class="public-good-task-list__status">
+                <span class="public-good-task-list__status-incomplete">Incomplete</span>
+              </div>
+            </a>
+          </li>
+          <li class="public-good-task-list__item">
+            <div class="public-good-task-list__link public-good-task-list__link--disabled" aria-disabled="true">
+              <div class="public-good-task-list__name-and-hint">
+                <div class="public-good-task-list__name">Final review</div>
+              </div>
+              <div class="public-good-task-list__status">
+                <span class="public-good-task-list__status-cannot-start">Cannot start yet</span>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="code-example">
+&lt;div class="public-good-task-list public-good-task-list--with-progress"&gt;
+  &lt;div class="public-good-task-list__progress"&gt;
+    &lt;div class="public-good-task-list__progress-text"&gt;Application progress: 2 of 4 tasks completed&lt;/div&gt;
+    &lt;div class="public-good-task-list__progress-bar"&gt;
+      &lt;div class="public-good-task-list__progress-fill" style="width: 50%"&gt;&lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;ul class="public-good-task-list__list"&gt;
+    &lt;!-- Task items... --&gt;
+  &lt;/ul&gt;
+&lt;/div&gt;
+    </div>
+  </div>
+
+  <div class="example">
+    <h3>Usage Guidelines</h3>
+    <div class="demo-section">
+      <h4>✅ When to use task lists</h4>
+      <ul>
+        <li>For multi-step processes that are too complex to complete in one session</li>
+        <li>When tasks can be completed in different orders</li>
+        <li>To show progress through a long service</li>
+        <li>When users need flexibility in task completion</li>
+      </ul>
+      
+      <h4>✅ Best practices</h4>
+      <ul>
+        <li>Use clear, concise task descriptions</li>
+        <li>Provide helpful hint text for complex tasks</li>
+        <li>Show clear status indicators</li>
+        <li>Make the entire task row clickable for better accessibility</li>
+        <li>Use consistent language for status labels</li>
+      </ul>
+      
+      <h4>❌ When not to use</h4>
+      <ul>
+        <li>For simple, linear processes (use a step-by-step flow instead)</li>
+        <li>To display user answers (use summary list component instead)</li>
+        <li>For processes that can be simplified</li>
+        <li>When all tasks must be completed in order</li>
+      </ul>
+    </div>
+  </div>
+
+  <script type="module">
+    import { initializeTaskLists } from '../task-list.js';
+
+    // Initialize any task lists with data attributes
+    document.addEventListener('DOMContentLoaded', () => {
+      initializeTaskLists();
+
+      // Add some interactivity for demonstration
+      document.querySelectorAll('.public-good-task-list__link').forEach(link => {
+        if (!link.classList.contains('public-good-task-list__link--disabled')) {
+          link.addEventListener('click', (event) => {
+            event.preventDefault();
+            console.log('Task clicked:', link.querySelector('.public-good-task-list__name')?.textContent);
+          });
+        }
+      });
+    });
+  </script>
+</body>
+</html>

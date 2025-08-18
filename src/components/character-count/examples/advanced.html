@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Character Count - Advanced Examples</title>
+    <link rel="stylesheet" href="../../../core/base.css">
+    <link rel="stylesheet" href="../character-count.css">
+    <style>
+        body {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 2rem;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+        .example {
+            margin-bottom: 3rem;
+            padding: 2rem;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+        }
+        .example h3 {
+            margin-top: 0;
+            color: #0066cc;
+        }
+        .demo-controls {
+            margin-top: 1rem;
+            padding: 1rem;
+            background: #f5f5f5;
+            border-radius: 4px;
+        }
+        .demo-controls button {
+            margin: 0.25rem;
+            padding: 0.5rem 1rem;
+            border: 1px solid #ccc;
+            background: white;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .demo-controls button:hover {
+            background: #f0f0f0;
+        }
+        .stats {
+            margin-top: 1rem;
+            padding: 1rem;
+            background: #e8f4fd;
+            border-radius: 4px;
+            font-family: monospace;
+        }
+    </style>
+</head>
+<body>
+    <h1>Character Count Component - Advanced Examples</h1>
+    
+    <div class="example">
+        <h3>Programmatic Control</h3>
+        <p>Demonstrates programmatic interaction with the character count component.</p>
+        
+        <div class="public-good-character-count" data-module="public-good-character-count" data-maxlength="200" data-threshold="80" id="programmatic-example">
+            <div class="public-good-form-group">
+                <label class="public-good-label" for="programmatic-textarea">
+                    Interactive feedback
+                </label>
+                <div id="programmatic-hint" class="public-good-hint">
+                    Try the buttons below to see different interactions
+                </div>
+                <textarea class="public-good-textarea public-good-js-character-count" 
+                          id="programmatic-textarea" 
+                          name="feedback" 
+                          rows="5"
+                          aria-describedby="programmatic-hint programmatic-textarea-info"></textarea>
+                <div id="programmatic-textarea-info" class="public-good-hint public-good-character-count__message">
+                    You can enter up to 200 characters
+                </div>
+            </div>
+        </div>
+
+        <div class="demo-controls">
+            <button id="set-short">Set Short Text (50 chars)</button>
+            <button id="set-medium">Set Medium Text (150 chars)</button>
+            <button id="set-long">Set Long Text (250 chars)</button>
+            <button id="clear-text">Clear Text</button>
+            <button id="get-stats">Get Statistics</button>
+        </div>
+
+        <div class="stats" id="stats-display">
+            Click "Get Statistics" to see current state
+        </div>
+    </div>
+
+    <div class="example">
+        <h3>Multiple Character Counts in a Form</h3>
+        <p>Example of a form with multiple character count fields.</p>
+        
+        <form id="feedback-form">
+            <div class="public-good-character-count" data-module="public-good-character-count" data-maxlength="100">
+                <div class="public-good-form-group">
+                    <label class="public-good-label" for="title">
+                        Title
+                    </label>
+                    <div id="title-hint" class="public-good-hint">
+                        A brief, descriptive title
+                    </div>
+                    <textarea class="public-good-textarea public-good-js-character-count" 
+                              id="title" 
+                              name="title" 
+                              rows="2"
+                              aria-describedby="title-hint title-info"></textarea>
+                    <div id="title-info" class="public-good-hint public-good-character-count__message">
+                        You can enter up to 100 characters
+                    </div>
+                </div>
+            </div>
+
+            <div class="public-good-character-count" data-module="public-good-character-count" data-maxwords="150" data-threshold="90">
+                <div class="public-good-form-group">
+                    <label class="public-good-label" for="description">
+                        Description
+                    </label>
+                    <div id="description-hint" class="public-good-hint">
+                        Provide a detailed description of your feedback
+                    </div>
+                    <textarea class="public-good-textarea public-good-js-character-count" 
+                              id="description" 
+                              name="description" 
+                              rows="8"
+                              aria-describedby="description-hint description-info"></textarea>
+                    <div id="description-info" class="public-good-hint public-good-character-count__message">
+                        You can enter up to 150 words
+                    </div>
+                </div>
+            </div>
+
+            <div class="public-good-character-count" data-module="public-good-character-count" data-maxlength="500" data-threshold="75">
+                <div class="public-good-form-group">
+                    <label class="public-good-label" for="additional-notes">
+                        Additional notes (optional)
+                    </label>
+                    <textarea class="public-good-textarea public-good-js-character-count" 
+                              id="additional-notes" 
+                              name="additional-notes" 
+                              rows="6"
+                              aria-describedby="additional-notes-info"></textarea>
+                    <div id="additional-notes-info" class="public-good-hint public-good-character-count__message">
+                        You can enter up to 500 characters
+                    </div>
+                </div>
+            </div>
+
+            <button type="submit">Submit Feedback</button>
+        </form>
+    </div>
+
+    <div class="example">
+        <h3>Real-time Validation Example</h3>
+        <p>Character count with dynamic validation and error handling.</p>
+        
+        <div class="public-good-character-count" data-module="public-good-character-count" data-maxlength="100" id="validation-example">
+            <div class="public-good-form-group" id="validation-form-group">
+                <label class="public-good-label" for="validation-textarea">
+                    Message (minimum 10 characters)
+                </label>
+                <textarea class="public-good-textarea public-good-js-character-count" 
+                          id="validation-textarea" 
+                          name="message" 
+                          rows="4"
+                          aria-describedby="validation-textarea-info"></textarea>
+                <div id="validation-textarea-info" class="public-good-hint public-good-character-count__message">
+                    You can enter up to 100 characters
+                </div>
+                <div id="validation-error" class="public-good-error-message" style="display: none;">
+                    <span class="public-good-u-visually-hidden">Error: </span>
+                    <span id="validation-error-text"></span>
+                </div>
+            </div>
+        </div>
+
+        <div class="demo-controls">
+            <button id="validate-message">Validate Message</button>
+            <button id="clear-validation">Clear Validation</button>
+        </div>
+    </div>
+
+    <script type="module">
+        import { CharacterCount, initializeCharacterCounts } from '../character-count.js';
+        
+        let programmaticInstance;
+        let validationInstance;
+        
+        document.addEventListener('DOMContentLoaded', () => {
+            // Initialize all character count components
+            const instances = initializeCharacterCounts();
+            
+            // Get specific instances for programmatic control
+            const programmaticElement = document.getElementById('programmatic-example');
+            const validationElement = document.getElementById('validation-example');
+            
+            if (programmaticElement) {
+                programmaticInstance = new CharacterCount(programmaticElement);
+            }
+            if (validationElement) {
+                validationInstance = new CharacterCount(validationElement);
+            }
+            
+            // Set up programmatic controls
+            setupProgrammaticControls();
+            setupValidationExample();
+            setupFormHandling();
+        });
+        
+        function setupProgrammaticControls() {
+            const textarea = document.getElementById('programmatic-textarea');
+            const statsDisplay = document.getElementById('stats-display');
+            
+            document.getElementById('set-short').addEventListener('click', () => {
+                textarea.value = 'This is a short text sample for testing.';
+                textarea.dispatchEvent(new Event('keyup'));
+            });
+            
+            document.getElementById('set-medium').addEventListener('click', () => {
+                textarea.value = 'This is a medium length text sample that should get closer to the threshold limit and demonstrate the character count functionality in action.';
+                textarea.dispatchEvent(new Event('keyup'));
+            });
+            
+            document.getElementById('set-long').addEventListener('click', () => {
+                textarea.value = 'This is a very long text sample that deliberately exceeds the maximum character limit to demonstrate how the character count component handles overflow situations and provides appropriate feedback.';
+                textarea.dispatchEvent(new Event('keyup'));
+            });
+            
+            document.getElementById('clear-text').addEventListener('click', () => {
+                textarea.value = '';
+                textarea.dispatchEvent(new Event('keyup'));
+            });
+            
+            document.getElementById('get-stats').addEventListener('click', () => {
+                if (programmaticInstance) {
+                    const count = programmaticInstance.getCount();
+                    const remaining = programmaticInstance.getRemainingCount();
+                    const isOverLimit = programmaticInstance.isOverLimit();
+                    
+                    statsDisplay.innerHTML = `
+                        Current count: ${count} characters<br>
+                        Remaining: ${remaining} characters<br>
+                        Over limit: ${isOverLimit ? 'Yes' : 'No'}<br>
+                        Text length: ${textarea.value.length}
+                    `;
+                }
+            });
+        }
+        
+        function setupValidationExample() {
+            const textarea = document.getElementById('validation-textarea');
+            const formGroup = document.getElementById('validation-form-group');
+            const errorElement = document.getElementById('validation-error');
+            const errorText = document.getElementById('validation-error-text');
+            
+            document.getElementById('validate-message').addEventListener('click', () => {
+                const value = textarea.value.trim();
+                let hasError = false;
+                let errorMessage = '';
+                
+                if (value.length < 10) {
+                    hasError = true;
+                    errorMessage = 'Message must be at least 10 characters long';
+                } else if (validationInstance && validationInstance.isOverLimit()) {
+                    hasError = true;
+                    errorMessage = 'Message is too long';
+                }
+                
+                if (hasError) {
+                    formGroup.classList.add('public-good-form-group--error');
+                    textarea.classList.add('public-good-textarea--error');
+                    errorText.textContent = errorMessage;
+                    errorElement.style.display = 'block';
+                } else {
+                    formGroup.classList.remove('public-good-form-group--error');
+                    textarea.classList.remove('public-good-textarea--error');
+                    errorElement.style.display = 'none';
+                    alert('Message is valid!');
+                }
+            });
+            
+            document.getElementById('clear-validation').addEventListener('click', () => {
+                formGroup.classList.remove('public-good-form-group--error');
+                textarea.classList.remove('public-good-textarea--error');
+                errorElement.style.display = 'none';
+                textarea.value = '';
+                textarea.dispatchEvent(new Event('keyup'));
+            });
+        }
+        
+        function setupFormHandling() {
+            const form = document.getElementById('feedback-form');
+            form.addEventListener('submit', (e) => {
+                e.preventDefault();
+                
+                const formData = new FormData(form);
+                const data = Object.fromEntries(formData);
+                
+                console.log('Form submitted:', data);
+                alert('Form submitted successfully! Check console for data.');
+            });
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pagination Component - Basic Examples</title>
+  <link rel="stylesheet" href="../../../index.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: var(--public-good-spacing-6);
+      background-color: var(--public-good-color-white);
+    }
+    
+    .example-section {
+      margin-bottom: var(--public-good-spacing-8);
+      padding: var(--public-good-spacing-6);
+      border: var(--public-good-border-width-thin) solid var(--public-good-color-border);
+      border-radius: var(--public-good-border-radius-medium);
+    }
+    
+    .example-title {
+      margin-top: 0;
+      color: var(--public-good-color-text);
+      font-size: var(--public-good-heading-3-size);
+      margin-bottom: var(--public-good-spacing-4);
+    }
+    
+    .example-description {
+      margin-bottom: var(--public-good-spacing-4);
+      color: var(--public-good-color-text-secondary);
+    }
+    
+    .content-area {
+      min-height: 200px;
+      padding: var(--public-good-spacing-4);
+      background-color: var(--public-good-color-background-secondary);
+      border-radius: var(--public-good-border-radius-medium);
+      margin-bottom: var(--public-good-spacing-4);
+    }
+  </style>
+</head>
+<body>
+  <h1>Pagination Component - Basic Examples</h1>
+  <p>Examples demonstrating NHS UK Design System pagination component usage patterns.</p>
+
+  <!-- Full Pagination Example -->
+  <div class="example-section">
+    <h2 class="example-title">Full Pagination (Previous and Next)</h2>
+    <p class="example-description">
+      Most common pagination pattern with both previous and next page links. 
+      Used when navigating through a content series.
+    </p>
+    
+    <div class="content-area">
+      <h3>Understanding Diabetes</h3>
+      <p>This is the main content of the current page. Users can navigate to related pages using the pagination below.</p>
+      <p>Pagination helps users understand they are part of a content series and provides context about adjacent pages.</p>
+    </div>
+    
+    <div id="pagination-full"></div>
+  </div>
+
+  <!-- Previous Only Pagination -->
+  <div class="example-section">
+    <h2 class="example-title">Previous Only Pagination</h2>
+    <p class="example-description">
+      Used on the last page of a content series where there is no next page available.
+    </p>
+    
+    <div class="content-area">
+      <h3>Getting Support - Final Page</h3>
+      <p>This is the final page in the diabetes support guide series.</p>
+      <p>Only a previous page link is shown as this is the end of the content series.</p>
+    </div>
+    
+    <div id="pagination-previous"></div>
+  </div>
+
+  <!-- Next Only Pagination -->
+  <div class="example-section">
+    <h2 class="example-title">Next Only Pagination</h2>
+    <p class="example-description">
+      Used on the first page of a content series where there is no previous page available.
+    </p>
+    
+    <div class="content-area">
+      <h3>Diabetes Guide - Getting Started</h3>
+      <p>Welcome to the comprehensive diabetes guide. This is the first page in the series.</p>
+      <p>Only a next page link is shown as this is the beginning of the content series.</p>
+    </div>
+    
+    <div id="pagination-next"></div>
+  </div>
+
+  <!-- NHS Content Series Example -->
+  <div class="example-section">
+    <h2 class="example-title">NHS Content Series Navigation</h2>
+    <p class="example-description">
+      Real-world example showing pagination in an NHS health information series.
+    </p>
+    
+    <div class="content-area">
+      <h3>Type 2 Diabetes: Treatment</h3>
+      <p><strong>Page 3 of 5</strong></p>
+      <p>Treatment for type 2 diabetes can include lifestyle changes, medications, and regular monitoring.</p>
+      <p>Most people with type 2 diabetes can manage their condition with the right combination of treatments.</p>
+      <ul>
+        <li>Diet and exercise changes</li>
+        <li>Blood sugar monitoring</li>
+        <li>Medication when needed</li>
+        <li>Regular check-ups</li>
+      </ul>
+    </div>
+    
+    <div id="pagination-nhs-series"></div>
+  </div>
+
+  <!-- Long Titles Example -->
+  <div class="example-section">
+    <h2 class="example-title">Long Page Titles</h2>
+    <p class="example-description">
+      Demonstrates how pagination handles longer page titles that may wrap on smaller screens.
+    </p>
+    
+    <div class="content-area">
+      <h3>Comprehensive Guide Section</h3>
+      <p>This example shows how pagination adapts when page titles are longer and may require wrapping.</p>
+    </div>
+    
+    <div id="pagination-long-titles"></div>
+  </div>
+
+  <!-- Data Attribute Initialization -->
+  <div class="example-section">
+    <h2 class="example-title">Data Attribute Initialization</h2>
+    <p class="example-description">
+      Pagination component automatically initialized from HTML data attributes.
+    </p>
+    
+    <div class="content-area">
+      <h3>Auto-initialized Content</h3>
+      <p>This pagination component was created automatically from data attributes in the HTML.</p>
+    </div>
+    
+    <!-- This will be auto-initialized by the component -->
+    <div 
+      data-public-good-pagination
+      data-prev-title="Mental health support"
+      data-prev-url="/mental-health/support"
+      data-next-title="Crisis support services"
+      data-next-url="/mental-health/crisis">
+    </div>
+  </div>
+
+  <script type="module">
+    import { 
+      createFullPagination,
+      createPreviousPagination, 
+      createNextPagination,
+      createPagination
+    } from '../pagination.js'
+
+    // Full pagination example
+    const fullPagination = createFullPagination(
+      { title: 'Types of diabetes', url: '/diabetes/types' },
+      { title: 'Diabetes symptoms', url: '/diabetes/symptoms' }
+    )
+    document.getElementById('pagination-full').appendChild(fullPagination.element)
+
+    // Previous only example
+    const previousPagination = createPreviousPagination(
+      { title: 'Managing your condition', url: '/diabetes/management' }
+    )
+    document.getElementById('pagination-previous').appendChild(previousPagination.element)
+
+    // Next only example
+    const nextPagination = createNextPagination(
+      { title: 'Understanding your diagnosis', url: '/diabetes/diagnosis' }
+    )
+    document.getElementById('pagination-next').appendChild(nextPagination.element)
+
+    // NHS content series example
+    const nhsSeriesPagination = createFullPagination(
+      { title: 'Type 2 diabetes: Causes', url: '/diabetes/type-2/causes' },
+      { title: 'Type 2 diabetes: Prevention', url: '/diabetes/type-2/prevention' }
+    )
+    document.getElementById('pagination-nhs-series').appendChild(nhsSeriesPagination.element)
+
+    // Long titles example
+    const longTitlesPagination = createFullPagination(
+      { 
+        title: 'Comprehensive guide to understanding and managing type 2 diabetes in daily life', 
+        url: '/diabetes/comprehensive-guide' 
+      },
+      { 
+        title: 'Advanced treatment options and specialized care for complex diabetes cases', 
+        url: '/diabetes/advanced-treatment' 
+      }
+    )
+    document.getElementById('pagination-long-titles').appendChild(longTitlesPagination.element)
+
+    // Add click event listeners for demonstration
+    document.addEventListener('public-good:pagination:click', (event) => {
+      // Prevent actual navigation for demo
+      if (event.target && event.target.tagName === 'A') {
+        event.preventDefault()
+      }
+      
+      console.log('Pagination clicked:', event.detail)
+      alert(`Navigation to: ${event.detail.direction} page\nURL: ${event.detail.url}`)
+    })
+
+    console.log('Pagination examples loaded successfully')
+  </script>
+</body>
+</html>

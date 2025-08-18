@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Summary List - Basic Example</title>
+  <link rel="stylesheet" href="/src/index.css">
+  <style>
+    body {
+      margin: 40px;
+      max-width: 800px;
+      font-family: "Frutiger W01", Arial, sans-serif;
+    }
+    
+    .example-section {
+      margin-bottom: 60px;
+      padding: 20px;
+      border: 1px solid #d8dde0;
+      border-radius: 4px;
+    }
+    
+    .example-title {
+      margin-top: 0;
+      color: #005eb8;
+      border-bottom: 2px solid #005eb8;
+      padding-bottom: 10px;
+    }
+    
+    .example-description {
+      margin-bottom: 20px;
+      color: #4c6272;
+    }
+    
+    .example-output {
+      margin-top: 20px;
+      padding: 20px;
+      background-color: #f0f4f5;
+      border-left: 4px solid #005eb8;
+    }
+    
+    pre {
+      background: #f8f8f8;
+      padding: 15px;
+      border-radius: 4px;
+      overflow-x: auto;
+      font-size: 14px;
+      border: 1px solid #e1e4e6;
+    }
+    
+    code {
+      background: #f8f8f8;
+      padding: 2px 4px;
+      border-radius: 3px;
+      font-family: 'Courier New', monospace;
+    }
+  </style>
+</head>
+<body>
+  <h1>Summary List Component - Basic Examples</h1>
+  <p>Summary lists let you summarise information, for example, a user's responses at the end of a form.</p>
+
+  <div class="example-section">
+    <h2 class="example-title">Basic Summary List</h2>
+    <p class="example-description">
+      A basic summary list displays key-value pairs in a structured format using a description list.
+    </p>
+    
+    <div class="example-output">
+      <div id="basic-example"></div>
+    </div>
+    
+    <h3>HTML Structure</h3>
+    <pre><code>&lt;dl class="public-good-summary-list"&gt;
+  &lt;div class="public-good-summary-list__row"&gt;
+    &lt;dt class="public-good-summary-list__key"&gt;Name&lt;/dt&gt;
+    &lt;dd class="public-good-summary-list__value"&gt;Sarah Phillips&lt;/dd&gt;
+  &lt;/div&gt;
+  &lt;div class="public-good-summary-list__row"&gt;
+    &lt;dt class="public-good-summary-list__key"&gt;Date of birth&lt;/dt&gt;
+    &lt;dd class="public-good-summary-list__value"&gt;5 January 1978&lt;/dd&gt;
+  &lt;/div&gt;
+  &lt;div class="public-good-summary-list__row"&gt;
+    &lt;dt class="public-good-summary-list__key"&gt;Contact information&lt;/dt&gt;
+    &lt;dd class="public-good-summary-list__value"&gt;
+      72 Guild Street&lt;br&gt;
+      London&lt;br&gt;
+      SE23 6FH
+    &lt;/dd&gt;
+  &lt;/div&gt;
+&lt;/dl&gt;</code></pre>
+
+    <h3>JavaScript</h3>
+    <pre><code>import { createSimpleSummaryList } from './summary-list'
+
+const data = [
+  { key: 'Name', value: 'Sarah Phillips' },
+  { key: 'Date of birth', value: '5 January 1978' },
+  { key: 'Contact information', value: '72 Guild Street\nLondon\nSE23 6FH' }
+]
+
+const summaryList = createSimpleSummaryList(data)
+container.appendChild(summaryList.element)</code></pre>
+  </div>
+
+  <div class="example-section">
+    <h2 class="example-title">Summary List with Actions</h2>
+    <p class="example-description">
+      Summary lists can include action links, such as 'Change' or 'Edit', to allow users to modify the information.
+    </p>
+    
+    <div class="example-output">
+      <div id="editable-example"></div>
+    </div>
+    
+    <h3>HTML Structure</h3>
+    <pre><code>&lt;dl class="public-good-summary-list"&gt;
+  &lt;div class="public-good-summary-list__row"&gt;
+    &lt;dt class="public-good-summary-list__key"&gt;Name&lt;/dt&gt;
+    &lt;dd class="public-good-summary-list__value"&gt;Sarah Phillips&lt;/dd&gt;
+    &lt;dd class="public-good-summary-list__actions"&gt;
+      &lt;ul class="public-good-summary-list__actions-list"&gt;
+        &lt;li class="public-good-summary-list__actions-list-item"&gt;
+          &lt;a class="public-good-link" href="/personal-details"&gt;
+            Change&lt;span class="public-good-visually-hidden"&gt; name&lt;/span&gt;
+          &lt;/a&gt;
+        &lt;/li&gt;
+      &lt;/ul&gt;
+    &lt;/dd&gt;
+  &lt;/div&gt;
+&lt;/dl&gt;</code></pre>
+
+    <h3>JavaScript</h3>
+    <pre><code>import { createEditableSummaryList } from './summary-list'
+
+const data = [
+  { key: 'Name', value: 'Sarah Phillips', editHref: '/personal-details' },
+  { key: 'Date of birth', value: '5 January 1978', editHref: '/date-of-birth' },
+  { key: 'Contact information', value: '72 Guild Street, London, SE23 6FH', editHref: '/contact-details' }
+]
+
+const summaryList = createEditableSummaryList(data)
+container.appendChild(summaryList.element)</code></pre>
+  </div>
+
+  <div class="example-section">
+    <h2 class="example-title">Summary List without Borders</h2>
+    <p class="example-description">
+      You can remove the borders from a summary list by adding the <code>--no-border</code> modifier.
+    </p>
+    
+    <div class="example-output">
+      <div id="borderless-example"></div>
+    </div>
+    
+    <h3>HTML Structure</h3>
+    <pre><code>&lt;dl class="public-good-summary-list public-good-summary-list--no-border"&gt;
+  &lt;div class="public-good-summary-list__row"&gt;
+    &lt;dt class="public-good-summary-list__key"&gt;Name&lt;/dt&gt;
+    &lt;dd class="public-good-summary-list__value"&gt;Sarah Phillips&lt;/dd&gt;
+  &lt;/div&gt;
+&lt;/dl&gt;</code></pre>
+
+    <h3>JavaScript</h3>
+    <pre><code>import { createBorderlessSummaryList } from './summary-list'
+
+const data = [
+  { key: 'Name', value: 'Sarah Phillips' },
+  { key: 'Date of birth', value: '5 January 1978' },
+  { key: 'Contact information', value: '72 Guild Street, London, SE23 6FH' }
+]
+
+const summaryList = createBorderlessSummaryList(data)
+container.appendChild(summaryList.element)</code></pre>
+  </div>
+
+  <div class="example-section">
+    <h2 class="example-title">Multiple Actions per Row</h2>
+    <p class="example-description">
+      You can include multiple action links for each row. Actions are separated by a border.
+    </p>
+    
+    <div class="example-output">
+      <div id="multiple-actions-example"></div>
+    </div>
+    
+    <h3>JavaScript</h3>
+    <pre><code>import { createSummaryList } from './summary-list'
+
+const config = {
+  rows: [
+    {
+      key: { text: 'Name' },
+      value: { text: 'Sarah Phillips' },
+      actions: {
+        items: [
+          { href: '/edit-name', text: 'Change', visuallyHiddenText: 'name' },
+          { href: '/delete-name', text: 'Delete', visuallyHiddenText: 'name' }
+        ]
+      }
+    }
+  ]
+}
+
+const summaryList = createSummaryList(config)
+container.appendChild(summaryList.element)</code></pre>
+  </div>
+
+  <div class="example-section">
+    <h2 class="example-title">Data Attribute Initialization</h2>
+    <p class="example-description">
+      Summary lists can be initialized from HTML data attributes for CMS or server-rendered content.
+    </p>
+    
+    <div class="example-output">
+      <div 
+        data-public-good-summary-list
+        data-id="data-attr-summary"
+        data-rows='[
+          {"key":{"text":"Name"},"value":{"text":"Sarah Phillips"},"actions":{"items":[{"href":"/edit-name","text":"Change","visuallyHiddenText":"name"}]}},
+          {"key":{"text":"Date of birth"},"value":{"text":"5 January 1978"},"actions":{"items":[{"href":"/edit-dob","text":"Change","visuallyHiddenText":"date of birth"}]}},
+          {"key":{"text":"Contact information"},"value":{"text":"72 Guild Street, London, SE23 6FH"},"actions":{"items":[{"href":"/edit-contact","text":"Change","visuallyHiddenText":"contact information"}]}}
+        ]'
+      ></div>
+    </div>
+    
+    <h3>HTML</h3>
+    <pre><code>&lt;div 
+  data-public-good-summary-list
+  data-id="data-attr-summary"
+  data-rows='[
+    {
+      "key": {"text": "Name"}, 
+      "value": {"text": "Sarah Phillips"},
+      "actions": {"items": [{"href": "/edit-name", "text": "Change", "visuallyHiddenText": "name"}]}
+    }
+  ]'
+&gt;&lt;/div&gt;</code></pre>
+  </div>
+
+  <script type="module">
+    import { 
+      createSimpleSummaryList, 
+      createEditableSummaryList, 
+      createBorderlessSummaryList,
+      createSummaryList
+    } from '/src/components/summary-list/summary-list.js'
+
+    // Basic example
+    const basicData = [
+      { key: 'Name', value: 'Sarah Phillips' },
+      { key: 'Date of birth', value: '5 January 1978' },
+      { key: 'Contact information', value: '72 Guild Street\nLondon\nSE23 6FH' }
+    ]
+    
+    const basicSummaryList = createSimpleSummaryList(basicData, { id: 'basic-summary' })
+    document.getElementById('basic-example').appendChild(basicSummaryList.element)
+
+    // Editable example
+    const editableData = [
+      { key: 'Name', value: 'Sarah Phillips', editHref: '/personal-details' },
+      { key: 'Date of birth', value: '5 January 1978', editHref: '/date-of-birth' },
+      { key: 'Contact information', value: '72 Guild Street, London, SE23 6FH', editHref: '/contact-details' }
+    ]
+    
+    const editableSummaryList = createEditableSummaryList(editableData, { id: 'editable-summary' })
+    document.getElementById('editable-example').appendChild(editableSummaryList.element)
+
+    // Borderless example
+    const borderlessData = [
+      { key: 'Name', value: 'Sarah Phillips' },
+      { key: 'Date of birth', value: '5 January 1978' },
+      { key: 'Contact information', value: '72 Guild Street, London, SE23 6FH' }
+    ]
+    
+    const borderlessSummaryList = createBorderlessSummaryList(borderlessData, { id: 'borderless-summary' })
+    document.getElementById('borderless-example').appendChild(borderlessSummaryList.element)
+
+    // Multiple actions example
+    const multipleActionsConfig = {
+      id: 'multiple-actions-summary',
+      rows: [
+        {
+          key: { text: 'Name' },
+          value: { text: 'Sarah Phillips' },
+          actions: {
+            items: [
+              { href: '/edit-name', text: 'Change', visuallyHiddenText: 'name' },
+              { href: '/delete-name', text: 'Delete', visuallyHiddenText: 'name' }
+            ]
+          }
+        },
+        {
+          key: { text: 'Date of birth' },
+          value: { text: '5 January 1978' },
+          actions: {
+            items: [
+              { href: '/edit-dob', text: 'Edit', visuallyHiddenText: 'date of birth' },
+              { href: '/verify-dob', text: 'Verify', visuallyHiddenText: 'date of birth' },
+              { href: '/remove-dob', text: 'Remove', visuallyHiddenText: 'date of birth' }
+            ]
+          }
+        }
+      ]
+    }
+    
+    const multipleActionsSummaryList = createSummaryList(multipleActionsConfig)
+    document.getElementById('multiple-actions-example').appendChild(multipleActionsSummaryList.element)
+
+    // Event logging for demonstration
+    document.addEventListener('public-good:summary-list:created', (e) => {
+      console.log('Summary list created:', e.detail.element.id)
+    })
+  </script>
+</body>
+</html>

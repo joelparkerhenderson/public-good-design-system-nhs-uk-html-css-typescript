@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Checkboxes Component - Conditional Content</title>
+  <link rel="stylesheet" href="../../../index.css">
+  <style>
+    body {
+      font-family: var(--public-good-font-family);
+      margin: 0;
+      padding: var(--public-good-spacing-6);
+      background-color: var(--public-good-color-background);
+    }
+    
+    .example-section {
+      margin-bottom: var(--public-good-spacing-8);
+    }
+    
+    .example-title {
+      font-size: var(--public-good-font-size-lg);
+      font-weight: var(--public-good-font-weight-bold);
+      margin-bottom: var(--public-good-spacing-4);
+      color: var(--public-good-color-text);
+    }
+    
+    .example-description {
+      margin-bottom: var(--public-good-spacing-5);
+      color: var(--public-good-color-text-secondary);
+    }
+    
+    .conditional-input {
+      width: 100%;
+      max-width: 400px;
+      margin-bottom: var(--public-good-spacing-3);
+      padding: var(--public-good-spacing-3);
+      border: var(--public-good-border-width-medium) solid var(--public-good-color-border);
+      border-radius: var(--public-good-border-radius-medium);
+    }
+    
+    .conditional-input:focus {
+      outline: var(--public-good-spacing-focus-width) solid var(--public-good-color-focus);
+      outline-offset: var(--public-good-spacing-focus-offset);
+      border-color: var(--public-good-color-text);
+    }
+  </style>
+</head>
+<body>
+  <h1>Checkboxes Component - Conditional Content</h1>
+  
+  <div class="example-section">
+    <h2 class="example-title">Contact Preferences with Conditional Inputs</h2>
+    <p class="example-description">When users select contact methods, additional fields are revealed for them to provide details.</p>
+    
+    <div id="contact-checkboxes"></div>
+  </div>
+
+  <div class="example-section">
+    <h2 class="example-title">Account Setup with Progressive Disclosure</h2>
+    <p class="example-description">Complex form with multiple conditional sections based on user selections.</p>
+    
+    <div id="account-checkboxes"></div>
+  </div>
+
+  <div class="example-section">
+    <h2 class="example-title">Service Options with Dynamic Configuration</h2>
+    <p class="example-description">Service selection with conditional configuration options for each service.</p>
+    
+    <div id="service-checkboxes"></div>
+  </div>
+
+  <script type="module">
+    import { createCheckboxes } from '../checkboxes.js'
+    
+    // Contact preferences with conditional inputs
+    const contactCheckboxes = createCheckboxes({
+      name: 'contact-preference',
+      fieldset: {
+        legend: {
+          text: 'How would you prefer to be contacted?'
+        }
+      },
+      hint: {
+        text: 'Select all that apply and provide the necessary details'
+      },
+      items: [
+        {
+          value: 'email',
+          text: 'Email',
+          conditional: {
+            html: `
+              <div>
+                <label for="email-address" class="public-good-label">Email address</label>
+                <input id="email-address" name="email-address" type="email" 
+                       class="conditional-input" 
+                       placeholder="name@example.com"
+                       aria-describedby="email-hint">
+                <div id="email-hint" class="public-good-hint">We'll use this for important updates</div>
+              </div>
+            `
+          }
+        },
+        {
+          value: 'phone',
+          text: 'Phone',
+          conditional: {
+            html: `
+              <div>
+                <label for="phone-number" class="public-good-label">Phone number</label>
+                <input id="phone-number" name="phone-number" type="tel" 
+                       class="conditional-input" 
+                       placeholder="07000 000 000"
+                       aria-describedby="phone-hint">
+                <div id="phone-hint" class="public-good-hint">We'll only call during business hours</div>
+              </div>
+            `
+          }
+        },
+        {
+          value: 'text',
+          text: 'Text message',
+          conditional: {
+            html: `
+              <div>
+                <label for="mobile-number" class="public-good-label">Mobile phone number</label>
+                <input id="mobile-number" name="mobile-number" type="tel" 
+                       class="conditional-input" 
+                       placeholder="07000 000 000"
+                       aria-describedby="mobile-hint">
+                <div id="mobile-hint" class="public-good-hint">Standard message rates apply</div>
+              </div>
+            `
+          }
+        },
+        {
+          value: 'post',
+          text: 'Post',
+          conditional: {
+            html: `
+              <div>
+                <label for="postal-address" class="public-good-label">Postal address</label>
+                <textarea id="postal-address" name="postal-address" 
+                          class="conditional-input" 
+                          rows="4"
+                          placeholder="Enter your full postal address"
+                          aria-describedby="address-hint"></textarea>
+                <div id="address-hint" class="public-good-hint">Include postcode for faster delivery</div>
+              </div>
+            `
+          }
+        }
+      ]
+    })
+    document.getElementById('contact-checkboxes').appendChild(contactCheckboxes.element)
+    
+    // Account setup with progressive disclosure
+    const accountCheckboxes = createCheckboxes({
+      name: 'account-features',
+      fieldset: {
+        legend: {
+          text: 'Which account features would you like to enable?'
+        }
+      },
+      items: [
+        {
+          value: 'two-factor',
+          text: 'Two-factor authentication',
+          hint: {
+            text: 'Recommended for enhanced security'
+          },
+          conditional: {
+            html: `
+              <div>
+                <h4>Choose your preferred method:</h4>
+                <div style="margin-bottom: 1rem;">
+                  <input type="radio" id="2fa-sms" name="2fa-method" value="sms">
+                  <label for="2fa-sms" style="margin-left: 0.5rem;">SMS</label>
+                </div>
+                <div style="margin-bottom: 1rem;">
+                  <input type="radio" id="2fa-app" name="2fa-method" value="app">
+                  <label for="2fa-app" style="margin-left: 0.5rem;">Authenticator app</label>
+                </div>
+                <div style="margin-bottom: 1rem;">
+                  <input type="radio" id="2fa-email" name="2fa-method" value="email">
+                  <label for="2fa-email" style="margin-left: 0.5rem;">Email verification</label>
+                </div>
+              </div>
+            `
+          }
+        },
+        {
+          value: 'notifications',
+          text: 'Email notifications',
+          conditional: {
+            html: `
+              <div>
+                <h4>Notification preferences:</h4>
+                <div style="margin-bottom: 0.5rem;">
+                  <input type="checkbox" id="notify-security" name="notifications[]" value="security">
+                  <label for="notify-security" style="margin-left: 0.5rem;">Security alerts</label>
+                </div>
+                <div style="margin-bottom: 0.5rem;">
+                  <input type="checkbox" id="notify-account" name="notifications[]" value="account">
+                  <label for="notify-account" style="margin-left: 0.5rem;">Account updates</label>
+                </div>
+                <div style="margin-bottom: 0.5rem;">
+                  <input type="checkbox" id="notify-marketing" name="notifications[]" value="marketing">
+                  <label for="notify-marketing" style="margin-left: 0.5rem;">Marketing emails</label>
+                </div>
+              </div>
+            `
+          }
+        },
+        {
+          value: 'api-access',
+          text: 'API access',
+          hint: {
+            text: 'For developers integrating with our services'
+          },
+          conditional: {
+            html: `
+              <div>
+                <label for="api-description" class="public-good-label">Describe your intended use:</label>
+                <textarea id="api-description" name="api-description" 
+                          class="conditional-input" 
+                          rows="3"
+                          placeholder="Tell us how you plan to use our API"></textarea>
+                <div style="margin-top: 1rem;">
+                  <input type="checkbox" id="agree-terms" name="api-terms" value="agreed">
+                  <label for="agree-terms" style="margin-left: 0.5rem;">I agree to the API terms and conditions</label>
+                </div>
+              </div>
+            `
+          }
+        }
+      ]
+    })
+    document.getElementById('account-checkboxes').appendChild(accountCheckboxes.element)
+    
+    // Service options with dynamic configuration
+    const serviceCheckboxes = createCheckboxes({
+      name: 'services',
+      fieldset: {
+        legend: {
+          text: 'Which services do you need?'
+        }
+      },
+      hint: {
+        text: 'Configure each service according to your requirements'
+      },
+      items: [
+        {
+          value: 'backup',
+          text: 'Automated backup service',
+          hint: {
+            text: '£5/month - Automatic daily backups'
+          },
+          conditional: {
+            html: `
+              <div>
+                <label for="backup-frequency" class="public-good-label">Backup frequency</label>
+                <select id="backup-frequency" name="backup-frequency" class="conditional-input">
+                  <option value="daily">Daily</option>
+                  <option value="weekly">Weekly</option>
+                  <option value="monthly">Monthly</option>
+                </select>
+                
+                <label for="backup-retention" class="public-good-label">Retention period</label>
+                <select id="backup-retention" name="backup-retention" class="conditional-input">
+                  <option value="30">30 days</option>
+                  <option value="90">90 days</option>
+                  <option value="365">1 year</option>
+                </select>
+              </div>
+            `
+          }
+        },
+        {
+          value: 'monitoring',
+          text: 'System monitoring',
+          hint: {
+            text: '£10/month - 24/7 system monitoring'
+          },
+          conditional: {
+            html: `
+              <div>
+                <h4>Alert thresholds:</h4>
+                
+                <label for="cpu-threshold" class="public-good-label">CPU usage alert at:</label>
+                <select id="cpu-threshold" name="cpu-threshold" class="conditional-input">
+                  <option value="70">70%</option>
+                  <option value="80">80%</option>
+                  <option value="90">90%</option>
+                </select>
+                
+                <label for="memory-threshold" class="public-good-label">Memory usage alert at:</label>
+                <select id="memory-threshold" name="memory-threshold" class="conditional-input">
+                  <option value="70">70%</option>
+                  <option value="80">80%</option>
+                  <option value="90">90%</option>
+                </select>
+                
+                <div style="margin-top: 1rem;">
+                  <input type="checkbox" id="weekend-alerts" name="monitoring-options[]" value="weekend">
+                  <label for="weekend-alerts" style="margin-left: 0.5rem;">Send alerts on weekends</label>
+                </div>
+              </div>
+            `
+          }
+        },
+        {
+          value: 'support',
+          text: 'Priority support',
+          hint: {
+            text: '£20/month - 4-hour response time guarantee'
+          },
+          conditional: {
+            html: `
+              <div>
+                <label for="support-hours" class="public-good-label">Support hours needed:</label>
+                <select id="support-hours" name="support-hours" class="conditional-input">
+                  <option value="business">Business hours (9-5)</option>
+                  <option value="extended">Extended hours (8-8)</option>
+                  <option value="24-7">24/7 coverage</option>
+                </select>
+                
+                <label for="escalation-contact" class="public-good-label">Emergency escalation contact</label>
+                <input id="escalation-contact" name="escalation-contact" type="tel" 
+                       class="conditional-input" 
+                       placeholder="Emergency contact number">
+              </div>
+            `
+          }
+        }
+      ]
+    })
+    document.getElementById('service-checkboxes').appendChild(serviceCheckboxes.element)
+    
+    // Add event tracking and form submission simulation
+    let formData = {}
+    
+    function updateFormData() {
+      formData = {
+        contactPreference: contactCheckboxes.getValues(),
+        accountFeatures: accountCheckboxes.getValues(),
+        services: serviceCheckboxes.getValues()
+      }
+      
+      console.log('Form data updated:', formData)
+    }
+    
+    // Track checkbox changes
+    document.addEventListener('public-good:checkboxes:change', (event) => {
+      console.log('Checkbox changed:', event.detail)
+      updateFormData()
+    })
+    
+    // Track input changes in conditional content
+    document.addEventListener('input', (event) => {
+      if (event.target.matches('.conditional-input')) {
+        console.log('Conditional input changed:', {
+          field: event.target.name,
+          value: event.target.value
+        })
+      }
+    })
+    
+    // Add form submission demo
+    const submitDemo = document.createElement('div')
+    submitDemo.innerHTML = `
+      <div style="margin-top: 2rem; padding: 1rem; background: #f0f4f5; border-radius: 4px;">
+        <h3>Form Actions</h3>
+        <button id="validate-form" class="public-good-button" style="margin-right: 0.5rem;">Validate Form</button>
+        <button id="submit-form" class="public-good-button public-good-button--secondary" style="margin-right: 0.5rem;">Simulate Submit</button>
+        <button id="reset-form" class="public-good-button public-good-button--secondary">Reset Form</button>
+        <div id="form-status" style="margin-top: 1rem;"></div>
+      </div>
+    `
+    document.body.appendChild(submitDemo)
+    
+    document.getElementById('validate-form').addEventListener('click', () => {
+      const results = [
+        { name: 'Contact Preferences', valid: contactCheckboxes.validate() },
+        { name: 'Account Features', valid: accountCheckboxes.validate() },
+        { name: 'Services', valid: serviceCheckboxes.validate() }
+      ]
+      
+      const statusElement = document.getElementById('form-status')
+      const allValid = results.every(r => r.valid)
+      
+      statusElement.innerHTML = `
+        <div style="font-weight: bold; color: ${allValid ? 'green' : 'red'};">
+          ${allValid ? '✅ Form is valid' : '❌ Form has errors'}
+        </div>
+        ${results.map(r => `<div>${r.name}: ${r.valid ? '✅' : '❌'}</div>`).join('')}
+      `
+    })
+    
+    document.getElementById('submit-form').addEventListener('click', () => {
+      updateFormData()
+      document.getElementById('form-status').innerHTML = `
+        <div style="font-weight: bold; color: blue;">📤 Form submitted!</div>
+        <pre style="background: white; padding: 1rem; margin-top: 0.5rem; border-radius: 4px; font-size: 0.9rem;">${JSON.stringify(formData, null, 2)}</pre>
+      `
+    })
+    
+    document.getElementById('reset-form').addEventListener('click', () => {
+      contactCheckboxes.uncheckAll()
+      accountCheckboxes.uncheckAll()
+      serviceCheckboxes.uncheckAll()
+      
+      // Clear conditional inputs
+      document.querySelectorAll('.conditional-input').forEach(input => {
+        if (input.type === 'checkbox' || input.type === 'radio') {
+          input.checked = false
+        } else {
+          input.value = ''
+        }
+      })
+      
+      document.getElementById('form-status').innerHTML = '<div style="color: orange;">🔄 Form reset</div>'
+    })
+  </script>
+</body>
+</html>

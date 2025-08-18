@@ -1,0 +1,185 @@
+/**
+ * Public Good Design System - Main CSS Entry Point
+ * Imports all core styles and tokens
+ */
+
+/* Design tokens */
+@import './core/tokens/colors.css';
+@import './core/tokens/typography.css';
+@import './core/tokens/spacing.css';
+@import './core/tokens/breakpoints.css';
+
+/* Core utilities */
+@import './core/utilities/reset.css';
+@import './core/utilities/layout.css';
+@import './core/utilities/accessibility.css';
+
+/* Components */
+@import './components/action-link/action-link.css';
+@import './components/back-link/back-link.css';
+@import './components/breadcrumb/breadcrumb.css';
+@import './components/button/button.css';
+@import './components/card/card.css';
+@import './components/checkboxes/checkboxes.css';
+@import './components/date-input/date-input.css';
+@import './components/details/details.css';
+@import './components/do-dont-list/do-dont-list.css';
+@import './components/error-message/error-message.css';
+@import './components/fieldset/fieldset.css';
+@import './components/footer/footer.css';
+@import './components/header/header.css';
+@import './components/image/image.css';
+@import './components/inset-text/inset-text.css';
+@import './components/input/input.css';
+@import './components/pagination/pagination.css';
+@import './components/panel/panel.css';
+@import './components/radios/radios.css';
+@import './components/review-date/review-date.css';
+@import './components/select/select.css';
+
+/* Base typography styles */
+h1, .public-good-heading-1 {
+  font-size: var(--public-good-heading-1-size);
+  font-weight: var(--public-good-heading-1-weight);
+  line-height: var(--public-good-heading-1-line-height);
+  margin-bottom: var(--public-good-spacing-6);
+}
+
+h2, .public-good-heading-2 {
+  font-size: var(--public-good-heading-2-size);
+  font-weight: var(--public-good-heading-2-weight);
+  line-height: var(--public-good-heading-2-line-height);
+  margin-bottom: var(--public-good-spacing-5);
+}
+
+h3, .public-good-heading-3 {
+  font-size: var(--public-good-heading-3-size);
+  font-weight: var(--public-good-heading-3-weight);
+  line-height: var(--public-good-heading-3-line-height);
+  margin-bottom: var(--public-good-spacing-4);
+}
+
+h4, .public-good-heading-4 {
+  font-size: var(--public-good-heading-4-size);
+  font-weight: var(--public-good-heading-4-weight);
+  line-height: var(--public-good-heading-4-line-height);
+  margin-bottom: var(--public-good-spacing-4);
+}
+
+h5, .public-good-heading-5 {
+  font-size: var(--public-good-heading-5-size);
+  font-weight: var(--public-good-heading-5-weight);
+  line-height: var(--public-good-heading-5-line-height);
+  margin-bottom: var(--public-good-spacing-3);
+}
+
+h6, .public-good-heading-6 {
+  font-size: var(--public-good-heading-6-size);
+  font-weight: var(--public-good-heading-6-weight);
+  line-height: var(--public-good-heading-6-line-height);
+  margin-bottom: var(--public-good-spacing-3);
+}
+
+p, .public-good-body {
+  font-size: var(--public-good-body-size);
+  font-weight: var(--public-good-body-weight);
+  line-height: var(--public-good-body-line-height);
+  margin-bottom: var(--public-good-spacing-4);
+}
+
+.public-good-body-large {
+  font-size: var(--public-good-body-large-size);
+  font-weight: var(--public-good-body-large-weight);
+  line-height: var(--public-good-body-large-line-height);
+}
+
+.public-good-body-small {
+  font-size: var(--public-good-body-small-size);
+  font-weight: var(--public-good-body-small-weight);
+  line-height: var(--public-good-body-small-line-height);
+}
+
+/* Base link styles */
+a, .public-good-link {
+  color: var(--public-good-color-link);
+  text-decoration: underline;
+}
+
+a:hover, .public-good-link:hover {
+  color: var(--public-good-color-link-hover);
+}
+
+a:visited, .public-good-link:visited {
+  color: var(--public-good-color-link-visited);
+}
+
+a:active, .public-good-link:active {
+  color: var(--public-good-color-link-active);
+}
+
+/* Base form styles */
+input, textarea, select {
+  font-family: inherit;
+  font-size: inherit;
+  border: var(--public-good-border-width-medium) solid var(--public-good-color-border);
+  border-radius: var(--public-good-border-radius-medium);
+  padding: var(--public-good-spacing-3);
+}
+
+input:focus, textarea:focus, select:focus {
+  outline: var(--public-good-spacing-focus-width) solid var(--public-good-color-focus);
+  outline-offset: var(--public-good-spacing-focus-offset);
+  border-color: var(--public-good-color-text);
+}
+
+/* Base button styles */
+button, .public-good-button {
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: var(--public-good-font-weight-medium);
+  border: none;
+  border-radius: var(--public-good-border-radius-medium);
+  padding: var(--public-good-spacing-button-padding-y) var(--public-good-spacing-button-padding-x);
+  background-color: var(--public-good-color-button-primary);
+  color: var(--public-good-color-text-inverse);
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-block;
+  min-height: 44px;
+}
+
+button:hover, .public-good-button:hover {
+  background-color: var(--public-good-color-button-primary-hover);
+}
+
+button:focus, .public-good-button:focus {
+  outline: var(--public-good-spacing-focus-width) solid var(--public-good-color-focus);
+  outline-offset: var(--public-good-spacing-focus-offset);
+}
+
+button:disabled, .public-good-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Print styles */
+@media print {
+  * {
+    background: transparent !important;
+    color: black !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+  }
+  
+  a, a:visited {
+    text-decoration: underline;
+  }
+  
+  a[href]:after {
+    content: " (" attr(href) ")";
+  }
+  
+  .public-good-hide-print {
+    display: none !important;
+  }
+}

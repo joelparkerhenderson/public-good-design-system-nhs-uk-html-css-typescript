@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pagination Component - Advanced Examples</title>
+  <link rel="stylesheet" href="../../../index.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: var(--public-good-spacing-6);
+      background-color: var(--public-good-color-white);
+    }
+    
+    .example-section {
+      margin-bottom: var(--public-good-spacing-8);
+      padding: var(--public-good-spacing-6);
+      border: var(--public-good-border-width-thin) solid var(--public-good-color-border);
+      border-radius: var(--public-good-border-radius-medium);
+    }
+    
+    .example-title {
+      margin-top: 0;
+      color: var(--public-good-color-text);
+      font-size: var(--public-good-heading-3-size);
+      margin-bottom: var(--public-good-spacing-4);
+    }
+    
+    .example-description {
+      margin-bottom: var(--public-good-spacing-4);
+      color: var(--public-good-color-text-secondary);
+    }
+    
+    .demo-controls {
+      margin: var(--public-good-spacing-4) 0;
+      padding: var(--public-good-spacing-4);
+      background-color: var(--public-good-color-background-secondary);
+      border-radius: var(--public-good-border-radius-medium);
+    }
+    
+    .demo-controls label {
+      display: block;
+      margin-bottom: var(--public-good-spacing-2);
+      font-weight: var(--public-good-font-weight-medium);
+    }
+    
+    .demo-controls input,
+    .demo-controls select {
+      width: 100%;
+      padding: var(--public-good-spacing-2);
+      margin-bottom: var(--public-good-spacing-3);
+      border: var(--public-good-border-width-medium) solid var(--public-good-color-border);
+      border-radius: var(--public-good-border-radius-medium);
+    }
+    
+    .demo-controls button {
+      background-color: var(--public-good-color-button-primary);
+      color: var(--public-good-color-text-inverse);
+      border: none;
+      padding: var(--public-good-spacing-3) var(--public-good-spacing-4);
+      border-radius: var(--public-good-border-radius-medium);
+      cursor: pointer;
+      margin-right: var(--public-good-spacing-2);
+    }
+    
+    .demo-controls button:hover {
+      background-color: var(--public-good-color-button-primary-hover);
+    }
+    
+    .analytics-log {
+      margin-top: var(--public-good-spacing-4);
+      padding: var(--public-good-spacing-4);
+      background-color: #f8f8f8;
+      border-radius: var(--public-good-border-radius-medium);
+      font-family: monospace;
+      font-size: 0.9em;
+      max-height: 200px;
+      overflow-y: auto;
+    }
+    
+    .content-area {
+      min-height: 150px;
+      padding: var(--public-good-spacing-4);
+      background-color: var(--public-good-color-background-secondary);
+      border-radius: var(--public-good-border-radius-medium);
+      margin-bottom: var(--public-good-spacing-4);
+    }
+    
+    .responsive-demo {
+      border: 2px dashed var(--public-good-color-border);
+      padding: var(--public-good-spacing-4);
+      margin: var(--public-good-spacing-4) 0;
+      resize: horizontal;
+      overflow: auto;
+      min-width: 300px;
+      max-width: 100%;
+    }
+    
+    .theme-demo {
+      padding: var(--public-good-spacing-4);
+      border-radius: var(--public-good-border-radius-medium);
+      margin: var(--public-good-spacing-4) 0;
+    }
+    
+    .theme-demo.dark {
+      background-color: #1a1a1a;
+      color: #ffffff;
+    }
+    
+    .theme-demo.high-contrast {
+      background-color: #000000;
+      color: #ffffff;
+      border: 2px solid #ffffff;
+    }
+    
+    .performance-stats {
+      background-color: #e8f4f8;
+      padding: var(--public-good-spacing-3);
+      border-radius: var(--public-good-border-radius-medium);
+      margin: var(--public-good-spacing-4) 0;
+      font-family: monospace;
+      font-size: 0.9em;
+    }
+  </style>
+</head>
+<body>
+  <h1>Pagination Component - Advanced Examples</h1>
+  <p>Advanced features, customization options, and integration patterns for the pagination component.</p>
+
+  <!-- Dynamic Pagination Example -->
+  <div class="example-section">
+    <h2 class="example-title">Dynamic Pagination Control</h2>
+    <p class="example-description">
+      Demonstrates dynamic creation and modification of pagination components.
+    </p>
+    
+    <div class="demo-controls">
+      <label for="prev-title">Previous Page Title:</label>
+      <input type="text" id="prev-title" value="Managing your medications" />
+      
+      <label for="prev-url">Previous Page URL:</label>
+      <input type="text" id="prev-url" value="/health/medications" />
+      
+      <label for="next-title">Next Page Title:</label>
+      <input type="text" id="next-title" value="Lifestyle and diet changes" />
+      
+      <label for="next-url">Next Page URL:</label>
+      <input type="text" id="next-url" value="/health/lifestyle" />
+      
+      <button onclick="updateDynamicPagination()">Update Pagination</button>
+      <button onclick="clearDynamicPagination()">Clear</button>
+    </div>
+    
+    <div class="content-area">
+      <h3>Dynamic Content Area</h3>
+      <p>The pagination below is dynamically generated and can be updated using the controls above.</p>
+    </div>
+    
+    <div id="dynamic-pagination"></div>
+  </div>
+
+  <!-- Analytics and Event Tracking -->
+  <div class="example-section">
+    <h2 class="example-title">Analytics and Event Tracking</h2>
+    <p class="example-description">
+      Demonstrates comprehensive event tracking for analytics and user behavior monitoring.
+    </p>
+    
+    <div class="content-area">
+      <h3>Tracked Navigation</h3>
+      <p>Click the pagination links below to see detailed analytics events in the log.</p>
+    </div>
+    
+    <div id="analytics-pagination"></div>
+    
+    <div class="analytics-log" id="analytics-log">
+      <strong>Analytics Events Log:</strong><br>
+      Click pagination links to see tracking data...
+    </div>
+  </div>
+
+  <!-- Responsive Design Demo -->
+  <div class="example-section">
+    <h2 class="example-title">Responsive Design Behavior</h2>
+    <p class="example-description">
+      Resize the container below to see how pagination adapts to different screen sizes.
+    </p>
+    
+    <div class="responsive-demo">
+      <div class="content-area">
+        <h3>Responsive Content</h3>
+        <p>Resize this container to see responsive pagination behavior.</p>
+      </div>
+      
+      <div id="responsive-pagination"></div>
+    </div>
+    
+    <p><em>Drag the bottom-right corner of the container above to resize it.</em></p>
+  </div>
+
+  <!-- Accessibility Features Demo -->
+  <div class="example-section">
+    <h2 class="example-title">Accessibility Features</h2>
+    <p class="example-description">
+      Comprehensive accessibility testing and screen reader support demonstration.
+    </p>
+    
+    <div class="demo-controls">
+      <button onclick="testKeyboardNavigation()">Test Keyboard Navigation</button>
+      <button onclick="testScreenReaderAnnouncements()">Test Screen Reader Support</button>
+      <button onclick="validateAriaAttributes()">Validate ARIA Attributes</button>
+    </div>
+    
+    <div class="content-area">
+      <h3>Accessible Navigation</h3>
+      <p>This pagination includes comprehensive accessibility features for keyboard and screen reader users.</p>
+    </div>
+    
+    <div id="accessibility-pagination"></div>
+    
+    <div id="accessibility-results" class="analytics-log">
+      <strong>Accessibility Test Results:</strong><br>
+      Use the buttons above to run accessibility tests...
+    </div>
+  </div>
+
+  <!-- Theme Variations -->
+  <div class="example-section">
+    <h2 class="example-title">Theme and Visual Variations</h2>
+    <p class="example-description">
+      Pagination component appearance across different themes and visual contexts.
+    </p>
+    
+    <!-- Standard Theme -->
+    <div class="theme-demo">
+      <h4>Standard Theme</h4>
+      <div id="theme-standard"></div>
+    </div>
+    
+    <!-- Dark Theme -->
+    <div class="theme-demo dark">
+      <h4>Dark Theme Simulation</h4>
+      <div id="theme-dark"></div>
+    </div>
+    
+    <!-- High Contrast -->
+    <div class="theme-demo high-contrast">
+      <h4>High Contrast Theme</h4>
+      <div id="theme-contrast"></div>
+    </div>
+  </div>
+
+  <!-- Performance Monitoring -->
+  <div class="example-section">
+    <h2 class="example-title">Performance and Memory Management</h2>
+    <p class="example-description">
+      Performance testing and memory management demonstration.
+    </p>
+    
+    <div class="demo-controls">
+      <button onclick="createManyPaginations()">Create 100 Components</button>
+      <button onclick="destroyAllPaginations()">Destroy All</button>
+      <button onclick="measurePerformance()">Measure Performance</button>
+    </div>
+    
+    <div class="performance-stats" id="performance-stats">
+      <strong>Performance Stats:</strong><br>
+      Active components: <span id="component-count">0</span><br>
+      Memory usage: <span id="memory-usage">0 MB</span><br>
+      Creation time: <span id="creation-time">0 ms</span>
+    </div>
+    
+    <div id="performance-container" style="max-height: 300px; overflow-y: auto;"></div>
+  </div>
+
+  <!-- Integration Patterns -->
+  <div class="example-section">
+    <h2 class="example-title">Integration with Content Management</h2>
+    <p class="example-description">
+      Advanced integration patterns for content management systems and dynamic content.
+    </p>
+    
+    <div class="demo-controls">
+      <label for="content-series">Select Content Series:</label>
+      <select id="content-series" onchange="loadContentSeries()">
+        <option value="">-- Select a series --</option>
+        <option value="diabetes">Diabetes Information Series</option>
+        <option value="mental-health">Mental Health Support Series</option>
+        <option value="pregnancy">Pregnancy and Birth Series</option>
+        <option value="child-health">Child Health Series</option>
+      </select>
+    </div>
+    
+    <div class="content-area">
+      <div id="content-series-info">
+        <h3>Select a content series above</h3>
+        <p>Choose a content series to see context-aware pagination.</p>
+      </div>
+    </div>
+    
+    <div id="content-series-pagination"></div>
+  </div>
+
+  <script type="module">
+    import { 
+      createPagination,
+      createFullPagination,
+      createPreviousPagination,
+      createNextPagination
+    } from '../pagination.js'
+
+    // Global variables for advanced examples
+    let currentPagination = null
+    let analyticsLog = []
+    let performanceComponents = []
+
+    // Dynamic pagination control
+    window.updateDynamicPagination = function() {
+      const prevTitle = document.getElementById('prev-title').value
+      const prevUrl = document.getElementById('prev-url').value
+      const nextTitle = document.getElementById('next-title').value
+      const nextUrl = document.getElementById('next-url').value
+      
+      const container = document.getElementById('dynamic-pagination')
+      container.innerHTML = ''
+      
+      if (currentPagination) {
+        currentPagination.destroy()
+      }
+      
+      const config = {}
+      if (prevTitle && prevUrl) {
+        config.previousPage = { title: prevTitle, url: prevUrl }
+      }
+      if (nextTitle && nextUrl) {
+        config.nextPage = { title: nextTitle, url: nextUrl }
+      }
+      
+      if (Object.keys(config).length > 0) {
+        currentPagination = createPagination(config)
+        container.appendChild(currentPagination.element)
+      }
+    }
+    
+    window.clearDynamicPagination = function() {
+      const container = document.getElementById('dynamic-pagination')
+      container.innerHTML = ''
+      if (currentPagination) {
+        currentPagination.destroy()
+        currentPagination = null
+      }
+    }
+
+    // Analytics pagination with detailed tracking
+    const analyticsPagination = createFullPagination(
+      { title: 'Understanding your test results', url: '/health/test-results' },
+      { title: 'Planning your treatment', url: '/health/treatment-planning' }
+    )
+    document.getElementById('analytics-pagination').appendChild(analyticsPagination.element)
+
+    // Enhanced analytics tracking
+    analyticsPagination.element.addEventListener('public-good:pagination:click', (event) => {
+      event.preventDefault() // Prevent navigation for demo
+      
+      const logData = {
+        timestamp: new Date().toISOString(),
+        direction: event.detail.direction,
+        url: event.detail.url,
+        userAgent: navigator.userAgent.substring(0, 50) + '...',
+        screenSize: `${window.innerWidth}x${window.innerHeight}`,
+        sessionId: 'demo-session-123'
+      }
+      
+      analyticsLog.push(logData)
+      updateAnalyticsLog()
+    })
+
+    function updateAnalyticsLog() {
+      const logElement = document.getElementById('analytics-log')
+      const recent = analyticsLog.slice(-5) // Show last 5 events
+      
+      logElement.innerHTML = '<strong>Analytics Events Log:</strong><br>' +
+        recent.map(log => 
+          `[${log.timestamp}] ${log.direction.toUpperCase()} click: ${log.url}<br>` +
+          `  Screen: ${log.screenSize}, Agent: ${log.userAgent}<br>`
+        ).join('')
+    }
+
+    // Responsive pagination
+    const responsivePagination = createFullPagination(
+      { title: 'Mobile-optimized health tips', url: '/health/mobile-tips' },
+      { title: 'Desktop health dashboard', url: '/health/dashboard' }
+    )
+    document.getElementById('responsive-pagination').appendChild(responsivePagination.element)
+
+    // Accessibility testing functions
+    window.testKeyboardNavigation = function() {
+      const results = document.getElementById('accessibility-results')
+      const pagination = document.getElementById('accessibility-pagination').querySelector('.public-good-pagination')
+      
+      if (!pagination) return
+      
+      const focusableElements = pagination.querySelectorAll('a')
+      let testResults = '<strong>Keyboard Navigation Test:</strong><br>'
+      
+      testResults += `Found ${focusableElements.length} focusable elements<br>`
+      
+      focusableElements.forEach((element, index) => {
+        element.focus()
+        const isFocused = document.activeElement === element
+        testResults += `Element ${index + 1}: ${isFocused ? '✓ Focusable' : '✗ Not focusable'}<br>`
+      })
+      
+      results.innerHTML = testResults
+    }
+
+    window.testScreenReaderAnnouncements = function() {
+      const results = document.getElementById('accessibility-results')
+      const pagination = document.getElementById('accessibility-pagination').querySelector('.public-good-pagination')
+      
+      if (!pagination) return
+      
+      let testResults = '<strong>Screen Reader Support Test:</strong><br>'
+      
+      // Check for proper ARIA attributes
+      testResults += `Navigation role: ${pagination.getAttribute('role') || 'Missing'}<br>`
+      testResults += `ARIA label: ${pagination.getAttribute('aria-label') || 'Missing'}<br>`
+      
+      // Check for screen reader only content
+      const srOnly = pagination.querySelector('.public-good-sr-only')
+      testResults += `Screen reader heading: ${srOnly ? '✓ Present' : '✗ Missing'}<br>`
+      
+      // Check link relationships
+      const links = pagination.querySelectorAll('a[rel]')
+      testResults += `Link relationships: ${links.length} of 2 expected<br>`
+      
+      results.innerHTML = testResults
+    }
+
+    window.validateAriaAttributes = function() {
+      const results = document.getElementById('accessibility-results')
+      const pagination = document.getElementById('accessibility-pagination').querySelector('.public-good-pagination')
+      
+      if (!pagination) return
+      
+      let testResults = '<strong>ARIA Validation Test:</strong><br>'
+      
+      // Validate required ARIA attributes
+      const requiredAttrs = ['role', 'aria-label']
+      requiredAttrs.forEach(attr => {
+        const value = pagination.getAttribute(attr)
+        testResults += `${attr}: ${value ? '✓ ' + value : '✗ Missing'}<br>`
+      })
+      
+      // Check for aria-hidden on decorative elements
+      const hiddenElements = pagination.querySelectorAll('[aria-hidden="true"]')
+      testResults += `Decorative elements hidden: ${hiddenElements.length} elements<br>`
+      
+      results.innerHTML = testResults
+    }
+
+    // Accessibility pagination
+    const accessibilityPagination = createFullPagination(
+      { title: 'Accessibility guidelines for health content', url: '/health/accessibility' },
+      { title: 'Screen reader compatibility guide', url: '/health/screen-readers' }
+    )
+    document.getElementById('accessibility-pagination').appendChild(accessibilityPagination.element)
+
+    // Theme variations
+    const themes = ['standard', 'dark', 'contrast']
+    themes.forEach(theme => {
+      const themePagination = createFullPagination(
+        { title: `${theme} theme previous`, url: `/theme/${theme}/prev` },
+        { title: `${theme} theme next`, url: `/theme/${theme}/next` }
+      )
+      document.getElementById(`theme-${theme}`).appendChild(themePagination.element)
+    })
+
+    // Performance testing functions
+    window.createManyPaginations = function() {
+      const container = document.getElementById('performance-container')
+      const startTime = performance.now()
+      
+      for (let i = 0; i < 100; i++) {
+        const pagination = createPagination({
+          previousPage: { title: `Previous ${i}`, url: `/prev-${i}` },
+          nextPage: { title: `Next ${i}`, url: `/next-${i}` }
+        })
+        
+        const wrapper = document.createElement('div')
+        wrapper.style.marginBottom = '10px'
+        wrapper.appendChild(pagination.element)
+        container.appendChild(wrapper)
+        
+        performanceComponents.push(pagination)
+      }
+      
+      const endTime = performance.now()
+      const creationTime = Math.round(endTime - startTime)
+      
+      updatePerformanceStats(creationTime)
+    }
+
+    window.destroyAllPaginations = function() {
+      performanceComponents.forEach(pagination => pagination.destroy())
+      performanceComponents = []
+      document.getElementById('performance-container').innerHTML = ''
+      updatePerformanceStats(0)
+    }
+
+    window.measurePerformance = function() {
+      const startTime = performance.now()
+      
+      // Create and destroy a component to measure
+      const testPagination = createPagination({
+        previousPage: { title: 'Test Previous', url: '/test-prev' },
+        nextPage: { title: 'Test Next', url: '/test-next' }
+      })
+      
+      testPagination.destroy()
+      
+      const endTime = performance.now()
+      const testTime = Math.round(endTime - startTime)
+      
+      updatePerformanceStats(testTime)
+    }
+
+    function updatePerformanceStats(creationTime) {
+      document.getElementById('component-count').textContent = performanceComponents.length
+      document.getElementById('creation-time').textContent = creationTime
+      
+      // Rough memory estimation
+      const estimatedMemory = performanceComponents.length * 0.001 // 1KB per component estimate
+      document.getElementById('memory-usage').textContent = estimatedMemory.toFixed(3)
+    }
+
+    // Content series integration
+    const contentSeries = {
+      diabetes: {
+        title: 'Understanding Type 2 Diabetes',
+        pages: [
+          { title: 'What is diabetes?', url: '/diabetes/what-is' },
+          { title: 'Diabetes symptoms', url: '/diabetes/symptoms' },
+          { title: 'Causes and risk factors', url: '/diabetes/causes' },
+          { title: 'Treatment options', url: '/diabetes/treatment' },
+          { title: 'Living with diabetes', url: '/diabetes/living-with' }
+        ],
+        currentPage: 2
+      },
+      'mental-health': {
+        title: 'Mental Health Support Guide',
+        pages: [
+          { title: 'Understanding mental health', url: '/mental-health/understanding' },
+          { title: 'Getting help', url: '/mental-health/getting-help' },
+          { title: 'Treatment options', url: '/mental-health/treatment' },
+          { title: 'Self-care strategies', url: '/mental-health/self-care' }
+        ],
+        currentPage: 1
+      },
+      pregnancy: {
+        title: 'Pregnancy and Birth Guide',
+        pages: [
+          { title: 'Planning for pregnancy', url: '/pregnancy/planning' },
+          { title: 'Early pregnancy', url: '/pregnancy/early' },
+          { title: 'During pregnancy', url: '/pregnancy/during' },
+          { title: 'Birth and delivery', url: '/pregnancy/birth' },
+          { title: 'After birth', url: '/pregnancy/after' }
+        ],
+        currentPage: 3
+      },
+      'child-health': {
+        title: 'Child Health and Development',
+        pages: [
+          { title: 'Newborn care', url: '/child-health/newborn' },
+          { title: 'Infant development', url: '/child-health/infant' },
+          { title: 'Toddler health', url: '/child-health/toddler' },
+          { title: 'School age health', url: '/child-health/school-age' }
+        ],
+        currentPage: 0
+      }
+    }
+
+    window.loadContentSeries = function() {
+      const seriesKey = document.getElementById('content-series').value
+      const infoContainer = document.getElementById('content-series-info')
+      const paginationContainer = document.getElementById('content-series-pagination')
+      
+      paginationContainer.innerHTML = ''
+      
+      if (!seriesKey || !contentSeries[seriesKey]) {
+        infoContainer.innerHTML = '<h3>Select a content series above</h3><p>Choose a content series to see context-aware pagination.</p>'
+        return
+      }
+      
+      const series = contentSeries[seriesKey]
+      const currentIndex = series.currentPage
+      const currentPage = series.pages[currentIndex]
+      
+      // Update content info
+      infoContainer.innerHTML = `
+        <h3>${series.title}</h3>
+        <p><strong>Current page:</strong> ${currentPage.title} (${currentIndex + 1} of ${series.pages.length})</p>
+        <p>This demonstrates context-aware pagination within a content series.</p>
+      `
+      
+      // Create pagination based on current position
+      const config = {}
+      
+      if (currentIndex > 0) {
+        config.previousPage = series.pages[currentIndex - 1]
+      }
+      
+      if (currentIndex < series.pages.length - 1) {
+        config.nextPage = series.pages[currentIndex + 1]
+      }
+      
+      if (Object.keys(config).length > 0) {
+        const seriesPagination = createPagination(config)
+        paginationContainer.appendChild(seriesPagination.element)
+        
+        // Add event listener to prevent navigation and show context
+        seriesPagination.element.addEventListener('public-good:pagination:click', (event) => {
+          event.preventDefault()
+          alert(`In a real application, this would navigate to:\n${event.detail.url}\n\nDirection: ${event.detail.direction}\nSeries: ${series.title}`)
+        })
+      }
+    }
+
+    // Initialize performance stats
+    updatePerformanceStats(0)
+
+    console.log('Advanced pagination examples loaded successfully')
+  </script>
+</body>
+</html>

@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hero Component - Basic Examples</title>
+    <link rel="stylesheet" href="../../../core/base.css">
+    <link rel="stylesheet" href="../hero.css">
+    <style>
+        body {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+        .example {
+            margin-bottom: 3rem;
+        }
+        .example h3 {
+            margin: 2rem;
+            color: #0066cc;
+        }
+        .example-description {
+            margin: 0 2rem 1rem;
+            color: #666;
+        }
+        /* Mock grid and utility classes for examples */
+        .public-good-width-container {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+        .public-good-grid-row {
+            display: flex;
+            flex-wrap: wrap;
+            margin: 0 -0.5rem;
+        }
+        .public-good-grid-column-two-thirds {
+            flex: 0 0 66.666%;
+            max-width: 66.666%;
+            padding: 0 0.5rem;
+        }
+        @media (max-width: 40em) {
+            .public-good-grid-column-two-thirds {
+                flex: 0 0 100%;
+                max-width: 100%;
+            }
+        }
+        .public-good-body-l {
+            font-size: 1.125rem;
+            line-height: 1.4;
+            margin: 0;
+        }
+        @media (min-width: 40.0625em) {
+            .public-good-body-l {
+                font-size: 1.25rem;
+            }
+        }
+        /* Color variables for examples */
+        :root {
+            --public-good-color-blue: #005eb8;
+            --public-good-color-white: #ffffff;
+            --public-good-color-black: #212b32;
+            --public-good-color-border: #d8dde0;
+            --public-good-color-focus: #ffeb3b;
+            --public-good-spacing-3: 16px;
+            --public-good-spacing-4: 24px;
+            --public-good-spacing-5: 32px;
+            --public-good-spacing-6: 40px;
+            --public-good-spacing-8: 64px;
+            --public-good-spacing-9: 80px;
+        }
+    </style>
+</head>
+<body>
+    <h1 style="margin: 2rem;">Hero Component - Basic Examples</h1>
+    
+    <div class="example">
+        <h3>Basic Hero with Heading and Text</h3>
+        <p class="example-description">A simple hero banner with a heading and descriptive text.</p>
+        
+        <section class="public-good-hero">
+            <div class="public-good-width-container public-good-hero--border">
+                <div class="public-good-grid-row">
+                    <div class="public-good-grid-column-two-thirds">
+                        <div class="public-good-hero__wrapper">
+                            <h1 class="public-good-hero__heading">We're here for you</h1>
+                            <p class="public-good-body-l public-good-u-margin-bottom-0">Helping you take control of your health and wellbeing.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <div class="example">
+        <h3>Hero with Custom Heading Level</h3>
+        <p class="example-description">Using h2 instead of the default h1 for proper page structure.</p>
+        
+        <section class="public-good-hero">
+            <div class="public-good-width-container public-good-hero--border">
+                <div class="public-good-grid-row">
+                    <div class="public-good-grid-column-two-thirds">
+                        <div class="public-good-hero__wrapper">
+                            <h2 class="public-good-hero__heading">Welcome to Our Service</h2>
+                            <p class="public-good-body-l public-good-u-margin-bottom-0">Providing excellent support for all your needs.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <div class="example">
+        <h3>Hero with HTML Content</h3>
+        <p class="example-description">Hero with rich HTML content including links and emphasis.</p>
+        
+        <section class="public-good-hero">
+            <div class="public-good-width-container public-good-hero--border">
+                <div class="public-good-grid-row">
+                    <div class="public-good-grid-column-two-thirds">
+                        <div class="public-good-hero__wrapper">
+                            <h1 class="public-good-hero__heading">Start Your Journey</h1>
+                            <div>
+                                <p class="public-good-body-l">Take the first step towards <strong>better health</strong> and wellbeing.</p>
+                                <p><a href="#" class="public-good-link">Get started today</a> or <a href="#" class="public-good-link">learn more</a> about our services.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <div class="example">
+        <h3>Heading Only Hero</h3>
+        <p class="example-description">Simple hero with just a heading, useful for page introductions.</p>
+        
+        <section class="public-good-hero">
+            <div class="public-good-width-container public-good-hero--border">
+                <div class="public-good-grid-row">
+                    <div class="public-good-grid-column-two-thirds">
+                        <div class="public-good-hero__wrapper">
+                            <h1 class="public-good-hero__heading public-good-u-margin-bottom-0">About Our Organization</h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <div class="example">
+        <h3>Hero with Background Image</h3>
+        <p class="example-description">Hero with a background image but no content overlay.</p>
+        
+        <section class="public-good-hero public-good-hero--image" 
+                 style="background-image: url('https://images.unsplash.com/photo-1559757148-5c350d0d3c56?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&h=400&q=80');">
+            <div class="public-good-hero__overlay">
+                <!-- Empty hero with just background image -->
+            </div>
+        </section>
+    </div>
+
+    <div class="example">
+        <h3>Hero with Background Image and Content</h3>
+        <p class="example-description">Hero with background image and overlay content box.</p>
+        
+        <section class="public-good-hero public-good-hero--image public-good-hero--image-description" 
+                 style="background-image: url('https://images.unsplash.com/photo-1576091160399-112ba8d25d1f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&h=400&q=80');">
+            <div class="public-good-hero__overlay">
+                <div class="public-good-width-container">
+                    <div class="public-good-grid-row">
+                        <div class="public-good-grid-column-two-thirds">
+                            <div class="public-good-hero-content">
+                                <h1 class="public-good-hero__heading">Your Health Matters</h1>
+                                <p class="public-good-body-l public-good-u-margin-bottom-0">Discover comprehensive healthcare services designed around your needs.</p>
+                                <span class="public-good-hero__arrow" aria-hidden="true"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <div class="example">
+        <h3>Hero with Complex Content</h3>
+        <p class="example-description">Hero with multiple content elements and call-to-action.</p>
+        
+        <section class="public-good-hero public-good-hero--image public-good-hero--image-description" 
+                 style="background-image: url('https://images.unsplash.com/photo-1587825140708-dfaf72ae4b04?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&h=400&q=80');">
+            <div class="public-good-hero__overlay">
+                <div class="public-good-width-container">
+                    <div class="public-good-grid-row">
+                        <div class="public-good-grid-column-two-thirds">
+                            <div class="public-good-hero-content">
+                                <h1 class="public-good-hero__heading">Emergency Services</h1>
+                                <div>
+                                    <p class="public-good-body-l">24/7 emergency care when you need it most.</p>
+                                    <p>Call <strong>999</strong> for life-threatening emergencies or visit our emergency department.</p>
+                                </div>
+                                <span class="public-good-hero__arrow" aria-hidden="true"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script type="module">
+        import { initializeHeroes } from '../hero.js';
+        
+        document.addEventListener('DOMContentLoaded', () => {
+            // Initialize all hero components with data-module attribute
+            const heroes = document.querySelectorAll('[data-module="public-good-hero"]');
+            console.log(`Found ${heroes.length} hero components to initialize`);
+            
+            const instances = initializeHeroes();
+            console.log(`Initialized ${instances.length} hero instances`);
+            
+            // Example: Show how to access hero instances
+            instances.forEach((instance, index) => {
+                console.log(`Hero ${index + 1}:`, {
+                    hasImage: instance.hasImage(),
+                    heading: instance.getHeading(),
+                    content: instance.getContent(),
+                    visible: instance.isVisible()
+                });
+            });
+        });
+    </script>
+</body>
+</html>

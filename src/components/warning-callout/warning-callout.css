@@ -1,0 +1,451 @@
+/**
+ * Warning Callout Component
+ * Converted from NHS UK Design System to Public Good Design System
+ * 
+ * Provides warning callouts to help users identify and understand important warning content.
+ */
+
+/* =============================================================================
+   #WARNING CALLOUT
+   ============================================================================= */
+
+/**
+ * Warning callout styles
+ *
+ * Provides styles for highlighting critical, time-sensitive information
+ * that users need to be aware of.
+ */
+
+/* Base warning callout styles */
+.public-good-warning-callout {
+  box-sizing: border-box;
+  margin: var(--spacing-4, 16px) 0;
+  padding: var(--spacing-4, 16px);
+  border: var(--warning-border-width, 4px) solid var(--warning-border-color, #ffeb3b);
+  border-left-width: var(--warning-accent-width, 8px);
+  background-color: var(--warning-background-color, #fffbf0);
+  position: relative;
+}
+
+@media (min-width: 40.0625em) {
+  .public-good-warning-callout {
+    margin: var(--spacing-5, 24px) 0;
+    padding: var(--spacing-5, 24px);
+  }
+}
+
+/* Warning callout heading */
+.public-good-warning-callout__label {
+  margin: 0 0 var(--spacing-2, 8px) 0;
+  font-size: var(--font-size-large, 24px);
+  font-weight: 700;
+  line-height: 1.25;
+  color: var(--warning-heading-color, #0b0c0c);
+}
+
+@media (min-width: 40.0625em) {
+  .public-good-warning-callout__label {
+    font-size: var(--font-size-large-desktop, 24px);
+    margin-bottom: var(--spacing-3, 12px);
+  }
+}
+
+/* Warning callout content */
+.public-good-warning-callout__content {
+  margin: 0;
+}
+
+.public-good-warning-callout__content p {
+  margin: 0 0 var(--spacing-3, 12px) 0;
+  font-size: var(--font-size-base, 19px);
+  line-height: 1.4;
+  color: var(--warning-text-color, #0b0c0c);
+}
+
+.public-good-warning-callout__content p:last-child {
+  margin-bottom: 0;
+}
+
+@media (min-width: 40.0625em) {
+  .public-good-warning-callout__content p {
+    font-size: var(--font-size-base-desktop, 19px);
+  }
+}
+
+/* Direct paragraph children (for simpler HTML structure) */
+.public-good-warning-callout > p {
+  margin: var(--spacing-2, 8px) 0 0 0;
+  font-size: var(--font-size-base, 19px);
+  line-height: 1.4;
+  color: var(--warning-text-color, #0b0c0c);
+}
+
+.public-good-warning-callout > p:last-child {
+  margin-bottom: 0;
+}
+
+@media (min-width: 40.0625em) {
+  .public-good-warning-callout > p {
+    font-size: var(--font-size-base-desktop, 19px);
+    margin-top: var(--spacing-3, 12px);
+  }
+}
+
+/* =============================================================================
+   #WARNING CALLOUT VARIANTS
+   ============================================================================= */
+
+/* Compact variant */
+.public-good-warning-callout--compact {
+  padding: var(--spacing-3, 12px);
+  margin: var(--spacing-3, 12px) 0;
+}
+
+.public-good-warning-callout--compact .public-good-warning-callout__label {
+  font-size: var(--font-size-base, 19px);
+  margin-bottom: var(--spacing-1, 4px);
+}
+
+.public-good-warning-callout--compact .public-good-warning-callout__content p,
+.public-good-warning-callout--compact > p {
+  font-size: var(--font-size-small, 16px);
+  margin-bottom: var(--spacing-2, 8px);
+}
+
+/* Critical variant (enhanced visual prominence) */
+.public-good-warning-callout--critical {
+  border-color: var(--critical-border-color, #ff5722);
+  background-color: var(--critical-background-color, #fff5f5);
+  border-left-width: var(--critical-accent-width, 12px);
+}
+
+.public-good-warning-callout--critical .public-good-warning-callout__label {
+  color: var(--critical-heading-color, #d32f2f);
+}
+
+/* Subtle variant (less prominent) */
+.public-good-warning-callout--subtle {
+  border-width: var(--subtle-border-width, 2px);
+  border-left-width: var(--subtle-accent-width, 4px);
+  border-color: var(--subtle-border-color, #ffc107);
+  background-color: var(--subtle-background-color, #fefdf7);
+}
+
+/* =============================================================================
+   #ACCESSIBILITY FEATURES
+   ============================================================================= */
+
+/* Screen reader only content */
+.public-good-warning-callout-sr-only {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
+/* Focus indicators for interactive elements */
+.public-good-warning-callout a:focus {
+  outline: var(--focus-width, 3px) solid var(--focus-color, #fd0);
+  outline-offset: 0;
+  background-color: var(--focus-color, #fd0);
+  color: var(--focus-text-color, #0b0c0c);
+  box-shadow: 0 -2px var(--focus-color, #fd0), 0 4px var(--focus-text-color, #0b0c0c);
+  text-decoration: none;
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .public-good-warning-callout {
+    border-width: 6px;
+    border-left-width: 12px;
+  }
+  
+  .public-good-warning-callout__label {
+    font-weight: 900;
+  }
+  
+  .public-good-warning-callout--critical {
+    border-left-width: 16px;
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .public-good-warning-callout {
+    transition: none;
+  }
+}
+
+/* =============================================================================
+   #LINKS IN WARNING CALLOUTS
+   ============================================================================= */
+
+/* Link styles within warning callouts */
+.public-good-warning-callout a {
+  color: var(--warning-link-color, #005fcc);
+  text-decoration: underline;
+  text-decoration-thickness: max(1px, 0.0625rem);
+  text-underline-offset: 0.1578em;
+}
+
+.public-good-warning-callout a:visited {
+  color: var(--warning-link-visited-color, #4c2c92);
+}
+
+.public-good-warning-callout a:hover {
+  color: var(--warning-link-hover-color, #0048a0);
+  text-decoration-thickness: max(3px, 0.12rem, 0.12em);
+}
+
+.public-good-warning-callout a:active {
+  color: var(--warning-link-active-color, #0048a0);
+}
+
+/* =============================================================================
+   #LISTS IN WARNING CALLOUTS
+   ============================================================================= */
+
+/* List styles within warning callouts */
+.public-good-warning-callout ul,
+.public-good-warning-callout ol {
+  margin: var(--spacing-2, 8px) 0 var(--spacing-3, 12px) var(--spacing-4, 16px);
+  padding: 0;
+}
+
+.public-good-warning-callout li {
+  margin-bottom: var(--spacing-1, 4px);
+  font-size: var(--font-size-base, 19px);
+  line-height: 1.4;
+  color: var(--warning-text-color, #0b0c0c);
+}
+
+@media (min-width: 40.0625em) {
+  .public-good-warning-callout li {
+    font-size: var(--font-size-base-desktop, 19px);
+  }
+}
+
+/* Nested lists */
+.public-good-warning-callout li ul,
+.public-good-warning-callout li ol {
+  margin-top: var(--spacing-1, 4px);
+  margin-bottom: var(--spacing-1, 4px);
+}
+
+/* =============================================================================
+   #RESPONSIVE DESIGN
+   ============================================================================= */
+
+/* Mobile-specific adjustments */
+@media (max-width: 40.0525em) {
+  .public-good-warning-callout {
+    margin-left: calc(-1 * var(--spacing-3, 12px));
+    margin-right: calc(-1 * var(--spacing-3, 12px));
+  }
+  
+  .public-good-warning-callout__label {
+    font-size: var(--font-size-base-mobile, 18px);
+  }
+  
+  .public-good-warning-callout__content p,
+  .public-good-warning-callout > p {
+    font-size: var(--font-size-base-mobile, 18px);
+  }
+}
+
+/* Tablet adjustments */
+@media (min-width: 40.0625em) and (max-width: 48em) {
+  .public-good-warning-callout {
+    padding: var(--spacing-4, 16px) var(--spacing-5, 24px);
+  }
+}
+
+/* Print styles */
+@media print {
+  .public-good-warning-callout {
+    border: 2px solid #000000;
+    background-color: transparent;
+    break-inside: avoid;
+  }
+  
+  .public-good-warning-callout__label {
+    color: #000000;
+  }
+  
+  .public-good-warning-callout__content p,
+  .public-good-warning-callout > p {
+    color: #000000;
+  }
+  
+  .public-good-warning-callout a {
+    color: #000000;
+    text-decoration: underline;
+  }
+}
+
+/* =============================================================================
+   #CUSTOM PROPERTIES (CSS VARIABLES)
+   ============================================================================= */
+
+:root {
+  /* Warning callout colors */
+  --warning-border-color: #ffeb3b;
+  --warning-background-color: #fffbf0;
+  --warning-heading-color: #0b0c0c;
+  --warning-text-color: #0b0c0c;
+  --warning-link-color: #005fcc;
+  --warning-link-visited-color: #4c2c92;
+  --warning-link-hover-color: #0048a0;
+  --warning-link-active-color: #0048a0;
+  
+  /* Critical variant colors */
+  --critical-border-color: #ff5722;
+  --critical-background-color: #fff5f5;
+  --critical-heading-color: #d32f2f;
+  
+  /* Subtle variant colors */
+  --subtle-border-color: #ffc107;
+  --subtle-background-color: #fefdf7;
+  
+  /* Border widths */
+  --warning-border-width: 4px;
+  --warning-accent-width: 8px;
+  --critical-accent-width: 12px;
+  --subtle-border-width: 2px;
+  --subtle-accent-width: 4px;
+  
+  /* Focus states */
+  --focus-color: #fd0;
+  --focus-width: 3px;
+  --focus-text-color: #0b0c0c;
+  
+  /* Font sizes */
+  --font-size-base: 19px;
+  --font-size-base-desktop: 19px;
+  --font-size-base-mobile: 18px;
+  --font-size-small: 16px;
+  --font-size-large: 24px;
+  --font-size-large-desktop: 24px;
+  
+  /* Spacing */
+  --spacing-1: 4px;
+  --spacing-2: 8px;
+  --spacing-3: 12px;
+  --spacing-4: 16px;
+  --spacing-5: 24px;
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+  .public-good-warning-callout {
+    --warning-border-color: #ffeb3b;
+    --warning-background-color: #2a2419;
+    --warning-heading-color: #ffffff;
+    --warning-text-color: #ffffff;
+    --warning-link-color: #4fc3f7;
+    --warning-link-visited-color: #ba68c8;
+    --warning-link-hover-color: #29b6f6;
+    --warning-link-active-color: #29b6f6;
+    
+    --critical-border-color: #ff5722;
+    --critical-background-color: #2d1b1b;
+    --critical-heading-color: #ff6b6b;
+    
+    --subtle-border-color: #ffc107;
+    --subtle-background-color: #2a2619;
+  }
+}
+
+/* =============================================================================
+   #UTILITIES
+   ============================================================================= */
+
+/* Full width utility */
+.public-good-warning-callout--full-width {
+  margin-left: calc(-50vw + 50%);
+  margin-right: calc(-50vw + 50%);
+  padding-left: calc(50vw - 50%);
+  padding-right: calc(50vw - 50%);
+}
+
+/* No margin utility */
+.public-good-warning-callout--no-margin {
+  margin: 0;
+}
+
+/* Large margin utility */
+.public-good-warning-callout--large-margin {
+  margin: var(--spacing-5, 24px) 0;
+}
+
+@media (min-width: 40.0625em) {
+  .public-good-warning-callout--large-margin {
+    margin: var(--spacing-6, 32px) 0;
+  }
+}
+
+/* =============================================================================
+   #ANIMATION SUPPORT
+   ============================================================================= */
+
+/* Subtle animation for dynamic callouts */
+.public-good-warning-callout--animated {
+  animation: warning-callout-slide-in 0.3s ease-out;
+}
+
+@keyframes warning-callout-slide-in {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Respect reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  .public-good-warning-callout--animated {
+    animation: none;
+  }
+}
+
+/* =============================================================================
+   #COMPONENT COMBINATIONS
+   ============================================================================= */
+
+/* Warning callout in forms */
+.public-good-form-group .public-good-warning-callout {
+  margin-top: var(--spacing-2, 8px);
+  margin-bottom: var(--spacing-3, 12px);
+}
+
+/* Warning callout after headings */
+h1 + .public-good-warning-callout,
+h2 + .public-good-warning-callout,
+h3 + .public-good-warning-callout,
+h4 + .public-good-warning-callout,
+h5 + .public-good-warning-callout,
+h6 + .public-good-warning-callout {
+  margin-top: var(--spacing-3, 12px);
+}
+
+/* Multiple warning callouts */
+.public-good-warning-callout + .public-good-warning-callout {
+  margin-top: var(--spacing-4, 16px);
+}
+
+/* Warning callout in content sections */
+.public-good-main-wrapper .public-good-warning-callout:first-child {
+  margin-top: 0;
+}
+
+.public-good-main-wrapper .public-good-warning-callout:last-child {
+  margin-bottom: 0;
+}

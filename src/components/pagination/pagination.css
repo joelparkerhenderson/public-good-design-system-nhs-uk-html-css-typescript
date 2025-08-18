@@ -1,0 +1,267 @@
+/**
+ * Pagination Component Styles
+ * 
+ * Styles for pagination navigation following NHS UK Design System patterns.
+ * Provides clean, accessible styling for previous/next page navigation.
+ */
+
+/* Pagination container */
+.public-good-pagination {
+  margin: var(--public-good-spacing-8) 0;
+  border-top: var(--public-good-border-width-thin) solid var(--public-good-color-border);
+  border-bottom: var(--public-good-border-width-thin) solid var(--public-good-color-border);
+  padding: var(--public-good-spacing-5) 0;
+}
+
+/* Pagination list */
+.public-good-pagination__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+  gap: var(--public-good-spacing-4);
+}
+
+/* Pagination list items */
+.public-good-pagination-item--previous,
+.public-good-pagination-item--next {
+  flex: 1;
+  max-width: 50%;
+}
+
+/* Align previous item to left, next to right */
+.public-good-pagination-item--previous {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.public-good-pagination-item--next {
+  display: flex;
+  justify-content: flex-end;
+}
+
+/* Pagination links */
+.public-good-pagination__link {
+  display: block;
+  padding: var(--public-good-spacing-4);
+  color: var(--public-good-color-link);
+  text-decoration: none;
+  border: var(--public-good-border-width-medium) solid transparent;
+  border-radius: var(--public-good-border-radius-medium);
+  background-color: transparent;
+  transition: all 0.2s ease;
+  min-height: 44px;
+  position: relative;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.public-good-pagination__link:hover {
+  color: var(--public-good-color-link-hover);
+  background-color: var(--public-good-color-background-secondary);
+  border-color: var(--public-good-color-border-hover);
+  text-decoration: underline;
+}
+
+.public-good-pagination__link:focus {
+  outline: var(--public-good-spacing-focus-width) solid var(--public-good-color-focus);
+  outline-offset: var(--public-good-spacing-focus-offset);
+  background-color: var(--public-good-color-focus-background);
+  border-color: var(--public-good-color-text);
+  color: var(--public-good-color-text);
+  text-decoration: none;
+}
+
+.public-good-pagination__link:active {
+  color: var(--public-good-color-link-active);
+  background-color: var(--public-good-color-focus-background);
+}
+
+/* Link content wrapper */
+.public-good-pagination__link-title {
+  display: block;
+  font-size: var(--public-good-body-size);
+  line-height: var(--public-good-body-line-height);
+}
+
+/* Link labels (Previous/Next with arrows) */
+.public-good-pagination__link-label {
+  display: flex;
+  align-items: center;
+  gap: var(--public-good-spacing-2);
+  font-size: var(--public-good-body-small-size);
+  font-weight: var(--public-good-font-weight-medium);
+  color: var(--public-good-color-text-secondary);
+  margin-bottom: var(--public-good-spacing-1);
+}
+
+/* Page title text */
+.public-good-pagination__link-title-text {
+  display: block;
+  font-weight: var(--public-good-font-weight-medium);
+  color: var(--public-good-color-text);
+  margin-top: var(--public-good-spacing-1);
+  line-height: 1.3;
+}
+
+/* Icon styles */
+.public-good-icon {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  vertical-align: middle;
+  fill: currentColor;
+  flex-shrink: 0;
+}
+
+.public-good-icon__arrow-left,
+.public-good-icon__arrow-right {
+  width: 1.2em;
+  height: 1.2em;
+}
+
+/* Previous link specific styles */
+.public-good-pagination__link--prev {
+  text-align: left;
+}
+
+.public-good-pagination__link--prev .public-good-pagination__link-label {
+  justify-content: flex-start;
+}
+
+/* Next link specific styles */
+.public-good-pagination__link--next {
+  text-align: right;
+}
+
+.public-good-pagination__link--next .public-good-pagination__link-label {
+  justify-content: flex-end;
+  flex-direction: row-reverse;
+}
+
+/* Single pagination item (when only prev OR next exists) */
+.public-good-pagination__list:has(.public-good-pagination-item--previous:only-child) .public-good-pagination-item--previous,
+.public-good-pagination__list:has(.public-good-pagination-item--next:only-child) .public-good-pagination-item--next {
+  max-width: 100%;
+}
+
+/* Responsive design */
+@media (max-width: 40.0625em) { /* 641px */
+  .public-good-pagination {
+    margin: var(--public-good-spacing-6) 0;
+    padding: var(--public-good-spacing-4) 0;
+  }
+  
+  .public-good-pagination__list {
+    flex-direction: column;
+    gap: var(--public-good-spacing-3);
+  }
+  
+  .public-good-pagination-item--previous,
+  .public-good-pagination-item--next {
+    max-width: 100%;
+    flex: none;
+  }
+  
+  .public-good-pagination-item--previous {
+    order: 1;
+  }
+  
+  .public-good-pagination-item--next {
+    order: 2;
+  }
+  
+  .public-good-pagination__link {
+    padding: var(--public-good-spacing-3);
+  }
+  
+  .public-good-pagination__link--prev,
+  .public-good-pagination__link--next {
+    text-align: left;
+  }
+  
+  .public-good-pagination__link--next .public-good-pagination__link-label {
+    flex-direction: row;
+    justify-content: flex-start;
+  }
+}
+
+/* Print styles */
+@media print {
+  .public-good-pagination {
+    border: none;
+    padding: var(--public-good-spacing-4) 0;
+  }
+  
+  .public-good-pagination__link {
+    border: var(--public-good-border-width-thin) solid var(--public-good-color-text);
+    color: var(--public-good-color-text) !important;
+    background: transparent !important;
+  }
+  
+  .public-good-pagination__link:after {
+    content: " (" attr(href) ")";
+    font-size: var(--public-good-body-small-size);
+    font-weight: normal;
+  }
+  
+  .public-good-icon {
+    display: none;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .public-good-pagination {
+    border-color: currentColor;
+  }
+  
+  .public-good-pagination__link {
+    border-color: currentColor;
+  }
+  
+  .public-good-pagination__link:hover,
+  .public-good-pagination__link:focus {
+    background-color: currentColor;
+    color: var(--public-good-color-white);
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .public-good-pagination__link {
+    transition: none;
+  }
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+  .public-good-pagination {
+    border-color: var(--public-good-color-border-dark, #4c4c4c);
+  }
+  
+  .public-good-pagination__link {
+    color: var(--public-good-color-link-dark, #5694ca);
+  }
+  
+  .public-good-pagination__link:hover {
+    color: var(--public-good-color-link-hover-dark, #7fb8d1);
+    background-color: var(--public-good-color-background-secondary-dark, #1a1a1a);
+    border-color: var(--public-good-color-border-hover-dark, #666);
+  }
+  
+  .public-good-pagination__link:focus {
+    background-color: var(--public-good-color-focus-background-dark, #fd0);
+    color: var(--public-good-color-text-dark, #000);
+  }
+  
+  .public-good-pagination__link-label {
+    color: var(--public-good-color-text-secondary-dark, #ccc);
+  }
+  
+  .public-good-pagination__link-title-text {
+    color: var(--public-good-color-text-dark, #fff);
+  }
+}

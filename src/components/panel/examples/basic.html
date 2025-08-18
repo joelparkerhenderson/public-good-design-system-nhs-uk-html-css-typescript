@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Panel Component - Basic Examples</title>
+  <link rel="stylesheet" href="../../../index.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: var(--public-good-spacing-6);
+      background-color: var(--public-good-color-white);
+    }
+    
+    .example-section {
+      margin-bottom: var(--public-good-spacing-8);
+      padding: var(--public-good-spacing-6);
+      border: var(--public-good-border-width-thin) solid var(--public-good-color-border);
+      border-radius: var(--public-good-border-radius-medium);
+    }
+    
+    .example-title {
+      margin-top: 0;
+      color: var(--public-good-color-text);
+      font-size: var(--public-good-heading-3-size);
+      margin-bottom: var(--public-good-spacing-4);
+    }
+    
+    .example-description {
+      margin-bottom: var(--public-good-spacing-4);
+      color: var(--public-good-color-text-secondary);
+    }
+    
+    .context-area {
+      padding: var(--public-good-spacing-4);
+      background-color: var(--public-good-color-background-secondary);
+      border-radius: var(--public-good-border-radius-medium);
+      margin-bottom: var(--public-good-spacing-4);
+    }
+    
+    .guidance-note {
+      background-color: #f0f4f5;
+      border-left: 4px solid var(--public-good-color-blue);
+      padding: var(--public-good-spacing-3);
+      margin: var(--public-good-spacing-4) 0;
+      font-size: var(--public-good-body-small-size);
+    }
+  </style>
+</head>
+<body>
+  <h1>Panel Component - Basic Examples</h1>
+  <p>Examples demonstrating NHS UK Design System panel component usage patterns for confirmation pages.</p>
+
+  <div class="guidance-note">
+    <strong>Usage Guidance:</strong> Panels are primarily used on confirmation pages to highlight successful transactions. 
+    Keep text brief and ensure the panel stands out from surrounding content.
+  </div>
+
+  <!-- Basic Success Panel -->
+  <div class="example-section">
+    <h2 class="example-title">Basic Success Panel</h2>
+    <p class="example-description">
+      Simple panel with title only, suitable for basic confirmations.
+    </p>
+    
+    <div class="context-area">
+      <p><strong>Context:</strong> User has just completed a form submission</p>
+    </div>
+    
+    <div id="panel-basic"></div>
+  </div>
+
+  <!-- Panel with Body Content -->
+  <div class="example-section">
+    <h2 class="example-title">Panel with Body Content</h2>
+    <p class="example-description">
+      Panel with additional descriptive text providing more context about what happened.
+    </p>
+    
+    <div class="context-area">
+      <p><strong>Context:</strong> GP appointment booking confirmation page</p>
+    </div>
+    
+    <div id="panel-with-body"></div>
+  </div>
+
+  <!-- Different Heading Levels -->
+  <div class="example-section">
+    <h2 class="example-title">Different Heading Levels</h2>
+    <p class="example-description">
+      Panels can use different heading levels (h1-h6) depending on page hierarchy.
+    </p>
+    
+    <div class="context-area">
+      <p><strong>Context:</strong> Nested confirmations within a page structure</p>
+    </div>
+    
+    <div id="panel-h2"></div>
+    <div id="panel-h3"></div>
+  </div>
+
+  <!-- NHS Service Examples -->
+  <div class="example-section">
+    <h2 class="example-title">NHS Service Confirmations</h2>
+    <p class="example-description">
+      Real-world examples of panels used in NHS digital services.
+    </p>
+    
+    <div class="context-area">
+      <p><strong>Context:</strong> Common NHS service confirmation scenarios</p>
+    </div>
+    
+    <h3>Appointment Booking</h3>
+    <div id="panel-appointment"></div>
+    
+    <h3>Prescription Order</h3>
+    <div id="panel-prescription"></div>
+    
+    <h3>Registration Complete</h3>
+    <div id="panel-registration"></div>
+  </div>
+
+  <!-- Panel with Links -->
+  <div class="example-section">
+    <h2 class="example-title">Panel with Next Steps</h2>
+    <p class="example-description">
+      Panel containing links to guide users to their next actions.
+    </p>
+    
+    <div class="context-area">
+      <p><strong>Context:</strong> Health questionnaire submission with follow-up actions</p>
+    </div>
+    
+    <div id="panel-with-links"></div>
+  </div>
+
+  <!-- Payment Confirmation -->
+  <div class="example-section">
+    <h2 class="example-title">Payment Confirmation</h2>
+    <p class="example-description">
+      Panel for payment-related confirmations with transaction details.
+    </p>
+    
+    <div class="context-area">
+      <p><strong>Context:</strong> NHS prescription payment confirmation</p>
+    </div>
+    
+    <div id="panel-payment"></div>
+  </div>
+
+  <!-- Data Attribute Initialization -->
+  <div class="example-section">
+    <h2 class="example-title">Data Attribute Initialization</h2>
+    <p class="example-description">
+      Panel component automatically initialized from HTML data attributes.
+    </p>
+    
+    <div class="context-area">
+      <p><strong>Context:</strong> Auto-initialized confirmation panel</p>
+    </div>
+    
+    <!-- This will be auto-initialized by the component -->
+    <div 
+      data-public-good-panel
+      data-title="Account created successfully"
+      data-body="You can now access NHS services online. Check your email for activation instructions."
+      data-title-level="2">
+    </div>
+  </div>
+
+  <script type="module">
+    import { 
+      createPanel,
+      createSuccessPanel,
+      createConfirmationPanel
+    } from '../panel.js'
+
+    // Basic success panel
+    const basicPanel = createSuccessPanel('Application submitted')
+    document.getElementById('panel-basic').appendChild(basicPanel.element)
+
+    // Panel with body content
+    const bodyPanel = createSuccessPanel(
+      'GP appointment booked',
+      'Your appointment with Dr. Sarah Johnson is confirmed for Tuesday 23 January 2024 at 10:30am.'
+    )
+    document.getElementById('panel-with-body').appendChild(bodyPanel.element)
+
+    // Different heading levels
+    const h2Panel = createConfirmationPanel(
+      'Section completed',
+      'You have completed the personal details section.',
+      2
+    )
+    document.getElementById('panel-h2').appendChild(h2Panel.element)
+
+    const h3Panel = createConfirmationPanel(
+      'Step saved',
+      'Your progress has been saved automatically.',
+      3
+    )
+    document.getElementById('panel-h3').appendChild(h3Panel.element)
+
+    // NHS service examples
+    const appointmentPanel = createSuccessPanel(
+      'Appointment booked',
+      'Your routine check-up with Dr. Martin is scheduled for Friday 2 February 2024 at 2:15pm at Greenway Surgery.'
+    )
+    document.getElementById('panel-appointment').appendChild(appointmentPanel.element)
+
+    const prescriptionPanel = createSuccessPanel(
+      'Prescription ordered',
+      'Your repeat prescription for Lisinopril 10mg has been sent to Boots Pharmacy, High Street. It will be ready for collection in 2 working days.'
+    )
+    document.getElementById('panel-prescription').appendChild(prescriptionPanel.element)
+
+    const registrationPanel = createSuccessPanel(
+      'NHS account created',
+      'Welcome to NHS digital services. You can now book appointments, view your medical records, and order repeat prescriptions online.'
+    )
+    document.getElementById('panel-registration').appendChild(registrationPanel.element)
+
+    // Panel with links (using HTML content)
+    const linksPanel = createPanel({
+      title: 'Health questionnaire submitted',
+      body: `
+        <p>We have received your health questionnaire and will review it within 2 working days.</p>
+        <p>What happens next:</p>
+        <ul>
+          <li><a href="/check-status">Check the status of your submission</a></li>
+          <li><a href="/book-follow-up">Book a follow-up appointment</a> if needed</li>
+          <li><a href="/health-records">View your health records</a></li>
+        </ul>
+      `,
+      html: true
+    })
+    document.getElementById('panel-with-links').appendChild(linksPanel.element)
+
+    // Payment confirmation
+    const paymentPanel = createSuccessPanel(
+      'Payment successful',
+      'Your payment of £9.65 for prescription charges has been processed. Receipt number: NHS-2024-001234. You will receive an email confirmation shortly.'
+    )
+    document.getElementById('panel-payment').appendChild(paymentPanel.element)
+
+    // Prevent actual navigation for demo links
+    document.addEventListener('click', (event) => {
+      if (event.target && event.target.tagName === 'A') {
+        event.preventDefault()
+        alert(`In a real application, this would navigate to: ${event.target.href}`)
+      }
+    })
+
+    console.log('Panel examples loaded successfully')
+  </script>
+</body>
+</html>

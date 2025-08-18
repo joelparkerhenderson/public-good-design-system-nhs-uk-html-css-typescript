@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Radios Component - Basic Examples</title>
+  <link rel="stylesheet" href="../../../index.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: var(--public-good-spacing-6);
+      background-color: var(--public-good-color-white);
+    }
+    
+    .example-section {
+      margin-bottom: var(--public-good-spacing-8);
+      padding: var(--public-good-spacing-6);
+      border: var(--public-good-border-width-thin) solid var(--public-good-color-border);
+      border-radius: var(--public-good-border-radius-medium);
+    }
+    
+    .example-title {
+      margin-top: 0;
+      color: var(--public-good-color-text);
+      font-size: var(--public-good-heading-3-size);
+      margin-bottom: var(--public-good-spacing-4);
+    }
+    
+    .example-description {
+      margin-bottom: var(--public-good-spacing-4);
+      color: var(--public-good-color-text-secondary);
+    }
+    
+    .context-area {
+      padding: var(--public-good-spacing-4);
+      background-color: var(--public-good-color-background-secondary);
+      border-radius: var(--public-good-border-radius-medium);
+      margin-bottom: var(--public-good-spacing-4);
+    }
+    
+    .guidance-note {
+      background-color: #f0f4f5;
+      border-left: 4px solid var(--public-good-color-blue);
+      padding: var(--public-good-spacing-3);
+      margin: var(--public-good-spacing-4) 0;
+      font-size: var(--public-good-body-small-size);
+    }
+    
+    .form-group {
+      margin-bottom: var(--public-good-spacing-6);
+    }
+  </style>
+</head>
+<body>
+  <h1>Radios Component - Basic Examples</h1>
+  <p>Examples demonstrating NHS UK Design System radio button patterns for single-choice selections.</p>
+
+  <div class="guidance-note">
+    <strong>Usage Guidance:</strong> Use radio buttons when users need to select one option from a list of mutually exclusive choices. 
+    Always group related radio buttons in a fieldset with a clear legend.
+  </div>
+
+  <!-- Basic Radio Group -->
+  <div class="example-section">
+    <h2 class="example-title">Basic Radio Group</h2>
+    <p class="example-description">
+      Simple radio button group with legend and options.
+    </p>
+    
+    <div class="context-area">
+      <p><strong>Context:</strong> User selecting their preferred contact method</p>
+    </div>
+    
+    <div class="form-group">
+      <div id="contact-method-radios"></div>
+    </div>
+  </div>
+
+  <!-- Radio Group with Hint Text -->
+  <div class="example-section">
+    <h2 class="example-title">Radio Group with Hint Text</h2>
+    <p class="example-description">
+      Radio buttons with hint text to provide additional guidance.
+    </p>
+    
+    <div class="context-area">
+      <p><strong>Context:</strong> Patient registration form asking about accessibility needs</p>
+    </div>
+    
+    <div class="form-group">
+      <div id="accessibility-radios"></div>
+    </div>
+  </div>
+
+  <!-- Radio Group with Option Hints -->
+  <div class="example-section">
+    <h2 class="example-title">Radio Options with Individual Hints</h2>
+    <p class="example-description">
+      Radio buttons where individual options have their own hint text.
+    </p>
+    
+    <div class="context-area">
+      <p><strong>Context:</strong> Appointment booking asking about urgency</p>
+    </div>
+    
+    <div class="form-group">
+      <div id="urgency-radios"></div>
+    </div>
+  </div>
+
+  <!-- Small Radio Group -->
+  <div class="example-section">
+    <h2 class="example-title">Small Radio Group</h2>
+    <p class="example-description">
+      Compact radio buttons for use in forms with limited space.
+    </p>
+    
+    <div class="context-area">
+      <p><strong>Context:</strong> Quick yes/no question in a survey</p>
+    </div>
+    
+    <div class="form-group">
+      <div id="satisfied-radios"></div>
+    </div>
+  </div>
+
+  <!-- Inline Radio Group -->
+  <div class="example-section">
+    <h2 class="example-title">Inline Radio Group</h2>
+    <p class="example-description">
+      Radio buttons displayed horizontally for simple choices.
+    </p>
+    
+    <div class="context-area">
+      <p><strong>Context:</strong> Binary choice in a questionnaire</p>
+    </div>
+    
+    <div class="form-group">
+      <div id="consent-radios"></div>
+    </div>
+  </div>
+
+  <!-- Radio Group with Conditional Content -->
+  <div class="example-section">
+    <h2 class="example-title">Radio Group with Conditional Content</h2>
+    <p class="example-description">
+      Radio buttons that reveal additional form fields when selected.
+    </p>
+    
+    <div class="context-area">
+      <p><strong>Context:</strong> Contact preferences with conditional email/phone fields</p>
+    </div>
+    
+    <div class="form-group">
+      <div id="contact-preference-radios"></div>
+    </div>
+  </div>
+
+  <!-- NHS Service Examples -->
+  <div class="example-section">
+    <h2 class="example-title">NHS Service Examples</h2>
+    <p class="example-description">
+      Real-world examples of radio button usage in NHS digital services.
+    </p>
+    
+    <div class="context-area">
+      <p><strong>Context:</strong> Common scenarios from NHS online services</p>
+    </div>
+    
+    <h3>Patient Registration</h3>
+    <div class="form-group">
+      <div id="title-radios"></div>
+    </div>
+    
+    <h3>GP Practice Selection</h3>
+    <div class="form-group">
+      <div id="gp-selection-radios"></div>
+    </div>
+    
+    <h3>Appointment Type</h3>
+    <div class="form-group">
+      <div id="appointment-type-radios"></div>
+    </div>
+  </div>
+
+  <!-- Error State Example -->
+  <div class="example-section">
+    <h2 class="example-title">Error State</h2>
+    <p class="example-description">
+      Radio button group with validation error message.
+    </p>
+    
+    <div class="context-area">
+      <p><strong>Context:</strong> Required field that hasn't been completed</p>
+    </div>
+    
+    <div class="form-group">
+      <div id="required-radios"></div>
+    </div>
+  </div>
+
+  <!-- Data Attribute Initialization -->
+  <div class="example-section">
+    <h2 class="example-title">Data Attribute Initialization</h2>
+    <p class="example-description">
+      Radio button group automatically initialized from HTML data attributes.
+    </p>
+    
+    <div class="context-area">
+      <p><strong>Context:</strong> Auto-initialized component from server-rendered HTML</p>
+    </div>
+    
+    <!-- This will be auto-initialized by the component -->
+    <div 
+      data-public-good-radios
+      data-name="auto-gender"
+      data-legend="Gender"
+      data-hint="This information helps us provide appropriate care"
+      data-legend-size="medium"
+      data-options='[
+        {"value":"female","text":"Female"},
+        {"value":"male","text":"Male"},
+        {"value":"other","text":"Other"},
+        {"value":"prefer-not-to-say","text":"Prefer not to say"}
+      ]'>
+    </div>
+  </div>
+
+  <script type="module">
+    import { 
+      createRadios,
+      createSimpleRadios,
+      createInlineRadios,
+      createSmallRadios
+    } from '../radios.js'
+
+    // Basic contact method radios
+    const contactMethodRadios = createSimpleRadios(
+      'contact-method',
+      'How would you like to be contacted?',
+      [
+        { value: 'email', text: 'Email' },
+        { value: 'phone', text: 'Phone' },
+        { value: 'post', text: 'Post' },
+        { value: 'text', text: 'Text message' }
+      ]
+    )
+    document.getElementById('contact-method-radios').appendChild(contactMethodRadios.element)
+
+    // Accessibility needs with hint
+    const accessibilityRadios = createRadios({
+      name: 'accessibility-needs',
+      legend: 'Do you have any accessibility requirements?',
+      hint: 'We can make adjustments to help you access our services',
+      options: [
+        { value: 'yes', text: 'Yes, I have accessibility requirements' },
+        { value: 'no', text: 'No, I do not have accessibility requirements' },
+        { value: 'prefer-not-to-say', text: 'Prefer not to say' }
+      ]
+    })
+    document.getElementById('accessibility-radios').appendChild(accessibilityRadios.element)
+
+    // Urgency radios with option hints
+    const urgencyRadios = createRadios({
+      name: 'urgency',
+      legend: 'How urgent is your appointment?',
+      options: [
+        { 
+          value: 'urgent', 
+          text: 'Urgent',
+          hint: 'You need to be seen within 48 hours'
+        },
+        { 
+          value: 'routine', 
+          text: 'Routine',
+          hint: 'You can wait up to 2 weeks for an appointment'
+        },
+        { 
+          value: 'follow-up', 
+          text: 'Follow-up',
+          hint: 'This is a pre-arranged follow-up appointment'
+        }
+      ]
+    })
+    document.getElementById('urgency-radios').appendChild(urgencyRadios.element)
+
+    // Small radios
+    const satisfiedRadios = createSmallRadios(
+      'satisfied',
+      'Are you satisfied with our service?',
+      [
+        { value: 'very-satisfied', text: 'Very satisfied' },
+        { value: 'satisfied', text: 'Satisfied' },
+        { value: 'neutral', text: 'Neutral' },
+        { value: 'dissatisfied', text: 'Dissatisfied' },
+        { value: 'very-dissatisfied', text: 'Very dissatisfied' }
+      ]
+    )
+    document.getElementById('satisfied-radios').appendChild(satisfiedRadios.element)
+
+    // Inline radios
+    const consentRadios = createInlineRadios(
+      'consent',
+      'Do you consent to us contacting you about your application?',
+      [
+        { value: 'yes', text: 'Yes' },
+        { value: 'no', text: 'No' }
+      ]
+    )
+    document.getElementById('consent-radios').appendChild(consentRadios.element)
+
+    // Conditional content radios
+    const contactPreferenceRadios = createRadios({
+      name: 'contact-preference',
+      legend: 'What is your preferred contact method?',
+      hint: 'We will use this to send you appointment confirmations',
+      options: [
+        { 
+          value: 'email', 
+          text: 'Email',
+          conditional: `
+            <div class="public-good-form-group">
+              <label class="public-good-label" for="email-address">
+                Email address
+              </label>
+              <input class="public-good-input" type="email" id="email-address" name="email-address" placeholder="name@example.com">
+            </div>
+          `
+        },
+        { 
+          value: 'phone', 
+          text: 'Phone',
+          conditional: `
+            <div class="public-good-form-group">
+              <label class="public-good-label" for="phone-number">
+                Phone number
+              </label>
+              <input class="public-good-input" type="tel" id="phone-number" name="phone-number" placeholder="07700 900 982">
+            </div>
+          `
+        },
+        { value: 'post', text: 'Post' }
+      ]
+    })
+    document.getElementById('contact-preference-radios').appendChild(contactPreferenceRadios.element)
+
+    // NHS Service Examples
+    
+    // Title selection
+    const titleRadios = createRadios({
+      name: 'title',
+      legend: 'Title',
+      legendSize: 'medium',
+      options: [
+        { value: 'mr', text: 'Mr' },
+        { value: 'mrs', text: 'Mrs' },
+        { value: 'miss', text: 'Miss' },
+        { value: 'ms', text: 'Ms' },
+        { value: 'dr', text: 'Dr' },
+        { value: 'prof', text: 'Professor' },
+        { value: 'other', text: 'Other' }
+      ]
+    })
+    document.getElementById('title-radios').appendChild(titleRadios.element)
+
+    // GP Practice selection
+    const gpSelectionRadios = createRadios({
+      name: 'gp-practice',
+      legend: 'Choose your GP practice',
+      hint: 'Select the practice you are registered with',
+      options: [
+        { 
+          value: 'greenway-surgery', 
+          text: 'Greenway Surgery',
+          hint: '123 High Street, London, SW1A 1AA'
+        },
+        { 
+          value: 'riverside-medical', 
+          text: 'Riverside Medical Centre',
+          hint: '456 River Road, London, SW1A 2BB'
+        },
+        { 
+          value: 'park-view-clinic', 
+          text: 'Park View Clinic',
+          hint: '789 Park Lane, London, SW1A 3CC'
+        }
+      ]
+    })
+    document.getElementById('gp-selection-radios').appendChild(gpSelectionRadios.element)
+
+    // Appointment type
+    const appointmentTypeRadios = createRadios({
+      name: 'appointment-type',
+      legend: 'What type of appointment do you need?',
+      options: [
+        { 
+          value: 'gp', 
+          text: 'GP consultation',
+          hint: 'General health concerns and check-ups'
+        },
+        { 
+          value: 'nurse', 
+          text: 'Nurse appointment',
+          hint: 'Vaccinations, blood tests, and health checks'
+        },
+        { 
+          value: 'specialist', 
+          text: 'Specialist consultation',
+          hint: 'Specific medical conditions requiring specialist care'
+        },
+        { 
+          value: 'emergency', 
+          text: 'Emergency appointment',
+          hint: 'Urgent medical needs that cannot wait'
+        }
+      ]
+    })
+    document.getElementById('appointment-type-radios').appendChild(appointmentTypeRadios.element)
+
+    // Error state example
+    const requiredRadios = createRadios({
+      name: 'emergency-contact',
+      legend: 'Do you have an emergency contact?',
+      hint: 'This is a required field',
+      errorMessage: 'You must select whether you have an emergency contact',
+      options: [
+        { value: 'yes', text: 'Yes, I have an emergency contact' },
+        { value: 'no', text: 'No, I do not have an emergency contact' }
+      ]
+    })
+    document.getElementById('required-radios').appendChild(requiredRadios.element)
+
+    // Add some interaction logging for demonstration
+    document.addEventListener('public-good:radios:changed', (event) => {
+      console.log('Radio selection changed:', {
+        name: event.detail.config.name,
+        value: event.detail.value,
+        option: event.detail.option
+      })
+    })
+
+    console.log('Basic radios examples loaded successfully')
+  </script>
+</body>
+</html>

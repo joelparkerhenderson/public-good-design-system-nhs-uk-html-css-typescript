@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tag Component - Basic Examples</title>
+  <link rel="stylesheet" href="../tag.css">
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem;
+      line-height: 1.6;
+    }
+    .example {
+      margin-bottom: 2rem;
+      padding: 1.5rem;
+      border: 1px solid #e0e0e0;
+      border-radius: 8px;
+      background-color: #fafafa;
+    }
+    .example h3 {
+      margin-top: 0;
+      color: #333;
+    }
+    .code-example {
+      background-color: #f5f5f5;
+      padding: 1rem;
+      border-radius: 4px;
+      margin-top: 1rem;
+      font-family: 'Courier New', monospace;
+      font-size: 0.9rem;
+      overflow-x: auto;
+    }
+    .demo-section {
+      margin-bottom: 1rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid #e0e0e0;
+    }
+    .demo-section:last-child {
+      border-bottom: none;
+      margin-bottom: 0;
+      padding-bottom: 0;
+    }
+  </style>
+</head>
+<body>
+  <h1>Tag Component - Basic Examples</h1>
+  <p>The tag component is used to indicate the status of an item, such as "Active", "Inactive", or "Completed".</p>
+
+  <div class="example">
+    <h3>Basic Tag</h3>
+    <div class="demo-section">
+      <strong class="public-good-tag">Active</strong>
+    </div>
+    <div class="code-example">
+&lt;strong class="public-good-tag"&gt;Active&lt;/strong&gt;
+    </div>
+  </div>
+
+  <div class="example">
+    <h3>Color Variants</h3>
+    <div class="demo-section">
+      <strong class="public-good-tag">Default</strong>
+      <strong class="public-good-tag public-good-tag--grey">Grey</strong>
+      <strong class="public-good-tag public-good-tag--red">Error</strong>
+      <strong class="public-good-tag public-good-tag--green">Success</strong>
+      <strong class="public-good-tag public-good-tag--blue">Info</strong>
+    </div>
+    <div class="code-example">
+&lt;strong class="public-good-tag"&gt;Default&lt;/strong&gt;
+&lt;strong class="public-good-tag public-good-tag--grey"&gt;Grey&lt;/strong&gt;
+&lt;strong class="public-good-tag public-good-tag--red"&gt;Error&lt;/strong&gt;
+&lt;strong class="public-good-tag public-good-tag--green"&gt;Success&lt;/strong&gt;
+&lt;strong class="public-good-tag public-good-tag--blue"&gt;Info&lt;/strong&gt;
+    </div>
+  </div>
+
+  <div class="example">
+    <h3>Extended Color Palette</h3>
+    <div class="demo-section">
+      <strong class="public-good-tag public-good-tag--white">White</strong>
+      <strong class="public-good-tag public-good-tag--aqua-green">Aqua Green</strong>
+      <strong class="public-good-tag public-good-tag--purple">Purple</strong>
+      <strong class="public-good-tag public-good-tag--pink">Pink</strong>
+      <strong class="public-good-tag public-good-tag--orange">Orange</strong>
+      <strong class="public-good-tag public-good-tag--yellow">Yellow</strong>
+    </div>
+    <div class="code-example">
+&lt;strong class="public-good-tag public-good-tag--white"&gt;White&lt;/strong&gt;
+&lt;strong class="public-good-tag public-good-tag--aqua-green"&gt;Aqua Green&lt;/strong&gt;
+&lt;strong class="public-good-tag public-good-tag--purple"&gt;Purple&lt;/strong&gt;
+&lt;strong class="public-good-tag public-good-tag--pink"&gt;Pink&lt;/strong&gt;
+&lt;strong class="public-good-tag public-good-tag--orange"&gt;Orange&lt;/strong&gt;
+&lt;strong class="public-good-tag public-good-tag--yellow"&gt;Yellow&lt;/strong&gt;
+    </div>
+  </div>
+
+  <div class="example">
+    <h3>Status Examples</h3>
+    <div class="demo-section">
+      <strong class="public-good-tag public-good-tag--active">Active</strong>
+      <strong class="public-good-tag public-good-tag--inactive">Inactive</strong>
+      <strong class="public-good-tag public-good-tag--pending">Pending</strong>
+      <strong class="public-good-tag public-good-tag--completed">Completed</strong>
+      <strong class="public-good-tag public-good-tag--error">Error</strong>
+    </div>
+    <div class="code-example">
+&lt;strong class="public-good-tag public-good-tag--active"&gt;Active&lt;/strong&gt;
+&lt;strong class="public-good-tag public-good-tag--inactive"&gt;Inactive&lt;/strong&gt;
+&lt;strong class="public-good-tag public-good-tag--pending"&gt;Pending&lt;/strong&gt;
+&lt;strong class="public-good-tag public-good-tag--completed"&gt;Completed&lt;/strong&gt;
+&lt;strong class="public-good-tag public-good-tag--error"&gt;Error&lt;/strong&gt;
+    </div>
+  </div>
+
+  <div class="example">
+    <h3>Size Variants</h3>
+    <div class="demo-section">
+      <strong class="public-good-tag public-good-tag--small">Small</strong>
+      <strong class="public-good-tag">Regular</strong>
+      <strong class="public-good-tag public-good-tag--large">Large</strong>
+    </div>
+    <div class="code-example">
+&lt;strong class="public-good-tag public-good-tag--small"&gt;Small&lt;/strong&gt;
+&lt;strong class="public-good-tag"&gt;Regular&lt;/strong&gt;
+&lt;strong class="public-good-tag public-good-tag--large"&gt;Large&lt;/strong&gt;
+    </div>
+  </div>
+
+  <div class="example">
+    <h3>Multiple Tags</h3>
+    <div class="demo-section">
+      <div class="public-good-tag-container">
+        <strong class="public-good-tag public-good-tag--green">Approved</strong>
+        <strong class="public-good-tag public-good-tag--blue">In Review</strong>
+        <strong class="public-good-tag public-good-tag--orange">Pending</strong>
+        <strong class="public-good-tag public-good-tag--red">Rejected</strong>
+      </div>
+    </div>
+    <div class="code-example">
+&lt;div class="public-good-tag-container"&gt;
+  &lt;strong class="public-good-tag public-good-tag--green"&gt;Approved&lt;/strong&gt;
+  &lt;strong class="public-good-tag public-good-tag--blue"&gt;In Review&lt;/strong&gt;
+  &lt;strong class="public-good-tag public-good-tag--orange"&gt;Pending&lt;/strong&gt;
+  &lt;strong class="public-good-tag public-good-tag--red"&gt;Rejected&lt;/strong&gt;
+&lt;/div&gt;
+    </div>
+  </div>
+
+  <div class="example">
+    <h3>Interactive Tags</h3>
+    <div class="demo-section">
+      <strong class="public-good-tag public-good-tag--interactive public-good-tag--green">Clickable</strong>
+      <strong class="public-good-tag public-good-tag--interactive public-good-tag--blue">Hoverable</strong>
+      <strong class="public-good-tag public-good-tag--interactive public-good-tag--purple">Interactive</strong>
+    </div>
+    <div class="code-example">
+&lt;strong class="public-good-tag public-good-tag--interactive public-good-tag--green"&gt;Clickable&lt;/strong&gt;
+&lt;strong class="public-good-tag public-good-tag--interactive public-good-tag--blue"&gt;Hoverable&lt;/strong&gt;
+&lt;strong class="public-good-tag public-good-tag--interactive public-good-tag--purple"&gt;Interactive&lt;/strong&gt;
+    </div>
+  </div>
+
+  <div class="example">
+    <h3>Removable Tags</h3>
+    <div class="demo-section">
+      <strong class="public-good-tag public-good-tag--removable">Removable</strong>
+      <strong class="public-good-tag public-good-tag--removable public-good-tag--blue">Remove Me</strong>
+      <strong class="public-good-tag public-good-tag--removable public-good-tag--green">Dismiss</strong>
+    </div>
+    <div class="code-example">
+&lt;strong class="public-good-tag public-good-tag--removable"&gt;Removable&lt;/strong&gt;
+&lt;strong class="public-good-tag public-good-tag--removable public-good-tag--blue"&gt;Remove Me&lt;/strong&gt;
+&lt;strong class="public-good-tag public-good-tag--removable public-good-tag--green"&gt;Dismiss&lt;/strong&gt;
+    </div>
+  </div>
+
+  <div class="example">
+    <h3>Usage Guidelines</h3>
+    <div class="demo-section">
+      <h4>✅ Do</h4>
+      <ul>
+        <li>Use adjectives for tag text (Active, Completed, Valid)</li>
+        <li>Keep text short and descriptive</li>
+        <li>Use consistent colors for similar statuses</li>
+        <li>Start with the smallest number of statuses needed</li>
+      </ul>
+      
+      <h4>❌ Don't</h4>
+      <ul>
+        <li>Use verbs in tag text (Submit, Click, Download)</li>
+        <li>Add links to tags - they should be informational only</li>
+        <li>Rely solely on color to convey information</li>
+        <li>Use too many different status types</li>
+      </ul>
+    </div>
+  </div>
+
+  <script type="module">
+    import { createTag, createTagContainer, initializeTags } from '../tag.js';
+
+    // Add some interactive behavior to demonstrate functionality
+    document.addEventListener('DOMContentLoaded', () => {
+      // Initialize any tags with data attributes
+      initializeTags();
+
+      // Add click handler for removable tags
+      document.querySelectorAll('.public-good-tag--removable').forEach(tag => {
+        tag.addEventListener('click', (event) => {
+          if (event.target.classList.contains('public-good-tag--removable')) {
+            event.target.style.opacity = '0.5';
+            setTimeout(() => {
+              event.target.remove();
+            }, 200);
+          }
+        });
+      });
+
+      // Add click handler for interactive tags
+      document.querySelectorAll('.public-good-tag--interactive').forEach(tag => {
+        tag.addEventListener('click', () => {
+          console.log('Tag clicked:', tag.textContent);
+        });
+      });
+    });
+  </script>
+</body>
+</html>

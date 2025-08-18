@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skip Link Component - Basic Examples</title>
+    <link rel="stylesheet" href="../../../core/base.css">
+    <link rel="stylesheet" href="../skip-link.css">
+    <style>
+        body {
+            margin: 0;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+        .example-notice {
+            background: #e8f4fd;
+            color: #003d7a;
+            padding: 1rem;
+            margin: 1rem;
+            border-left: 4px solid #0066cc;
+            border-radius: 0 4px 4px 0;
+        }
+        .example-notice strong {
+            color: #003d7a;
+        }
+        header {
+            background: #0066cc;
+            color: white;
+            padding: 1rem 2rem;
+        }
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            gap: 2rem;
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            transition: background-color 0.2s;
+        }
+        nav a:hover, nav a:focus {
+            background: rgba(255, 255, 255, 0.2);
+            outline: 2px solid #ffeb3b;
+            outline-offset: 2px;
+        }
+        .breadcrumb {
+            background: #f8f9fa;
+            padding: 1rem 2rem;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        .breadcrumb-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .breadcrumb a {
+            color: #0066cc;
+            text-decoration: none;
+        }
+        .breadcrumb a:hover {
+            text-decoration: underline;
+        }
+        main {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        .content-section {
+            margin-bottom: 3rem;
+            padding: 2rem;
+            background: white;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+        .content-section h2 {
+            margin-top: 0;
+            color: #0066cc;
+        }
+        aside {
+            background: #f8f9fa;
+            padding: 2rem;
+            margin: 2rem 0;
+            border-radius: 8px;
+        }
+        aside h3 {
+            margin-top: 0;
+            color: #495057;
+        }
+        footer {
+            background: #212b32;
+            color: white;
+            padding: 3rem 2rem 2rem;
+            margin-top: 4rem;
+        }
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+        .footer-section h4 {
+            margin-bottom: 1rem;
+            color: #ffffff;
+        }
+        .footer-section ul {
+            list-style: none;
+            padding: 0;
+        }
+        .footer-section a {
+            color: #ccc;
+            text-decoration: none;
+        }
+        .footer-section a:hover, .footer-section a:focus {
+            color: white;
+            text-decoration: underline;
+        }
+        .keyboard-hint {
+            background: #fff3cd;
+            color: #856404;
+            padding: 1rem;
+            border-radius: 4px;
+            margin: 1rem 0;
+            border-left: 4px solid #ffc107;
+        }
+        .demo-target {
+            padding: 1rem;
+            margin: 1rem 0;
+            border: 2px dashed #0066cc;
+            border-radius: 4px;
+            background: #f8f9ff;
+        }
+        .demo-target:focus {
+            outline: 3px solid #ffeb3b;
+            outline-offset: 2px;
+            background: #e3f2fd;
+        }
+        /* Color variables for examples */
+        :root {
+            --public-good-color-text: #212b32;
+            --public-good-color-text-secondary: #666666;
+            --public-good-color-link: #0066cc;
+            --public-good-color-link-hover: #003d7a;
+            --public-good-color-focus: #ffeb3b;
+            --public-good-spacing-1: 8px;
+            --public-good-spacing-2: 12px;
+            --public-good-spacing-3: 16px;
+            --public-good-spacing-4: 24px;
+        }
+        /* Mobile responsive */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            nav ul {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+            main {
+                padding: 1rem;
+            }
+            .content-section {
+                padding: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Skip Links - These should be the first interactive elements -->
+    <div class="public-good-skip-links">
+        <a class="public-good-skip-link" href="#main-content">Skip to main content</a>
+        <a class="public-good-skip-link" href="#primary-navigation">Skip to navigation</a>
+        <a class="public-good-skip-link" href="#page-footer">Skip to footer</a>
+    </div>
+
+    <header role="banner">
+        <div class="header-content">
+            <div class="logo">Public Good Design System</div>
+            <nav id="primary-navigation" role="navigation" aria-label="Primary navigation">
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#components">Components</a></li>
+                    <li><a href="#patterns">Patterns</a></li>
+                    <li><a href="#guidance">Guidance</a></li>
+                    <li><a href="#resources">Resources</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="breadcrumb">
+        <div class="breadcrumb-content">
+            <nav aria-label="Breadcrumb">
+                <a href="#home">Home</a> &gt; 
+                <a href="#components">Components</a> &gt; 
+                Skip Link Examples
+            </nav>
+        </div>
+    </div>
+
+    <main id="main-content" tabindex="-1" role="main">
+        <div class="example-notice">
+            <strong>How to test skip links:</strong> Press <kbd>Tab</kbd> to see the skip links appear, or click in this content area and then press <kbd>Tab</kbd>. Skip links are hidden until they receive keyboard focus, which is their intended behavior for accessibility.
+        </div>
+
+        <div class="keyboard-hint">
+            <strong>💡 Keyboard Testing Tip:</strong> 
+            To fully experience skip links, use only your keyboard for navigation. Press Tab to move forward, Shift+Tab to move backward, and Enter to activate links. This simulates the experience of users who rely on keyboard navigation.
+        </div>
+
+        <div class="content-section">
+            <h1>Skip Link Component - Basic Examples</h1>
+            <p>This page demonstrates the Skip Link component in a realistic page layout. Skip links help keyboard-only users bypass repetitive navigation and jump directly to important page sections.</p>
+            
+            <h2>What are Skip Links?</h2>
+            <p>Skip links are navigation aids that:</p>
+            <ul>
+                <li><strong>Improve accessibility:</strong> Help users with mobility impairments or those using screen readers</li>
+                <li><strong>Save time:</strong> Allow users to bypass long navigation menus</li>
+                <li><strong>Reduce frustration:</strong> Eliminate the need to tab through many elements</li>
+                <li><strong>Follow standards:</strong> Required by WCAG 2.1 AA accessibility guidelines</li>
+            </ul>
+        </div>
+
+        <div class="content-section">
+            <h2 id="skip-link-behavior">Skip Link Behavior</h2>
+            <p>The skip links on this page demonstrate several important behaviors:</p>
+            
+            <div class="demo-target" id="demo-target-1" tabindex="-1">
+                <h3>Demo Target 1</h3>
+                <p>This is a demonstration target that can receive focus when navigated to via a skip link. Notice how it becomes highlighted when focused.</p>
+            </div>
+
+            <h3>Key Features:</h3>
+            <ul>
+                <li><strong>Hidden by default:</strong> Skip links are positioned off-screen until focused</li>
+                <li><strong>Visible when focused:</strong> Pressing Tab reveals them with high contrast styling</li>
+                <li><strong>Smooth scrolling:</strong> Navigating to targets uses smooth scrolling (respects user preferences)</li>
+                <li><strong>Target focusing:</strong> The destination element receives focus for continued navigation</li>
+                <li><strong>Multiple links:</strong> Support for multiple skip destinations</li>
+            </ul>
+        </div>
+
+        <div class="content-section">
+            <h2>Skip Link Targets</h2>
+            <p>Skip links navigate to specific elements on the page. Here are the targets available on this page:</p>
+            
+            <div class="demo-target" id="demo-target-2" tabindex="-1">
+                <h3>Main Content Target</h3>
+                <p>The main content area (this section) is the primary skip link target. It has <code>id="main-content"</code> and <code>tabindex="-1"</code> to receive focus.</p>
+            </div>
+
+            <div class="demo-target" id="demo-target-3" tabindex="-1">
+                <h3>Navigation Target</h3>
+                <p>The primary navigation menu is another common skip link target, allowing users to jump to navigation if needed.</p>
+            </div>
+
+            <div class="demo-target" id="demo-target-4" tabindex="-1">
+                <h3>Footer Target</h3>
+                <p>The footer section provides additional navigation and information, useful for users who want to skip to the end of the page.</p>
+            </div>
+        </div>
+
+        <aside id="sidebar" tabindex="-1">
+            <h3>Related Information</h3>
+            <p>This sidebar contains supplementary information about skip links and accessibility best practices.</p>
+            <ul>
+                <li><a href="#wcag">WCAG 2.1 Guidelines</a></li>
+                <li><a href="#keyboard">Keyboard Navigation</a></li>
+                <li><a href="#screen-readers">Screen Reader Support</a></li>
+                <li><a href="#testing">Accessibility Testing</a></li>
+            </ul>
+        </aside>
+
+        <div class="content-section">
+            <h2>Implementation Examples</h2>
+            <p>Here are different ways to implement skip links:</p>
+
+            <h3>Single Skip Link</h3>
+            <pre><code>&lt;a class="public-good-skip-link" href="#main"&gt;Skip to main content&lt;/a&gt;</code></pre>
+
+            <h3>Multiple Skip Links</h3>
+            <pre><code>&lt;div class="public-good-skip-links"&gt;
+  &lt;a class="public-good-skip-link" href="#main"&gt;Skip to main content&lt;/a&gt;
+  &lt;a class="public-good-skip-link" href="#nav"&gt;Skip to navigation&lt;/a&gt;
+  &lt;a class="public-good-skip-link" href="#footer"&gt;Skip to footer&lt;/a&gt;
+&lt;/div&gt;</code></pre>
+
+            <h3>Target Element</h3>
+            <pre><code>&lt;main id="main" tabindex="-1" role="main"&gt;
+  &lt;!-- Main content --&gt;
+&lt;/main&gt;</code></pre>
+        </div>
+
+        <div class="content-section">
+            <h2>Testing Your Skip Links</h2>
+            <p>To ensure your skip links work properly:</p>
+            <ol>
+                <li><strong>Keyboard Test:</strong> Press Tab on page load - skip links should be first</li>
+                <li><strong>Visibility Test:</strong> Skip links should be clearly visible when focused</li>
+                <li><strong>Navigation Test:</strong> Activating skip links should move focus to targets</li>
+                <li><strong>Screen Reader Test:</strong> Test with NVDA, JAWS, or VoiceOver</li>
+                <li><strong>Mobile Test:</strong> Ensure skip links work on mobile devices with external keyboards</li>
+            </ol>
+
+            <div class="keyboard-hint">
+                <strong>Test this page:</strong> Try using Tab, Shift+Tab, Enter, and Space keys to navigate. Start from the top of the page and experience how skip links make navigation more efficient.
+            </div>
+        </div>
+    </main>
+
+    <footer id="page-footer" role="contentinfo" tabindex="-1">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>Components</h4>
+                <ul>
+                    <li><a href="#skip-link">Skip Link</a></li>
+                    <li><a href="#button">Button</a></li>
+                    <li><a href="#form">Form Elements</a></li>
+                    <li><a href="#navigation">Navigation</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Guidelines</h4>
+                <ul>
+                    <li><a href="#accessibility">Accessibility</a></li>
+                    <li><a href="#usability">Usability</a></li>
+                    <li><a href="#design">Design Principles</a></li>
+                    <li><a href="#content">Content Style</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Resources</h4>
+                <ul>
+                    <li><a href="#documentation">Documentation</a></li>
+                    <li><a href="#examples">Code Examples</a></li>
+                    <li><a href="#testing">Testing Tools</a></li>
+                    <li><a href="#support">Support</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>About</h4>
+                <ul>
+                    <li><a href="#project">About This Project</a></li>
+                    <li><a href="#contribute">How to Contribute</a></li>
+                    <li><a href="#license">License</a></li>
+                    <li><a href="#contact">Contact Us</a></li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+
+    <script type="module">
+        import { 
+            SkipLink,
+            initializeSkipLinks,
+            validateSkipLinks
+        } from '../skip-link.js';
+        
+        document.addEventListener('DOMContentLoaded', () => {
+            // Initialize skip links
+            const skipLinks = document.querySelectorAll('.public-good-skip-link');
+            const instances = [];
+            
+            skipLinks.forEach(element => {
+                const instance = new SkipLink(element, {
+                    scrollBehavior: 'smooth',
+                    focusTarget: true
+                });
+                instances.push(instance);
+            });
+
+            // Add event listeners for demonstration
+            skipLinks.forEach(skipLink => {
+                skipLink.addEventListener('skipLink:activated', (event) => {
+                    console.log('Skip link activated:', {
+                        text: event.detail.skipLink.getText(),
+                        href: event.detail.href,
+                        target: event.detail.target
+                    });
+                });
+            });
+
+            // Validate skip links on this page
+            const validation = validateSkipLinks();
+            console.log('Skip link validation:', validation);
+            
+            if (validation.issues.length === 0) {
+                console.log('✓ All skip links are properly configured');
+            } else {
+                console.warn('Skip link issues found:', validation.issues);
+            }
+
+            // Add focus indicators for demo targets
+            const demoTargets = document.querySelectorAll('.demo-target');
+            demoTargets.forEach(target => {
+                target.addEventListener('focus', () => {
+                    console.log(`Focus moved to: ${target.id}`);
+                });
+            });
+
+            // Log instructions for testing
+            console.log(`
+Skip Link Testing Instructions:
+1. Press Tab to see skip links appear
+2. Use Enter or Space to activate them
+3. Notice how focus moves to target sections
+4. Try Shift+Tab to navigate backward
+
+Found ${skipLinks.length} skip links on this page:
+${Array.from(skipLinks).map((link, i) => `${i+1}. "${link.textContent}" → ${link.href}`).join('\n')}
+            `);
+
+            // Add keyboard navigation help
+            document.addEventListener('keydown', (event) => {
+                if (event.key === 'F1') {
+                    event.preventDefault();
+                    alert(`
+Keyboard Navigation Help:
+• Tab: Move to next interactive element
+• Shift+Tab: Move to previous interactive element  
+• Enter: Activate links and buttons
+• Space: Activate links and buttons
+• Arrow Keys: Navigate within components
+• Escape: Close dialogs or return to main content
+
+Skip Link Testing:
+• Press Tab when page loads to see skip links
+• Skip links are hidden until they receive focus
+• Use skip links to bypass repetitive navigation
+                    `);
+                }
+            });
+
+            // Show help hint
+            setTimeout(() => {
+                if (!sessionStorage.getItem('skip-link-help-shown')) {
+                    console.log('💡 Press F1 for keyboard navigation help');
+                    sessionStorage.setItem('skip-link-help-shown', 'true');
+                }
+            }, 2000);
+        });
+    </script>
+</body>
+</html>

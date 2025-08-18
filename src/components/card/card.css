@@ -1,0 +1,393 @@
+/**
+ * Card Component Styles
+ * Converted from NHS UK Design System card component
+ */
+
+/* Core card styles */
+.public-good-card {
+  background: var(--public-good-color-background);
+  border: var(--public-good-border-width-thin) solid var(--public-good-color-border);
+  position: relative;
+  width: 100%;
+  margin-bottom: var(--public-good-spacing-7);
+}
+
+.public-good-card__img {
+  border-bottom: var(--public-good-border-width-thin) solid var(--public-good-color-border-subtle);
+  display: block;
+  width: 100%;
+}
+
+@media print {
+  .public-good-card__img {
+    display: none;
+  }
+}
+
+.public-good-card__content {
+  padding: var(--public-good-spacing-5);
+}
+
+.public-good-card__heading {
+  margin-bottom: var(--public-good-spacing-3);
+}
+
+.public-good-card__heading:has(+ .public-good-icon) {
+  margin-bottom: 0;
+}
+
+.public-good-card__description {
+  margin-bottom: 0;
+}
+
+.public-good-card__link {
+  color: inherit;
+  text-decoration: none;
+}
+
+.public-good-card__link:hover {
+  color: inherit;
+}
+
+.public-good-card__link:focus {
+  outline: var(--public-good-spacing-focus-width) solid var(--public-good-color-focus);
+  outline-offset: var(--public-good-spacing-focus-offset);
+  color: var(--public-good-color-text);
+}
+
+/* Clickable card styles */
+.public-good-card--clickable {
+  border-bottom-width: var(--public-good-spacing-1);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.public-good-card--clickable:hover {
+  border-color: var(--public-good-color-border-hover);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.public-good-card--clickable:focus {
+  outline: var(--public-good-spacing-focus-width) solid var(--public-good-color-focus);
+  outline-offset: var(--public-good-spacing-focus-offset);
+}
+
+.public-good-card--clickable .public-good-card__heading a,
+.public-good-card--clickable .public-good-card__link {
+  position: relative;
+}
+
+.public-good-card--clickable .public-good-card__heading a::before,
+.public-good-card--clickable .public-good-card__link::before {
+  background-color: rgba(255, 255, 255, 0);
+  bottom: 0;
+  content: "";
+  display: block;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+.public-good-card--clickable:active {
+  border-color: var(--public-good-color-border-hover);
+  bottom: calc(-1 * var(--public-good-border-width-thin));
+  transform: translateY(2px);
+}
+
+/* Card group styles */
+.public-good-card-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--public-good-spacing-5);
+  list-style: none;
+  margin: 0 0 var(--public-good-spacing-3) 0;
+  padding: 0;
+}
+
+@media (max-width: 768px) {
+  .public-good-card-group {
+    flex-direction: column;
+    margin-bottom: var(--public-good-spacing-6);
+  }
+}
+
+.public-good-card-group__item {
+  flex: 1;
+  min-width: 0;
+  list-style-type: none;
+  margin-bottom: 0;
+}
+
+.public-good-card-group__item .public-good-card {
+  height: 100%;
+  margin-bottom: var(--public-good-spacing-5);
+}
+
+@media (max-width: 768px) {
+  .public-good-card-group__item .public-good-card {
+    margin-bottom: var(--public-good-spacing-3);
+  }
+
+  .public-good-card-group__item:last-child .public-good-card {
+    margin-bottom: 0;
+  }
+}
+
+.public-good-card-group + h2,
+.public-good-card-group + .public-good-heading-l,
+.public-good-card-group + h3,
+.public-good-card-group + .public-good-heading-m {
+  padding-top: 0;
+}
+
+/* Feature card styles */
+.public-good-card--feature {
+  margin-top: var(--public-good-spacing-7);
+}
+
+.public-good-card__heading--feature {
+  background: var(--public-good-color-primary);
+  color: var(--public-good-color-text-inverse);
+  display: inline-block;
+  left: calc(-1 * (var(--public-good-spacing-4) + var(--public-good-border-width-thin)));
+  margin-bottom: var(--public-good-spacing-2);
+  margin-right: calc(-1 * var(--public-good-spacing-4));
+  padding: var(--public-good-spacing-2) var(--public-good-spacing-4);
+  position: relative;
+  top: calc(-1 * var(--public-good-spacing-2));
+}
+
+@media (min-width: 768px) {
+  .public-good-card__heading--feature {
+    left: calc(-1 * (var(--public-good-spacing-5) + var(--public-good-border-width-thin)));
+    margin-right: calc(-1 * var(--public-good-spacing-5));
+    padding: var(--public-good-spacing-2) var(--public-good-spacing-5);
+    top: calc(-1 * var(--public-good-spacing-3));
+  }
+}
+
+.public-good-card__content--feature {
+  padding-top: 0 !important;
+}
+
+/* Care card styles */
+.public-good-card--care {
+  margin-top: var(--public-good-spacing-7);
+  border-left: var(--public-good-spacing-1) solid var(--public-good-color-card-care-border);
+  background: var(--public-good-color-card-care-background);
+}
+
+.public-good-card--care__heading-container {
+  background: var(--public-good-color-card-care-header-bg);
+  color: var(--public-good-color-card-care-header-text);
+  padding: var(--public-good-spacing-3) var(--public-good-spacing-5);
+  position: relative;
+}
+
+.public-good-card--care__heading {
+  margin: 0;
+  padding-top: 0;
+  font-size: var(--public-good-font-size-lg);
+  font-weight: var(--public-good-font-weight-bold);
+  line-height: var(--public-good-line-height-tight);
+}
+
+@media print {
+  .public-good-card--care__heading {
+    color: var(--public-good-color-text);
+  }
+}
+
+.public-good-card--care__arrow {
+  bottom: -10px;
+  display: block;
+  height: 20px;
+  left: 30px;
+  overflow: hidden;
+  position: absolute;
+  transform: rotate(45deg);
+  width: 20px;
+}
+
+@media (min-width: 768px) {
+  .public-good-card--care__arrow {
+    left: 38px;
+  }
+}
+
+@media print {
+  .public-good-card--care__arrow {
+    display: none;
+  }
+}
+
+.public-good-card--care__arrow::before,
+.public-good-card--care__arrow::after {
+  border: solid 32px var(--public-good-color-card-care-arrow);
+  content: "";
+  display: block;
+  height: 0;
+  position: absolute;
+  top: 0;
+  transform: rotate(45deg);
+  width: 0;
+}
+
+/* Care card variants */
+.public-good-card--care--non-urgent {
+  --public-good-color-card-care-border: var(--public-good-color-info);
+  --public-good-color-card-care-background: var(--public-good-color-background);
+  --public-good-color-card-care-header-bg: var(--public-good-color-info);
+  --public-good-color-card-care-header-text: var(--public-good-color-text-inverse);
+  --public-good-color-card-care-arrow: var(--public-good-color-info);
+  border-left-width: 4px;
+}
+
+.public-good-card--care--urgent {
+  --public-good-color-card-care-border: var(--public-good-color-warning);
+  --public-good-color-card-care-background: var(--public-good-color-background);
+  --public-good-color-card-care-header-bg: var(--public-good-color-warning);
+  --public-good-color-card-care-header-text: var(--public-good-color-text-inverse);
+  --public-good-color-card-care-arrow: var(--public-good-color-warning);
+  border-left-width: 6px;
+}
+
+.public-good-card--care--emergency {
+  --public-good-color-card-care-border: var(--public-good-color-error);
+  --public-good-color-card-care-background: var(--public-good-color-background);
+  --public-good-color-card-care-header-bg: var(--public-good-color-error);
+  --public-good-color-card-care-header-text: var(--public-good-color-text-inverse);
+  --public-good-color-card-care-arrow: var(--public-good-color-error);
+  border-left-width: 8px;
+}
+
+.public-good-card--care--emergency .public-good-card__content {
+  background-color: var(--public-good-color-text);
+  border: 0;
+  color: var(--public-good-color-text-inverse);
+  position: static;
+}
+
+.public-good-card--care--emergency .public-good-card__content a {
+  color: var(--public-good-color-text-inverse);
+  text-decoration: underline;
+}
+
+.public-good-card--care--emergency .public-good-card__content a:hover {
+  color: var(--public-good-color-text-inverse);
+  text-decoration: none;
+}
+
+.public-good-card--care--emergency .public-good-card__content a:focus {
+  color: var(--public-good-color-text);
+  background-color: var(--public-good-color-focus);
+}
+
+@media print {
+  .public-good-card--care--emergency .public-good-card__content {
+    background-color: var(--public-good-color-background);
+    color: var(--public-good-color-text);
+  }
+}
+
+/* Primary card styles */
+.public-good-card__content--primary {
+  padding-right: calc(var(--public-good-spacing-5) + 27px + var(--public-good-spacing-4));
+  position: relative;
+}
+
+@media (min-width: 1024px) {
+  .public-good-card__content--primary {
+    height: 100%;
+  }
+}
+
+.public-good-card__content--primary .public-good-icon {
+  display: block;
+  width: 27px;
+  height: 27px;
+  fill: var(--public-good-color-primary);
+  margin-top: -13.5px;
+  pointer-events: none;
+  position: absolute;
+  top: 50%;
+  right: var(--public-good-spacing-5);
+}
+
+/* Secondary card styles */
+.public-good-card--secondary {
+  background: transparent;
+  border-bottom: var(--public-good-spacing-1) solid var(--public-good-color-border);
+  border-left: 0;
+  border-right: 0;
+  border-top: 0;
+}
+
+.public-good-card__content--secondary {
+  padding-left: 0;
+  padding-right: 0;
+  padding-top: 0;
+}
+
+/* Top task card styles */
+.public-good-card--top-task {
+  border: var(--public-good-border-width-thin) solid var(--public-good-color-border);
+  transition: all 0.2s ease;
+}
+
+.public-good-card--top-task:hover {
+  border-color: var(--public-good-color-border-hover);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.public-good-card--top-task .public-good-card__heading {
+  font-size: var(--public-good-font-size-sm);
+  font-weight: var(--public-good-font-weight-medium);
+  margin-bottom: var(--public-good-spacing-2);
+}
+
+/* Responsive design */
+@media (max-width: 480px) {
+  .public-good-card {
+    margin-bottom: var(--public-good-spacing-5);
+  }
+  
+  .public-good-card__content {
+    padding: var(--public-good-spacing-4);
+  }
+  
+  .public-good-card__content--primary {
+    padding-right: var(--public-good-spacing-4);
+  }
+  
+  .public-good-card__content--primary .public-good-icon {
+    display: none;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .public-good-card {
+    border-width: 2px;
+  }
+  
+  .public-good-card--clickable:focus {
+    outline-width: 3px;
+  }
+  
+  .public-good-card__heading--feature {
+    border: 2px solid var(--public-good-color-text-inverse);
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .public-good-card--clickable {
+    transition: none;
+  }
+  
+  .public-good-card--clickable:active {
+    transform: none;
+  }
+}

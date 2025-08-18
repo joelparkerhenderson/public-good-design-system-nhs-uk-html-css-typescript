@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Button Variants Examples</title>
+  <link rel="stylesheet" href="../../../index.css">
+</head>
+<body>
+  <div class="example-container">
+    <h1>Button Variants Examples</h1>
+    
+    <h2>Primary Variant</h2>
+    <p>The default button style for primary actions.</p>
+    <div class="variant-section">
+      <div id="primary-examples"></div>
+    </div>
+    
+    <h2>Secondary Variant</h2>
+    <p>Less prominent buttons for secondary actions.</p>
+    <div class="variant-section">
+      <div id="secondary-examples"></div>
+    </div>
+    
+    <h2>Secondary Solid Variant</h2>
+    <p>Secondary buttons with solid background, suitable for use on grey backgrounds.</p>
+    <div class="variant-section grey-background">
+      <div id="secondary-solid-examples"></div>
+    </div>
+    
+    <h2>Warning Variant</h2>
+    <p>Red buttons for destructive or dangerous actions.</p>
+    <div class="variant-section">
+      <div id="warning-examples"></div>
+    </div>
+    
+    <h2>Success Variant</h2>
+    <p>Green buttons for positive actions or confirmations.</p>
+    <div class="variant-section">
+      <div id="success-examples"></div>
+    </div>
+    
+    <h2>Reverse Variant</h2>
+    <p>White buttons designed for use on dark backgrounds.</p>
+    <div class="variant-section dark-background">
+      <div id="reverse-examples"></div>
+    </div>
+    
+    <h2>Button States Comparison</h2>
+    <p>See how different variants look in various states.</p>
+    
+    <div class="states-grid">
+      <div class="state-column">
+        <h3>Normal</h3>
+        <div id="normal-states"></div>
+      </div>
+      <div class="state-column">
+        <h3>Disabled</h3>
+        <div id="disabled-states"></div>
+      </div>
+      <div class="state-column">
+        <h3>Loading</h3>
+        <div id="loading-states"></div>
+      </div>
+    </div>
+    
+    <h2>Interactive Examples</h2>
+    <p>Try hovering, focusing, and clicking these buttons.</p>
+    <div class="variant-section">
+      <div id="interactive-examples"></div>
+    </div>
+    
+    <style>
+      .example-container {
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 2rem;
+      }
+      
+      h1 {
+        color: var(--public-good-color-primary);
+        margin-bottom: 2rem;
+      }
+      
+      h2 {
+        margin-top: 3rem;
+        margin-bottom: 0.5rem;
+        color: var(--public-good-color-text);
+      }
+      
+      h3 {
+        margin-bottom: 1rem;
+        color: var(--public-good-color-text);
+        font-size: 1.1rem;
+      }
+      
+      p {
+        margin-bottom: 1rem;
+        color: var(--public-good-color-text-secondary);
+      }
+      
+      .variant-section {
+        margin-bottom: 2rem;
+        padding: 2rem;
+        border: 1px solid var(--public-good-color-border);
+        border-radius: 8px;
+        background: var(--public-good-color-background);
+      }
+      
+      .variant-section > div > * {
+        margin-right: 1rem;
+        margin-bottom: 1rem;
+      }
+      
+      .grey-background {
+        background: var(--public-good-color-grey-1);
+      }
+      
+      .dark-background {
+        background: var(--public-good-color-primary);
+        border-color: var(--public-good-color-primary);
+      }
+      
+      .dark-background h2,
+      .dark-background p {
+        color: var(--public-good-color-text-inverse);
+      }
+      
+      .states-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 2rem;
+        margin: 2rem 0;
+      }
+      
+      .state-column {
+        padding: 1.5rem;
+        border: 1px solid var(--public-good-color-border);
+        border-radius: 8px;
+        background: var(--public-good-color-background);
+      }
+      
+      .state-column > div > * {
+        margin-bottom: 1rem;
+        display: block;
+        width: 100%;
+      }
+      
+      .button-info {
+        background: var(--public-good-color-background-secondary);
+        padding: 1rem;
+        border-radius: 4px;
+        margin-top: 2rem;
+        font-size: 0.9rem;
+        color: var(--public-good-color-text-secondary);
+      }
+    </style>
+  </div>
+
+  <script type="module">
+    import { createButton, createWarningButton } from '../button.js'
+    
+    // Primary examples
+    const primaryContainer = document.getElementById('primary-examples')
+    primaryContainer.appendChild(createButton({ text: 'Save and continue', variant: 'primary' }).element)
+    primaryContainer.appendChild(createButton({ text: 'Submit form', variant: 'primary', type: 'submit' }).element)
+    primaryContainer.appendChild(createButton({ text: 'Primary link', variant: 'primary', href: '#', element: 'a' }).element)
+    
+    // Secondary examples
+    const secondaryContainer = document.getElementById('secondary-examples')
+    secondaryContainer.appendChild(createButton({ text: 'Find my location', variant: 'secondary' }).element)
+    secondaryContainer.appendChild(createButton({ text: 'Cancel', variant: 'secondary', type: 'button' }).element)
+    secondaryContainer.appendChild(createButton({ text: 'Secondary link', variant: 'secondary', href: '#', element: 'a' }).element)
+    
+    // Secondary solid examples
+    const secondarySolidContainer = document.getElementById('secondary-solid-examples')
+    secondarySolidContainer.appendChild(createButton({ text: 'Solid secondary', variant: 'secondary-solid' }).element)
+    secondarySolidContainer.appendChild(createButton({ text: 'On grey background', variant: 'secondary-solid', type: 'button' }).element)
+    
+    // Warning examples
+    const warningContainer = document.getElementById('warning-examples')
+    warningContainer.appendChild(createWarningButton({ text: 'Delete item' }).element)
+    warningContainer.appendChild(createButton({ text: 'Remove user', variant: 'warning', type: 'button' }).element)
+    warningContainer.appendChild(createButton({ text: 'Warning link', variant: 'warning', href: '#', element: 'a' }).element)
+    
+    // Success examples
+    const successContainer = document.getElementById('success-examples')
+    successContainer.appendChild(createButton({ text: 'Confirm action', variant: 'success' }).element)
+    successContainer.appendChild(createButton({ text: 'Accept terms', variant: 'success', type: 'button' }).element)
+    successContainer.appendChild(createButton({ text: 'Success link', variant: 'success', href: '#', element: 'a' }).element)
+    
+    // Reverse examples
+    const reverseContainer = document.getElementById('reverse-examples')
+    reverseContainer.appendChild(createButton({ text: 'Log out', variant: 'reverse' }).element)
+    reverseContainer.appendChild(createButton({ text: 'Exit app', variant: 'reverse', type: 'button' }).element)
+    reverseContainer.appendChild(createButton({ text: 'Reverse link', variant: 'reverse', href: '#', element: 'a' }).element)
+    
+    // State comparisons
+    const variants = ['primary', 'secondary', 'warning', 'success']
+    
+    // Normal states
+    const normalContainer = document.getElementById('normal-states')
+    variants.forEach(variant => {
+      normalContainer.appendChild(createButton({ 
+        text: variant.charAt(0).toUpperCase() + variant.slice(1), 
+        variant: variant 
+      }).element)
+    })
+    
+    // Disabled states
+    const disabledContainer = document.getElementById('disabled-states')
+    variants.forEach(variant => {
+      normalContainer.appendChild(createButton({ 
+        text: variant.charAt(0).toUpperCase() + variant.slice(1), 
+        variant: variant,
+        disabled: true
+      }).element)
+    })
+    
+    // Loading states
+    const loadingContainer = document.getElementById('loading-states')
+    variants.forEach(variant => {
+      const button = createButton({ 
+        text: variant.charAt(0).toUpperCase() + variant.slice(1), 
+        variant: variant
+      })
+      button.setLoading(true)
+      loadingContainer.appendChild(button.element)
+    })
+    
+    // Interactive examples
+    const interactiveContainer = document.getElementById('interactive-examples')
+    
+    const clickCounterButton = createButton({
+      text: 'Click me (0)',
+      type: 'button',
+      onClick: (event) => {
+        const target = event.target
+        const currentCount = parseInt(target.dataset.clickCount || '0')
+        const newCount = currentCount + 1
+        target.dataset.clickCount = newCount.toString()
+        target.textContent = `Click me (${newCount})`
+      }
+    })
+    interactiveContainer.appendChild(clickCounterButton.element)
+    
+    const preventDoubleButton = createButton({
+      text: 'Prevent double click',
+      type: 'button',
+      preventDoubleClick: true,
+      onClick: () => {
+        alert('Button clicked! Try clicking again quickly.')
+      }
+    })
+    interactiveContainer.appendChild(preventDoubleButton.element)
+    
+    const toggleStateButton = createButton({
+      text: 'Toggle disabled',
+      type: 'button',
+      variant: 'secondary'
+    })
+    
+    const targetButton = createButton({
+      text: 'Target button',
+      type: 'button'
+    })
+    
+    toggleStateButton.element.addEventListener('click', () => {
+      if (targetButton.element.disabled) {
+        targetButton.enable()
+        toggleStateButton.element.textContent = 'Disable target'
+      } else {
+        targetButton.disable()
+        toggleStateButton.element.textContent = 'Enable target'
+      }
+    })
+    
+    interactiveContainer.appendChild(toggleStateButton.element)
+    interactiveContainer.appendChild(targetButton.element)
+    
+    // Add informational panel
+    const infoPanel = document.createElement('div')
+    infoPanel.className = 'button-info'
+    infoPanel.innerHTML = `
+      <h4>Button Variant Guidelines:</h4>
+      <ul>
+        <li><strong>Primary:</strong> For the main action on a page (save, submit, continue)</li>
+        <li><strong>Secondary:</strong> For secondary actions (cancel, find location)</li>
+        <li><strong>Secondary Solid:</strong> For secondary actions on grey backgrounds</li>
+        <li><strong>Warning:</strong> For destructive actions (delete, remove)</li>
+        <li><strong>Success:</strong> For positive confirmations (accept, confirm)</li>
+        <li><strong>Reverse:</strong> For use on dark backgrounds (logout, exit)</li>
+      </ul>
+    `
+    document.querySelector('.example-container').appendChild(infoPanel)
+    
+    // Add event listeners for analytics
+    document.addEventListener('public-good:button:click', (event) => {
+      console.log('Button clicked:', event.detail)
+    })
+  </script>
+</body>
+</html>

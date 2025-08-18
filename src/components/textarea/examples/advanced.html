@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Textarea Component - Advanced Examples</title>
+  <link rel="stylesheet" href="../textarea.css">
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem;
+      line-height: 1.6;
+      background-color: #f9f9f9;
+    }
+    .example {
+      margin-bottom: 2rem;
+      padding: 2rem;
+      border: 1px solid #e0e0e0;
+      border-radius: 8px;
+      background-color: white;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    .example h3 {
+      margin-top: 0;
+      color: #333;
+      border-bottom: 2px solid #0066cc;
+      padding-bottom: 0.5rem;
+    }
+    .controls {
+      margin-bottom: 1rem;
+      padding: 1rem;
+      background-color: #f5f5f5;
+      border-radius: 4px;
+    }
+    .controls button {
+      margin: 0.25rem;
+      padding: 0.5rem 1rem;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      background-color: white;
+      cursor: pointer;
+    }
+    .controls button:hover {
+      background-color: #e8f4f8;
+    }
+    .controls input, .controls select {
+      margin: 0.25rem;
+      padding: 0.5rem;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+    .demo-output {
+      min-height: 100px;
+      padding: 1rem;
+      border: 2px dashed #ccc;
+      border-radius: 4px;
+      margin: 1rem 0;
+      background-color: #fafafa;
+    }
+    .form-builder {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+    .form-group {
+      display: flex;
+      flex-direction: column;
+    }
+    .form-group label {
+      margin-bottom: 0.25rem;
+      font-weight: 500;
+    }
+    .log-output {
+      background-color: #1e1e1e;
+      color: #ffffff;
+      padding: 1rem;
+      border-radius: 4px;
+      font-family: 'Courier New', monospace;
+      font-size: 0.9rem;
+      max-height: 200px;
+      overflow-y: auto;
+      margin-top: 1rem;
+    }
+    .validation-demo {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      margin-top: 1rem;
+    }
+    .validation-panel {
+      padding: 1rem;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      background-color: #f8f9fa;
+    }
+    .validation-panel h4 {
+      margin-top: 0;
+      color: #495057;
+    }
+    .auto-resize-demo {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+    }
+    .resize-panel {
+      padding: 1rem;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+    }
+    .resize-panel h4 {
+      margin-top: 0;
+      color: #495057;
+    }
+    /* Form styles */
+    .public-good-form-group {
+      margin-bottom: 1.5rem;
+    }
+    .public-good-label {
+      display: block;
+      font-weight: 700;
+      margin-bottom: 0.25rem;
+      color: #0b0c0c;
+    }
+    .public-good-hint {
+      display: block;
+      margin-bottom: 0.25rem;
+      color: #626a6e;
+      font-size: 0.9em;
+    }
+    .public-good-error-message {
+      display: block;
+      margin-bottom: 0.25rem;
+      color: #d4351c;
+      font-weight: 700;
+    }
+    .public-good-form-group--error .public-good-label {
+      color: #d4351c;
+    }
+  </style>
+</head>
+<body>
+  <h1>Textarea Component - Advanced Examples</h1>
+  <p>Advanced usage patterns and interactive demonstrations of the textarea component with TypeScript integration.</p>
+
+  <div class="example">
+    <h3>Dynamic Textarea Builder</h3>
+    <div class="form-builder">
+      <div class="form-group">
+        <label for="builder-label">Label:</label>
+        <input type="text" id="builder-label" value="Dynamic Textarea">
+      </div>
+      <div class="form-group">
+        <label for="builder-hint">Hint (optional):</label>
+        <input type="text" id="builder-hint" placeholder="Enter hint text">
+      </div>
+      <div class="form-group">
+        <label for="builder-placeholder">Placeholder:</label>
+        <input type="text" id="builder-placeholder" placeholder="Enter placeholder">
+      </div>
+      <div class="form-group">
+        <label for="builder-rows">Rows:</label>
+        <input type="number" id="builder-rows" min="1" max="20" value="4">
+      </div>
+      <div class="form-group">
+        <label for="builder-maxlength">Max Length:</label>
+        <input type="number" id="builder-maxlength" min="0" max="1000" placeholder="0 = unlimited">
+      </div>
+      <div class="form-group">
+        <label for="builder-resize">Resize:</label>
+        <select id="builder-resize">
+          <option value="vertical">Vertical</option>
+          <option value="none">None</option>
+          <option value="horizontal">Horizontal</option>
+          <option value="both">Both</option>
+        </select>
+      </div>
+    </div>
+    <div class="controls">
+      <button id="create-textarea">Create Textarea</button>
+      <button id="clear-builder">Clear</button>
+      <label><input type="checkbox" id="builder-required"> Required</label>
+      <label><input type="checkbox" id="builder-disabled"> Disabled</label>
+      <label><input type="checkbox" id="builder-readonly"> Readonly</label>
+      <label><input type="checkbox" id="builder-show-count"> Show Character Count</label>
+    </div>
+    <div class="demo-output" id="textarea-builder-output">
+      <!-- Dynamic textarea will appear here -->
+    </div>
+  </div>
+
+  <div class="example">
+    <h3>Auto-Resize Functionality</h3>
+    <div class="auto-resize-demo">
+      <div class="resize-panel">
+        <h4>Auto-Resize Textarea</h4>
+        <div class="controls">
+          <button id="add-text">Add Text</button>
+          <button id="clear-text">Clear Text</button>
+          <button id="reset-height">Reset Height</button>
+        </div>
+        <div class="public-good-form-group">
+          <label for="auto-resize-textarea" class="public-good-label">Auto-resizing content</label>
+          <div class="public-good-hint">This textarea will grow as you type more content</div>
+          <textarea id="auto-resize-textarea" class="public-good-textarea" rows="3" 
+                    placeholder="Start typing and watch it grow..."></textarea>
+        </div>
+      </div>
+      <div class="resize-panel">
+        <h4>Manual Resize Controls</h4>
+        <div class="controls">
+          <button id="increase-height">Increase Height</button>
+          <button id="decrease-height">Decrease Height</button>
+          <button id="set-width-narrow">Narrow Width</button>
+          <button id="set-width-wide">Wide Width</button>
+        </div>
+        <div class="public-good-form-group">
+          <label for="manual-resize-textarea" class="public-good-label">Manual resize</label>
+          <textarea id="manual-resize-textarea" class="public-good-textarea" rows="3" 
+                    placeholder="Use the controls to resize this textarea"></textarea>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="example">
+    <h3>Validation and Error Handling</h3>
+    <div class="validation-demo">
+      <div class="validation-panel">
+        <h4>Interactive Validation</h4>
+        <div class="controls">
+          <button id="validate-length">Validate Length</button>
+          <button id="validate-words">Validate Word Count</button>
+          <button id="validate-custom">Custom Validation</button>
+          <button id="clear-validation">Clear Errors</button>
+        </div>
+        <div class="public-good-form-group" id="validation-form-group">
+          <label for="validation-textarea" class="public-good-label">Content to validate</label>
+          <div id="validation-hint" class="public-good-hint">
+            Minimum 10 characters, maximum 100 characters, at least 3 words
+          </div>
+          <textarea id="validation-textarea" class="public-good-textarea" rows="4"
+                    aria-describedby="validation-hint"
+                    placeholder="Enter text to validate..."></textarea>
+        </div>
+      </div>
+      <div class="validation-panel">
+        <h4>Validation Log</h4>
+        <div class="log-output" id="validation-log">
+          Validation events will appear here...
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="example">
+    <h3>Character Counting with Limits</h3>
+    <div class="controls">
+      <button id="set-limit-50">Set 50 character limit</button>
+      <button id="set-limit-200">Set 200 character limit</button>
+      <button id="remove-limit">Remove limit</button>
+      <button id="prefill-text">Prefill with long text</button>
+    </div>
+    <div class="public-good-form-group">
+      <label for="character-count-textarea" class="public-good-label">Message with character counting</label>
+      <div class="public-good-hint">Character count will update as you type</div>
+      <textarea id="character-count-textarea" class="public-good-textarea" rows="5"
+                placeholder="Type your message here..."></textarea>
+      <div id="character-count-status" class="public-good-character-count__status" aria-live="polite">
+        No character limit set
+      </div>
+    </div>
+  </div>
+
+  <div class="example">
+    <h3>Form Integration Demo</h3>
+    <div class="controls">
+      <button id="simulate-submit">Simulate Form Submit</button>
+      <button id="reset-form">Reset Form</button>
+      <button id="populate-form">Populate Form</button>
+    </div>
+    <form id="demo-form">
+      <div class="public-good-form-group">
+        <label for="form-name" class="public-good-label">Your name</label>
+        <input type="text" id="form-name" class="public-good-input" style="padding: 0.5rem; border: 2px solid #0b0c0c; width: 100%; box-sizing: border-box;">
+      </div>
+      
+      <div class="public-good-form-group">
+        <label for="form-message" class="public-good-label">Your message</label>
+        <div class="public-good-hint">Tell us what you think</div>
+        <textarea id="form-message" class="public-good-textarea" rows="4" required
+                  placeholder="Enter your message here..."></textarea>
+      </div>
+      
+      <div class="public-good-form-group">
+        <label for="form-feedback" class="public-good-label">Additional feedback (optional)</label>
+        <textarea id="form-feedback" class="public-good-textarea public-good-textarea--small" rows="2"
+                  placeholder="Any other comments..."></textarea>
+      </div>
+      
+      <button type="submit" style="padding: 0.75rem 1.5rem; background-color: #00703c; color: white; border: none; border-radius: 4px; cursor: pointer;">
+        Submit Form
+      </button>
+    </form>
+    <div class="log-output" id="form-log">
+      Form events will appear here...
+    </div>
+  </div>
+
+  <div class="example">
+    <h3>Accessibility Testing</h3>
+    <div class="controls">
+      <button id="test-accessibility">Run Accessibility Test</button>
+      <button id="focus-first-textarea">Focus First Textarea</button>
+      <button id="announce-content">Announce Content</button>
+    </div>
+    <div class="demo-output">
+      <div class="public-good-form-group">
+        <label for="a11y-textarea-1" class="public-good-label">Accessible textarea</label>
+        <div id="a11y-hint-1" class="public-good-hint">This has proper labeling and ARIA attributes</div>
+        <textarea id="a11y-textarea-1" class="public-good-textarea" rows="3"
+                  aria-describedby="a11y-hint-1" aria-label="Accessible textarea example"></textarea>
+      </div>
+      
+      <div class="public-good-form-group">
+        <label for="a11y-textarea-2" class="public-good-label">Textarea with live region</label>
+        <textarea id="a11y-textarea-2" class="public-good-textarea" rows="3"
+                  aria-describedby="live-region" placeholder="Changes announced live"></textarea>
+        <div id="live-region" aria-live="polite" aria-atomic="true" style="font-size: 0.9em; color: #666;">
+          Live announcements will appear here
+        </div>
+      </div>
+    </div>
+    <div class="log-output" id="accessibility-log">
+      Accessibility test results will appear here...
+    </div>
+  </div>
+
+  <script type="module">
+    import { 
+      Textarea, 
+      createTextarea, 
+      initializeTextareas, 
+      validateTextareaAccessibility 
+    } from '../textarea.js';
+
+    document.addEventListener('DOMContentLoaded', () => {
+      initializeDynamicBuilder();
+      initializeAutoResize();
+      initializeValidationDemo();
+      initializeCharacterCounting();
+      initializeFormDemo();
+      initializeAccessibilityDemo();
+    });
+
+    function initializeDynamicBuilder() {
+      const createBtn = document.getElementById('create-textarea');
+      const clearBtn = document.getElementById('clear-builder');
+      const output = document.getElementById('textarea-builder-output');
+      
+      createBtn.addEventListener('click', () => {
+        const label = document.getElementById('builder-label').value || 'Generated Textarea';
+        const hint = document.getElementById('builder-hint').value || undefined;
+        const placeholder = document.getElementById('builder-placeholder').value || undefined;
+        const rows = parseInt(document.getElementById('builder-rows').value) || 4;
+        const maxlength = parseInt(document.getElementById('builder-maxlength').value) || undefined;
+        const resize = document.getElementById('builder-resize').value;
+        const required = document.getElementById('builder-required').checked;
+        const disabled = document.getElementById('builder-disabled').checked;
+        const readonly = document.getElementById('builder-readonly').checked;
+        const showCount = document.getElementById('builder-show-count').checked;
+
+        const textarea = createTextarea({
+          label,
+          hint,
+          placeholder,
+          rows,
+          maxlength,
+          required,
+          disabled,
+          readonly,
+          resize,
+          classes: showCount ? 'with-character-count' : ''
+        });
+
+        output.innerHTML = '';
+        output.appendChild(textarea);
+
+        // If character count is enabled, add the functionality
+        if (showCount || maxlength) {
+          const textareaEl = textarea.querySelector('textarea');
+          const config = {
+            showCharacterCount: showCount,
+            maxLength: maxlength
+          };
+          
+          new Textarea(textarea, config);
+        }
+      });
+
+      clearBtn.addEventListener('click', () => {
+        output.innerHTML = '';
+      });
+    }
+
+    function initializeAutoResize() {
+      const autoResizeTextarea = document.getElementById('auto-resize-textarea');
+      const manualResizeTextarea = document.getElementById('manual-resize-textarea');
+      
+      // Set up auto-resize textarea
+      const container = autoResizeTextarea.closest('.public-good-form-group');
+      const autoResizeInstance = new Textarea(container, {
+        autoResize: true,
+        onInput: (value, textarea) => {
+          console.log('Auto-resize input:', value.length, 'characters');
+        }
+      });
+
+      // Auto-resize controls
+      document.getElementById('add-text').addEventListener('click', () => {
+        const additionalText = '\\n\\nThis is additional line of text that will cause the textarea to expand automatically when auto-resize is enabled.';
+        autoResizeTextarea.value += additionalText;
+        autoResizeTextarea.dispatchEvent(new Event('input'));
+      });
+
+      document.getElementById('clear-text').addEventListener('click', () => {
+        autoResizeTextarea.value = '';
+        autoResizeTextarea.dispatchEvent(new Event('input'));
+      });
+
+      document.getElementById('reset-height').addEventListener('click', () => {
+        autoResizeTextarea.style.height = 'auto';
+      });
+
+      // Manual resize controls
+      document.getElementById('increase-height').addEventListener('click', () => {
+        const currentHeight = parseInt(manualResizeTextarea.style.height) || 60;
+        manualResizeTextarea.style.height = (currentHeight + 20) + 'px';
+      });
+
+      document.getElementById('decrease-height').addEventListener('click', () => {
+        const currentHeight = parseInt(manualResizeTextarea.style.height) || 80;
+        manualResizeTextarea.style.height = Math.max(40, currentHeight - 20) + 'px';
+      });
+
+      document.getElementById('set-width-narrow').addEventListener('click', () => {
+        manualResizeTextarea.style.width = '300px';
+      });
+
+      document.getElementById('set-width-wide').addEventListener('click', () => {
+        manualResizeTextarea.style.width = '100%';
+      });
+    }
+
+    function initializeValidationDemo() {
+      const textarea = document.getElementById('validation-textarea');
+      const formGroup = document.getElementById('validation-form-group');
+      const log = document.getElementById('validation-log');
+
+      const validationInstance = new Textarea(formGroup, {
+        validateOnBlur: true,
+        onInput: (value) => {
+          logValidation(`Input changed: ${value.length} characters`);
+        }
+      });
+
+      function logValidation(message) {
+        const timestamp = new Date().toLocaleTimeString();
+        const entry = document.createElement('div');
+        entry.textContent = `[${timestamp}] ${message}`;
+        log.appendChild(entry);
+        log.scrollTop = log.scrollHeight;
+      }
+
+      document.getElementById('validate-length').addEventListener('click', () => {
+        const value = textarea.value;
+        if (value.length < 10) {
+          validationInstance.setError('Text must be at least 10 characters long');
+          logValidation('Length validation failed: too short');
+        } else if (value.length > 100) {
+          validationInstance.setError('Text must be no more than 100 characters long');
+          logValidation('Length validation failed: too long');
+        } else {
+          validationInstance.clearError();
+          logValidation('Length validation passed');
+        }
+      });
+
+      document.getElementById('validate-words').addEventListener('click', () => {
+        const value = textarea.value.trim();
+        const words = value ? value.split(/\\s+/) : [];
+        if (words.length < 3) {
+          validationInstance.setError('Please enter at least 3 words');
+          logValidation(`Word count validation failed: ${words.length} words`);
+        } else {
+          validationInstance.clearError();
+          logValidation(`Word count validation passed: ${words.length} words`);
+        }
+      });
+
+      document.getElementById('validate-custom').addEventListener('click', () => {
+        const value = textarea.value.toLowerCase();
+        if (value.includes('bad') || value.includes('inappropriate')) {
+          validationInstance.setError('Content contains inappropriate language');
+          logValidation('Custom validation failed: inappropriate content');
+        } else {
+          validationInstance.clearError();
+          logValidation('Custom validation passed');
+        }
+      });
+
+      document.getElementById('clear-validation').addEventListener('click', () => {
+        validationInstance.clearError();
+        logValidation('Validation cleared manually');
+      });
+    }
+
+    function initializeCharacterCounting() {
+      const textarea = document.getElementById('character-count-textarea');
+      const countStatus = document.getElementById('character-count-status');
+      const container = textarea.closest('.public-good-form-group');
+      
+      let currentInstance = null;
+
+      function updateCharacterCount(maxLength = null) {
+        if (currentInstance) {
+          currentInstance.destroy();
+        }
+
+        const config = maxLength ? { 
+          maxLength, 
+          showCharacterCount: true,
+          onInput: (value) => {
+            console.log('Character count update:', value.length, 'characters');
+          }
+        } : { showCharacterCount: true };
+
+        if (maxLength) {
+          textarea.maxLength = maxLength;
+        } else {
+          textarea.removeAttribute('maxlength');
+        }
+
+        currentInstance = new Textarea(container, config);
+      }
+
+      document.getElementById('set-limit-50').addEventListener('click', () => {
+        updateCharacterCount(50);
+      });
+
+      document.getElementById('set-limit-200').addEventListener('click', () => {
+        updateCharacterCount(200);
+      });
+
+      document.getElementById('remove-limit').addEventListener('click', () => {
+        updateCharacterCount();
+        countStatus.textContent = 'No character limit set';
+      });
+
+      document.getElementById('prefill-text').addEventListener('click', () => {
+        textarea.value = 'This is a sample text that is quite long and will demonstrate how the character counting feature works when the text approaches or exceeds the set limit.';
+        textarea.dispatchEvent(new Event('input'));
+      });
+    }
+
+    function initializeFormDemo() {
+      const form = document.getElementById('demo-form');
+      const formLog = document.getElementById('form-log');
+      
+      function logForm(message) {
+        const timestamp = new Date().toLocaleTimeString();
+        const entry = document.createElement('div');
+        entry.textContent = `[${timestamp}] ${message}`;
+        formLog.appendChild(entry);
+        formLog.scrollTop = formLog.scrollHeight;
+      }
+
+      form.addEventListener('submit', (event) => {
+        event.preventDefault();
+        const formData = new FormData(form);
+        const data = Object.fromEntries(formData.entries());
+        logForm(`Form submitted with data: ${JSON.stringify(data)}`);
+      });
+
+      document.getElementById('simulate-submit').addEventListener('click', () => {
+        form.dispatchEvent(new Event('submit'));
+      });
+
+      document.getElementById('reset-form').addEventListener('click', () => {
+        form.reset();
+        logForm('Form reset');
+      });
+
+      document.getElementById('populate-form').addEventListener('click', () => {
+        document.getElementById('form-name').value = 'John Doe';
+        document.getElementById('form-message').value = 'This is a sample message for the form demonstration.';
+        document.getElementById('form-feedback').value = 'Additional feedback here.';
+        logForm('Form populated with sample data');
+      });
+
+      // Add change listeners to form elements
+      form.querySelectorAll('input, textarea').forEach(field => {
+        field.addEventListener('change', () => {
+          logForm(`Field '${field.id}' changed: "${field.value}"`);
+        });
+      });
+    }
+
+    function initializeAccessibilityDemo() {
+      const a11yTextarea2 = document.getElementById('a11y-textarea-2');
+      const liveRegion = document.getElementById('live-region');
+      const a11yLog = document.getElementById('accessibility-log');
+      
+      function logA11y(message) {
+        const timestamp = new Date().toLocaleTimeString();
+        const entry = document.createElement('div');
+        entry.textContent = `[${timestamp}] ${message}`;
+        a11yLog.appendChild(entry);
+        a11yLog.scrollTop = a11yLog.scrollHeight;
+      }
+
+      // Set up live region updates
+      a11yTextarea2.addEventListener('input', () => {
+        const length = a11yTextarea2.value.length;
+        if (length > 0 && length % 10 === 0) {
+          liveRegion.textContent = `${length} characters entered`;
+        }
+      });
+
+      document.getElementById('test-accessibility').addEventListener('click', () => {
+        const result = validateTextareaAccessibility();
+        logA11y(`Found ${result.textareas.length} textareas`);
+        logA11y(`Found ${result.issues.length} accessibility issues`);
+        
+        result.issues.forEach(issue => {
+          logA11y(`Issue: ${issue}`);
+        });
+        
+        if (result.issues.length === 0) {
+          logA11y('✅ All accessibility checks passed!');
+        }
+      });
+
+      document.getElementById('focus-first-textarea').addEventListener('click', () => {
+        const firstTextarea = document.getElementById('a11y-textarea-1');
+        firstTextarea.focus();
+        logA11y('Focused first textarea');
+      });
+
+      document.getElementById('announce-content').addEventListener('click', () => {
+        const content = a11yTextarea2.value || 'No content to announce';
+        liveRegion.textContent = `Current content: ${content}`;
+        logA11y('Content announced to screen readers');
+      });
+    }
+  </script>
+</body>
+</html>

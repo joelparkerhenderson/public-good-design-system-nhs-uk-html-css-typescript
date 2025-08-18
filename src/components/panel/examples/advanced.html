@@ -1,0 +1,778 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Panel Component - Advanced Examples</title>
+  <link rel="stylesheet" href="../../../index.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: var(--public-good-spacing-6);
+      background-color: var(--public-good-color-white);
+    }
+    
+    .example-section {
+      margin-bottom: var(--public-good-spacing-8);
+      padding: var(--public-good-spacing-6);
+      border: var(--public-good-border-width-thin) solid var(--public-good-color-border);
+      border-radius: var(--public-good-border-radius-medium);
+    }
+    
+    .example-title {
+      margin-top: 0;
+      color: var(--public-good-color-text);
+      font-size: var(--public-good-heading-3-size);
+      margin-bottom: var(--public-good-spacing-4);
+    }
+    
+    .example-description {
+      margin-bottom: var(--public-good-spacing-4);
+      color: var(--public-good-color-text-secondary);
+    }
+    
+    .demo-controls {
+      margin: var(--public-good-spacing-4) 0;
+      padding: var(--public-good-spacing-4);
+      background-color: var(--public-good-color-background-secondary);
+      border-radius: var(--public-good-border-radius-medium);
+    }
+    
+    .demo-controls label {
+      display: block;
+      margin-bottom: var(--public-good-spacing-2);
+      font-weight: var(--public-good-font-weight-medium);
+    }
+    
+    .demo-controls input,
+    .demo-controls select,
+    .demo-controls textarea {
+      width: 100%;
+      padding: var(--public-good-spacing-2);
+      margin-bottom: var(--public-good-spacing-3);
+      border: var(--public-good-border-width-medium) solid var(--public-good-color-border);
+      border-radius: var(--public-good-border-radius-medium);
+      box-sizing: border-box;
+    }
+    
+    .demo-controls textarea {
+      min-height: 100px;
+      resize: vertical;
+    }
+    
+    .demo-controls button {
+      background-color: var(--public-good-color-button-primary);
+      color: var(--public-good-color-text-inverse);
+      border: none;
+      padding: var(--public-good-spacing-3) var(--public-good-spacing-4);
+      border-radius: var(--public-good-border-radius-medium);
+      cursor: pointer;
+      margin-right: var(--public-good-spacing-2);
+      margin-bottom: var(--public-good-spacing-2);
+    }
+    
+    .demo-controls button:hover {
+      background-color: var(--public-good-color-button-primary-hover);
+    }
+    
+    .analytics-log {
+      margin-top: var(--public-good-spacing-4);
+      padding: var(--public-good-spacing-4);
+      background-color: #f8f8f8;
+      border-radius: var(--public-good-border-radius-medium);
+      font-family: monospace;
+      font-size: 0.9em;
+      max-height: 200px;
+      overflow-y: auto;
+      border: 1px solid #ddd;
+    }
+    
+    .responsive-demo {
+      border: 2px dashed var(--public-good-color-border);
+      padding: var(--public-good-spacing-4);
+      margin: var(--public-good-spacing-4) 0;
+      resize: horizontal;
+      overflow: auto;
+      min-width: 300px;
+      max-width: 100%;
+    }
+    
+    .theme-demo {
+      padding: var(--public-good-spacing-4);
+      border-radius: var(--public-good-border-radius-medium);
+      margin: var(--public-good-spacing-4) 0;
+    }
+    
+    .theme-demo.dark {
+      background-color: #1a1a1a;
+      color: #ffffff;
+    }
+    
+    .theme-demo.high-contrast {
+      background-color: #000000;
+      color: #ffffff;
+      border: 2px solid #ffffff;
+    }
+    
+    .performance-stats {
+      background-color: #e8f4f8;
+      padding: var(--public-good-spacing-3);
+      border-radius: var(--public-good-border-radius-medium);
+      margin: var(--public-good-spacing-4) 0;
+      font-family: monospace;
+      font-size: 0.9em;
+    }
+    
+    .workflow-step {
+      display: flex;
+      align-items: flex-start;
+      gap: var(--public-good-spacing-3);
+      margin-bottom: var(--public-good-spacing-4);
+      padding: var(--public-good-spacing-3);
+      border: 1px solid var(--public-good-color-border);
+      border-radius: var(--public-good-border-radius-medium);
+    }
+    
+    .workflow-number {
+      background-color: var(--public-good-color-blue);
+      color: white;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.9em;
+      font-weight: bold;
+      flex-shrink: 0;
+    }
+    
+    .guidance-box {
+      background-color: #fff2e5;
+      border-left: 4px solid #ff8c00;
+      padding: var(--public-good-spacing-3);
+      margin: var(--public-good-spacing-4) 0;
+      font-size: var(--public-good-body-small-size);
+    }
+  </style>
+</head>
+<body>
+  <h1>Panel Component - Advanced Examples</h1>
+  <p>Advanced features, customization options, and integration patterns for the panel component.</p>
+
+  <!-- Dynamic Panel Management -->
+  <div class="example-section">
+    <h2 class="example-title">Dynamic Panel Management</h2>
+    <p class="example-description">
+      Demonstrates dynamic creation and real-time content updates for panel components.
+    </p>
+    
+    <div class="demo-controls">
+      <label for="panel-title">Panel Title:</label>
+      <input type="text" id="panel-title" value="Application processed successfully" />
+      
+      <label for="panel-body">Panel Body Content:</label>
+      <textarea id="panel-body" placeholder="Enter body content...">Your NHS appointment request has been received and will be processed within 2 working days.</textarea>
+      
+      <label for="title-level">Title Level:</label>
+      <select id="title-level">
+        <option value="1">H1 (Main heading)</option>
+        <option value="2" selected>H2 (Section heading)</option>
+        <option value="3">H3 (Subsection heading)</option>
+        <option value="4">H4</option>
+        <option value="5">H5</option>
+        <option value="6">H6</option>
+      </select>
+      
+      <label>
+        <input type="checkbox" id="html-content"> Enable HTML Content
+      </label>
+      
+      <button onclick="updateDynamicPanel()">Update Panel</button>
+      <button onclick="clearPanelBody()">Clear Body</button>
+      <button onclick="addSampleContent()">Add Sample HTML</button>
+    </div>
+    
+    <div id="dynamic-panel"></div>
+  </div>
+
+  <!-- Event Tracking and Analytics -->
+  <div class="example-section">
+    <h2 class="example-title">Event Tracking and Analytics</h2>
+    <p class="example-description">
+      Comprehensive event tracking for user interactions and content updates.
+    </p>
+    
+    <div class="demo-controls">
+      <button onclick="triggerContentUpdate()">Update Content</button>
+      <button onclick="simulateUserInteraction()">Simulate User Click</button>
+      <button onclick="clearAnalyticsLog()">Clear Log</button>
+    </div>
+    
+    <div id="analytics-panel"></div>
+    
+    <div class="analytics-log" id="analytics-log">
+      <strong>Event Analytics Log:</strong><br>
+      Interact with the panel above to see event tracking...
+    </div>
+  </div>
+
+  <!-- Accessibility Features Demo -->
+  <div class="example-section">
+    <h2 class="example-title">Accessibility Features</h2>
+    <p class="example-description">
+      Comprehensive accessibility testing and screen reader support demonstration.
+    </p>
+    
+    <div class="demo-controls">
+      <button onclick="testHeadingHierarchy()">Test Heading Hierarchy</button>
+      <button onclick="testKeyboardNavigation()">Test Keyboard Navigation</button>
+      <button onclick="testScreenReaderContent()">Test Screen Reader Content</button>
+      <button onclick="validateAccessibility()">Full Accessibility Check</button>
+    </div>
+    
+    <div id="accessibility-panel"></div>
+    
+    <div id="accessibility-results" class="analytics-log">
+      <strong>Accessibility Test Results:</strong><br>
+      Use the buttons above to run accessibility tests...
+    </div>
+  </div>
+
+  <!-- Multi-step Workflow Integration -->
+  <div class="example-section">
+    <h2 class="example-title">Multi-step Workflow Integration</h2>
+    <p class="example-description">
+      Panels integrated into complex multi-step workflows and form processes.
+    </p>
+    
+    <div class="guidance-box">
+      <strong>Workflow Guidance:</strong> This demonstrates how panels can be used throughout 
+      a multi-step process to provide confirmation at each stage.
+    </div>
+    
+    <div class="demo-controls">
+      <button onclick="simulateWorkflowStep(1)">Complete Step 1</button>
+      <button onclick="simulateWorkflowStep(2)">Complete Step 2</button>
+      <button onclick="simulateWorkflowStep(3)">Complete Step 3</button>
+      <button onclick="simulateWorkflowStep(4)">Final Submission</button>
+      <button onclick="resetWorkflow()">Reset Workflow</button>
+    </div>
+    
+    <div id="workflow-container">
+      <div class="workflow-step">
+        <div class="workflow-number">1</div>
+        <div>
+          <h4>Personal Details</h4>
+          <p>Enter your personal information</p>
+          <div id="workflow-step-1"></div>
+        </div>
+      </div>
+      
+      <div class="workflow-step">
+        <div class="workflow-number">2</div>
+        <div>
+          <h4>Medical History</h4>
+          <p>Provide your medical background</p>
+          <div id="workflow-step-2"></div>
+        </div>
+      </div>
+      
+      <div class="workflow-step">
+        <div class="workflow-number">3</div>
+        <div>
+          <h4>Current Symptoms</h4>
+          <p>Describe your current health concerns</p>
+          <div id="workflow-step-3"></div>
+        </div>
+      </div>
+      
+      <div class="workflow-step">
+        <div class="workflow-number">4</div>
+        <div>
+          <h4>Final Submission</h4>
+          <p>Review and submit your application</p>
+          <div id="workflow-step-4"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Responsive Design Demo -->
+  <div class="example-section">
+    <h2 class="example-title">Responsive Design Behavior</h2>
+    <p class="example-description">
+      Resize the container below to see how panels adapt to different screen sizes.
+    </p>
+    
+    <div class="responsive-demo">
+      <div id="responsive-panel"></div>
+    </div>
+    
+    <p><em>Drag the bottom-right corner of the container above to resize it.</em></p>
+  </div>
+
+  <!-- Complex Content Integration -->
+  <div class="example-section">
+    <h2 class="example-title">Complex Content Integration</h2>
+    <p class="example-description">
+      Panels with rich content including forms, lists, and interactive elements.
+    </p>
+    
+    <div class="demo-controls">
+      <button onclick="loadFormContent()">Load Form Content</button>
+      <button onclick="loadListContent()">Load List Content</button>
+      <button onclick="loadTableContent()">Load Table Content</button>
+      <button onclick="loadInteractiveContent()">Load Interactive Content</button>
+    </div>
+    
+    <div id="complex-content-panel"></div>
+  </div>
+
+  <!-- Performance and Memory Management -->
+  <div class="example-section">
+    <h2 class="example-title">Performance and Memory Management</h2>
+    <p class="example-description">
+      Performance testing and memory management demonstration.
+    </p>
+    
+    <div class="demo-controls">
+      <button onclick="createManyPanels()">Create 50 Panels</button>
+      <button onclick="updateAllPanels()">Update All Panels</button>
+      <button onclick="destroyAllPanels()">Destroy All</button>
+      <button onclick="measurePerformance()">Measure Performance</button>
+    </div>
+    
+    <div class="performance-stats" id="performance-stats">
+      <strong>Performance Stats:</strong><br>
+      Active panels: <span id="panel-count">0</span><br>
+      Last operation time: <span id="operation-time">0 ms</span><br>
+      Memory estimate: <span id="memory-estimate">0 KB</span>
+    </div>
+    
+    <div id="performance-container" style="max-height: 300px; overflow-y: auto; border: 1px solid #ddd; padding: 10px;"></div>
+  </div>
+
+  <script type="module">
+    import { 
+      createPanel,
+      createSuccessPanel,
+      createConfirmationPanel,
+      createHtmlPanel
+    } from '../panel.js'
+
+    // Global variables for advanced examples
+    let currentPanel = null
+    let analyticsLog = []
+    let performancePanels = []
+    let workflowPanels = {}
+
+    // Dynamic panel management
+    window.updateDynamicPanel = function() {
+      const title = document.getElementById('panel-title').value
+      const body = document.getElementById('panel-body').value
+      const titleLevel = parseInt(document.getElementById('title-level').value)
+      const htmlEnabled = document.getElementById('html-content').checked
+      
+      const container = document.getElementById('dynamic-panel')
+      container.innerHTML = ''
+      
+      if (currentPanel) {
+        currentPanel.destroy()
+      }
+      
+      currentPanel = createPanel({
+        title: title,
+        body: body || undefined,
+        titleLevel: titleLevel,
+        html: htmlEnabled
+      })
+      
+      container.appendChild(currentPanel.element)
+    }
+
+    window.clearPanelBody = function() {
+      if (currentPanel) {
+        currentPanel.setBody('')
+        document.getElementById('panel-body').value = ''
+      }
+    }
+
+    window.addSampleContent = function() {
+      const sampleHtml = `
+        <p>Your application includes:</p>
+        <ul>
+          <li>Personal details ✓</li>
+          <li>Medical history ✓</li>
+          <li>Current symptoms ✓</li>
+        </ul>
+        <p><strong>Next steps:</strong> <a href="/track-application">Track your application</a></p>
+      `
+      document.getElementById('panel-body').value = sampleHtml
+      document.getElementById('html-content').checked = true
+      updateDynamicPanel()
+    }
+
+    // Initialize dynamic panel
+    updateDynamicPanel()
+
+    // Analytics panel with event tracking
+    const analyticsPanel = createSuccessPanel(
+      'Form submitted successfully',
+      'Your health questionnaire has been submitted. We will review it and get back to you within 2 working days.'
+    )
+    document.getElementById('analytics-panel').appendChild(analyticsPanel.element)
+
+    // Enhanced analytics tracking
+    function trackEvent(eventType, details) {
+      const event = {
+        timestamp: new Date().toISOString(),
+        type: eventType,
+        details: details,
+        userAgent: navigator.userAgent.substring(0, 50) + '...',
+        screenSize: `${window.innerWidth}x${window.innerHeight}`
+      }
+      
+      analyticsLog.push(event)
+      updateAnalyticsLog()
+    }
+
+    function updateAnalyticsLog() {
+      const logElement = document.getElementById('analytics-log')
+      const recent = analyticsLog.slice(-10) // Show last 10 events
+      
+      logElement.innerHTML = '<strong>Event Analytics Log:</strong><br>' +
+        recent.map(log => 
+          `[${log.timestamp.substring(11, 19)}] ${log.type}: ${JSON.stringify(log.details)}<br>`
+        ).join('')
+    }
+
+    // Event listeners for analytics
+    analyticsPanel.element.addEventListener('public-good:panel:title-changed', (event) => {
+      trackEvent('title-changed', { title: event.detail.title })
+    })
+
+    analyticsPanel.element.addEventListener('public-good:panel:body-changed', (event) => {
+      trackEvent('body-changed', { body: event.detail.body.substring(0, 50) + '...' })
+    })
+
+    window.triggerContentUpdate = function() {
+      analyticsPanel.setTitle('Updated: Form processed')
+      analyticsPanel.setBody('Your form has been processed and forwarded to the appropriate department.')
+    }
+
+    window.simulateUserInteraction = function() {
+      trackEvent('user-interaction', { action: 'simulated-click', element: 'panel' })
+    }
+
+    window.clearAnalyticsLog = function() {
+      analyticsLog = []
+      updateAnalyticsLog()
+    }
+
+    // Accessibility testing functions
+    const accessibilityPanel = createPanel({
+      title: 'Accessibility Test Panel',
+      body: 'This panel is used for <a href="#test">accessibility testing</a> and validation.',
+      html: true,
+      titleLevel: 2
+    })
+    document.getElementById('accessibility-panel').appendChild(accessibilityPanel.element)
+
+    window.testHeadingHierarchy = function() {
+      const results = document.getElementById('accessibility-results')
+      let testResults = '<strong>Heading Hierarchy Test:</strong><br>'
+      
+      const headings = document.querySelectorAll('h1, h2, h3, h4, h5, h6')
+      const levels = Array.from(headings).map(h => parseInt(h.tagName.substring(1)))
+      
+      testResults += `Found ${headings.length} headings: ${levels.join(', ')}<br>`
+      
+      // Check for proper hierarchy
+      let hierarchyValid = true
+      for (let i = 1; i < levels.length; i++) {
+        if (levels[i] > levels[i-1] + 1) {
+          hierarchyValid = false
+          break
+        }
+      }
+      
+      testResults += `Hierarchy valid: ${hierarchyValid ? '✓ Yes' : '✗ No'}<br>`
+      results.innerHTML = testResults
+    }
+
+    window.testKeyboardNavigation = function() {
+      const results = document.getElementById('accessibility-results')
+      const panel = document.getElementById('accessibility-panel')
+      
+      const focusableElements = panel.querySelectorAll('a, button, input, select, textarea, [tabindex]:not([tabindex="-1"])')
+      let testResults = '<strong>Keyboard Navigation Test:</strong><br>'
+      
+      testResults += `Found ${focusableElements.length} focusable elements<br>`
+      
+      focusableElements.forEach((element, index) => {
+        element.focus()
+        const isFocused = document.activeElement === element
+        testResults += `Element ${index + 1} (${element.tagName}): ${isFocused ? '✓ Focusable' : '✗ Not focusable'}<br>`
+      })
+      
+      results.innerHTML = testResults
+    }
+
+    window.testScreenReaderContent = function() {
+      const results = document.getElementById('accessibility-results')
+      const panel = accessibilityPanel.element
+      
+      let testResults = '<strong>Screen Reader Content Test:</strong><br>'
+      
+      // Check heading structure
+      const heading = panel.querySelector('.public-good-panel__title')
+      testResults += `Heading present: ${heading ? '✓ Yes' : '✗ No'}<br>`
+      testResults += `Heading level: ${heading ? heading.tagName : 'N/A'}<br>`
+      
+      // Check body content
+      const body = panel.querySelector('.public-good-panel__body')
+      testResults += `Body content: ${body ? '✓ Present' : '✗ Missing'}<br>`
+      
+      // Check for links
+      const links = panel.querySelectorAll('a')
+      testResults += `Interactive links: ${links.length}<br>`
+      
+      results.innerHTML = testResults
+    }
+
+    window.validateAccessibility = function() {
+      const results = document.getElementById('accessibility-results')
+      let testResults = '<strong>Full Accessibility Validation:</strong><br>'
+      
+      // Run all tests
+      testHeadingHierarchy()
+      setTimeout(() => {
+        testKeyboardNavigation()
+        setTimeout(() => {
+          testScreenReaderContent()
+          testResults += 'All accessibility tests completed. Check individual results above.<br>'
+          results.innerHTML += testResults
+        }, 100)
+      }, 100)
+    }
+
+    // Workflow integration
+    const workflowSteps = {
+      1: { title: 'Personal details saved', body: 'Your personal information has been saved successfully.' },
+      2: { title: 'Medical history recorded', body: 'Your medical history has been added to your profile.' },
+      3: { title: 'Symptoms documented', body: 'Your current symptoms have been recorded for review.' },
+      4: { title: 'Application submitted', body: 'Your complete health assessment has been submitted for professional review.' }
+    }
+
+    window.simulateWorkflowStep = function(step) {
+      const config = workflowSteps[step]
+      const container = document.getElementById(`workflow-step-${step}`)
+      
+      // Remove existing panel
+      if (workflowPanels[step]) {
+        workflowPanels[step].destroy()
+      }
+      
+      // Create new panel
+      workflowPanels[step] = createConfirmationPanel(
+        config.title,
+        config.body,
+        4
+      )
+      
+      container.innerHTML = ''
+      container.appendChild(workflowPanels[step].element)
+      
+      trackEvent('workflow-step-completed', { step: step, title: config.title })
+    }
+
+    window.resetWorkflow = function() {
+      Object.values(workflowPanels).forEach(panel => panel.destroy())
+      workflowPanels = {}
+      
+      document.querySelectorAll('[id^="workflow-step-"]').forEach(container => {
+        container.innerHTML = ''
+      })
+      
+      trackEvent('workflow-reset', { action: 'reset-all-steps' })
+    }
+
+    // Responsive panel
+    const responsivePanel = createSuccessPanel(
+      'Responsive panel demonstration',
+      'This panel adapts to different container sizes. Resize the container to see how the content flows and adjusts accordingly.'
+    )
+    document.getElementById('responsive-panel').appendChild(responsivePanel.element)
+
+    // Complex content functions
+    let complexContentPanel = null
+
+    window.loadFormContent = function() {
+      const formContent = `
+        <p>Complete your registration:</p>
+        <form style="margin-top: 15px;">
+          <label style="display: block; margin-bottom: 5px;">Email:</label>
+          <input type="email" style="width: 100%; padding: 8px; margin-bottom: 10px;" placeholder="your.email@nhs.net">
+          <label style="display: block; margin-bottom: 5px;">Phone:</label>
+          <input type="tel" style="width: 100%; padding: 8px; margin-bottom: 10px;" placeholder="07123 456789">
+          <button type="button" style="padding: 10px 20px; background: #005eb8; color: white; border: none; border-radius: 4px;">Complete Registration</button>
+        </form>
+      `
+      loadComplexContent('Registration form loaded', formContent)
+    }
+
+    window.loadListContent = function() {
+      const listContent = `
+        <p>Your appointment preparation checklist:</p>
+        <ul style="margin-top: 10px;">
+          <li>✓ Bring your NHS number</li>
+          <li>✓ List current medications</li>
+          <li>✓ Prepare questions for your doctor</li>
+          <li>✓ Arrive 10 minutes early</li>
+        </ul>
+        <p>Additional items to consider:</p>
+        <ul>
+          <li>Insurance documentation</li>
+          <li>Previous test results</li>
+          <li>Emergency contact information</li>
+        </ul>
+      `
+      loadComplexContent('Appointment checklist', listContent)
+    }
+
+    window.loadTableContent = function() {
+      const tableContent = `
+        <p>Your upcoming appointments:</p>
+        <table style="width: 100%; border-collapse: collapse; margin-top: 10px;">
+          <thead>
+            <tr style="background-color: #f0f4f5;">
+              <th style="border: 1px solid #ccc; padding: 8px; text-align: left;">Date</th>
+              <th style="border: 1px solid #ccc; padding: 8px; text-align: left;">Time</th>
+              <th style="border: 1px solid #ccc; padding: 8px; text-align: left;">Doctor</th>
+              <th style="border: 1px solid #ccc; padding: 8px; text-align: left;">Type</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td style="border: 1px solid #ccc; padding: 8px;">Mon 15 Jan</td>
+              <td style="border: 1px solid #ccc; padding: 8px;">10:30</td>
+              <td style="border: 1px solid #ccc; padding: 8px;">Dr. Smith</td>
+              <td style="border: 1px solid #ccc; padding: 8px;">Check-up</td>
+            </tr>
+            <tr>
+              <td style="border: 1px solid #ccc; padding: 8px;">Wed 24 Jan</td>
+              <td style="border: 1px solid #ccc; padding: 8px;">14:15</td>
+              <td style="border: 1px solid #ccc; padding: 8px;">Dr. Johnson</td>
+              <td style="border: 1px solid #ccc; padding: 8px;">Follow-up</td>
+            </tr>
+          </tbody>
+        </table>
+      `
+      loadComplexContent('Appointments scheduled', tableContent)
+    }
+
+    window.loadInteractiveContent = function() {
+      const interactiveContent = `
+        <p>Choose your next action:</p>
+        <div style="margin-top: 15px;">
+          <button type="button" style="padding: 10px 15px; margin: 5px; background: #005eb8; color: white; border: none; border-radius: 4px;" onclick="alert('Book another appointment')">Book Another Appointment</button>
+          <button type="button" style="padding: 10px 15px; margin: 5px; background: #28a745; color: white; border: none; border-radius: 4px;" onclick="alert('View health records')">View Health Records</button>
+          <button type="button" style="padding: 10px 15px; margin: 5px; background: #6c757d; color: white; border: none; border-radius: 4px;" onclick="alert('Contact surgery')">Contact Surgery</button>
+        </div>
+        <p style="margin-top: 15px;">
+          <a href="#" onclick="alert('Download PDF'); return false;">Download confirmation (PDF)</a> | 
+          <a href="#" onclick="alert('Send email'); return false;">Email confirmation</a> | 
+          <a href="#" onclick="alert('Print page'); return false;">Print this page</a>
+        </p>
+      `
+      loadComplexContent('Actions available', interactiveContent)
+    }
+
+    function loadComplexContent(title, content) {
+      const container = document.getElementById('complex-content-panel')
+      container.innerHTML = ''
+      
+      if (complexContentPanel) {
+        complexContentPanel.destroy()
+      }
+      
+      complexContentPanel = createHtmlPanel(title, content)
+      container.appendChild(complexContentPanel.element)
+    }
+
+    // Performance testing
+    window.createManyPanels = function() {
+      const container = document.getElementById('performance-container')
+      const startTime = performance.now()
+      
+      for (let i = 0; i < 50; i++) {
+        const panel = createSuccessPanel(
+          `Panel ${i + 1}`,
+          `This is performance test panel number ${i + 1} with some body content.`
+        )
+        
+        const wrapper = document.createElement('div')
+        wrapper.style.marginBottom = '10px'
+        wrapper.appendChild(panel.element)
+        container.appendChild(wrapper)
+        
+        performancePanels.push(panel)
+      }
+      
+      const endTime = performance.now()
+      updatePerformanceStats(endTime - startTime)
+    }
+
+    window.updateAllPanels = function() {
+      const startTime = performance.now()
+      
+      performancePanels.forEach((panel, index) => {
+        panel.setTitle(`Updated Panel ${index + 1}`)
+        panel.setBody(`Updated content at ${new Date().toLocaleTimeString()}`)
+      })
+      
+      const endTime = performance.now()
+      updatePerformanceStats(endTime - startTime)
+    }
+
+    window.destroyAllPanels = function() {
+      const startTime = performance.now()
+      
+      performancePanels.forEach(panel => panel.destroy())
+      performancePanels = []
+      document.getElementById('performance-container').innerHTML = ''
+      
+      const endTime = performance.now()
+      updatePerformanceStats(endTime - startTime)
+    }
+
+    window.measurePerformance = function() {
+      const startTime = performance.now()
+      
+      // Create and destroy a test panel
+      const testPanel = createSuccessPanel('Performance Test', 'Measuring creation and destruction time')
+      testPanel.destroy()
+      
+      const endTime = performance.now()
+      updatePerformanceStats(endTime - startTime)
+    }
+
+    function updatePerformanceStats(operationTime) {
+      document.getElementById('panel-count').textContent = performancePanels.length
+      document.getElementById('operation-time').textContent = Math.round(operationTime)
+      
+      // Rough memory estimation (1KB per panel)
+      const memoryEstimate = performancePanels.length * 1
+      document.getElementById('memory-estimate').textContent = memoryEstimate
+    }
+
+    // Initialize performance stats
+    updatePerformanceStats(0)
+
+    console.log('Advanced panel examples loaded successfully')
+  </script>
+</body>
+</html>

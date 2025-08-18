@@ -1,0 +1,419 @@
+/**
+ * Summary List Component Styles
+ * 
+ * Styling for summary lists following NHS UK Design System patterns.
+ * Use summary lists to present key-value pairs, like user responses at the end of a form.
+ */
+
+.public-good-summary-list {
+  font-family: var(--public-good-font-family);
+  margin: 0;
+  margin-bottom: var(--public-good-spacing-6);
+}
+
+.public-good-summary-list__row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  border-bottom: 1px solid var(--public-good-color-border);
+  margin-bottom: 0;
+  padding-top: var(--public-good-spacing-3);
+  padding-bottom: var(--public-good-spacing-3);
+}
+
+.public-good-summary-list__row:first-child {
+  border-top: 1px solid var(--public-good-color-border);
+}
+
+.public-good-summary-list__key {
+  box-sizing: border-box;
+  font-size: var(--public-good-body-size);
+  font-weight: var(--public-good-font-weight-bold);
+  line-height: var(--public-good-body-line-height);
+  color: var(--public-good-color-text);
+  margin: 0;
+  margin-right: var(--public-good-spacing-4);
+  flex: 1;
+  min-width: 0;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+.public-good-summary-list__value {
+  box-sizing: border-box;
+  font-size: var(--public-good-body-size);
+  font-weight: var(--public-good-font-weight-normal);
+  line-height: var(--public-good-body-line-height);
+  color: var(--public-good-color-text);
+  margin: 0;
+  margin-right: var(--public-good-spacing-4);
+  flex: 2;
+  min-width: 0;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+.public-good-summary-list__actions {
+  box-sizing: border-box;
+  font-size: var(--public-good-body-size);
+  font-weight: var(--public-good-font-weight-normal);
+  line-height: var(--public-good-body-line-height);
+  margin: 0;
+  flex: 0 0 auto;
+  margin-left: auto;
+  text-align: right;
+}
+
+.public-good-summary-list__actions-list {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.public-good-summary-list__actions-list-item {
+  display: inline;
+  margin-right: var(--public-good-spacing-2);
+  padding-right: var(--public-good-spacing-2);
+  border-right: 1px solid var(--public-good-color-border);
+}
+
+.public-good-summary-list__actions-list-item:last-child {
+  margin-right: 0;
+  padding-right: 0;
+  border-right: none;
+}
+
+/* Action link styles */
+.public-good-summary-list__actions .public-good-link {
+  color: var(--public-good-color-link);
+  text-decoration: underline;
+  min-height: 24px;
+  min-width: 24px;
+  display: inline-block;
+  font-weight: var(--public-good-font-weight-normal);
+}
+
+.public-good-summary-list__actions .public-good-link:hover {
+  color: var(--public-good-color-link-hover);
+  text-decoration: none;
+}
+
+.public-good-summary-list__actions .public-good-link:focus {
+  outline: var(--public-good-spacing-focus-width) solid var(--public-good-color-focus);
+  outline-offset: var(--public-good-spacing-focus-offset);
+  color: var(--public-good-color-text);
+  background-color: var(--public-good-color-focus);
+  text-decoration: none;
+}
+
+.public-good-summary-list__actions .public-good-link:visited {
+  color: var(--public-good-color-link-visited);
+}
+
+.public-good-summary-list__actions .public-good-link:active {
+  color: var(--public-good-color-link-active);
+}
+
+/* No border variant */
+.public-good-summary-list--no-border .public-good-summary-list__row {
+  border-bottom: none;
+  padding-top: var(--public-good-spacing-2);
+  padding-bottom: var(--public-good-spacing-2);
+}
+
+.public-good-summary-list--no-border .public-good-summary-list__row:first-child {
+  border-top: none;
+  padding-top: 0;
+}
+
+.public-good-summary-list--no-border .public-good-summary-list__row:last-child {
+  padding-bottom: 0;
+}
+
+.public-good-summary-list--no-border .public-good-summary-list__actions-list-item {
+  border-right: 1px solid var(--public-good-color-border-secondary);
+}
+
+.public-good-summary-list--no-border .public-good-summary-list__actions-list-item:last-child {
+  border-right: none;
+}
+
+/* Mobile-first responsive design */
+@media (max-width: 40.0625em) {
+  .public-good-summary-list__row {
+    flex-direction: column;
+    padding-top: var(--public-good-spacing-3);
+    padding-bottom: var(--public-good-spacing-3);
+  }
+  
+  .public-good-summary-list__key {
+    margin-right: 0;
+    margin-bottom: var(--public-good-spacing-1);
+    flex: none;
+  }
+  
+  .public-good-summary-list__value {
+    margin-right: 0;
+    margin-bottom: var(--public-good-spacing-2);
+    flex: none;
+  }
+  
+  .public-good-summary-list__actions {
+    margin-left: 0;
+    text-align: left;
+    flex: none;
+  }
+  
+  .public-good-summary-list--no-border .public-good-summary-list__row {
+    padding-top: var(--public-good-spacing-2);
+    padding-bottom: var(--public-good-spacing-4);
+  }
+  
+  .public-good-summary-list--no-border .public-good-summary-list__row:first-child {
+    padding-top: 0;
+  }
+  
+  .public-good-summary-list--no-border .public-good-summary-list__row:last-child {
+    padding-bottom: 0;
+  }
+}
+
+/* Tablet and larger screens */
+@media (min-width: 40.0625em) {
+  .public-good-summary-list__key {
+    flex-basis: 30%;
+    flex-grow: 0;
+    flex-shrink: 0;
+  }
+  
+  .public-good-summary-list__value {
+    flex-basis: auto;
+    flex-grow: 1;
+    flex-shrink: 1;
+  }
+}
+
+/* Large screens optimizations */
+@media (min-width: 48em) {
+  .public-good-summary-list__key {
+    flex-basis: 25%;
+  }
+}
+
+/* Print styles */
+@media print {
+  .public-good-summary-list {
+    margin-bottom: var(--public-good-spacing-4);
+  }
+  
+  .public-good-summary-list__row {
+    border-bottom: 1px solid #000000;
+    page-break-inside: avoid;
+    padding-top: var(--public-good-spacing-2);
+    padding-bottom: var(--public-good-spacing-2);
+  }
+  
+  .public-good-summary-list__row:first-child {
+    border-top: 1px solid #000000;
+  }
+  
+  .public-good-summary-list__key,
+  .public-good-summary-list__value {
+    color: #000000;
+  }
+  
+  .public-good-summary-list__actions {
+    display: none; /* Hide actions in print as they won't work */
+  }
+  
+  .public-good-summary-list--no-border .public-good-summary-list__row {
+    border-bottom: none;
+  }
+  
+  .public-good-summary-list--no-border .public-good-summary-list__row:first-child {
+    border-top: none;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .public-good-summary-list__row {
+    border-bottom-width: var(--public-good-border-width-thick);
+    border-bottom-color: var(--public-good-color-text);
+  }
+  
+  .public-good-summary-list__row:first-child {
+    border-top-width: var(--public-good-border-width-thick);
+    border-top-color: var(--public-good-color-text);
+  }
+  
+  .public-good-summary-list__actions .public-good-link {
+    outline-width: var(--public-good-border-width-thick);
+  }
+  
+  .public-good-summary-list__actions .public-good-link:focus {
+    outline-width: var(--public-good-border-width-thick);
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .public-good-summary-list__actions .public-good-link {
+    transition: none;
+  }
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+  .public-good-summary-list__row {
+    border-color: var(--public-good-color-border-dark, #4c6272);
+  }
+  
+  .public-good-summary-list__row:first-child {
+    border-top-color: var(--public-good-color-border-dark, #4c6272);
+  }
+  
+  .public-good-summary-list__key,
+  .public-good-summary-list__value {
+    color: var(--public-good-color-text-dark, #ffffff);
+  }
+  
+  .public-good-summary-list__actions-list-item {
+    border-right-color: var(--public-good-color-border-dark, #4c6272);
+  }
+}
+
+/* Windows High Contrast Mode */
+@media screen and (-ms-high-contrast: active) {
+  .public-good-summary-list__row {
+    border-bottom-color: windowText;
+  }
+  
+  .public-good-summary-list__row:first-child {
+    border-top-color: windowText;
+  }
+  
+  .public-good-summary-list__key,
+  .public-good-summary-list__value {
+    color: windowText;
+  }
+  
+  .public-good-summary-list__actions .public-good-link {
+    color: linkText;
+  }
+  
+  .public-good-summary-list__actions .public-good-link:hover {
+    color: linkText;
+  }
+  
+  .public-good-summary-list__actions .public-good-link:focus {
+    outline-color: highlight;
+    background-color: highlight;
+    color: highlightText;
+  }
+}
+
+/* Touch device optimizations */
+@media (hover: none) and (pointer: coarse) {
+  .public-good-summary-list__actions .public-good-link {
+    min-height: 44px; /* Larger touch target on touch devices */
+    padding: var(--public-good-spacing-2) 0;
+  }
+}
+
+/* Screen reader and accessibility improvements */
+.public-good-visually-hidden {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
+/* Focus management for keyboard navigation */
+.public-good-summary-list__actions .public-good-link:focus-visible {
+  outline: var(--public-good-spacing-focus-width) solid var(--public-good-color-focus);
+  outline-offset: var(--public-good-spacing-focus-offset);
+}
+
+.public-good-summary-list__actions .public-good-link:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* Content overflow handling */
+.public-good-summary-list__key,
+.public-good-summary-list__value {
+  word-break: break-word;
+  hyphens: auto;
+}
+
+/* Empty state styling */
+.public-good-summary-list:empty::after {
+  content: "No information to display";
+  color: var(--public-good-color-text-secondary);
+  font-style: italic;
+  display: block;
+  padding: var(--public-good-spacing-4);
+  text-align: center;
+  border: 1px dashed var(--public-good-color-border);
+  border-radius: var(--public-good-border-radius-medium);
+}
+
+/* Loading state */
+.public-good-summary-list--loading {
+  opacity: 0.7;
+  pointer-events: none;
+  position: relative;
+}
+
+.public-good-summary-list--loading::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 32px;
+  height: 32px;
+  border: 3px solid var(--public-good-color-border);
+  border-top-color: var(--public-good-color-button-primary);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
+/* Compact variant for dense information display */
+.public-good-summary-list--compact .public-good-summary-list__row {
+  padding-top: var(--public-good-spacing-2);
+  padding-bottom: var(--public-good-spacing-2);
+}
+
+.public-good-summary-list--compact .public-good-summary-list__key,
+.public-good-summary-list--compact .public-good-summary-list__value {
+  font-size: var(--public-good-body-small-size);
+  line-height: var(--public-good-body-small-line-height);
+}
+
+/* Interactive states for dynamic content */
+.public-good-summary-list__row--highlight {
+  background-color: var(--public-good-color-background-highlight);
+  animation: fadeHighlight 2s ease-out;
+}
+
+@keyframes fadeHighlight {
+  0% {
+    background-color: var(--public-good-color-focus);
+  }
+  100% {
+    background-color: transparent;
+  }
+}

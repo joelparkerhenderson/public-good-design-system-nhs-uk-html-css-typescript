@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Card Component - Variants</title>
+  <link rel="stylesheet" href="../../../index.css">
+  <style>
+    body {
+      font-family: var(--public-good-font-family);
+      margin: 0;
+      padding: var(--public-good-spacing-6);
+      background-color: var(--public-good-color-background);
+    }
+    
+    .example-section {
+      margin-bottom: var(--public-good-spacing-8);
+    }
+    
+    .example-title {
+      font-size: var(--public-good-font-size-lg);
+      font-weight: var(--public-good-font-weight-bold);
+      margin-bottom: var(--public-good-spacing-4);
+      color: var(--public-good-color-text);
+    }
+    
+    .example-description {
+      margin-bottom: var(--public-good-spacing-5);
+      color: var(--public-good-color-text-secondary);
+    }
+    
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: var(--public-good-spacing-5);
+    }
+    
+    .dark-background {
+      background-color: var(--public-good-color-grey-5);
+      padding: var(--public-good-spacing-6);
+      margin: calc(-1 * var(--public-good-spacing-6));
+      margin-bottom: var(--public-good-spacing-6);
+    }
+    
+    @media (max-width: 768px) {
+      .cards-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <h1>Card Component - Variants</h1>
+  
+  <div class="example-section">
+    <h2 class="example-title">Primary Cards</h2>
+    <p class="example-description">Primary cards with chevron icons for important navigation items.</p>
+    
+    <div class="cards-grid">
+      <div data-public-good-card 
+           data-heading="Breast screening"
+           data-primary="true"
+           data-clickable="true"
+           data-href="#breast-screening"
+           data-heading-classes="public-good-heading-m">
+      </div>
+      
+      <div data-public-good-card 
+           data-heading="Introduction to care and support"
+           data-description="A quick guide for people who have care and support needs and their carers"
+           data-primary="true"
+           data-clickable="true"
+           data-href="#care-support"
+           data-heading-classes="public-good-heading-m">
+      </div>
+    </div>
+  </div>
+
+  <div class="example-section">
+    <h2 class="example-title">Secondary Cards</h2>
+    <p class="example-description">Secondary cards for less prominent content with minimal styling.</p>
+    
+    <div data-public-good-card 
+         data-heading="Urgent and emergency care services"
+         data-description="Services the NHS provides if you need urgent or emergency medical help"
+         data-secondary="true"
+         data-clickable="true"
+         data-href="#emergency-care"
+         data-heading-classes="public-good-heading-m">
+    </div>
+  </div>
+
+  <div class="example-section">
+    <h2 class="example-title">Feature Cards</h2>
+    <p class="example-description">Feature cards with special highlighted headings.</p>
+    
+    <div data-public-good-card 
+         data-heading="Feature card heading"
+         data-description="Feature card description with highlighted header styling"
+         data-feature="true"
+         data-href="#feature"
+         data-heading-classes="public-good-heading-m">
+    </div>
+  </div>
+
+  <div class="example-section">
+    <h2 class="example-title">Top Task Cards</h2>
+    <p class="example-description">Compact cards for quick access to popular services (maximum 3 per page recommended).</p>
+    
+    <div class="cards-grid">
+      <div data-public-good-card 
+           data-heading="Order a repeat prescription"
+           data-top-task="true"
+           data-clickable="true"
+           data-href="#prescription"
+           data-heading-level="5"
+           data-heading-classes="public-good-heading-xs">
+      </div>
+      
+      <div data-public-good-card 
+           data-heading="Book a GP appointment"
+           data-top-task="true"
+           data-clickable="true"
+           data-href="#appointment"
+           data-heading-level="5"
+           data-heading-classes="public-good-heading-xs">
+      </div>
+      
+      <div data-public-good-card 
+           data-heading="Find local services"
+           data-top-task="true"
+           data-clickable="true"
+           data-href="#services"
+           data-heading-level="5"
+           data-heading-classes="public-good-heading-xs">
+      </div>
+    </div>
+  </div>
+
+  <div class="example-section">
+    <h2 class="example-title">Care Cards</h2>
+    <p class="example-description">Specialized cards for medical advice with different urgency levels.</p>
+    
+    <div class="example-section">
+      <h3>Non-urgent (Blue)</h3>
+      <div data-public-good-card 
+           data-heading="Speak to a GP if:"
+           data-type="non-urgent"
+           data-heading-level="3">
+        <ul>
+          <li>you're not sure it's chickenpox</li>
+          <li>the skin around the blisters is red, hot or painful (signs of infection)</li>
+          <li>your child is <a href="#">dehydrated</a></li>
+          <li>you're concerned about your child or they get worse</li>
+        </ul>
+        <p>Tell the receptionist you think it's chickenpox before going in. They may recommend a special appointment time if other patients are at risk.</p>
+      </div>
+    </div>
+
+    <div class="example-section">
+      <h3>Urgent (Red)</h3>
+      <div data-public-good-card 
+           data-heading="Ask for an urgent GP appointment if:"
+           data-type="urgent"
+           data-heading-level="3">
+        <ul>
+          <li>you're an adult and have chickenpox</li>
+          <li>you're pregnant and haven't had chickenpox before and you've been near someone with it</li>
+          <li>you have a weakened immune system and you've been near someone with chickenpox</li>
+          <li>you think your newborn baby has chickenpox</li>
+        </ul>
+        <p>In these situations, your GP can prescribe medicine to prevent complications. You need to take it within 24 hours of the spots coming out.</p>
+      </div>
+    </div>
+
+    <div class="example-section">
+      <h3>Emergency (Red and Black)</h3>
+      <div data-public-good-card 
+           data-heading="Call 999 if you have sudden chest pain that:"
+           data-type="emergency"
+           data-heading-level="3">
+        <ul>
+          <li>spreads to your arms, back, neck or jaw</li>
+          <li>makes your chest feel tight or heavy</li>
+          <li>also started with shortness of breath, sweating and feeling or being sick</li>
+        </ul>
+        <p>You could be having a heart attack. Call 999 immediately as you need immediate treatment in hospital.</p>
+      </div>
+    </div>
+  </div>
+
+  <script type="module">
+    import { initializeCards } from '../card.js'
+    
+    // Initialize all cards on the page
+    initializeCards()
+    
+    // Add analytics tracking
+    document.addEventListener('public-good:card:click', (event) => {
+      console.log('Card analytics:', {
+        heading: event.detail.heading,
+        variant: event.detail.variant,
+        type: event.detail.type,
+        href: event.detail.href,
+        timestamp: new Date().toISOString()
+      })
+      
+      // Prevent navigation for demo purposes
+      if (event.detail.href && event.detail.href.startsWith('#')) {
+        event.preventDefault()
+        alert(`${event.detail.variant} card clicked: "${event.detail.heading}"`)
+      }
+    })
+  </script>
+</body>
+</html>

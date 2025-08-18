@@ -1,0 +1,811 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Warning Callout Component - Advanced Examples</title>
+  <link rel="stylesheet" href="../warning-callout.css">
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem;
+      line-height: 1.6;
+      background-color: #f9f9f9;
+    }
+    .example {
+      margin-bottom: 2rem;
+      padding: 2rem;
+      border: 1px solid #e0e0e0;
+      border-radius: 8px;
+      background-color: white;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    .example h3 {
+      margin-top: 0;
+      color: #333;
+      border-bottom: 2px solid #0066cc;
+      padding-bottom: 0.5rem;
+    }
+    .controls {
+      margin-bottom: 1rem;
+      padding: 1rem;
+      background-color: #f5f5f5;
+      border-radius: 4px;
+    }
+    .controls button {
+      margin: 0.25rem;
+      padding: 0.5rem 1rem;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      background-color: white;
+      cursor: pointer;
+    }
+    .controls button:hover {
+      background-color: #e8f4f8;
+    }
+    .controls input, .controls select, .controls textarea {
+      margin: 0.25rem;
+      padding: 0.5rem;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+    .demo-output {
+      min-height: 100px;
+      padding: 1rem;
+      border: 2px dashed #ccc;
+      border-radius: 4px;
+      margin: 1rem 0;
+      background-color: #fafafa;
+    }
+    .form-builder {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+    .form-group {
+      display: flex;
+      flex-direction: column;
+    }
+    .form-group label {
+      margin-bottom: 0.25rem;
+      font-weight: 500;
+    }
+    .log-output {
+      background-color: #1e1e1e;
+      color: #ffffff;
+      padding: 1rem;
+      border-radius: 4px;
+      font-family: 'Courier New', monospace;
+      font-size: 0.9rem;
+      max-height: 200px;
+      overflow-y: auto;
+      margin-top: 1rem;
+    }
+    .interaction-demo {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      margin-top: 1rem;
+    }
+    .interaction-panel {
+      padding: 1rem;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      background-color: #f8f9fa;
+    }
+    .interaction-panel h4 {
+      margin-top: 0;
+      color: #495057;
+    }
+    .dynamic-demo {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+    }
+    .dynamic-panel {
+      padding: 1rem;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+    }
+    .dynamic-panel h4 {
+      margin-top: 0;
+      color: #495057;
+    }
+    /* Screen reader only utility */
+    .public-good-warning-callout-sr-only {
+      position: absolute !important;
+      width: 1px !important;
+      height: 1px !important;
+      padding: 0 !important;
+      margin: -1px !important;
+      overflow: hidden !important;
+      clip: rect(0, 0, 0, 0) !important;
+      white-space: nowrap !important;
+      border: 0 !important;
+    }
+  </style>
+</head>
+<body>
+  <h1>Warning Callout Component - Advanced Examples</h1>
+  <p>Advanced usage patterns and interactive demonstrations of the warning callout component with TypeScript integration.</p>
+
+  <div class="example">
+    <h3>Dynamic Warning Callout Builder</h3>
+    <div class="form-builder">
+      <div class="form-group">
+        <label for="builder-heading">Heading:</label>
+        <input type="text" id="builder-heading" value="Dynamic Warning">
+      </div>
+      <div class="form-group">
+        <label for="builder-content">Content:</label>
+        <textarea id="builder-content" rows="3" placeholder="Enter warning content...">This is a dynamically generated warning callout.</textarea>
+      </div>
+      <div class="form-group">
+        <label for="builder-level">Heading Level:</label>
+        <select id="builder-level">
+          <option value="2">H2</option>
+          <option value="3" selected>H3</option>
+          <option value="4">H4</option>
+          <option value="5">H5</option>
+          <option value="6">H6</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="builder-prefix">Hidden Prefix:</label>
+        <input type="text" id="builder-prefix" value="Important: ">
+      </div>
+      <div class="form-group">
+        <label for="builder-variant">Variant:</label>
+        <select id="builder-variant">
+          <option value="">Default</option>
+          <option value="compact">Compact</option>
+          <option value="critical">Critical</option>
+          <option value="subtle">Subtle</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="builder-id">ID (optional):</label>
+        <input type="text" id="builder-id" placeholder="warning-1">
+      </div>
+    </div>
+    <div class="controls">
+      <button id="create-warning">Create Warning Callout</button>
+      <button id="clear-warnings">Clear All</button>
+      <label><input type="checkbox" id="builder-html"> Use HTML content</label>
+      <label><input type="checkbox" id="builder-track"> Track interactions</label>
+      <label><input type="checkbox" id="builder-announce"> Announce to screen readers</label>
+    </div>
+    <div class="demo-output" id="warning-builder-output">
+      <!-- Dynamic warning callouts will appear here -->
+    </div>
+  </div>
+
+  <div class="example">
+    <h3>Interactive Warning Management</h3>
+    <div class="dynamic-demo">
+      <div class="dynamic-panel">
+        <h4>Warning Controls</h4>
+        <div class="controls">
+          <button id="add-sample-warning">Add Sample Warning</button>
+          <button id="show-all-warnings">Show All</button>
+          <button id="hide-all-warnings">Hide All</button>
+          <button id="update-content">Update Content</button>
+          <button id="change-variant">Change Variant</button>
+        </div>
+        <div id="managed-warnings" class="demo-output">
+          <!-- Managed warnings will appear here -->
+        </div>
+      </div>
+      <div class="dynamic-panel">
+        <h4>Interaction Log</h4>
+        <div class="log-output" id="management-log">
+          Warning management events will appear here...
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="example">
+    <h3>Accessibility Testing and Validation</h3>
+    <div class="interaction-demo">
+      <div class="interaction-panel">
+        <h4>Accessibility Tests</h4>
+        <div class="controls">
+          <button id="run-accessibility-test">Run Accessibility Test</button>
+          <button id="test-screen-reader">Test Screen Reader Announcement</button>
+          <button id="test-keyboard-nav">Test Keyboard Navigation</button>
+          <button id="validate-structure">Validate HTML Structure</button>
+        </div>
+        <div class="demo-output">
+          <!-- Test warnings with various accessibility states -->
+          <div class="public-good-warning-callout" id="accessible-warning">
+            <h3 class="public-good-warning-callout__label">
+              <span role="text">
+                <span class="public-good-warning-callout-sr-only">Important: </span>
+                Accessible warning
+              </span>
+            </h3>
+            <p>This warning has proper accessibility attributes and structure.</p>
+          </div>
+          
+          <div class="public-good-warning-callout" id="problematic-warning">
+            <h3 class="public-good-warning-callout__label">Missing accessibility features</h3>
+            <p>This warning is missing some accessibility features for testing purposes.</p>
+          </div>
+        </div>
+      </div>
+      <div class="interaction-panel">
+        <h4>Test Results</h4>
+        <div class="log-output" id="accessibility-log">
+          Accessibility test results will appear here...
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="example">
+    <h3>Real-time Content Updates</h3>
+    <div class="controls">
+      <button id="simulate-urgent-update">Simulate Urgent Update</button>
+      <button id="simulate-time-sensitive">Simulate Time-sensitive Warning</button>
+      <button id="simulate-status-change">Simulate Status Change</button>
+      <button id="clear-notifications">Clear Notifications</button>
+    </div>
+    <div id="notification-area" class="demo-output">
+      <!-- Real-time notifications will appear here -->
+    </div>
+    <div class="log-output" id="notification-log">
+      Real-time notification events will appear here...
+    </div>
+  </div>
+
+  <div class="example">
+    <h3>Form Integration Demo</h3>
+    <div class="controls">
+      <button id="trigger-form-warning">Trigger Form Warning</button>
+      <button id="clear-form-warning">Clear Form Warning</button>
+      <button id="validate-form">Validate Form</button>
+    </div>
+    <div class="demo-output">
+      <form id="demo-form" style="padding: 1rem; border: 1px solid #ddd; border-radius: 4px;">
+        <div style="margin-bottom: 1rem;">
+          <label for="demo-email" style="display: block; margin-bottom: 0.25rem; font-weight: 500;">Email Address:</label>
+          <input type="email" id="demo-email" style="width: 100%; padding: 0.5rem; border: 1px solid #ccc; border-radius: 4px;">
+        </div>
+        
+        <div id="form-warning-container">
+          <!-- Form warnings will appear here -->
+        </div>
+        
+        <div style="margin-bottom: 1rem;">
+          <label for="demo-password" style="display: block; margin-bottom: 0.25rem; font-weight: 500;">Password:</label>
+          <input type="password" id="demo-password" style="width: 100%; padding: 0.5rem; border: 1px solid #ccc; border-radius: 4px;">
+        </div>
+        
+        <button type="submit" style="padding: 0.75rem 1.5rem; background-color: #00703c; color: white; border: none; border-radius: 4px; cursor: pointer;">
+          Submit Form
+        </button>
+      </form>
+    </div>
+    <div class="log-output" id="form-log">
+      Form interaction events will appear here...
+    </div>
+  </div>
+
+  <div class="example">
+    <h3>Multi-language Support Demo</h3>
+    <div class="controls">
+      <button id="lang-english">English</button>
+      <button id="lang-spanish">Español</button>
+      <button id="lang-french">Français</button>
+      <button id="lang-arabic">العربية</button>
+    </div>
+    <div id="multilang-warning" class="demo-output">
+      <div class="public-good-warning-callout">
+        <h3 class="public-good-warning-callout__label">
+          <span role="text">
+            <span class="public-good-warning-callout-sr-only">Important: </span>
+            Service maintenance
+          </span>
+        </h3>
+        <p>Our services will be temporarily unavailable for scheduled maintenance from 2:00 AM to 6:00 AM.</p>
+      </div>
+    </div>
+  </div>
+
+  <script type="module">
+    import { 
+      WarningCallout, 
+      createWarningCallout, 
+      initializeWarningCallouts, 
+      validateWarningCalloutAccessibility 
+    } from '../warning-callout.js';
+
+    document.addEventListener('DOMContentLoaded', () => {
+      initializeDynamicBuilder();
+      initializeInteractiveManagement();
+      initializeAccessibilityTesting();
+      initializeRealTimeUpdates();
+      initializeFormIntegration();
+      initializeMultiLanguageSupport();
+    });
+
+    function initializeDynamicBuilder() {
+      const createBtn = document.getElementById('create-warning');
+      const clearBtn = document.getElementById('clear-warnings');
+      const output = document.getElementById('warning-builder-output');
+      
+      let warningCounter = 1;
+
+      createBtn.addEventListener('click', () => {
+        const heading = document.getElementById('builder-heading').value || 'Dynamic Warning';
+        const content = document.getElementById('builder-content').value || 'Generated content';
+        const level = parseInt(document.getElementById('builder-level').value) || 3;
+        const prefix = document.getElementById('builder-prefix').value || 'Important: ';
+        const variant = document.getElementById('builder-variant').value;
+        const id = document.getElementById('builder-id').value || `warning-${warningCounter++}`;
+        const useHtml = document.getElementById('builder-html').checked;
+        const trackInteractions = document.getElementById('builder-track').checked;
+        const announceToScreenReader = document.getElementById('builder-announce').checked;
+
+        const options = {
+          id,
+          heading,
+          headingLevel: level,
+          hiddenPrefix: prefix,
+          classes: variant ? `public-good-warning-callout--${variant}` : ''
+        };
+
+        if (useHtml) {
+          options.html = content;
+        } else {
+          options.content = content;
+        }
+
+        const warning = createWarningCallout(options);
+        output.appendChild(warning);
+
+        // Create interactive instance if tracking is enabled
+        if (trackInteractions || announceToScreenReader) {
+          const config = {
+            trackInteractions,
+            announceToScreenReader,
+            onInteraction: (type, element) => {
+              console.log(`Warning interaction: ${type}`, element);
+            }
+          };
+          
+          new WarningCallout(warning, config);
+        }
+      });
+
+      clearBtn.addEventListener('click', () => {
+        output.innerHTML = '';
+        warningCounter = 1;
+      });
+    }
+
+    function initializeInteractiveManagement() {
+      const addBtn = document.getElementById('add-sample-warning');
+      const showAllBtn = document.getElementById('show-all-warnings');
+      const hideAllBtn = document.getElementById('hide-all-warnings');
+      const updateBtn = document.getElementById('update-content');
+      const changeVariantBtn = document.getElementById('change-variant');
+      const container = document.getElementById('managed-warnings');
+      const log = document.getElementById('management-log');
+      
+      let instances = [];
+
+      function logMessage(message) {
+        const timestamp = new Date().toLocaleTimeString();
+        const entry = document.createElement('div');
+        entry.textContent = `[${timestamp}] ${message}`;
+        log.appendChild(entry);
+        log.scrollTop = log.scrollHeight;
+      }
+
+      addBtn.addEventListener('click', () => {
+        const warnings = [
+          { heading: 'System Update', content: 'The system will be updated tonight at midnight.' },
+          { heading: 'New Policy', content: 'Please review our updated privacy policy.' },
+          { heading: 'Maintenance Window', content: 'Scheduled maintenance will occur this weekend.' }
+        ];
+        
+        const randomWarning = warnings[Math.floor(Math.random() * warnings.length)];
+        const warning = createWarningCallout({
+          heading: randomWarning.heading,
+          content: randomWarning.content
+        });
+        
+        container.appendChild(warning);
+        
+        const instance = new WarningCallout(warning, {
+          trackInteractions: true,
+          onInteraction: (type, element) => {
+            logMessage(`Interaction: ${type} on "${randomWarning.heading}"`);
+          }
+        });
+        
+        instances.push(instance);
+        logMessage(`Added warning: "${randomWarning.heading}"`);
+      });
+
+      showAllBtn.addEventListener('click', () => {
+        instances.forEach(instance => instance.show());
+        logMessage('All warnings shown');
+      });
+
+      hideAllBtn.addEventListener('click', () => {
+        instances.forEach(instance => instance.hide());
+        logMessage('All warnings hidden');
+      });
+
+      updateBtn.addEventListener('click', () => {
+        instances.forEach(instance => {
+          instance.setContent('Content has been updated with new information.');
+        });
+        logMessage('All warning content updated');
+      });
+
+      changeVariantBtn.addEventListener('click', () => {
+        const variants = ['', 'compact', 'critical', 'subtle'];
+        let currentVariant = 0;
+        
+        instances.forEach(instance => {
+          const element = instance.getElement();
+          // Remove existing variant classes
+          element.className = element.className.replace(/public-good-warning-callout--\w+/g, '');
+          
+          const variant = variants[currentVariant % variants.length];
+          if (variant) {
+            element.classList.add(`public-good-warning-callout--${variant}`);
+          }
+          currentVariant++;
+        });
+        
+        logMessage('Warning variants updated');
+      });
+    }
+
+    function initializeAccessibilityTesting() {
+      const runTestBtn = document.getElementById('run-accessibility-test');
+      const screenReaderBtn = document.getElementById('test-screen-reader');
+      const keyboardNavBtn = document.getElementById('test-keyboard-nav');
+      const validateBtn = document.getElementById('validate-structure');
+      const log = document.getElementById('accessibility-log');
+      
+      function logA11y(message) {
+        const timestamp = new Date().toLocaleTimeString();
+        const entry = document.createElement('div');
+        entry.textContent = `[${timestamp}] ${message}`;
+        log.appendChild(entry);
+        log.scrollTop = log.scrollHeight;
+      }
+
+      runTestBtn.addEventListener('click', () => {
+        const result = validateWarningCalloutAccessibility();
+        logA11y(`Found ${result.warningCallouts.length} warning callouts`);
+        logA11y(`Accessibility issues: ${result.issues.length}`);
+        
+        result.issues.forEach(issue => {
+          logA11y(`Issue: ${issue}`);
+        });
+        
+        if (result.issues.length === 0) {
+          logA11y('✅ All accessibility checks passed!');
+        }
+      });
+
+      screenReaderBtn.addEventListener('click', () => {
+        const warnings = document.querySelectorAll('.public-good-warning-callout');
+        warnings.forEach((warning, index) => {
+          const heading = warning.querySelector('.public-good-warning-callout__label')?.textContent;
+          const content = warning.querySelector('p')?.textContent;
+          
+          // Create temporary live region
+          const announcement = document.createElement('div');
+          announcement.setAttribute('aria-live', 'polite');
+          announcement.setAttribute('aria-atomic', 'true');
+          announcement.style.position = 'absolute';
+          announcement.style.left = '-10000px';
+          announcement.textContent = `Warning ${index + 1}: ${heading}. ${content}`;
+          
+          document.body.appendChild(announcement);
+          
+          setTimeout(() => {
+            document.body.removeChild(announcement);
+          }, 1000);
+          
+          logA11y(`Announced warning ${index + 1} to screen readers`);
+        });
+      });
+
+      keyboardNavBtn.addEventListener('click', () => {
+        const warnings = document.querySelectorAll('.public-good-warning-callout');
+        const links = document.querySelectorAll('.public-good-warning-callout a');
+        
+        logA11y(`Found ${warnings.length} warnings, ${links.length} focusable links`);
+        
+        if (links.length > 0) {
+          links[0].focus();
+          logA11y('Focused first link for keyboard navigation test');
+        } else {
+          logA11y('No focusable elements found in warnings');
+        }
+      });
+
+      validateBtn.addEventListener('click', () => {
+        const warnings = document.querySelectorAll('.public-good-warning-callout');
+        let validCount = 0;
+        
+        warnings.forEach((warning, index) => {
+          const heading = warning.querySelector('.public-good-warning-callout__label');
+          const content = warning.querySelector('p, .public-good-warning-callout__content');
+          const hiddenPrefix = warning.querySelector('.public-good-warning-callout-sr-only');
+          const roleText = warning.querySelector('[role="text"]');
+          
+          let valid = true;
+          if (!heading) {
+            logA11y(`Warning ${index + 1}: Missing heading`);
+            valid = false;
+          }
+          if (!content) {
+            logA11y(`Warning ${index + 1}: Missing content`);
+            valid = false;
+          }
+          if (!hiddenPrefix) {
+            logA11y(`Warning ${index + 1}: Missing screen reader prefix`);
+            valid = false;
+          }
+          if (!roleText) {
+            logA11y(`Warning ${index + 1}: Missing role="text"`);
+            valid = false;
+          }
+          
+          if (valid) {
+            validCount++;
+            logA11y(`Warning ${index + 1}: Structure valid ✅`);
+          }
+        });
+        
+        logA11y(`Structure validation complete: ${validCount}/${warnings.length} valid`);
+      });
+    }
+
+    function initializeRealTimeUpdates() {
+      const urgentBtn = document.getElementById('simulate-urgent-update');
+      const timeSensitiveBtn = document.getElementById('simulate-time-sensitive');
+      const statusBtn = document.getElementById('simulate-status-change');
+      const clearBtn = document.getElementById('clear-notifications');
+      const container = document.getElementById('notification-area');
+      const log = document.getElementById('notification-log');
+      
+      let notificationCounter = 1;
+
+      function logNotification(message) {
+        const timestamp = new Date().toLocaleTimeString();
+        const entry = document.createElement('div');
+        entry.textContent = `[${timestamp}] ${message}`;
+        log.appendChild(entry);
+        log.scrollTop = log.scrollHeight;
+      }
+
+      urgentBtn.addEventListener('click', () => {
+        const warning = createWarningCallout({
+          id: `urgent-${notificationCounter++}`,
+          heading: 'System Alert',
+          content: 'Critical system error detected. Please contact support immediately.',
+          classes: 'public-good-warning-callout--critical public-good-warning-callout--animated'
+        });
+        
+        container.appendChild(warning);
+        
+        const instance = new WarningCallout(warning, {
+          announceToScreenReader: true,
+          trackInteractions: true
+        });
+        
+        logNotification('Urgent system alert added');
+      });
+
+      timeSensitiveBtn.addEventListener('click', () => {
+        const now = new Date();
+        const deadline = new Date(now.getTime() + 24 * 60 * 60 * 1000); // Tomorrow
+        
+        const warning = createWarningCallout({
+          id: `deadline-${notificationCounter++}`,
+          heading: 'Application Deadline',
+          content: `Your application must be submitted by ${deadline.toLocaleDateString()}. Late submissions will not be accepted.`,
+          classes: 'public-good-warning-callout--animated'
+        });
+        
+        container.appendChild(warning);
+        
+        const instance = new WarningCallout(warning, {
+          announceToScreenReader: true
+        });
+        
+        logNotification('Time-sensitive warning added');
+      });
+
+      statusBtn.addEventListener('click', () => {
+        const statuses = [
+          { heading: 'Service Restored', content: 'All services are now operating normally.' },
+          { heading: 'Partial Outage', content: 'Some features may be temporarily unavailable.' },
+          { heading: 'Scheduled Maintenance', content: 'Maintenance will begin in 30 minutes.' }
+        ];
+        
+        const randomStatus = statuses[Math.floor(Math.random() * statuses.length)];
+        
+        const warning = createWarningCallout({
+          id: `status-${notificationCounter++}`,
+          heading: randomStatus.heading,
+          content: randomStatus.content,
+          classes: 'public-good-warning-callout--subtle public-good-warning-callout--animated'
+        });
+        
+        container.appendChild(warning);
+        
+        const instance = new WarningCallout(warning);
+        
+        logNotification(`Status update: ${randomStatus.heading}`);
+      });
+
+      clearBtn.addEventListener('click', () => {
+        container.innerHTML = '';
+        logNotification('All notifications cleared');
+      });
+    }
+
+    function initializeFormIntegration() {
+      const triggerBtn = document.getElementById('trigger-form-warning');
+      const clearBtn = document.getElementById('clear-form-warning');
+      const validateBtn = document.getElementById('validate-form');
+      const form = document.getElementById('demo-form');
+      const warningContainer = document.getElementById('form-warning-container');
+      const log = document.getElementById('form-log');
+      
+      let formWarningInstance = null;
+
+      function logForm(message) {
+        const timestamp = new Date().toLocaleTimeString();
+        const entry = document.createElement('div');
+        entry.textContent = `[${timestamp}] ${message}`;
+        log.appendChild(entry);
+        log.scrollTop = log.scrollHeight;
+      }
+
+      triggerBtn.addEventListener('click', () => {
+        if (formWarningInstance) {
+          formWarningInstance.destroy();
+        }
+        
+        const warning = createWarningCallout({
+          heading: 'Security Notice',
+          content: 'For your security, please ensure you are on a secure connection (HTTPS) when entering sensitive information.',
+          classes: 'public-good-warning-callout--subtle'
+        });
+        
+        warningContainer.appendChild(warning);
+        
+        formWarningInstance = new WarningCallout(warning, {
+          announceToScreenReader: true
+        });
+        
+        logForm('Form security warning triggered');
+      });
+
+      clearBtn.addEventListener('click', () => {
+        if (formWarningInstance) {
+          formWarningInstance.destroy();
+          formWarningInstance = null;
+        }
+        warningContainer.innerHTML = '';
+        logForm('Form warning cleared');
+      });
+
+      validateBtn.addEventListener('click', () => {
+        const email = document.getElementById('demo-email').value;
+        const password = document.getElementById('demo-password').value;
+        
+        if (!email || !password) {
+          if (formWarningInstance) {
+            formWarningInstance.destroy();
+          }
+          
+          const warning = createWarningCallout({
+            heading: 'Required Fields',
+            content: 'Please fill in all required fields before submitting the form.',
+            classes: 'public-good-warning-callout--critical'
+          });
+          
+          warningContainer.appendChild(warning);
+          
+          formWarningInstance = new WarningCallout(warning, {
+            announceToScreenReader: true
+          });
+          
+          logForm('Form validation failed - missing required fields');
+        } else {
+          logForm('Form validation passed');
+        }
+      });
+
+      form.addEventListener('submit', (event) => {
+        event.preventDefault();
+        logForm('Form submitted (prevented for demo)');
+      });
+    }
+
+    function initializeMultiLanguageSupport() {
+      const englishBtn = document.getElementById('lang-english');
+      const spanishBtn = document.getElementById('lang-spanish');
+      const frenchBtn = document.getElementById('lang-french');
+      const arabicBtn = document.getElementById('lang-arabic');
+      const warningContainer = document.getElementById('multilang-warning');
+      
+      const translations = {
+        english: {
+          prefix: 'Important: ',
+          heading: 'Service maintenance',
+          content: 'Our services will be temporarily unavailable for scheduled maintenance from 2:00 AM to 6:00 AM.',
+          dir: 'ltr'
+        },
+        spanish: {
+          prefix: 'Importante: ',
+          heading: 'Mantenimiento del servicio',
+          content: 'Nuestros servicios no estarán disponibles temporalmente por mantenimiento programado de 2:00 AM a 6:00 AM.',
+          dir: 'ltr'
+        },
+        french: {
+          prefix: 'Important : ',
+          heading: 'Maintenance du service',
+          content: 'Nos services seront temporairement indisponibles pour une maintenance programmée de 2h00 à 6h00.',
+          dir: 'ltr'
+        },
+        arabic: {
+          prefix: 'مهم: ',
+          heading: 'صيانة الخدمة',
+          content: 'ستكون خدماتنا غير متاحة مؤقتاً للصيانة المجدولة من الساعة 2:00 صباحاً إلى 6:00 صباحاً.',
+          dir: 'rtl'
+        }
+      };
+
+      function updateLanguage(lang) {
+        const translation = translations[lang];
+        const warning = warningContainer.querySelector('.public-good-warning-callout');
+        const heading = warning.querySelector('.public-good-warning-callout__label');
+        const hiddenPrefix = heading.querySelector('.public-good-warning-callout-sr-only');
+        const content = warning.querySelector('p');
+        
+        // Update direction
+        warning.setAttribute('dir', translation.dir);
+        
+        // Update hidden prefix
+        hiddenPrefix.textContent = translation.prefix;
+        
+        // Update heading text (preserving the structure)
+        const span = heading.querySelector('span[role="text"]');
+        span.childNodes.forEach(node => {
+          if (node.nodeType === Node.TEXT_NODE) {
+            node.textContent = translation.heading;
+          }
+        });
+        
+        // Update content
+        content.textContent = translation.content;
+        
+        console.log(`Language changed to: ${lang}`);
+      }
+
+      englishBtn.addEventListener('click', () => updateLanguage('english'));
+      spanishBtn.addEventListener('click', () => updateLanguage('spanish'));
+      frenchBtn.addEventListener('click', () => updateLanguage('french'));
+      arabicBtn.addEventListener('click', () => updateLanguage('arabic'));
+    }
+  </script>
+</body>
+</html>

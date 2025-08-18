@@ -1,0 +1,743 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Error Message - Advanced Examples</title>
+  <link rel="stylesheet" href="../../../index.css">
+  <style>
+    body {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem;
+      font-family: var(--public-good-font-family);
+      line-height: 1.6;
+      color: var(--public-good-color-text);
+    }
+    
+    .example-section {
+      margin-bottom: 3rem;
+      padding-bottom: 2rem;
+      border-bottom: 1px solid var(--public-good-color-border);
+    }
+    
+    .example-section:last-child {
+      border-bottom: none;
+    }
+    
+    .example-title {
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      color: var(--public-good-color-text);
+    }
+    
+    .example-description {
+      margin-bottom: 2rem;
+      color: var(--public-good-color-text-secondary);
+    }
+    
+    .two-column {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      margin-bottom: 2rem;
+    }
+    
+    @media (max-width: 768px) {
+      .two-column {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+      }
+    }
+    
+    .public-good-form-group {
+      margin-bottom: 1.5rem;
+    }
+    
+    .public-good-label {
+      display: block;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+    
+    .public-good-input, .public-good-textarea, .public-good-select {
+      display: block;
+      width: 100%;
+      padding: 0.75rem;
+      border: 2px solid #d8dde0;
+      border-radius: 4px;
+      font-size: 1rem;
+      font-family: inherit;
+    }
+    
+    .public-good-textarea {
+      resize: vertical;
+      min-height: 100px;
+    }
+    
+    .public-good-input:focus, 
+    .public-good-textarea:focus, 
+    .public-good-select:focus {
+      outline: 3px solid #ffeb3b;
+      outline-offset: 0;
+      border-color: #0f172a;
+    }
+    
+    .demo-button {
+      background: #005eb8;
+      color: white;
+      border: none;
+      padding: 0.75rem 1.5rem;
+      border-radius: 4px;
+      font-size: 1rem;
+      cursor: pointer;
+      margin: 0.5rem 0.5rem 0.5rem 0;
+    }
+    
+    .demo-button:hover {
+      background: #004494;
+    }
+    
+    .demo-button.secondary {
+      background: #f0f4f5;
+      color: #005eb8;
+      border: 2px solid #005eb8;
+    }
+    
+    .demo-button.secondary:hover {
+      background: #e8edee;
+    }
+    
+    .demo-button.danger {
+      background: #d5281b;
+    }
+    
+    .demo-button.danger:hover {
+      background: #b91c0c;
+    }
+    
+    .event-log {
+      background: #f8f9fa;
+      border: 1px solid #e9ecef;
+      border-radius: 4px;
+      padding: 1rem;
+      height: 300px;
+      overflow-y: auto;
+      font-family: 'Courier New', monospace;
+      font-size: 0.875rem;
+      white-space: pre-wrap;
+    }
+    
+    .demo-card {
+      background: #f8f9fa;
+      border: 1px solid #e9ecef;
+      border-radius: 8px;
+      padding: 1.5rem;
+      margin-bottom: 1rem;
+    }
+    
+    .demo-card h3 {
+      margin: 0 0 1rem 0;
+      font-size: 1.25rem;
+    }
+    
+    .status-indicator {
+      display: inline-block;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      margin-right: 0.5rem;
+    }
+    
+    .status-indicator.error {
+      background-color: #d5281b;
+    }
+    
+    .status-indicator.success {
+      background-color: #007f3b;
+    }
+    
+    .status-indicator.warning {
+      background-color: #fa8c16;
+    }
+  </style>
+</head>
+<body>
+  <h1>Error Message - Advanced Examples</h1>
+  <p>This page demonstrates advanced usage patterns, integration scenarios, and edge cases for the Error Message component.</p>
+
+  <div class="example-section">
+    <h2 class="example-title">Data Attribute Initialization</h2>
+    <p class="example-description">Initialize error messages from HTML data attributes.</p>
+    
+    <div class="demo-card">
+      <h3>From Data Attributes</h3>
+      <div data-public-good-error-message 
+           data-message="This error message was initialized from data attributes"
+           data-visually-hidden-text="Problem:"
+           data-classes="public-good-error-message--large">
+      </div>
+      
+      <div data-public-good-error-message 
+           data-message="Field-specific error message"
+           data-target-element-id="data-input">
+      </div>
+      
+      <div class="public-good-form-group" style="margin-top: 1rem;">
+        <label for="data-input" class="public-good-label">Input with data-attribute error</label>
+        <input type="text" id="data-input" class="public-good-input" />
+      </div>
+      
+      <button id="init-data-btn" class="demo-button">Initialize from Data Attributes</button>
+    </div>
+  </div>
+
+  <div class="example-section">
+    <h2 class="example-title">Complex Form Validation</h2>
+    <p class="example-description">Multi-step form with comprehensive validation and error handling.</p>
+    
+    <div class="two-column">
+      <div>
+        <form id="complex-form">
+          <div id="step-1" class="form-step">
+            <h3>Step 1: Personal Information</h3>
+            
+            <div class="public-good-form-group">
+              <label for="first-name" class="public-good-label">First Name *</label>
+              <input type="text" id="first-name" class="public-good-input" required />
+            </div>
+            
+            <div class="public-good-form-group">
+              <label for="last-name" class="public-good-label">Last Name *</label>
+              <input type="text" id="last-name" class="public-good-input" required />
+            </div>
+            
+            <div class="public-good-form-group">
+              <label for="email-complex" class="public-good-label">Email Address *</label>
+              <input type="email" id="email-complex" class="public-good-input" required />
+            </div>
+            
+            <div class="public-good-form-group">
+              <label for="phone" class="public-good-label">Phone Number</label>
+              <input type="tel" id="phone" class="public-good-input" />
+            </div>
+          </div>
+          
+          <div id="step-2" class="form-step" style="display: none;">
+            <h3>Step 2: Account Details</h3>
+            
+            <div class="public-good-form-group">
+              <label for="username-complex" class="public-good-label">Username *</label>
+              <input type="text" id="username-complex" class="public-good-input" required />
+            </div>
+            
+            <div class="public-good-form-group">
+              <label for="password-complex" class="public-good-label">Password *</label>
+              <input type="password" id="password-complex" class="public-good-input" required />
+            </div>
+            
+            <div class="public-good-form-group">
+              <label for="bio" class="public-good-label">Bio</label>
+              <textarea id="bio" class="public-good-textarea" maxlength="500"></textarea>
+            </div>
+            
+            <div class="public-good-form-group">
+              <label for="country" class="public-good-label">Country *</label>
+              <select id="country" class="public-good-select" required>
+                <option value="">Select a country</option>
+                <option value="us">United States</option>
+                <option value="uk">United Kingdom</option>
+                <option value="ca">Canada</option>
+                <option value="au">Australia</option>
+              </select>
+            </div>
+          </div>
+          
+          <div class="form-controls">
+            <button type="button" id="prev-btn" class="demo-button secondary" style="display: none;">Previous</button>
+            <button type="button" id="next-btn" class="demo-button">Next</button>
+            <button type="submit" id="submit-btn" class="demo-button" style="display: none;">Submit</button>
+          </div>
+        </form>
+      </div>
+      
+      <div>
+        <h3>Validation Status</h3>
+        <div id="validation-status"></div>
+        
+        <h3>Error Summary</h3>
+        <div id="dynamic-error-summary" style="display: none;"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="example-section">
+    <h2 class="example-title">Real-time Error Management</h2>
+    <p class="example-description">Dynamic error message management with real-time updates.</p>
+    
+    <div class="two-column">
+      <div>
+        <div class="demo-card">
+          <h3>Error Message Pool</h3>
+          <div id="error-pool"></div>
+          
+          <div style="margin-top: 1rem;">
+            <input type="text" id="error-text" placeholder="Enter error message..." style="width: 100%; margin-bottom: 0.5rem;" />
+            <button id="add-error-btn" class="demo-button">Add Error</button>
+            <button id="clear-all-errors-btn" class="demo-button danger">Clear All</button>
+          </div>
+        </div>
+        
+        <div class="demo-card">
+          <h3>Test Input Field</h3>
+          <div class="public-good-form-group">
+            <label for="test-field" class="public-good-label">Test Field</label>
+            <input type="text" id="test-field" class="public-good-input" />
+          </div>
+          
+          <button id="associate-random-btn" class="demo-button secondary">Associate Random Error</button>
+          <button id="clear-field-errors-btn" class="demo-button secondary">Clear Field Errors</button>
+        </div>
+      </div>
+      
+      <div>
+        <h3>Event Monitor</h3>
+        <div id="event-monitor" class="event-log"></div>
+        <button id="clear-events-btn" class="demo-button secondary">Clear Events</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="example-section">
+    <h2 class="example-title">Accessibility Testing</h2>
+    <p class="example-description">Test accessibility features and screen reader compatibility.</p>
+    
+    <div class="demo-card">
+      <h3>Screen Reader Test</h3>
+      <p>Use a screen reader to test the following interactions:</p>
+      
+      <div class="public-good-form-group">
+        <label for="sr-test-input" class="public-good-label">Test Input for Screen Reader</label>
+        <input type="text" id="sr-test-input" class="public-good-input" />
+      </div>
+      
+      <div style="margin-top: 1rem;">
+        <button id="sr-add-error-btn" class="demo-button">Add Accessible Error</button>
+        <button id="sr-update-error-btn" class="demo-button">Update Error Message</button>
+        <button id="sr-remove-error-btn" class="demo-button">Remove Error</button>
+      </div>
+      
+      <div id="sr-error-container"></div>
+    </div>
+  </div>
+
+  <div class="example-section">
+    <h2 class="example-title">Performance Testing</h2>
+    <p class="example-description">Test performance with many error messages and rapid updates.</p>
+    
+    <div class="demo-card">
+      <h3>Stress Testing</h3>
+      <div id="performance-stats" style="margin-bottom: 1rem;"></div>
+      
+      <button id="create-many-errors-btn" class="demo-button">Create 100 Errors</button>
+      <button id="rapid-updates-btn" class="demo-button">Rapid Updates (1000x)</button>
+      <button id="cleanup-errors-btn" class="demo-button danger">Cleanup All</button>
+      
+      <div id="performance-container" style="max-height: 200px; overflow-y: auto; margin-top: 1rem; border: 1px solid #ddd; padding: 1rem;"></div>
+    </div>
+  </div>
+
+  <div class="example-section">
+    <h2 class="example-title">Integration with Other Components</h2>
+    <p class="example-description">Error messages working with other design system components.</p>
+    
+    <div class="demo-card">
+      <h3>With Form Components</h3>
+      <!-- This would integrate with other components when they're available -->
+      <p>This section will demonstrate integration with checkboxes, radios, and other form components once they're implemented.</p>
+    </div>
+  </div>
+
+  <script type="module">
+    import { 
+      createErrorMessage, 
+      createSimpleErrorMessage, 
+      createFieldErrorMessage,
+      createFormErrorMessages,
+      showErrorMessages,
+      hideErrorMessages,
+      clearErrorMessages,
+      addErrorStateToElement,
+      removeErrorStateFromElement,
+      initializeErrorMessages,
+      initAllErrorMessages
+    } from '../error-message.js'
+
+    // Event monitoring
+    const eventLog = document.getElementById('event-monitor')
+    let eventCount = 0
+
+    function logEvent(message) {
+      eventCount++
+      const timestamp = new Date().toLocaleTimeString()
+      eventLog.textContent += \`[\${timestamp}] \${eventCount}: \${message}\\n\`
+      eventLog.scrollTop = eventLog.scrollHeight
+    }
+
+    // Data attribute initialization
+    document.getElementById('init-data-btn').addEventListener('click', () => {
+      const components = initializeErrorMessages()
+      logEvent(\`Initialized \${components.length} components from data attributes\`)
+    })
+
+    // Complex form validation
+    let currentStep = 1
+    const maxSteps = 2
+    const formErrors = []
+    
+    const validationRules = {
+      'first-name': { required: true, minLength: 2 },
+      'last-name': { required: true, minLength: 2 },
+      'email-complex': { required: true, pattern: /^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/ },
+      'phone': { pattern: /^[\\d\\s\\-\\+\\(\\)]+$/ },
+      'username-complex': { required: true, minLength: 3, pattern: /^[a-zA-Z0-9_]+$/ },
+      'password-complex': { required: true, minLength: 8 },
+      'country': { required: true }
+    }
+
+    function validateStep(step) {
+      const stepElement = document.getElementById(\`step-\${step}\`)
+      const fields = stepElement.querySelectorAll('input, textarea, select')
+      const errors = []
+      
+      clearStepErrors(step)
+      
+      fields.forEach(field => {
+        const rules = validationRules[field.id]
+        if (!rules) return
+        
+        const value = field.value.trim()
+        
+        if (rules.required && !value) {
+          errors.push({ elementId: field.id, message: 'This field is required' })
+        } else if (value) {
+          if (rules.minLength && value.length < rules.minLength) {
+            errors.push({ elementId: field.id, message: \`Must be at least \${rules.minLength} characters\` })
+          }
+          if (rules.pattern && !rules.pattern.test(value)) {
+            let message = 'Invalid format'
+            if (field.id.includes('email')) message = 'Enter a valid email address'
+            if (field.id.includes('username')) message = 'Only letters, numbers, and underscores allowed'
+            if (field.id.includes('phone')) message = 'Enter a valid phone number'
+            errors.push({ elementId: field.id, message })
+          }
+        }
+      })
+      
+      if (errors.length > 0) {
+        showStepErrors(errors)
+        updateErrorSummary(errors)
+      } else {
+        hideErrorSummary()
+      }
+      
+      updateValidationStatus()
+      return errors.length === 0
+    }
+    
+    function showStepErrors(errors) {
+      const newErrors = createFormErrorMessages(errors)
+      
+      errors.forEach((error, index) => {
+        const field = document.getElementById(error.elementId)
+        const formGroup = field.closest('.public-good-form-group')
+        formGroup.appendChild(newErrors[index].element)
+        addErrorStateToElement(error.elementId)
+        formGroup.classList.add('public-good-form-group--error')
+      })
+      
+      formErrors.push(...newErrors)
+    }
+    
+    function clearStepErrors(step) {
+      const stepElement = document.getElementById(\`step-\${step}\`)
+      const errorMessages = stepElement.querySelectorAll('.public-good-error-message')
+      
+      errorMessages.forEach(error => {
+        const errorComponent = formErrors.find(e => e.element === error)
+        if (errorComponent) {
+          errorComponent.destroy()
+          const index = formErrors.indexOf(errorComponent)
+          formErrors.splice(index, 1)
+        }
+      })
+      
+      stepElement.querySelectorAll('.public-good-form-group--error').forEach(group => {
+        group.classList.remove('public-good-form-group--error')
+        const input = group.querySelector('input, textarea, select')
+        if (input) removeErrorStateFromElement(input.id)
+      })
+    }
+    
+    function updateErrorSummary(errors) {
+      const summaryContainer = document.getElementById('dynamic-error-summary')
+      
+      if (errors.length === 0) {
+        summaryContainer.style.display = 'none'
+        return
+      }
+      
+      summaryContainer.style.display = 'block'
+      summaryContainer.innerHTML = \`
+        <div class="public-good-error-summary">
+          <h3 class="public-good-error-summary__title">There \${errors.length === 1 ? 'is' : 'are'} \${errors.length} problem\${errors.length === 1 ? '' : 's'}</h3>
+          <ul class="public-good-error-summary__list">
+            \${errors.map(error => \`
+              <li class="public-good-error-summary__list-item">
+                <a href="#\${error.elementId}" class="public-good-error-summary__link">\${error.message}</a>
+              </li>
+            \`).join('')}
+          </ul>
+        </div>
+      \`
+    }
+    
+    function hideErrorSummary() {
+      document.getElementById('dynamic-error-summary').style.display = 'none'
+    }
+    
+    function updateValidationStatus() {
+      const statusContainer = document.getElementById('validation-status')
+      const step1Valid = validateStepQuietly(1)
+      const step2Valid = validateStepQuietly(2)
+      
+      statusContainer.innerHTML = \`
+        <div><span class="status-indicator \${step1Valid ? 'success' : 'error'}"></span>Step 1: \${step1Valid ? 'Valid' : 'Has errors'}</div>
+        <div><span class="status-indicator \${step2Valid ? 'success' : 'error'}"></span>Step 2: \${step2Valid ? 'Valid' : 'Has errors'}</div>
+      \`
+    }
+    
+    function validateStepQuietly(step) {
+      const stepElement = document.getElementById(\`step-\${step}\`)
+      const fields = stepElement.querySelectorAll('input, textarea, select')
+      
+      return Array.from(fields).every(field => {
+        const rules = validationRules[field.id]
+        if (!rules) return true
+        
+        const value = field.value.trim()
+        
+        if (rules.required && !value) return false
+        if (value && rules.minLength && value.length < rules.minLength) return false
+        if (value && rules.pattern && !rules.pattern.test(value)) return false
+        
+        return true
+      })
+    }
+
+    // Step navigation
+    document.getElementById('next-btn').addEventListener('click', () => {
+      if (validateStep(currentStep)) {
+        if (currentStep < maxSteps) {
+          document.getElementById(\`step-\${currentStep}\`).style.display = 'none'
+          currentStep++
+          document.getElementById(\`step-\${currentStep}\`).style.display = 'block'
+          
+          document.getElementById('prev-btn').style.display = currentStep > 1 ? 'inline-block' : 'none'
+          document.getElementById('next-btn').style.display = currentStep < maxSteps ? 'inline-block' : 'none'
+          document.getElementById('submit-btn').style.display = currentStep === maxSteps ? 'inline-block' : 'none'
+          
+          logEvent(\`Advanced to step \${currentStep}\`)
+        }
+      }
+    })
+    
+    document.getElementById('prev-btn').addEventListener('click', () => {
+      if (currentStep > 1) {
+        document.getElementById(\`step-\${currentStep}\`).style.display = 'none'
+        currentStep--
+        document.getElementById(\`step-\${currentStep}\`).style.display = 'block'
+        
+        document.getElementById('prev-btn').style.display = currentStep > 1 ? 'inline-block' : 'none'
+        document.getElementById('next-btn').style.display = currentStep < maxSteps ? 'inline-block' : 'none'
+        document.getElementById('submit-btn').style.display = currentStep === maxSteps ? 'inline-block' : 'none'
+        
+        logEvent(\`Returned to step \${currentStep}\`)
+      }
+    })
+    
+    document.getElementById('complex-form').addEventListener('submit', (e) => {
+      e.preventDefault()
+      
+      const allValid = validateStep(1) && validateStep(2)
+      if (allValid) {
+        alert('Form submitted successfully!')
+        logEvent('Complex form submitted successfully')
+      }
+    })
+
+    // Real-time error management
+    const errorPool = []
+    
+    document.getElementById('add-error-btn').addEventListener('click', () => {
+      const errorText = document.getElementById('error-text').value.trim()
+      if (errorText) {
+        const error = createSimpleErrorMessage(errorText)
+        errorPool.push(error)
+        document.getElementById('error-pool').appendChild(error.element)
+        document.getElementById('error-text').value = ''
+        logEvent(\`Added error: "\${errorText}"\`)
+      }
+    })
+    
+    document.getElementById('clear-all-errors-btn').addEventListener('click', () => {
+      const count = errorPool.length
+      clearErrorMessages(errorPool)
+      errorPool.length = 0
+      logEvent(\`Cleared \${count} errors from pool\`)
+    })
+    
+    document.getElementById('associate-random-btn').addEventListener('click', () => {
+      if (errorPool.length > 0) {
+        const randomError = errorPool[Math.floor(Math.random() * errorPool.length)]
+        randomError.associateWithElement('test-field')
+        addErrorStateToElement('test-field')
+        logEvent(\`Associated random error with test field\`)
+      }
+    })
+    
+    document.getElementById('clear-field-errors-btn').addEventListener('click', () => {
+      errorPool.forEach(error => {
+        if (error.config.targetElementId === 'test-field') {
+          error.associateWithElement('')
+        }
+      })
+      removeErrorStateFromElement('test-field')
+      logEvent('Cleared field error associations')
+    })
+
+    // Accessibility testing
+    let srError = null
+    
+    document.getElementById('sr-add-error-btn').addEventListener('click', () => {
+      if (!srError) {
+        srError = createFieldErrorMessage(
+          'This error message is optimized for screen readers',
+          'sr-test-input'
+        )
+        document.getElementById('sr-error-container').appendChild(srError.element)
+        addErrorStateToElement('sr-test-input')
+        logEvent('Added accessible error message')
+      }
+    })
+    
+    document.getElementById('sr-update-error-btn').addEventListener('click', () => {
+      if (srError) {
+        const messages = [
+          'Updated message for screen reader testing',
+          'Error message has been changed dynamically',
+          'New validation error detected'
+        ]
+        const newMessage = messages[Math.floor(Math.random() * messages.length)]
+        srError.setMessage(newMessage)
+        logEvent(\`Updated screen reader error: "\${newMessage}"\`)
+      }
+    })
+    
+    document.getElementById('sr-remove-error-btn').addEventListener('click', () => {
+      if (srError) {
+        srError.destroy()
+        removeErrorStateFromElement('sr-test-input')
+        srError = null
+        logEvent('Removed accessible error message')
+      }
+    })
+
+    // Performance testing
+    let performanceErrors = []
+    
+    document.getElementById('create-many-errors-btn').addEventListener('click', () => {
+      const startTime = performance.now()
+      
+      for (let i = 0; i < 100; i++) {
+        const error = createSimpleErrorMessage(\`Performance test error #\${i + 1}\`)
+        performanceErrors.push(error)
+        document.getElementById('performance-container').appendChild(error.element)
+      }
+      
+      const endTime = performance.now()
+      const duration = (endTime - startTime).toFixed(2)
+      
+      document.getElementById('performance-stats').textContent = \`Created 100 errors in \${duration}ms\`
+      logEvent(\`Performance test: Created 100 errors in \${duration}ms\`)
+    })
+    
+    document.getElementById('rapid-updates-btn').addEventListener('click', () => {
+      if (performanceErrors.length === 0) return
+      
+      const startTime = performance.now()
+      
+      for (let i = 0; i < 1000; i++) {
+        const randomError = performanceErrors[Math.floor(Math.random() * performanceErrors.length)]
+        randomError.setMessage(\`Updated message #\${i}\`)
+        
+        if (i % 100 === 0) {
+          randomError.hide()
+          setTimeout(() => randomError.show(), 10)
+        }
+      }
+      
+      const endTime = performance.now()
+      const duration = (endTime - startTime).toFixed(2)
+      
+      document.getElementById('performance-stats').textContent = \`Performed 1000 updates in \${duration}ms\`
+      logEvent(\`Performance test: 1000 updates in \${duration}ms\`)
+    })
+    
+    document.getElementById('cleanup-errors-btn').addEventListener('click', () => {
+      const startTime = performance.now()
+      const count = performanceErrors.length
+      
+      clearErrorMessages(performanceErrors)
+      performanceErrors.length = 0
+      document.getElementById('performance-container').innerHTML = ''
+      
+      const endTime = performance.now()
+      const duration = (endTime - startTime).toFixed(2)
+      
+      document.getElementById('performance-stats').textContent = \`Cleaned up \${count} errors in \${duration}ms\`
+      logEvent(\`Performance test: Cleaned up \${count} errors in \${duration}ms\`)
+    })
+
+    // Clear events
+    document.getElementById('clear-events-btn').addEventListener('click', () => {
+      eventLog.textContent = ''
+      eventCount = 0
+    })
+
+    // Global event listeners
+    document.addEventListener('public-good:error-message:changed', (event) => {
+      logEvent(\`Error changed: "\${event.detail.message}"\`)
+    })
+
+    document.addEventListener('public-good:error-message:shown', (event) => {
+      logEvent(\`Error shown: "\${event.detail.message}"\`)
+    })
+
+    document.addEventListener('public-good:error-message:hidden', (event) => {
+      logEvent(\`Error hidden: "\${event.detail.message}"\`)
+    })
+
+    document.addEventListener('public-good:error-message:associated', (event) => {
+      logEvent(\`Error associated with: \${event.detail.targetElementId}\`)
+    })
+
+    // Initialize validation status
+    updateValidationStatus()
+    
+    // Initial log entry
+    logEvent('Advanced examples page loaded')
+  </script>
+</body>
+</html>

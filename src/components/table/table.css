@@ -1,0 +1,481 @@
+/**
+ * Table Component
+ * Converted from NHS UK Design System to Public Good Design System
+ * 
+ * Styles for accessible, responsive data tables with sorting functionality.
+ */
+
+.public-good-table {
+  border-collapse: collapse;
+  border-spacing: 0;
+  width: 100%;
+  margin-bottom: var(--public-good-spacing-4, 24px);
+  font-family: var(--public-good-font-family, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif);
+  font-size: var(--public-good-font-size-body, 1rem);
+  line-height: var(--public-good-line-height-body, 1.5);
+  color: var(--public-good-color-text, #212b32);
+  background-color: transparent;
+}
+
+/* Table caption */
+.public-good-table__caption {
+  text-align: left;
+  font-weight: var(--public-good-font-weight-bold, 700);
+  font-size: var(--public-good-font-size-large, 1.125rem);
+  margin-bottom: var(--public-good-spacing-3, 16px);
+  color: var(--public-good-color-text, #212b32);
+  caption-side: top;
+}
+
+/* Table head */
+.public-good-table__head {
+  border-bottom: 1px solid var(--public-good-color-border, #d8dde0);
+}
+
+/* Table headers */
+.public-good-table__header {
+  padding: var(--public-good-spacing-2, 12px) var(--public-good-spacing-3, 16px);
+  text-align: left;
+  vertical-align: top;
+  font-weight: var(--public-good-font-weight-bold, 700);
+  background-color: var(--public-good-color-grey-5, #f8f8f8);
+  border: 1px solid var(--public-good-color-border, #d8dde0);
+  border-bottom: 2px solid var(--public-good-color-border, #d8dde0);
+  color: var(--public-good-color-text, #212b32);
+  position: relative;
+}
+
+.public-good-table__header:first-child {
+  border-left: 1px solid var(--public-good-color-border, #d8dde0);
+}
+
+.public-good-table__header:last-child {
+  border-right: 1px solid var(--public-good-color-border, #d8dde0);
+}
+
+/* Numeric headers */
+.public-good-table__header--numeric {
+  text-align: right;
+}
+
+/* Table body */
+.public-good-table__body {
+  /* No specific styles needed */
+}
+
+/* Table rows */
+.public-good-table__row {
+  border-bottom: 1px solid var(--public-good-color-border-light, #e8edee);
+}
+
+.public-good-table__row:hover {
+  background-color: var(--public-good-color-grey-6, #f5f5f5);
+}
+
+/* Table cells */
+.public-good-table__cell {
+  padding: var(--public-good-spacing-2, 12px) var(--public-good-spacing-3, 16px);
+  text-align: left;
+  vertical-align: top;
+  border: 1px solid var(--public-good-color-border-light, #e8edee);
+  background-color: transparent;
+  word-wrap: break-word;
+}
+
+.public-good-table__cell:first-child {
+  border-left: 1px solid var(--public-good-color-border-light, #e8edee);
+}
+
+.public-good-table__cell:last-child {
+  border-right: 1px solid var(--public-good-color-border-light, #e8edee);
+}
+
+/* Numeric cells */
+.public-good-table__cell--numeric {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Row headers (th elements in tbody) */
+.public-good-table__body .public-good-table__header {
+  background-color: var(--public-good-color-grey-6, #f5f5f5);
+  font-weight: var(--public-good-font-weight-bold, 700);
+  border-bottom: 1px solid var(--public-good-color-border-light, #e8edee);
+}
+
+/* Sortable table styles */
+.public-good-table--sortable .public-good-table__header--sortable {
+  cursor: pointer;
+  position: relative;
+  padding-right: calc(var(--public-good-spacing-3, 16px) + var(--public-good-spacing-4, 24px));
+  user-select: none;
+  transition: background-color 0.2s ease;
+}
+
+.public-good-table--sortable .public-good-table__header--sortable:hover {
+  background-color: var(--public-good-color-grey-4, #e8e8e8);
+}
+
+.public-good-table--sortable .public-good-table__header--sortable:focus {
+  outline: 3px solid var(--public-good-color-focus, #ffeb3b);
+  outline-offset: -3px;
+  background-color: var(--public-good-color-focus, #ffeb3b);
+  color: var(--public-good-color-text, #212b32);
+}
+
+/* Sort button */
+.public-good-table__sort-button {
+  position: absolute;
+  right: var(--public-good-spacing-2, 12px);
+  top: 50%;
+  transform: translateY(-50%);
+  width: var(--public-good-spacing-3, 16px);
+  height: var(--public-good-spacing-3, 16px);
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  padding: 0;
+  margin: 0;
+  color: inherit;
+}
+
+/* Sort icon */
+.public-good-table__sort-icon {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23666666'%3E%3Cpath d='M8 0l4 6H4z'/%3E%3Cpath d='M8 16l4-6H4z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  opacity: 0.5;
+  transition: opacity 0.2s ease;
+}
+
+.public-good-table__header--sortable:hover .public-good-table__sort-icon {
+  opacity: 0.8;
+}
+
+/* Sorted states */
+.public-good-table__header--sorted-asc .public-good-table__sort-icon {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%230066cc'%3E%3Cpath d='M8 0l4 6H4z'/%3E%3C/svg%3E");
+  opacity: 1;
+}
+
+.public-good-table__header--sorted-desc .public-good-table__sort-icon {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%230066cc'%3E%3Cpath d='M8 16l4-6H4z'/%3E%3C/svg%3E");
+  opacity: 1;
+}
+
+/* Responsive table styles */
+.public-good-table--responsive {
+  /* Default table styles remain for larger screens */
+}
+
+/* Mobile responsive behavior */
+@media (max-width: 768px) {
+  .public-good-table--responsive {
+    border: 0;
+    margin-bottom: var(--public-good-spacing-4, 24px);
+  }
+  
+  .public-good-table--responsive .public-good-table__caption {
+    font-size: var(--public-good-font-size-body, 1rem);
+    margin-bottom: var(--public-good-spacing-2, 12px);
+  }
+  
+  .public-good-table--responsive .public-good-table__head,
+  .public-good-table--responsive .public-good-table__header {
+    display: none;
+  }
+  
+  .public-good-table--responsive .public-good-table__body,
+  .public-good-table--responsive .public-good-table__row {
+    display: block;
+    border: 0;
+  }
+  
+  .public-good-table--responsive .public-good-table__row {
+    border: 1px solid var(--public-good-color-border, #d8dde0);
+    border-radius: var(--public-good-border-radius, 4px);
+    margin-bottom: var(--public-good-spacing-3, 16px);
+    padding: 0;
+    background-color: white;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  }
+  
+  .public-good-table--responsive .public-good-table__row:hover {
+    background-color: white;
+  }
+  
+  .public-good-table--responsive .public-good-table__cell {
+    display: block;
+    border: 0;
+    border-bottom: 1px solid var(--public-good-color-border-light, #e8edee);
+    padding: var(--public-good-spacing-2, 12px) var(--public-good-spacing-3, 16px);
+    text-align: left !important;
+    position: relative;
+    padding-left: 40%;
+  }
+  
+  .public-good-table--responsive .public-good-table__cell:last-child {
+    border-bottom: 0;
+  }
+  
+  .public-good-table--responsive .public-good-table__cell:before {
+    content: attr(data-label);
+    position: absolute;
+    left: var(--public-good-spacing-3, 16px);
+    width: calc(40% - var(--public-good-spacing-4, 24px));
+    padding-right: var(--public-good-spacing-2, 12px);
+    white-space: nowrap;
+    font-weight: var(--public-good-font-weight-bold, 700);
+    color: var(--public-good-color-text-secondary, #666666);
+    top: var(--public-good-spacing-2, 12px);
+  }
+  
+  /* Numeric cells in responsive mode */
+  .public-good-table--responsive .public-good-table__cell--numeric {
+    font-variant-numeric: tabular-nums;
+  }
+}
+
+/* Small mobile devices */
+@media (max-width: 480px) {
+  .public-good-table--responsive .public-good-table__cell {
+    padding-left: 45%;
+  }
+  
+  .public-good-table--responsive .public-good-table__cell:before {
+    width: calc(45% - var(--public-good-spacing-4, 24px));
+    font-size: var(--public-good-font-size-small, 0.875rem);
+  }
+}
+
+/* Table variants */
+
+/* Compact table */
+.public-good-table--compact .public-good-table__header,
+.public-good-table--compact .public-good-table__cell {
+  padding: var(--public-good-spacing-1, 8px) var(--public-good-spacing-2, 12px);
+}
+
+/* Striped table */
+.public-good-table--striped .public-good-table__row:nth-child(even) {
+  background-color: var(--public-good-color-grey-6, #f5f5f5);
+}
+
+.public-good-table--striped .public-good-table__row:nth-child(even):hover {
+  background-color: var(--public-good-color-grey-5, #f0f0f0);
+}
+
+/* Bordered table */
+.public-good-table--bordered {
+  border: 2px solid var(--public-good-color-border, #d8dde0);
+  border-radius: var(--public-good-border-radius, 4px);
+  overflow: hidden;
+}
+
+.public-good-table--bordered .public-good-table__header,
+.public-good-table--bordered .public-good-table__cell {
+  border: 1px solid var(--public-good-color-border, #d8dde0);
+}
+
+/* Word break table for long content */
+.public-good-table--word-break .public-good-table__cell {
+  word-break: break-all;
+  overflow-wrap: break-word;
+}
+
+/* No wrap table */
+.public-good-table--no-wrap .public-good-table__cell {
+  white-space: nowrap;
+}
+
+/* Table with fixed layout */
+.public-good-table--fixed {
+  table-layout: fixed;
+}
+
+/* Empty state styles */
+.public-good-table__empty {
+  text-align: center;
+  padding: var(--public-good-spacing-5, 32px);
+  color: var(--public-good-color-text-secondary, #666666);
+  font-style: italic;
+}
+
+/* Loading state */
+.public-good-table--loading {
+  position: relative;
+  opacity: 0.7;
+  pointer-events: none;
+}
+
+.public-good-table--loading::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.6), transparent);
+  animation: tableLoading 1.5s ease-in-out infinite;
+}
+
+@keyframes tableLoading {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .public-good-table {
+    border: 2px solid;
+  }
+  
+  .public-good-table__header,
+  .public-good-table__cell {
+    border: 1px solid;
+  }
+  
+  .public-good-table__header {
+    background-color: ButtonFace;
+    color: ButtonText;
+  }
+  
+  .public-good-table__row:hover {
+    background-color: Highlight;
+    color: HighlightText;
+  }
+}
+
+/* Forced colors mode support (Windows High Contrast) */
+@media (forced-colors: active) {
+  .public-good-table {
+    border: 1px solid ButtonText;
+  }
+  
+  .public-good-table__header {
+    background-color: ButtonFace;
+    color: ButtonText;
+    border: 1px solid ButtonText;
+  }
+  
+  .public-good-table__cell {
+    border: 1px solid ButtonText;
+  }
+  
+  .public-good-table__sort-icon {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M8 0l4 6H4z' fill='ButtonText'/%3E%3Cpath d='M8 16l4-6H4z' fill='ButtonText'/%3E%3C/svg%3E");
+  }
+  
+  .public-good-table__header--sorted-asc .public-good-table__sort-icon,
+  .public-good-table__header--sorted-desc .public-good-table__sort-icon {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M8 0l4 6H4z' fill='Highlight'/%3E%3Cpath d='M8 16l4-6H4z' fill='Highlight'/%3E%3C/svg%3E");
+  }
+}
+
+/* Print styles */
+@media print {
+  .public-good-table {
+    border-collapse: collapse;
+    font-size: 10pt;
+    line-height: 1.2;
+  }
+  
+  .public-good-table__header,
+  .public-good-table__cell {
+    padding: 4pt 6pt;
+    border: 1pt solid #000;
+  }
+  
+  .public-good-table__sort-button,
+  .public-good-table__sort-icon {
+    display: none;
+  }
+  
+  .public-good-table__row:hover {
+    background-color: transparent;
+  }
+  
+  /* Prevent page breaks inside table rows */
+  .public-good-table__row {
+    page-break-inside: avoid;
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .public-good-table__header--sortable,
+  .public-good-table__sort-icon,
+  .public-good-table--loading::after {
+    transition: none;
+    animation: none;
+  }
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+  .public-good-table {
+    color: var(--public-good-color-white, #ffffff);
+  }
+  
+  .public-good-table__header {
+    background-color: var(--public-good-color-grey-2, #2a2a2a);
+    color: var(--public-good-color-white, #ffffff);
+    border-color: var(--public-good-color-grey-3, #404040);
+  }
+  
+  .public-good-table__cell {
+    border-color: var(--public-good-color-grey-4, #555555);
+  }
+  
+  .public-good-table__row:hover {
+    background-color: var(--public-good-color-grey-3, #404040);
+  }
+  
+  .public-good-table--striped .public-good-table__row:nth-child(even) {
+    background-color: var(--public-good-color-grey-2, #2a2a2a);
+  }
+  
+  .public-good-table--striped .public-good-table__row:nth-child(even):hover {
+    background-color: var(--public-good-color-grey-3, #404040);
+  }
+  
+  .public-good-table__sort-icon {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23cccccc'%3E%3Cpath d='M8 0l4 6H4z'/%3E%3Cpath d='M8 16l4-6H4z'/%3E%3C/svg%3E");
+  }
+}
+
+/* Focus management for keyboard navigation */
+.public-good-table--sortable .public-good-table__header--sortable:focus-visible {
+  outline: 3px solid var(--public-good-color-focus, #ffeb3b);
+  outline-offset: -3px;
+}
+
+/* Screen reader only content */
+.public-good-table .sr-only {
+  position: absolute;
+  left: -10000px;
+  top: auto;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+/* Color variables for tables */
+:root {
+  --public-good-color-grey-6: #f5f5f5;
+  --public-good-color-grey-5: #f0f0f0;
+  --public-good-color-grey-4: #e8e8e8;
+  --public-good-color-grey-3: #404040;
+  --public-good-color-grey-2: #2a2a2a;
+  --public-good-color-border: #d8dde0;
+  --public-good-color-border-light: #e8edee;
+  --public-good-color-text-secondary: #666666;
+}

@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Task List Component - Advanced Examples</title>
+  <link rel="stylesheet" href="../task-list.css">
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem;
+      line-height: 1.6;
+      background-color: #f9f9f9;
+    }
+    .example {
+      margin-bottom: 2rem;
+      padding: 2rem;
+      border: 1px solid #e0e0e0;
+      border-radius: 8px;
+      background-color: white;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    .example h3 {
+      margin-top: 0;
+      color: #333;
+      border-bottom: 2px solid #0066cc;
+      padding-bottom: 0.5rem;
+    }
+    .controls {
+      margin-bottom: 1rem;
+      padding: 1rem;
+      background-color: #f5f5f5;
+      border-radius: 4px;
+    }
+    .controls button {
+      margin: 0.25rem;
+      padding: 0.5rem 1rem;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      background-color: white;
+      cursor: pointer;
+    }
+    .controls button:hover {
+      background-color: #e8f4f8;
+    }
+    .controls input, .controls select {
+      margin: 0.25rem;
+      padding: 0.5rem;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+    .demo-output {
+      min-height: 100px;
+      padding: 1rem;
+      border: 2px dashed #ccc;
+      border-radius: 4px;
+      margin: 1rem 0;
+      background-color: #fafafa;
+    }
+    .form-builder {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+    .form-group {
+      display: flex;
+      flex-direction: column;
+    }
+    .form-group label {
+      margin-bottom: 0.25rem;
+      font-weight: 500;
+    }
+    .log-output {
+      background-color: #1e1e1e;
+      color: #ffffff;
+      padding: 1rem;
+      border-radius: 4px;
+      font-family: 'Courier New', monospace;
+      font-size: 0.9rem;
+      max-height: 200px;
+      overflow-y: auto;
+      margin-top: 1rem;
+    }
+    .application-simulator {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      margin-top: 1rem;
+    }
+    .simulator-panel {
+      padding: 1rem;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      background-color: #f8f9fa;
+    }
+    .simulator-panel h4 {
+      margin-top: 0;
+      color: #495057;
+    }
+    .progress-stats {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+    .stat-card {
+      padding: 1rem;
+      background-color: white;
+      border-radius: 4px;
+      border: 1px solid #e9ecef;
+      text-align: center;
+    }
+    .stat-number {
+      font-size: 2rem;
+      font-weight: bold;
+      color: #0066cc;
+    }
+    .stat-label {
+      font-size: 0.875rem;
+      color: #666;
+      margin-top: 0.25rem;
+    }
+    .workflow-stage {
+      margin-bottom: 2rem;
+      padding: 1rem;
+      border: 1px solid #e0e0e0;
+      border-radius: 4px;
+      background-color: #f8f9fa;
+    }
+    .workflow-stage h4 {
+      margin: 0 0 1rem 0;
+      color: #495057;
+    }
+  </style>
+</head>
+<body>
+  <h1>Task List Component - Advanced Examples</h1>
+  <p>Advanced usage patterns and interactive demonstrations of the task list component.</p>
+
+  <div class="example">
+    <h3>Dynamic Task List Builder</h3>
+    <div class="form-builder">
+      <div class="form-group">
+        <label for="task-title">Task Title:</label>
+        <input type="text" id="task-title" placeholder="Enter task title" value="New Task">
+      </div>
+      <div class="form-group">
+        <label for="task-hint">Hint (optional):</label>
+        <input type="text" id="task-hint" placeholder="Additional information">
+      </div>
+      <div class="form-group">
+        <label for="task-status">Status:</label>
+        <select id="task-status">
+          <option value="incomplete">Incomplete</option>
+          <option value="in-progress">In Progress</option>
+          <option value="completed">Completed</option>
+          <option value="cannot-start">Cannot Start Yet</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="task-href">Link (optional):</label>
+        <input type="text" id="task-href" placeholder="/task-url">
+      </div>
+    </div>
+    <div class="controls">
+      <button id="add-task">Add Task</button>
+      <button id="clear-tasks">Clear All</button>
+      <button id="simulate-progress">Simulate Progress</button>
+    </div>
+    <div class="demo-output" id="task-list-demo">
+      <!-- Dynamic task list will appear here -->
+    </div>
+  </div>
+
+  <div class="example">
+    <h3>Application Progress Tracker</h3>
+    <div class="progress-stats" id="progress-stats">
+      <div class="stat-card">
+        <div class="stat-number" id="stat-completed">0</div>
+        <div class="stat-label">Completed</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number" id="stat-in-progress">0</div>
+        <div class="stat-label">In Progress</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number" id="stat-incomplete">0</div>
+        <div class="stat-label">Incomplete</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number" id="stat-percentage">0%</div>
+        <div class="stat-label">Progress</div>
+      </div>
+    </div>
+    <div class="application-simulator">
+      <div class="simulator-panel">
+        <h4>Task Management</h4>
+        <div class="controls">
+          <button id="start-application">Start Application</button>
+          <button id="complete-next">Complete Next Task</button>
+          <button id="reset-application">Reset</button>
+        </div>
+        <div id="application-task-list">
+          <!-- Application tasks will appear here -->
+        </div>
+      </div>
+      <div class="simulator-panel">
+        <h4>Activity Log</h4>
+        <div class="log-output" id="activity-log">
+          Welcome! Click "Start Application" to begin.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="example">
+    <h3>Multi-Stage Workflow</h3>
+    <div class="controls">
+      <button id="workflow-next">Next Stage</button>
+      <button id="workflow-previous">Previous Stage</button>
+      <button id="workflow-reset">Reset Workflow</button>
+    </div>
+    <div id="workflow-container">
+      <div class="workflow-stage" id="stage-1">
+        <h4>Stage 1: Initial Setup</h4>
+        <div class="public-good-task-list">
+          <ul class="public-good-task-list__list">
+            <li class="public-good-task-list__item">
+              <a class="public-good-task-list__link" href="#account">
+                <div class="public-good-task-list__name-and-hint">
+                  <div class="public-good-task-list__name">Create account</div>
+                  <div class="public-good-task-list__hint">Set up your user credentials</div>
+                </div>
+                <div class="public-good-task-list__status">
+                  <strong>Completed</strong>
+                </div>
+              </a>
+            </li>
+            <li class="public-good-task-list__item">
+              <a class="public-good-task-list__link" href="#verify">
+                <div class="public-good-task-list__name-and-hint">
+                  <div class="public-good-task-list__name">Verify email</div>
+                  <div class="public-good-task-list__hint">Check your inbox for verification</div>
+                </div>
+                <div class="public-good-task-list__status">
+                  <span class="public-good-task-list__status-in-progress">In progress</span>
+                </div>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="workflow-stage" id="stage-2" style="display: none;">
+        <h4>Stage 2: Personal Information</h4>
+        <div class="public-good-task-list">
+          <ul class="public-good-task-list__list">
+            <li class="public-good-task-list__item">
+              <a class="public-good-task-list__link" href="#personal">
+                <div class="public-good-task-list__name-and-hint">
+                  <div class="public-good-task-list__name">Personal details</div>
+                  <div class="public-good-task-list__hint">Name, date of birth, address</div>
+                </div>
+                <div class="public-good-task-list__status">
+                  <span class="public-good-task-list__status-incomplete">Incomplete</span>
+                </div>
+              </a>
+            </li>
+            <li class="public-good-task-list__item">
+              <a class="public-good-task-list__link" href="#contact">
+                <div class="public-good-task-list__name-and-hint">
+                  <div class="public-good-task-list__name">Contact information</div>
+                  <div class="public-good-task-list__hint">Phone number and emergency contact</div>
+                </div>
+                <div class="public-good-task-list__status">
+                  <span class="public-good-task-list__status-incomplete">Incomplete</span>
+                </div>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="workflow-stage" id="stage-3" style="display: none;">
+        <h4>Stage 3: Final Review</h4>
+        <div class="public-good-task-list">
+          <ul class="public-good-task-list__list">
+            <li class="public-good-task-list__item">
+              <a class="public-good-task-list__link" href="#review">
+                <div class="public-good-task-list__name-and-hint">
+                  <div class="public-good-task-list__name">Review information</div>
+                  <div class="public-good-task-list__hint">Check all details are correct</div>
+                </div>
+                <div class="public-good-task-list__status">
+                  <span class="public-good-task-list__status-incomplete">Incomplete</span>
+                </div>
+              </a>
+            </li>
+            <li class="public-good-task-list__item">
+              <a class="public-good-task-list__link" href="#submit">
+                <div class="public-good-task-list__name-and-hint">
+                  <div class="public-good-task-list__name">Submit application</div>
+                  <div class="public-good-task-list__hint">Final submission</div>
+                </div>
+                <div class="public-good-task-list__status">
+                  <span class="public-good-task-list__status-cannot-start">Cannot start yet</span>
+                </div>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="example">
+    <h3>Interactive Task List with State Management</h3>
+    <div class="controls">
+      <button id="save-state">Save State</button>
+      <button id="load-state">Load State</button>
+      <button id="export-data">Export Data</button>
+      <button id="validate-accessibility">Validate Accessibility</button>
+    </div>
+    <div class="demo-output" id="state-managed-tasks">
+      <!-- State-managed task list will appear here -->
+    </div>
+    <div class="log-output" id="state-log">
+      State management log will appear here...
+    </div>
+  </div>
+
+  <script type="module">
+    import { 
+      TaskList,
+      createTaskList, 
+      createTaskItem,
+      initializeTaskLists,
+      validateTaskListAccessibility 
+    } from '../task-list.js';
+
+    // Initialize components
+    document.addEventListener('DOMContentLoaded', () => {
+      initializeDynamicBuilder();
+      initializeApplicationTracker();
+      initializeWorkflowStages();
+      initializeStateManagement();
+      initializeTasks();
+    });
+
+    // Dynamic Task List Builder
+    function initializeDynamicBuilder() {
+      const addBtn = document.getElementById('add-task');
+      const clearBtn = document.getElementById('clear-tasks');
+      const simulateBtn = document.getElementById('simulate-progress');
+      const output = document.getElementById('task-list-demo');
+      
+      let taskCounter = 1;
+      let taskListInstance = null;
+
+      addBtn.addEventListener('click', () => {
+        const title = document.getElementById('task-title').value.trim();
+        const hint = document.getElementById('task-hint').value.trim();
+        const status = document.getElementById('task-status').value;
+        const href = document.getElementById('task-href').value.trim();
+
+        if (!title) return;
+
+        if (!taskListInstance) {
+          output.innerHTML = '';
+          const container = document.createElement('div');
+          output.appendChild(container);
+          taskListInstance = new TaskList(container, [], {
+            trackProgress: true,
+            onProgressUpdate: (completed, total) => {
+              logEvent(`Progress updated: ${completed}/${total} completed`);
+            }
+          });
+        }
+
+        taskListInstance.addTask({
+          id: `task-${taskCounter++}`,
+          title,
+          hint: hint || undefined,
+          status,
+          href: href || undefined
+        });
+
+        // Reset form
+        document.getElementById('task-title').value = 'New Task';
+        document.getElementById('task-hint').value = '';
+        document.getElementById('task-href').value = '';
+      });
+
+      clearBtn.addEventListener('click', () => {
+        if (taskListInstance) {
+          taskListInstance.destroy();
+          taskListInstance = null;
+        }
+        output.innerHTML = '';
+        taskCounter = 1;
+      });
+
+      simulateBtn.addEventListener('click', () => {
+        if (!taskListInstance) return;
+        
+        const tasks = taskListInstance.getTasks();
+        tasks.forEach((task, index) => {
+          if (task.status === 'incomplete') {
+            setTimeout(() => {
+              taskListInstance.setTaskStatus(index, 'in-progress');
+              setTimeout(() => {
+                taskListInstance.setTaskStatus(index, 'completed');
+              }, 1000);
+            }, index * 500);
+          }
+        });
+      });
+    }
+
+    // Application Progress Tracker
+    function initializeApplicationTracker() {
+      const startBtn = document.getElementById('start-application');
+      const completeBtn = document.getElementById('complete-next');
+      const resetBtn = document.getElementById('reset-application');
+      const container = document.getElementById('application-task-list');
+      
+      let applicationTasks = null;
+      let currentTaskIndex = 0;
+
+      const sampleTasks = [
+        { title: 'Personal Information', hint: 'Basic details and identification', status: 'incomplete' },
+        { title: 'Employment History', hint: 'Previous jobs and experience', status: 'cannot-start' },
+        { title: 'References', hint: 'Contact details for references', status: 'cannot-start' },
+        { title: 'Supporting Documents', hint: 'Upload required files', status: 'cannot-start' },
+        { title: 'Final Review', hint: 'Review and submit', status: 'cannot-start' }
+      ];
+
+      startBtn.addEventListener('click', () => {
+        if (applicationTasks) return; // Already started
+
+        applicationTasks = new TaskList(container, sampleTasks, {
+          trackProgress: true,
+          onProgressUpdate: updateProgressStats,
+          onStatusChange: (task, index) => {
+            logToActivity(`Task "${task.title}" status changed to ${task.status}`);
+          }
+        });
+
+        updateProgressStats();
+        logToActivity('Application started');
+      });
+
+      completeBtn.addEventListener('click', () => {
+        if (!applicationTasks) return;
+
+        const tasks = applicationTasks.getTasks();
+        let nextIncompleteIndex = -1;
+
+        // Find next incomplete or in-progress task
+        for (let i = 0; i < tasks.length; i++) {
+          if (tasks[i].status === 'incomplete' || tasks[i].status === 'in-progress') {
+            nextIncompleteIndex = i;
+            break;
+          }
+        }
+
+        if (nextIncompleteIndex !== -1) {
+          const currentStatus = tasks[nextIncompleteIndex].status;
+          if (currentStatus === 'incomplete') {
+            applicationTasks.setTaskStatus(nextIncompleteIndex, 'in-progress');
+          } else if (currentStatus === 'in-progress') {
+            applicationTasks.setTaskStatus(nextIncompleteIndex, 'completed');
+            
+            // Enable next task if it exists and is "cannot-start"
+            const nextIndex = nextIncompleteIndex + 1;
+            if (nextIndex < tasks.length && tasks[nextIndex].status === 'cannot-start') {
+              applicationTasks.setTaskStatus(nextIndex, 'incomplete');
+            }
+          }
+        } else {
+          logToActivity('All tasks completed!');
+        }
+      });
+
+      resetBtn.addEventListener('click', () => {
+        if (applicationTasks) {
+          applicationTasks.destroy();
+          applicationTasks = null;
+        }
+        container.innerHTML = '';
+        updateProgressStats(0, 0);
+        logToActivity('Application reset');
+      });
+
+      function updateProgressStats(completed = 0, total = 0) {
+        if (applicationTasks) {
+          const progress = applicationTasks.getProgress();
+          completed = progress.completed;
+          total = progress.total;
+        }
+
+        const inProgress = applicationTasks ? 
+          applicationTasks.getTasks().filter(t => t.status === 'in-progress').length : 0;
+        const incomplete = total - completed - inProgress;
+
+        document.getElementById('stat-completed').textContent = completed;
+        document.getElementById('stat-in-progress').textContent = inProgress;
+        document.getElementById('stat-incomplete').textContent = incomplete;
+        document.getElementById('stat-percentage').textContent = 
+          total > 0 ? Math.round((completed / total) * 100) + '%' : '0%';
+      }
+    }
+
+    // Multi-Stage Workflow
+    function initializeWorkflowStages() {
+      const nextBtn = document.getElementById('workflow-next');
+      const prevBtn = document.getElementById('workflow-previous');
+      const resetBtn = document.getElementById('workflow-reset');
+      
+      let currentStage = 1;
+      const maxStages = 3;
+
+      nextBtn.addEventListener('click', () => {
+        if (currentStage < maxStages) {
+          document.getElementById(`stage-${currentStage}`).style.display = 'none';
+          currentStage++;
+          document.getElementById(`stage-${currentStage}`).style.display = 'block';
+          logEvent(`Advanced to stage ${currentStage}`);
+        }
+      });
+
+      prevBtn.addEventListener('click', () => {
+        if (currentStage > 1) {
+          document.getElementById(`stage-${currentStage}`).style.display = 'none';
+          currentStage--;
+          document.getElementById(`stage-${currentStage}`).style.display = 'block';
+          logEvent(`Returned to stage ${currentStage}`);
+        }
+      });
+
+      resetBtn.addEventListener('click', () => {
+        for (let i = 1; i <= maxStages; i++) {
+          document.getElementById(`stage-${i}`).style.display = i === 1 ? 'block' : 'none';
+        }
+        currentStage = 1;
+        logEvent('Workflow reset to stage 1');
+      });
+    }
+
+    // State Management
+    function initializeStateManagement() {
+      const saveBtn = document.getElementById('save-state');
+      const loadBtn = document.getElementById('load-state');
+      const exportBtn = document.getElementById('export-data');
+      const validateBtn = document.getElementById('validate-accessibility');
+      const container = document.getElementById('state-managed-tasks');
+      const stateLog = document.getElementById('state-log');
+      
+      let stateManagedTasks = null;
+
+      // Initialize with sample tasks
+      const initialTasks = [
+        { title: 'Setup Profile', status: 'completed' },
+        { title: 'Configure Settings', status: 'in-progress' },
+        { title: 'Complete Onboarding', status: 'incomplete' }
+      ];
+
+      stateManagedTasks = new TaskList(container, initialTasks, {
+        autoSave: true,
+        storageKey: 'demo-task-list',
+        trackProgress: true,
+        onStatusChange: (task, index, oldStatus) => {
+          logToState(`Status changed: "${task.title}" ${oldStatus} → ${task.status}`);
+        }
+      });
+
+      saveBtn.addEventListener('click', () => {
+        const state = {
+          tasks: stateManagedTasks.getTasks(),
+          timestamp: new Date().toISOString()
+        };
+        localStorage.setItem('manual-task-state', JSON.stringify(state));
+        logToState('State saved manually');
+      });
+
+      loadBtn.addEventListener('click', () => {
+        try {
+          const stored = localStorage.getItem('manual-task-state');
+          if (stored) {
+            const state = JSON.parse(stored);
+            logToState(`State loaded from ${state.timestamp}`);
+            logToState(`Found ${state.tasks.length} tasks`);
+          } else {
+            logToState('No saved state found');
+          }
+        } catch (error) {
+          logToState(`Error loading state: ${error.message}`);
+        }
+      });
+
+      exportBtn.addEventListener('click', () => {
+        const data = {
+          tasks: stateManagedTasks.getTasks(),
+          progress: stateManagedTasks.getProgress(),
+          exportTime: new Date().toISOString()
+        };
+        
+        const blob = new Blob([JSON.stringify(data, null, 2)], { 
+          type: 'application/json' 
+        });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'task-list-export.json';
+        a.click();
+        URL.revokeObjectURL(url);
+        
+        logToState('Data exported to JSON file');
+      });
+
+      validateBtn.addEventListener('click', () => {
+        const result = validateTaskListAccessibility(container);
+        logToState(`Accessibility validation complete:`);
+        logToState(`Found ${result.taskLists.length} task lists`);
+        logToState(`Issues found: ${result.issues.length}`);
+        result.issues.forEach(issue => {
+          logToState(`• ${issue}`);
+        });
+      });
+
+      function logToState(message) {
+        const timestamp = new Date().toLocaleTimeString();
+        const entry = document.createElement('div');
+        entry.textContent = `[${timestamp}] ${message}`;
+        stateLog.appendChild(entry);
+        stateLog.scrollTop = stateLog.scrollHeight;
+      }
+    }
+
+    // Initialize all task lists with data attributes
+    function initializeTasks() {
+      initializeTaskLists();
+      
+      // Add click handlers for demonstration
+      document.querySelectorAll('.public-good-task-list__link').forEach(link => {
+        if (!link.classList.contains('public-good-task-list__link--disabled')) {
+          link.addEventListener('click', (event) => {
+            event.preventDefault();
+            const taskName = link.querySelector('.public-good-task-list__name')?.textContent;
+            logEvent(`Task clicked: ${taskName}`);
+          });
+        }
+      });
+    }
+
+    // Utility functions
+    function logEvent(message) {
+      console.log('Task List Demo:', message);
+    }
+
+    function logToActivity(message) {
+      const activityLog = document.getElementById('activity-log');
+      const timestamp = new Date().toLocaleTimeString();
+      const entry = document.createElement('div');
+      entry.textContent = `[${timestamp}] ${message}`;
+      activityLog.appendChild(entry);
+      activityLog.scrollTop = activityLog.scrollHeight;
+    }
+  </script>
+</body>
+</html>

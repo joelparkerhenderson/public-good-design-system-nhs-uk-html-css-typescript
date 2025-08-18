@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Checkboxes Component - Basic Examples</title>
+  <link rel="stylesheet" href="../../../index.css">
+  <style>
+    body {
+      font-family: var(--public-good-font-family);
+      margin: 0;
+      padding: var(--public-good-spacing-6);
+      background-color: var(--public-good-color-background);
+    }
+    
+    .example-section {
+      margin-bottom: var(--public-good-spacing-8);
+    }
+    
+    .example-title {
+      font-size: var(--public-good-font-size-lg);
+      font-weight: var(--public-good-font-weight-bold);
+      margin-bottom: var(--public-good-spacing-4);
+      color: var(--public-good-color-text);
+    }
+    
+    .example-description {
+      margin-bottom: var(--public-good-spacing-5);
+      color: var(--public-good-color-text-secondary);
+    }
+  </style>
+</head>
+<body>
+  <h1>Checkboxes Component - Basic Examples</h1>
+  
+  <div class="example-section">
+    <h2 class="example-title">Basic Checkboxes</h2>
+    <p class="example-description">Simple checkbox group with fieldset and legend.</p>
+    
+    <div id="basic-checkboxes"></div>
+  </div>
+
+  <div class="example-section">
+    <h2 class="example-title">Checkboxes with Hint</h2>
+    <p class="example-description">Checkbox group with hint text to clarify selection rules.</p>
+    
+    <div id="hint-checkboxes"></div>
+  </div>
+
+  <div class="example-section">
+    <h2 class="example-title">Checkboxes with Pre-selected Values</h2>
+    <p class="example-description">Checkbox group with some options pre-selected.</p>
+    
+    <div id="preselected-checkboxes"></div>
+  </div>
+
+  <div class="example-section">
+    <h2 class="example-title">Checkboxes with Item Hints</h2>
+    <p class="example-description">Individual checkboxes can have their own hint text.</p>
+    
+    <div id="item-hints-checkboxes"></div>
+  </div>
+
+  <div class="example-section">
+    <h2 class="example-title">Checkboxes with Disabled Items</h2>
+    <p class="example-description">Some checkbox options can be disabled.</p>
+    
+    <div id="disabled-checkboxes"></div>
+  </div>
+
+  <div class="example-section">
+    <h2 class="example-title">Checkboxes with Error Message</h2>
+    <p class="example-description">Checkbox group in error state with validation message.</p>
+    
+    <div id="error-checkboxes"></div>
+  </div>
+
+  <div class="example-section">
+    <h2 class="example-title">Simple Checkboxes (No Fieldset)</h2>
+    <p class="example-description">Checkbox group without fieldset wrapper.</p>
+    
+    <div id="simple-checkboxes"></div>
+  </div>
+
+  <script type="module">
+    import { 
+      createCheckboxes, 
+      createFieldsetCheckboxes, 
+      createSimpleCheckboxes 
+    } from '../checkboxes.js'
+    
+    // Basic checkboxes
+    const basicCheckboxes = createFieldsetCheckboxes(
+      'nationality',
+      'What is your nationality?',
+      [
+        { value: 'british', text: 'British' },
+        { value: 'irish', text: 'Irish' },
+        { value: 'other', text: 'Citizen of another country' }
+      ]
+    )
+    document.getElementById('basic-checkboxes').appendChild(basicCheckboxes.element)
+    
+    // Checkboxes with hint
+    const hintCheckboxes = createFieldsetCheckboxes(
+      'interests',
+      'What are your interests?',
+      [
+        { value: 'music', text: 'Music' },
+        { value: 'sports', text: 'Sports' },
+        { value: 'reading', text: 'Reading' },
+        { value: 'travel', text: 'Travel' }
+      ],
+      {
+        hint: {
+          text: 'Select all that apply to you'
+        }
+      }
+    )
+    document.getElementById('hint-checkboxes').appendChild(hintCheckboxes.element)
+    
+    // Checkboxes with pre-selected values
+    const preselectedCheckboxes = createFieldsetCheckboxes(
+      'preferences',
+      'Communication preferences',
+      [
+        { value: 'email', text: 'Email notifications', checked: true },
+        { value: 'sms', text: 'SMS notifications' },
+        { value: 'post', text: 'Postal mail', checked: true },
+        { value: 'phone', text: 'Phone calls' }
+      ]
+    )
+    document.getElementById('preselected-checkboxes').appendChild(preselectedCheckboxes.element)
+    
+    // Checkboxes with item hints
+    const itemHintsCheckboxes = createCheckboxes({
+      name: 'signin-method',
+      fieldset: {
+        legend: {
+          text: 'How do you want to sign in?'
+        }
+      },
+      items: [
+        {
+          value: 'government-gateway',
+          text: 'Sign in with Government Gateway',
+          hint: {
+            text: "You'll have a user ID if you've registered for Self Assessment or filed a tax return online before"
+          }
+        },
+        {
+          value: 'nhs-login',
+          text: 'Sign in with NHS.UK login',
+          hint: {
+            text: "You'll have an account if you've already proved your identity with either Barclays, CitizenSafe, Digidentity, Experian, Post Office, Royal Mail or SecureIdentity"
+          }
+        }
+      ]
+    })
+    document.getElementById('item-hints-checkboxes').appendChild(itemHintsCheckboxes.element)
+    
+    // Checkboxes with disabled items
+    const disabledCheckboxes = createSimpleCheckboxes(
+      'colors',
+      [
+        { value: 'red', text: 'Red' },
+        { value: 'green', text: 'Green' },
+        { value: 'blue', text: 'Blue (currently unavailable)' }
+      ]
+    )
+    // Disable the blue option after creation
+    const blueInput = disabledCheckboxes.element.querySelector('input[value="blue"]')
+    if (blueInput) {
+      blueInput.disabled = true
+    }
+    document.getElementById('disabled-checkboxes').appendChild(disabledCheckboxes.element)
+    
+    // Checkboxes with error message
+    const errorCheckboxes = createCheckboxes({
+      name: 'waste-types',
+      fieldset: {
+        legend: {
+          text: 'Which types of waste do you transport regularly?'
+        }
+      },
+      errorMessage: {
+        text: 'Select the types of waste you transport regularly'
+      },
+      items: [
+        { value: 'animal', text: 'Waste from animal carcasses' },
+        { value: 'mines', text: 'Waste from mines or quarries' },
+        { value: 'farm', text: 'Farm or agricultural waste' }
+      ]
+    })
+    document.getElementById('error-checkboxes').appendChild(errorCheckboxes.element)
+    
+    // Simple checkboxes without fieldset
+    const simpleCheckboxes = createSimpleCheckboxes(
+      'newsletter',
+      [
+        { value: 'weekly', text: 'Weekly newsletter' },
+        { value: 'monthly', text: 'Monthly updates' },
+        { value: 'breaking', text: 'Breaking news alerts' }
+      ]
+    )
+    document.getElementById('simple-checkboxes').appendChild(simpleCheckboxes.element)
+    
+    // Add event listeners for demonstration
+    document.addEventListener('public-good:checkboxes:change', (event) => {
+      console.log('Checkboxes changed:', {
+        name: event.detail.name,
+        value: event.detail.value,
+        checked: event.detail.checked,
+        allValues: event.detail.values
+      })
+    })
+    
+    // Add demonstration buttons
+    const demoControls = document.createElement('div')
+    demoControls.innerHTML = `
+      <div style="margin-top: 2rem; padding: 1rem; background: #f0f4f5; border-radius: 4px;">
+        <h3>Interactive Controls</h3>
+        <button id="validate-all" class="public-good-button public-good-button--secondary" style="margin-right: 0.5rem;">Validate All</button>
+        <button id="clear-all" class="public-good-button public-good-button--secondary" style="margin-right: 0.5rem;">Clear All</button>
+        <button id="select-all" class="public-good-button public-good-button--secondary">Select All Available</button>
+        <div id="validation-results" style="margin-top: 1rem; font-weight: bold;"></div>
+      </div>
+    `
+    document.body.appendChild(demoControls)
+    
+    // Store checkboxes for controls
+    const allCheckboxes = [
+      basicCheckboxes,
+      hintCheckboxes,
+      preselectedCheckboxes,
+      itemHintsCheckboxes,
+      disabledCheckboxes,
+      errorCheckboxes,
+      simpleCheckboxes
+    ]
+    
+    // Validate all
+    document.getElementById('validate-all').addEventListener('click', () => {
+      const results = allCheckboxes.map(checkbox => ({
+        name: checkbox.config.name,
+        values: checkbox.getValues(),
+        isValid: checkbox.validate()
+      }))
+      
+      const resultsElement = document.getElementById('validation-results')
+      resultsElement.innerHTML = results.map(result => 
+        `<div>${result.name}: ${result.isValid ? '✅' : '❌'} (${result.values.length} selected)</div>`
+      ).join('')
+    })
+    
+    // Clear all
+    document.getElementById('clear-all').addEventListener('click', () => {
+      allCheckboxes.forEach(checkbox => checkbox.uncheckAll())
+      document.getElementById('validation-results').innerHTML = 'All checkboxes cleared'
+    })
+    
+    // Select all available
+    document.getElementById('select-all').addEventListener('click', () => {
+      allCheckboxes.forEach(checkbox => checkbox.checkAll())
+      document.getElementById('validation-results').innerHTML = 'All available checkboxes selected'
+    })
+  </script>
+</body>
+</html>

@@ -1,0 +1,245 @@
+/**
+ * Public Good Design System - Date Input Component
+ * CSS styling for accessible date input with day, month, year fields
+ * Based on NHS UK Design System patterns
+ */
+
+/* Date input container */
+.public-good-date-input {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: var(--public-good-spacing-3);
+  align-items: flex-end;
+}
+
+/* Individual date input item (day, month, year) */
+.public-good-date-input__item {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+/* Labels for date input fields */
+.public-good-date-input__label {
+  font-weight: var(--public-good-font-weight-bold);
+  color: var(--public-good-color-text);
+  margin-bottom: var(--public-good-spacing-1);
+  font-size: var(--public-good-font-size-base);
+  line-height: var(--public-good-line-height-tight);
+}
+
+/* Input fields styling */
+.public-good-date-input__input {
+  font-family: var(--public-good-font-family);
+  font-size: var(--public-good-font-size-base);
+  line-height: var(--public-good-line-height-normal);
+  border: var(--public-good-border-width-medium) solid var(--public-good-color-border);
+  border-radius: var(--public-good-border-radius-medium);
+  padding: var(--public-good-spacing-2) var(--public-good-spacing-3);
+  background-color: var(--public-good-color-background);
+  color: var(--public-good-color-text);
+  transition: border-color var(--public-good-transition-fast),
+              box-shadow var(--public-good-transition-fast);
+}
+
+/* Width variants for different fields */
+.public-good-input--width-2 {
+  width: 5rem; /* Suitable for day/month */
+}
+
+.public-good-input--width-4 {
+  width: 7rem; /* Suitable for year */
+}
+
+/* Input focus states */
+.public-good-date-input__input:focus {
+  outline: var(--public-good-spacing-focus-width) solid var(--public-good-color-focus);
+  outline-offset: var(--public-good-spacing-focus-offset);
+  border-color: var(--public-good-color-text);
+  box-shadow: 0 0 0 var(--public-good-spacing-focus-width) var(--public-good-color-focus);
+}
+
+/* Hover state */
+.public-good-date-input__input:hover:not(:focus):not(:disabled) {
+  border-color: var(--public-good-color-text);
+}
+
+/* Error state styling */
+.public-good-form-group--error .public-good-date-input__input,
+.public-good-input--error {
+  border-color: var(--public-good-color-error);
+  box-shadow: inset 0 0 0 var(--public-good-border-width-medium) var(--public-good-color-error);
+}
+
+.public-good-form-group--error .public-good-date-input__input:focus,
+.public-good-input--error:focus {
+  border-color: var(--public-good-color-text);
+  box-shadow: 0 0 0 var(--public-good-spacing-focus-width) var(--public-good-color-focus),
+              inset 0 0 0 var(--public-good-border-width-medium) var(--public-good-color-error);
+}
+
+/* Disabled state */
+.public-good-date-input__input:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  background-color: var(--public-good-color-grey-50);
+  color: var(--public-good-color-text-secondary);
+}
+
+/* Responsive design */
+@media (max-width: 40.0625em) {
+  .public-good-date-input {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .public-good-date-input__item {
+    margin-bottom: var(--public-good-spacing-3);
+  }
+  
+  .public-good-input--width-2,
+  .public-good-input--width-4 {
+    width: 100%;
+    max-width: 12rem;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .public-good-date-input__input {
+    border-width: var(--public-good-border-width-thick);
+  }
+  
+  .public-good-date-input__input:focus {
+    outline-width: calc(var(--public-good-spacing-focus-width) * 1.5);
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .public-good-date-input__input {
+    transition: none;
+  }
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+  .public-good-date-input__input {
+    background-color: var(--public-good-color-background);
+    border-color: var(--public-good-color-border);
+    color: var(--public-good-color-text);
+  }
+  
+  .public-good-date-input__input:disabled {
+    background-color: var(--public-good-color-grey-800);
+    color: var(--public-good-color-text-secondary);
+  }
+}
+
+/* RTL language support */
+[dir="rtl"] .public-good-date-input {
+  direction: rtl;
+}
+
+[dir="rtl"] .public-good-date-input__item {
+  text-align: right;
+}
+
+/* Print styles */
+@media print {
+  .public-good-date-input__input {
+    border: var(--public-good-border-width-medium) solid var(--public-good-color-black);
+    background: transparent;
+    color: var(--public-good-color-black);
+  }
+  
+  .public-good-date-input__input:after {
+    content: " (" attr(value) ")";
+  }
+}
+
+/* Focus management for keyboard navigation */
+.public-good-date-input__input:focus-visible {
+  outline: var(--public-good-spacing-focus-width) solid var(--public-good-color-focus);
+  outline-offset: var(--public-good-spacing-focus-offset);
+}
+
+/* iOS Safari specific fixes */
+@supports (-webkit-touch-callout: none) {
+  .public-good-date-input__input {
+    -webkit-appearance: none;
+    border-radius: var(--public-good-border-radius-medium);
+  }
+}
+
+/* Touch target accessibility */
+@media (hover: none) and (pointer: coarse) {
+  .public-good-date-input__input {
+    min-height: 44px; /* WCAG AA minimum touch target */
+    padding: var(--public-good-spacing-3);
+  }
+  
+  .public-good-date-input__label {
+    font-size: var(--public-good-font-size-base);
+    margin-bottom: var(--public-good-spacing-2);
+  }
+}
+
+/* Animation for error state changes */
+.public-good-form-group--error .public-good-date-input__input {
+  animation: shake 0.3s ease-in-out;
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-2px); }
+  75% { transform: translateX(2px); }
+}
+
+/* Focus trap for screen readers */
+.public-good-date-input[aria-describedby] {
+  position: relative;
+}
+
+/* Validation styling */
+.public-good-date-input__input:invalid:not(:focus):not(:placeholder-shown) {
+  border-color: var(--public-good-color-error);
+}
+
+.public-good-date-input__input:valid:not(:focus):not(:placeholder-shown) {
+  border-color: var(--public-good-color-success);
+}
+
+/* Placeholder styling */
+.public-good-date-input__input::placeholder {
+  color: var(--public-good-color-text-secondary);
+  opacity: 1;
+}
+
+/* Autocomplete styling */
+.public-good-date-input__input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 1000px var(--public-good-color-background) inset;
+  -webkit-text-fill-color: var(--public-good-color-text);
+}
+
+/* Number input specific styling for better UX */
+.public-good-date-input__input[inputmode="numeric"] {
+  text-align: center;
+}
+
+/* Container spacing when within form groups */
+.public-good-form-group .public-good-date-input {
+  margin-top: var(--public-good-spacing-2);
+}
+
+/* Legend spacing adjustments */
+.public-good-fieldset__legend + .public-good-hint + .public-good-date-input,
+.public-good-fieldset__legend + .public-good-date-input {
+  margin-top: var(--public-good-spacing-3);
+}
+
+/* Error message spacing */
+.public-good-error-message + .public-good-date-input {
+  margin-top: var(--public-good-spacing-3);
+}

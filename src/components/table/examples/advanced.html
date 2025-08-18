@@ -1,0 +1,780 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Table Component - Advanced Examples</title>
+    <link rel="stylesheet" href="../../../core/base.css">
+    <link rel="stylesheet" href="../table.css">
+    <style>
+        body {
+            margin: 0;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f8f9fa;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        .example-section {
+            margin-bottom: 3rem;
+            padding: 2rem;
+            background: white;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+        .example-section h2 {
+            margin-top: 0;
+            color: #0066cc;
+            border-bottom: 2px solid #0066cc;
+            padding-bottom: 0.5rem;
+        }
+        .demo-controls {
+            margin: 1rem 0;
+            padding: 1rem;
+            background: #f8f9fa;
+            border-radius: 4px;
+            border-left: 4px solid #17a2b8;
+        }
+        .demo-controls button {
+            margin: 0.25rem;
+            padding: 0.5rem 1rem;
+            background: #0066cc;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.875rem;
+        }
+        .demo-controls button:hover {
+            background: #003d7a;
+        }
+        .demo-controls button:disabled {
+            background: #6c757d;
+            cursor: not-allowed;
+        }
+        .demo-controls input, .demo-controls select {
+            margin: 0.25rem;
+            padding: 0.5rem;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 0.875rem;
+        }
+        .status-indicator {
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            margin-right: 0.5rem;
+        }
+        .status-active { background-color: #28a745; }
+        .status-pending { background-color: #ffc107; }
+        .status-inactive { background-color: #dc3545; }
+        .progress-bar {
+            width: 100%;
+            height: 1rem;
+            background-color: #e9ecef;
+            border-radius: 0.25rem;
+            overflow: hidden;
+        }
+        .progress-fill {
+            height: 100%;
+            background-color: #0066cc;
+            transition: width 0.3s ease;
+        }
+        .table-wrapper {
+            margin: 2rem 0;
+            overflow-x: auto;
+            border: 1px solid #dee2e6;
+            border-radius: 8px;
+        }
+        .filter-controls {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+        .table-stats {
+            font-size: 0.875rem;
+            color: #666;
+            margin-top: 0.5rem;
+        }
+        /* Color variables for examples */
+        :root {
+            --public-good-color-text: #212b32;
+            --public-good-color-text-secondary: #666666;
+            --public-good-color-link: #0066cc;
+            --public-good-color-link-hover: #003d7a;
+            --public-good-color-focus: #ffeb3b;
+            --public-good-spacing-1: 8px;
+            --public-good-spacing-2: 12px;
+            --public-good-spacing-3: 16px;
+            --public-good-spacing-4: 24px;
+            --public-good-spacing-5: 32px;
+        }
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+            .example-section {
+                padding: 1rem;
+            }
+            .filter-controls {
+                flex-direction: column;
+                align-items: stretch;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="example-section">
+            <h1>Table Component - Advanced Examples</h1>
+            <p>This page demonstrates advanced table functionality including programmatic table creation, filtering, complex data formatting, and dynamic content management.</p>
+        </div>
+
+        <div class="example-section">
+            <h2>Dynamic Table Creation</h2>
+            <p>Create tables programmatically with custom data and configurations.</p>
+            
+            <div class="demo-controls">
+                <button onclick="createBasicTable()">Create Basic Table</button>
+                <button onclick="createSortableTable()">Create Sortable Table</button>
+                <button onclick="createResponsiveTable()">Create Responsive Table</button>
+                <button onclick="clearTables()">Clear All Tables</button>
+            </div>
+
+            <div id="dynamic-table-container"></div>
+        </div>
+
+        <div class="example-section">
+            <h2>Patient Management Dashboard</h2>
+            <p>A comprehensive table with filtering, sorting, and custom formatting for healthcare data.</p>
+            
+            <div class="filter-controls">
+                <label>
+                    Filter by Status:
+                    <select id="status-filter" onchange="filterByStatus(this.value)">
+                        <option value="">All Statuses</option>
+                        <option value="Active">Active</option>
+                        <option value="Pending">Pending</option>
+                        <option value="Inactive">Inactive</option>
+                    </select>
+                </label>
+                <label>
+                    Search by Name:
+                    <input type="text" id="name-search" placeholder="Enter patient name" oninput="searchByName(this.value)">
+                </label>
+                <button onclick="resetFilters()">Reset Filters</button>
+                <button onclick="exportTableData()">Export Data</button>
+            </div>
+
+            <div class="table-wrapper">
+                <table id="patient-table" class="public-good-table public-good-table--sortable public-good-table--striped" data-module="public-good-table" data-sortable="true" data-persist-sort="true" data-sort-storage-key="patient-table-sort">
+                    <caption class="public-good-table__caption">Patient Management Dashboard</caption>
+                    <thead class="public-good-table__head">
+                        <tr class="public-good-table__row">
+                            <th scope="col" class="public-good-table__header public-good-table__header--sortable" data-column="id">
+                                Patient ID
+                                <button class="public-good-table__sort-button" type="button" aria-label="Sort by Patient ID">
+                                    <span class="public-good-table__sort-icon" aria-hidden="true"></span>
+                                </button>
+                            </th>
+                            <th scope="col" class="public-good-table__header public-good-table__header--sortable" data-column="name">
+                                Full Name
+                                <button class="public-good-table__sort-button" type="button" aria-label="Sort by Full Name">
+                                    <span class="public-good-table__sort-icon" aria-hidden="true"></span>
+                                </button>
+                            </th>
+                            <th scope="col" class="public-good-table__header public-good-table__header--sortable public-good-table__header--numeric" data-column="age">
+                                Age
+                                <button class="public-good-table__sort-button" type="button" aria-label="Sort by Age">
+                                    <span class="public-good-table__sort-icon" aria-hidden="true"></span>
+                                </button>
+                            </th>
+                            <th scope="col" class="public-good-table__header public-good-table__header--sortable" data-column="condition">
+                                Primary Condition
+                                <button class="public-good-table__sort-button" type="button" aria-label="Sort by Primary Condition">
+                                    <span class="public-good-table__sort-icon" aria-hidden="true"></span>
+                                </button>
+                            </th>
+                            <th scope="col" class="public-good-table__header public-good-table__header--sortable" data-column="status">
+                                Status
+                                <button class="public-good-table__sort-button" type="button" aria-label="Sort by Status">
+                                    <span class="public-good-table__sort-icon" aria-hidden="true"></span>
+                                </button>
+                            </th>
+                            <th scope="col" class="public-good-table__header public-good-table__header--sortable" data-column="lastVisit">
+                                Last Visit
+                                <button class="public-good-table__sort-button" type="button" aria-label="Sort by Last Visit">
+                                    <span class="public-good-table__sort-icon" aria-hidden="true"></span>
+                                </button>
+                            </th>
+                            <th scope="col" class="public-good-table__header" data-no-sort>
+                                Progress
+                            </th>
+                            <th scope="col" class="public-good-table__header" data-no-sort>
+                                Actions
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody class="public-good-table__body" id="patient-table-body">
+                        <!-- Patient data will be populated by JavaScript -->
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="table-stats" id="table-stats">
+                Loading patient data...
+            </div>
+        </div>
+
+        <div class="example-section">
+            <h2>Performance Metrics Table</h2>
+            <p>A table demonstrating numeric formatting, progress indicators, and real-time updates.</p>
+            
+            <div class="demo-controls">
+                <button onclick="refreshMetrics()">Refresh Metrics</button>
+                <button onclick="toggleAutoRefresh()">Toggle Auto-Refresh</button>
+                <span id="auto-refresh-status">Auto-refresh: OFF</span>
+            </div>
+
+            <div class="table-wrapper">
+                <table id="metrics-table" class="public-good-table public-good-table--compact">
+                    <caption class="public-good-table__caption">System Performance Metrics</caption>
+                    <thead class="public-good-table__head">
+                        <tr class="public-good-table__row">
+                            <th scope="col" class="public-good-table__header">Service</th>
+                            <th scope="col" class="public-good-table__header public-good-table__header--numeric">CPU Usage</th>
+                            <th scope="col" class="public-good-table__header public-good-table__header--numeric">Memory</th>
+                            <th scope="col" class="public-good-table__header public-good-table__header--numeric">Response Time</th>
+                            <th scope="col" class="public-good-table__header">Health Score</th>
+                            <th scope="col" class="public-good-table__header">Status</th>
+                        </tr>
+                    </thead>
+                    <tbody class="public-good-table__body" id="metrics-table-body">
+                        <!-- Metrics data will be populated by JavaScript -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="example-section">
+            <h2>Validation and Accessibility</h2>
+            <p>Test table accessibility and validation features.</p>
+            
+            <div class="demo-controls">
+                <button onclick="validateTables()">Run Accessibility Validation</button>
+                <button onclick="testKeyboardNavigation()">Test Keyboard Navigation</button>
+                <button onclick="simulateScreenReader()">Simulate Screen Reader</button>
+            </div>
+
+            <div id="validation-results" style="margin-top: 1rem; padding: 1rem; background: #f8f9fa; border-radius: 4px; display: none;">
+                <h4>Validation Results:</h4>
+                <div id="validation-content"></div>
+            </div>
+        </div>
+    </div>
+
+    <script type="module">
+        import { 
+            Table,
+            createTable,
+            createDataTable,
+            initializeTables,
+            validateTableAccessibility
+        } from '../table.js';
+        
+        let tableInstances = [];
+        let patientData = [];
+        let filteredPatientData = [];
+        let autoRefreshInterval = null;
+        
+        // Sample patient data
+        const samplePatientData = [
+            {
+                id: 'P001',
+                name: 'Sarah Johnson',
+                age: 45,
+                condition: 'Hypertension',
+                status: 'Active',
+                lastVisit: '2024-08-15',
+                progress: 85
+            },
+            {
+                id: 'P002',
+                name: 'Michael Chen',
+                age: 32,
+                condition: 'Diabetes Type 2',
+                status: 'Pending',
+                lastVisit: '2024-08-10',
+                progress: 60
+            },
+            {
+                id: 'P003',
+                name: 'Emily Rodriguez',
+                age: 28,
+                condition: 'Asthma',
+                status: 'Active',
+                lastVisit: '2024-08-18',
+                progress: 92
+            },
+            {
+                id: 'P004',
+                name: 'David Wilson',
+                age: 67,
+                condition: 'Heart Disease',
+                status: 'Inactive',
+                lastVisit: '2024-07-25',
+                progress: 45
+            },
+            {
+                id: 'P005',
+                name: 'Lisa Thompson',
+                age: 39,
+                condition: 'Depression',
+                status: 'Active',
+                lastVisit: '2024-08-17',
+                progress: 78
+            },
+            {
+                id: 'P006',
+                name: 'Robert Brown',
+                age: 52,
+                condition: 'Arthritis',
+                status: 'Pending',
+                lastVisit: '2024-08-12',
+                progress: 55
+            }
+        ];
+
+        // Sample metrics data
+        const sampleMetricsData = [
+            { service: 'Patient Portal', cpu: 25, memory: 2048, responseTime: 150, healthScore: 95 },
+            { service: 'Appointment System', cpu: 45, memory: 4096, responseTime: 200, healthScore: 88 },
+            { service: 'Medical Records', cpu: 30, memory: 6144, responseTime: 180, healthScore: 92 },
+            { service: 'Billing System', cpu: 60, memory: 3072, responseTime: 300, healthScore: 75 },
+            { service: 'Lab Results', cpu: 20, memory: 1024, responseTime: 120, healthScore: 98 }
+        ];
+        
+        document.addEventListener('DOMContentLoaded', () => {
+            // Initialize existing tables
+            tableInstances = initializeTables();
+            console.log(`Initialized ${tableInstances.length} table instances`);
+            
+            // Set up patient data
+            patientData = [...samplePatientData];
+            filteredPatientData = [...patientData];
+            populatePatientTable();
+            
+            // Set up metrics table
+            populateMetricsTable();
+            
+            // Add event listeners for table events
+            tableInstances.forEach(instance => {
+                const element = instance.getElement();
+                element.addEventListener('table:sorted', (event) => {
+                    console.log('Table sorted:', {
+                        column: event.detail.column,
+                        direction: event.detail.direction,
+                        table: element.caption?.textContent || 'Unnamed table'
+                    });
+                });
+            });
+
+            // Make functions available globally
+            window.createBasicTable = createBasicTable;
+            window.createSortableTable = createSortableTable;
+            window.createResponsiveTable = createResponsiveTable;
+            window.clearTables = clearTables;
+            window.filterByStatus = filterByStatus;
+            window.searchByName = searchByName;
+            window.resetFilters = resetFilters;
+            window.exportTableData = exportTableData;
+            window.refreshMetrics = refreshMetrics;
+            window.toggleAutoRefresh = toggleAutoRefresh;
+            window.validateTables = validateTables;
+            window.testKeyboardNavigation = testKeyboardNavigation;
+            window.simulateScreenReader = simulateScreenReader;
+
+            // Initial validation
+            setTimeout(() => {
+                const validation = validateTableAccessibility();
+                console.log('Initial accessibility validation:', validation);
+            }, 100);
+        });
+        
+        function createBasicTable() {
+            const container = document.getElementById('dynamic-table-container');
+            
+            const columns = [
+                { key: 'item', header: 'Item' },
+                { key: 'quantity', header: 'Quantity', numeric: true },
+                { key: 'price', header: 'Price', numeric: true, format: (value) => `£${value}` }
+            ];
+            
+            const rows = [
+                { data: { item: 'Bandages', quantity: '50', price: '12.99' } },
+                { data: { item: 'Antiseptic', quantity: '24', price: '8.50' } },
+                { data: { item: 'Thermometer', quantity: '10', price: '15.75' } }
+            ];
+            
+            const table = createDataTable(columns, rows, {
+                caption: 'Medical Supplies Inventory'
+            });
+            
+            container.appendChild(table);
+            console.log('Basic table created');
+        }
+        
+        function createSortableTable() {
+            const container = document.getElementById('dynamic-table-container');
+            
+            const columns = [
+                { key: 'name', header: 'Medicine Name', sortable: true },
+                { key: 'dosage', header: 'Dosage', sortable: true },
+                { key: 'stock', header: 'Stock Level', numeric: true, sortable: true },
+                { key: 'expires', header: 'Expiry Date', sortable: true }
+            ];
+            
+            const rows = [
+                { data: { name: 'Paracetamol', dosage: '500mg', stock: '150', expires: '2025-06-15' } },
+                { data: { name: 'Ibuprofen', dosage: '400mg', stock: '89', expires: '2025-03-20' } },
+                { data: { name: 'Amoxicillin', dosage: '250mg', stock: '45', expires: '2024-12-10' } }
+            ];
+            
+            const table = createDataTable(columns, rows, {
+                caption: 'Pharmacy Stock Management',
+                sortable: true
+            });
+            
+            // Initialize the sortable functionality
+            const instance = new Table(table, { sortable: true });
+            tableInstances.push(instance);
+            
+            container.appendChild(table);
+            console.log('Sortable table created');
+        }
+        
+        function createResponsiveTable() {
+            const container = document.getElementById('dynamic-table-container');
+            
+            const columns = [
+                { key: 'appointment', header: 'Appointment ID' },
+                { key: 'patient', header: 'Patient' },
+                { key: 'date', header: 'Date' },
+                { key: 'time', header: 'Time' },
+                { key: 'doctor', header: 'Doctor' },
+                { key: 'type', header: 'Type' }
+            ];
+            
+            const rows = [
+                { data: { appointment: 'A001', patient: 'John Doe', date: '2024-08-20', time: '10:00', doctor: 'Dr. Smith', type: 'Check-up' } },
+                { data: { appointment: 'A002', patient: 'Jane Wilson', date: '2024-08-20', time: '11:30', doctor: 'Dr. Johnson', type: 'Follow-up' } }
+            ];
+            
+            const table = createDataTable(columns, rows, {
+                caption: 'Appointment Schedule',
+                responsive: true
+            });
+            
+            // Initialize the responsive functionality
+            const instance = new Table(table, { responsive: true });
+            tableInstances.push(instance);
+            
+            container.appendChild(table);
+            console.log('Responsive table created');
+        }
+        
+        function clearTables() {
+            const container = document.getElementById('dynamic-table-container');
+            
+            // Destroy instances first
+            tableInstances.forEach(instance => {
+                try {
+                    instance.destroy();
+                } catch (e) {
+                    console.warn('Error destroying table instance:', e);
+                }
+            });
+            
+            // Clear container
+            container.innerHTML = '';
+            
+            // Re-initialize remaining tables
+            tableInstances = initializeTables();
+            
+            console.log('Dynamic tables cleared');
+        }
+        
+        function populatePatientTable() {
+            const tbody = document.getElementById('patient-table-body');
+            if (!tbody) return;
+            
+            tbody.innerHTML = '';
+            
+            filteredPatientData.forEach(patient => {
+                const row = document.createElement('tr');
+                row.className = 'public-good-table__row';
+                
+                const statusIndicator = `<span class="status-indicator status-${patient.status.toLowerCase()}"></span>`;
+                const progressBar = `<div class="progress-bar"><div class="progress-fill" style="width: ${patient.progress}%"></div></div>`;
+                const actionButtons = `
+                    <button type="button" style="padding: 0.25rem 0.5rem; margin: 0 0.125rem; font-size: 0.75rem;">View</button>
+                    <button type="button" style="padding: 0.25rem 0.5rem; margin: 0 0.125rem; font-size: 0.75rem;">Edit</button>
+                `;
+                
+                row.innerHTML = `
+                    <td class="public-good-table__cell" data-label="Patient ID">${patient.id}</td>
+                    <td class="public-good-table__cell" data-label="Full Name">${patient.name}</td>
+                    <td class="public-good-table__cell public-good-table__cell--numeric" data-label="Age">${patient.age}</td>
+                    <td class="public-good-table__cell" data-label="Primary Condition">${patient.condition}</td>
+                    <td class="public-good-table__cell" data-label="Status">${statusIndicator}${patient.status}</td>
+                    <td class="public-good-table__cell" data-label="Last Visit">${new Date(patient.lastVisit).toLocaleDateString()}</td>
+                    <td class="public-good-table__cell" data-label="Progress">${progressBar}<small style="margin-top: 0.25rem; display: block;">${patient.progress}%</small></td>
+                    <td class="public-good-table__cell" data-label="Actions">${actionButtons}</td>
+                `;
+                
+                tbody.appendChild(row);
+            });
+            
+            updateTableStats();
+        }
+        
+        function updateTableStats() {
+            const statsElement = document.getElementById('table-stats');
+            if (!statsElement) return;
+            
+            const total = patientData.length;
+            const filtered = filteredPatientData.length;
+            const active = filteredPatientData.filter(p => p.status === 'Active').length;
+            const pending = filteredPatientData.filter(p => p.status === 'Pending').length;
+            const inactive = filteredPatientData.filter(p => p.status === 'Inactive').length;
+            
+            statsElement.innerHTML = `
+                Showing ${filtered} of ${total} patients | 
+                Active: ${active} | Pending: ${pending} | Inactive: ${inactive}
+            `;
+        }
+        
+        function filterByStatus(status) {
+            if (!status) {
+                filteredPatientData = [...patientData];
+            } else {
+                filteredPatientData = patientData.filter(patient => patient.status === status);
+            }
+            populatePatientTable();
+        }
+        
+        function searchByName(query) {
+            const searchTerm = query.toLowerCase().trim();
+            
+            if (!searchTerm) {
+                filteredPatientData = [...patientData];
+            } else {
+                filteredPatientData = patientData.filter(patient => 
+                    patient.name.toLowerCase().includes(searchTerm)
+                );
+            }
+            populatePatientTable();
+        }
+        
+        function resetFilters() {
+            document.getElementById('status-filter').value = '';
+            document.getElementById('name-search').value = '';
+            filteredPatientData = [...patientData];
+            populatePatientTable();
+        }
+        
+        function exportTableData() {
+            const data = filteredPatientData.map(patient => ({
+                'Patient ID': patient.id,
+                'Full Name': patient.name,
+                'Age': patient.age,
+                'Primary Condition': patient.condition,
+                'Status': patient.status,
+                'Last Visit': patient.lastVisit,
+                'Progress': `${patient.progress}%`
+            }));
+            
+            const csv = [
+                Object.keys(data[0]).join(','),
+                ...data.map(row => Object.values(row).join(','))
+            ].join('\n');
+            
+            const blob = new Blob([csv], { type: 'text/csv' });
+            const url = URL.createObjectURL(blob);
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = 'patient-data.csv';
+            link.click();
+            URL.revokeObjectURL(url);
+            
+            console.log('Data exported to CSV');
+        }
+        
+        function populateMetricsTable() {
+            const tbody = document.getElementById('metrics-table-body');
+            if (!tbody) return;
+            
+            tbody.innerHTML = '';
+            
+            sampleMetricsData.forEach(metric => {
+                const row = document.createElement('tr');
+                row.className = 'public-good-table__row';
+                
+                // Add some randomness to simulate live data
+                const cpu = Math.max(0, Math.min(100, metric.cpu + (Math.random() - 0.5) * 10));
+                const memory = metric.memory + Math.round((Math.random() - 0.5) * 512);
+                const responseTime = Math.max(50, metric.responseTime + Math.round((Math.random() - 0.5) * 50));
+                const healthScore = Math.max(0, Math.min(100, metric.healthScore + (Math.random() - 0.5) * 5));
+                
+                const getHealthColor = (score) => {
+                    if (score >= 90) return '#28a745';
+                    if (score >= 70) return '#ffc107';
+                    return '#dc3545';
+                };
+                
+                const getStatusText = (score) => {
+                    if (score >= 90) return 'Excellent';
+                    if (score >= 70) return 'Good';
+                    return 'Needs Attention';
+                };
+                
+                const healthBar = `<div class="progress-bar"><div class="progress-fill" style="width: ${healthScore}%; background-color: ${getHealthColor(healthScore)}"></div></div>`;
+                const statusIndicator = `<span class="status-indicator" style="background-color: ${getHealthColor(healthScore)}"></span>`;
+                
+                row.innerHTML = `
+                    <td class="public-good-table__cell" data-label="Service">${metric.service}</td>
+                    <td class="public-good-table__cell public-good-table__cell--numeric" data-label="CPU Usage">${cpu.toFixed(1)}%</td>
+                    <td class="public-good-table__cell public-good-table__cell--numeric" data-label="Memory">${memory.toLocaleString()} MB</td>
+                    <td class="public-good-table__cell public-good-table__cell--numeric" data-label="Response Time">${responseTime}ms</td>
+                    <td class="public-good-table__cell" data-label="Health Score">${healthBar}<small style="margin-top: 0.25rem; display: block;">${healthScore.toFixed(0)}%</small></td>
+                    <td class="public-good-table__cell" data-label="Status">${statusIndicator}${getStatusText(healthScore)}</td>
+                `;
+                
+                tbody.appendChild(row);
+            });
+        }
+        
+        function refreshMetrics() {
+            populateMetricsTable();
+            console.log('Metrics refreshed');
+        }
+        
+        function toggleAutoRefresh() {
+            const statusElement = document.getElementById('auto-refresh-status');
+            
+            if (autoRefreshInterval) {
+                clearInterval(autoRefreshInterval);
+                autoRefreshInterval = null;
+                statusElement.textContent = 'Auto-refresh: OFF';
+            } else {
+                autoRefreshInterval = setInterval(refreshMetrics, 5000);
+                statusElement.textContent = 'Auto-refresh: ON (5s)';
+            }
+        }
+        
+        function validateTables() {
+            const validation = validateTableAccessibility();
+            const resultsDiv = document.getElementById('validation-results');
+            const contentDiv = document.getElementById('validation-content');
+            
+            let html = `<p><strong>Found ${validation.tables.length} tables on the page.</strong></p>`;
+            
+            if (validation.issues.length === 0) {
+                html += '<p style="color: #28a745;">✓ All tables pass accessibility validation!</p>';
+            } else {
+                html += '<p style="color: #dc3545;">❌ Accessibility issues found:</p>';
+                html += '<ul>';
+                validation.issues.forEach(issue => {
+                    html += `<li>${issue}</li>`;
+                });
+                html += '</ul>';
+            }
+            
+            html += '<h5>Validation Checklist:</h5>';
+            html += '<ul>';
+            html += '<li>✓ Proper table structure (thead, tbody)</li>';
+            html += '<li>✓ Header cells with scope attributes</li>';
+            html += '<li>✓ Table captions or ARIA labels</li>';
+            html += '<li>✓ Keyboard navigation support</li>';
+            html += '<li>✓ Screen reader compatibility</li>';
+            html += '</ul>';
+            
+            contentDiv.innerHTML = html;
+            resultsDiv.style.display = 'block';
+            
+            console.log('Accessibility validation completed:', validation);
+        }
+        
+        function testKeyboardNavigation() {
+            alert(`Keyboard Navigation Test:
+
+1. Press Tab to navigate to sortable table headers
+2. Use Enter or Space to sort columns
+3. Continue tabbing through interactive elements
+4. Use Shift+Tab to navigate backwards
+
+Try these shortcuts:
+• Tab: Next interactive element
+• Shift+Tab: Previous interactive element
+• Enter/Space: Activate sorting
+• Arrow keys: Navigate within table cells
+
+The table should be fully navigable using only the keyboard.`);
+        }
+        
+        function simulateScreenReader() {
+            const tables = document.querySelectorAll('table');
+            let announcement = 'Screen Reader Simulation:\n\n';
+            
+            tables.forEach((table, index) => {
+                const caption = table.querySelector('caption');
+                const headers = table.querySelectorAll('th');
+                const rows = table.querySelectorAll('tbody tr');
+                
+                announcement += `Table ${index + 1}: `;
+                if (caption) {
+                    announcement += `"${caption.textContent}"\n`;
+                } else {
+                    announcement += 'No caption\n';
+                }
+                
+                announcement += `${headers.length} columns, ${rows.length} rows\n`;
+                announcement += 'Column headers: ';
+                headers.forEach((header, i) => {
+                    announcement += header.textContent.trim();
+                    if (i < headers.length - 1) announcement += ', ';
+                });
+                announcement += '\n\n';
+            });
+            
+            announcement += 'This is how a screen reader would announce your tables.\n';
+            announcement += 'Ensure all tables have descriptive captions and proper structure.';
+            
+            alert(announcement);
+        }
+        
+        // Clean up on page unload
+        window.addEventListener('beforeunload', () => {
+            if (autoRefreshInterval) {
+                clearInterval(autoRefreshInterval);
+            }
+            
+            tableInstances.forEach(instance => {
+                try {
+                    instance.destroy();
+                } catch (e) {
+                    console.warn('Error destroying table instance:', e);
+                }
+            });
+        });
+    </script>
+</body>
+</html>

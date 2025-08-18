@@ -1,0 +1,254 @@
+/**
+ * Panel Component Styles
+ * 
+ * Styles for prominent success panels following NHS UK Design System patterns.
+ * Used primarily on confirmation pages to highlight successful transactions.
+ */
+
+/* Panel container */
+.public-good-panel {
+  background-color: var(--public-good-color-green-light, #e8f5e8);
+  border: var(--public-good-spacing-1) solid var(--public-good-color-green, #00703c);
+  border-radius: var(--public-good-border-radius-medium);
+  padding: var(--public-good-spacing-5) var(--public-good-spacing-4);
+  margin-bottom: var(--public-good-spacing-6);
+  box-sizing: border-box;
+}
+
+/* Panel title */
+.public-good-panel__title {
+  margin-top: 0;
+  margin-bottom: var(--public-good-spacing-3);
+  color: var(--public-good-color-green-dark, #004225);
+  font-weight: var(--public-good-font-weight-bold);
+  font-size: var(--public-good-heading-2-size);
+  line-height: var(--public-good-heading-2-line-height);
+}
+
+/* Adjust title sizes based on heading level */
+.public-good-panel__title {
+  /* h1 - Default styling above */
+}
+
+.public-good-panel h2.public-good-panel__title {
+  font-size: var(--public-good-heading-2-size);
+  line-height: var(--public-good-heading-2-line-height);
+}
+
+.public-good-panel h3.public-good-panel__title {
+  font-size: var(--public-good-heading-3-size);
+  line-height: var(--public-good-heading-3-line-height);
+}
+
+.public-good-panel h4.public-good-panel__title {
+  font-size: var(--public-good-heading-4-size);
+  line-height: var(--public-good-heading-4-line-height);
+}
+
+.public-good-panel h5.public-good-panel__title {
+  font-size: var(--public-good-heading-5-size);
+  line-height: var(--public-good-heading-5-line-height);
+}
+
+.public-good-panel h6.public-good-panel__title {
+  font-size: var(--public-good-heading-6-size);
+  line-height: var(--public-good-heading-6-line-height);
+}
+
+/* Panel body text */
+.public-good-panel__body {
+  margin-bottom: 0;
+  color: var(--public-good-color-green-dark, #004225);
+  font-size: var(--public-good-body-size);
+  line-height: var(--public-good-body-line-height);
+}
+
+/* Links within panel */
+.public-good-panel a,
+.public-good-panel .public-good-link {
+  color: var(--public-good-color-green-dark, #004225);
+  text-decoration: underline;
+}
+
+.public-good-panel a:hover,
+.public-good-panel .public-good-link:hover {
+  color: var(--public-good-color-green, #00703c);
+  text-decoration: underline;
+}
+
+.public-good-panel a:focus,
+.public-good-panel .public-good-link:focus {
+  outline: var(--public-good-spacing-focus-width) solid var(--public-good-color-focus);
+  outline-offset: var(--public-good-spacing-focus-offset);
+  background-color: var(--public-good-color-focus-background);
+  color: var(--public-good-color-text);
+}
+
+.public-good-panel a:visited,
+.public-good-panel .public-good-link:visited {
+  color: var(--public-good-color-green-dark, #004225);
+}
+
+/* Lists within panel */
+.public-good-panel ul,
+.public-good-panel ol {
+  margin-top: var(--public-good-spacing-3);
+  margin-bottom: var(--public-good-spacing-3);
+  padding-left: var(--public-good-spacing-4);
+}
+
+.public-good-panel li {
+  margin-bottom: var(--public-good-spacing-2);
+  color: var(--public-good-color-green-dark, #004225);
+}
+
+/* Strong/bold text within panel */
+.public-good-panel strong,
+.public-good-panel b {
+  font-weight: var(--public-good-font-weight-bold);
+  color: var(--public-good-color-green-dark, #004225);
+}
+
+/* Responsive design */
+@media (max-width: 40.0625em) { /* 641px */
+  .public-good-panel {
+    padding: var(--public-good-spacing-4) var(--public-good-spacing-3);
+    margin-bottom: var(--public-good-spacing-5);
+  }
+  
+  .public-good-panel__title {
+    font-size: var(--public-good-heading-3-size);
+    line-height: var(--public-good-heading-3-line-height);
+  }
+  
+  .public-good-panel h2.public-good-panel__title {
+    font-size: var(--public-good-heading-3-size);
+    line-height: var(--public-good-heading-3-line-height);
+  }
+  
+  .public-good-panel h3.public-good-panel__title {
+    font-size: var(--public-good-heading-4-size);
+    line-height: var(--public-good-heading-4-line-height);
+  }
+}
+
+/* Print styles */
+@media print {
+  .public-good-panel {
+    background-color: transparent !important;
+    border: var(--public-good-border-width-medium) solid var(--public-good-color-text) !important;
+    color: var(--public-good-color-text) !important;
+    break-inside: avoid;
+  }
+  
+  .public-good-panel__title,
+  .public-good-panel__body,
+  .public-good-panel strong,
+  .public-good-panel b,
+  .public-good-panel li {
+    color: var(--public-good-color-text) !important;
+  }
+  
+  .public-good-panel a,
+  .public-good-panel .public-good-link {
+    color: var(--public-good-color-text) !important;
+    text-decoration: underline !important;
+  }
+  
+  .public-good-panel a:after {
+    content: " (" attr(href) ")";
+    font-size: var(--public-good-body-small-size);
+    font-weight: normal;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .public-good-panel {
+    background-color: var(--public-good-color-white);
+    border-color: currentColor;
+    border-width: var(--public-good-border-width-thick);
+  }
+  
+  .public-good-panel__title,
+  .public-good-panel__body,
+  .public-good-panel strong,
+  .public-good-panel b,
+  .public-good-panel li {
+    color: var(--public-good-color-text);
+  }
+  
+  .public-good-panel a,
+  .public-good-panel .public-good-link {
+    color: var(--public-good-color-link);
+    text-decoration: underline;
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .public-good-panel {
+    transition: none;
+  }
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+  .public-good-panel {
+    background-color: var(--public-good-color-green-dark-mode, #1a4a2a);
+    border-color: var(--public-good-color-green-border-dark, #4a7c59);
+  }
+  
+  .public-good-panel__title,
+  .public-good-panel__body,
+  .public-good-panel strong,
+  .public-good-panel b,
+  .public-good-panel li {
+    color: var(--public-good-color-green-text-dark, #b8e6c1);
+  }
+  
+  .public-good-panel a,
+  .public-good-panel .public-good-link {
+    color: var(--public-good-color-green-link-dark, #a0d9aa);
+  }
+  
+  .public-good-panel a:hover,
+  .public-good-panel .public-good-link:hover {
+    color: var(--public-good-color-green-link-hover-dark, #c2f0c8);
+  }
+  
+  .public-good-panel a:focus,
+  .public-good-panel .public-good-link:focus {
+    background-color: var(--public-good-color-focus-background-dark, #fd0);
+    color: var(--public-good-color-text-dark, #000);
+  }
+}
+
+/* Animation for dynamic content changes */
+@keyframes public-good-panel-content-change {
+  0% {
+    opacity: 0.7;
+    transform: translateY(2px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .public-good-panel__title,
+  .public-good-panel__body {
+    animation: public-good-panel-content-change 0.2s ease-out;
+  }
+}
+
+/* Focus styles for entire panel when it contains interactive elements */
+.public-good-panel:focus-within {
+  box-shadow: 0 0 0 var(--public-good-spacing-1) var(--public-good-color-focus);
+}
+
+/* Ensure proper spacing when panel is the last child */
+.public-good-panel:last-child {
+  margin-bottom: 0;
+}

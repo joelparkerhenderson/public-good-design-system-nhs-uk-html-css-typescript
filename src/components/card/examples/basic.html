@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Card Component - Basic Examples</title>
+  <link rel="stylesheet" href="../../../index.css">
+  <style>
+    body {
+      font-family: var(--public-good-font-family);
+      margin: 0;
+      padding: var(--public-good-spacing-6);
+      background-color: var(--public-good-color-background);
+    }
+    
+    .example-section {
+      margin-bottom: var(--public-good-spacing-8);
+    }
+    
+    .example-title {
+      font-size: var(--public-good-font-size-lg);
+      font-weight: var(--public-good-font-weight-bold);
+      margin-bottom: var(--public-good-spacing-4);
+      color: var(--public-good-color-text);
+    }
+    
+    .example-description {
+      margin-bottom: var(--public-good-spacing-5);
+      color: var(--public-good-color-text-secondary);
+    }
+    
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: var(--public-good-spacing-5);
+    }
+    
+    @media (max-width: 768px) {
+      .cards-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <h1>Card Component - Basic Examples</h1>
+  
+  <div class="example-section">
+    <h2 class="example-title">Basic Card</h2>
+    <p class="example-description">A simple card with heading and description text.</p>
+    
+    <div data-public-good-card 
+         data-heading="Help from NHS 111"
+         data-description="If you're worried about a symptom and not sure what help you need, NHS 111 can tell you what to do next.">
+    </div>
+  </div>
+
+  <div class="example-section">
+    <h2 class="example-title">Card with HTML Content</h2>
+    <p class="example-description">Cards can contain rich HTML content including lists and links.</p>
+    
+    <div data-public-good-card 
+         data-heading="Help from NHS 111"
+         data-heading-level="3">
+      <p>If you're worried about a symptom and not sure what help you need, NHS 111 can tell you what to do next.</p>
+      <p>Go to <a href="#">111.nhs.uk</a> or <a href="#">call 111</a>.</p>
+      <p>For a life-threatening emergency call 999.</p>
+    </div>
+  </div>
+
+  <div class="example-section">
+    <h2 class="example-title">Clickable Card</h2>
+    <p class="example-description">Cards can be made clickable to navigate to other pages.</p>
+    
+    <div data-public-good-card 
+         data-heading="Introduction to care and support"
+         data-description="A quick guide for people who have care and support needs and their carers"
+         data-clickable="true"
+         data-href="#care-support">
+    </div>
+  </div>
+
+  <div class="example-section">
+    <h2 class="example-title">Card with Image</h2>
+    <p class="example-description">Cards can include images to provide visual context.</p>
+    
+    <div data-public-good-card 
+         data-heading="Exercise"
+         data-description="Programmes, workouts and tips to get you moving and improve your fitness and wellbeing"
+         data-img-url="https://via.placeholder.com/600x300/005eb8/ffffff?text=Exercise"
+         data-img-alt="People exercising in a gym"
+         data-clickable="true"
+         data-href="#exercise">
+    </div>
+  </div>
+
+  <div class="example-section">
+    <h2 class="example-title">Cards with Different Heading Levels</h2>
+    <p class="example-description">Card headings can use different HTML heading levels for proper document structure.</p>
+    
+    <div class="cards-grid">
+      <div data-public-good-card 
+           data-heading="H2 Heading (Default)"
+           data-description="This card uses the default h2 heading level.">
+      </div>
+      
+      <div data-public-good-card 
+           data-heading="H3 Heading"
+           data-heading-level="3"
+           data-description="This card uses an h3 heading level.">
+      </div>
+      
+      <div data-public-good-card 
+           data-heading="H4 Heading"
+           data-heading-level="4"
+           data-description="This card uses an h4 heading level.">
+      </div>
+    </div>
+  </div>
+
+  <div class="example-section">
+    <h2 class="example-title">Cards with Custom Classes</h2>
+    <p class="example-description">Cards can have custom CSS classes applied for additional styling.</p>
+    
+    <style>
+      .example-custom-card {
+        border-left: 4px solid var(--public-good-color-primary);
+      }
+      
+      .example-highlight {
+        background-color: var(--public-good-color-background-alt);
+      }
+    </style>
+    
+    <div class="cards-grid">
+      <div data-public-good-card 
+           data-heading="Custom Styled Card"
+           data-description="This card has custom styling applied via CSS classes."
+           data-classes="example-custom-card">
+      </div>
+      
+      <div data-public-good-card 
+           data-heading="Highlighted Card"
+           data-description="This card has a highlighted background."
+           data-classes="example-highlight">
+      </div>
+    </div>
+  </div>
+
+  <script type="module">
+    import { initializeCards } from '../card.js'
+    
+    // Initialize all cards on the page
+    initializeCards()
+    
+    // Add some interactive examples
+    document.addEventListener('public-good:card:click', (event) => {
+      console.log('Card clicked:', event.detail)
+      
+      // Prevent navigation for demo purposes
+      if (event.detail.href && event.detail.href.startsWith('#')) {
+        event.preventDefault()
+        alert(`Card clicked: "${event.detail.heading}"\nWould navigate to: ${event.detail.href}`)
+      }
+    })
+  </script>
+</body>
+</html>

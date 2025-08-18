@@ -1,0 +1,268 @@
+/**
+ * Checkboxes Component Styles
+ * Converted from NHS UK Design System checkboxes component
+ */
+
+/* Checkbox item styles */
+.public-good-checkboxes__item {
+  clear: left;
+  display: block;
+  margin-bottom: var(--public-good-spacing-2);
+  min-height: var(--public-good-spacing-6);
+  padding: 0 0 0 var(--public-good-spacing-6);
+  position: relative;
+  font-size: var(--public-good-font-size-base);
+  line-height: var(--public-good-line-height-base);
+}
+
+.public-good-checkboxes__item:last-child,
+.public-good-checkboxes__item:last-of-type {
+  margin-bottom: 0;
+}
+
+/* Checkbox input styles */
+.public-good-checkboxes__input {
+  cursor: pointer;
+  height: var(--public-good-spacing-6);
+  left: 0;
+  margin: 0;
+  opacity: 0;
+  position: absolute;
+  top: 0;
+  width: var(--public-good-spacing-6);
+  z-index: 1;
+}
+
+/* Checkbox label styles */
+.public-good-checkboxes__label {
+  cursor: pointer;
+  display: inline-block;
+  box-sizing: border-box;
+  margin-bottom: 0;
+  padding: 8px 12px var(--public-good-spacing-1) 12px;
+  touch-action: manipulation;
+  -ms-touch-action: manipulation;
+}
+
+/* Checkbox hint styles */
+.public-good-checkboxes__hint {
+  display: block;
+  padding-left: 12px;
+  padding-right: 12px;
+  color: var(--public-good-color-text-secondary);
+  font-size: var(--public-good-font-size-sm);
+  line-height: var(--public-good-line-height-base);
+  margin-top: var(--public-good-spacing-1);
+}
+
+/* Checkbox visual box */
+.public-good-checkboxes__input + .public-good-checkboxes__label::before {
+  background: var(--public-good-color-background);
+  border: var(--public-good-border-width-medium) solid var(--public-good-color-border);
+  box-sizing: border-box;
+  content: "";
+  height: var(--public-good-spacing-6);
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: var(--public-good-spacing-6);
+}
+
+/* Checkbox checkmark */
+.public-good-checkboxes__input + .public-good-checkboxes__label::after {
+  background: transparent;
+  border: solid;
+  border-color: var(--public-good-color-text);
+  border-top-color: transparent;
+  border-width: 0 0 var(--public-good-border-width-medium) var(--public-good-border-width-medium);
+  content: "";
+  height: 10px;
+  left: 10px;
+  opacity: 0;
+  position: absolute;
+  top: 13px;
+  transform: rotate(-45deg);
+  width: 22px;
+}
+
+/* Focus state */
+.public-good-checkboxes__input:focus + .public-good-checkboxes__label::before {
+  border-color: var(--public-good-color-text);
+  box-shadow: 
+    inset 0 0 0 var(--public-good-border-width-medium) var(--public-good-color-background),
+    0 0 0 var(--public-good-spacing-focus-width) var(--public-good-color-focus);
+  outline: var(--public-good-spacing-focus-width) solid transparent;
+  outline-offset: var(--public-good-spacing-focus-offset);
+}
+
+/* Checked state */
+.public-good-checkboxes__input:checked + .public-good-checkboxes__label::after {
+  opacity: 1;
+}
+
+/* Disabled state */
+.public-good-checkboxes__input:disabled,
+.public-good-checkboxes__input:disabled + .public-good-checkboxes__label {
+  cursor: not-allowed;
+}
+
+.public-good-checkboxes__input:disabled + .public-good-checkboxes__label {
+  opacity: 0.5;
+}
+
+.public-good-checkboxes__input:disabled + .public-good-checkboxes__label::before {
+  background-color: var(--public-good-color-background-disabled);
+  border-color: var(--public-good-color-border-disabled);
+}
+
+/* Divider styles */
+.public-good-checkboxes__divider {
+  color: var(--public-good-color-text);
+  margin-bottom: var(--public-good-spacing-2);
+  text-align: center;
+  width: var(--public-good-spacing-6);
+  font-size: var(--public-good-font-size-base);
+  line-height: var(--public-good-line-height-base);
+  font-weight: var(--public-good-font-weight-medium);
+}
+
+/* Conditional reveal styles */
+.public-good-checkboxes__conditional {
+  border-left: var(--public-good-border-width-medium) solid var(--public-good-color-border);
+  margin-left: calc(var(--public-good-spacing-6) / 2 - var(--public-good-border-width-medium) / 2);
+  padding-left: calc(var(--public-good-spacing-6) / 2 - var(--public-good-border-width-medium) / 2 + 12px);
+  margin-bottom: var(--public-good-spacing-4);
+}
+
+.public-good-checkboxes__conditional > :last-child {
+  margin-bottom: 0;
+}
+
+.public-good-checkboxes__conditional--hidden {
+  display: none;
+}
+
+/* Error state styles */
+.public-good-form-group--error .public-good-checkboxes__input + .public-good-checkboxes__label::before {
+  border-color: var(--public-good-color-error);
+}
+
+.public-good-form-group--error .public-good-checkboxes__input:focus + .public-good-checkboxes__label::before {
+  border-color: var(--public-good-color-error);
+  box-shadow: 
+    inset 0 0 0 var(--public-good-border-width-medium) var(--public-good-color-background),
+    0 0 0 var(--public-good-spacing-focus-width) var(--public-good-color-focus);
+}
+
+/* Hover state for non-touch devices */
+@media (hover: hover) {
+  .public-good-checkboxes__input:not(:disabled):hover + .public-good-checkboxes__label::before {
+    border-color: var(--public-good-color-border-hover);
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .public-good-checkboxes__input + .public-good-checkboxes__label::before {
+    border-width: 2px;
+  }
+  
+  .public-good-checkboxes__input:focus + .public-good-checkboxes__label::before {
+    outline-width: 3px;
+  }
+  
+  .public-good-checkboxes__input + .public-good-checkboxes__label::after {
+    border-width: 0 0 3px 3px;
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .public-good-checkboxes__conditional {
+    transition: none;
+  }
+}
+
+/* Print styles */
+@media print {
+  .public-good-checkboxes__input + .public-good-checkboxes__label::before {
+    border: 2px solid var(--public-good-color-text);
+  }
+  
+  .public-good-checkboxes__input:checked + .public-good-checkboxes__label::after {
+    border-color: var(--public-good-color-text);
+  }
+  
+  .public-good-checkboxes__conditional--hidden {
+    display: block !important;
+  }
+}
+
+/* RTL (Right-to-Left) language support */
+[dir="rtl"] .public-good-checkboxes__item {
+  padding: 0 var(--public-good-spacing-6) 0 0;
+}
+
+[dir="rtl"] .public-good-checkboxes__input {
+  right: 0;
+  left: auto;
+}
+
+[dir="rtl"] .public-good-checkboxes__input + .public-good-checkboxes__label::before {
+  right: 0;
+  left: auto;
+}
+
+[dir="rtl"] .public-good-checkboxes__input + .public-good-checkboxes__label::after {
+  right: 10px;
+  left: auto;
+}
+
+[dir="rtl"] .public-good-checkboxes__label {
+  padding: 8px 12px var(--public-good-spacing-1) 12px;
+}
+
+[dir="rtl"] .public-good-checkboxes__hint {
+  padding-right: 12px;
+  padding-left: 12px;
+}
+
+[dir="rtl"] .public-good-checkboxes__conditional {
+  border-left: none;
+  border-right: var(--public-good-border-width-medium) solid var(--public-good-color-border);
+  margin-left: 0;
+  margin-right: calc(var(--public-good-spacing-6) / 2 - var(--public-good-border-width-medium) / 2);
+  padding-left: 0;
+  padding-right: calc(var(--public-good-spacing-6) / 2 - var(--public-good-border-width-medium) / 2 + 12px);
+}
+
+[dir="rtl"] .public-good-checkboxes__divider {
+  text-align: center;
+}
+
+/* Mobile optimizations */
+@media (max-width: 480px) {
+  .public-good-checkboxes__item {
+    margin-bottom: var(--public-good-spacing-3);
+  }
+  
+  .public-good-checkboxes__label {
+    padding: var(--public-good-spacing-2) 12px var(--public-good-spacing-1) 12px;
+  }
+  
+  .public-good-checkboxes__conditional {
+    margin-bottom: var(--public-good-spacing-3);
+    padding-left: calc(var(--public-good-spacing-5) / 2 + 12px);
+  }
+}
+
+/* Large text mode support */
+@media (min-resolution: 192dpi) {
+  .public-good-checkboxes__input + .public-good-checkboxes__label::before {
+    border-width: 1.5px;
+  }
+  
+  .public-good-checkboxes__input + .public-good-checkboxes__label::after {
+    border-width: 0 0 2px 2px;
+  }
+}

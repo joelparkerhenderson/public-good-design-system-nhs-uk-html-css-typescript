@@ -1,0 +1,283 @@
+/**
+ * Review Date Component Styles
+ * 
+ * Styling for review date components following NHS UK Design System patterns.
+ * Used to display when content was last reviewed and when it will be reviewed next.
+ */
+
+.public-good-review-date {
+  color: var(--public-good-color-text-secondary);
+  font-size: var(--public-good-body-small-size);
+  line-height: var(--public-good-body-small-line-height);
+  margin: 0;
+}
+
+/* Default spacing following NHS pattern */
+.public-good-review-date.public-good-u-margin-top-7 {
+  margin-top: var(--public-good-spacing-7);
+}
+
+.public-good-review-date.public-good-u-margin-bottom-0 {
+  margin-bottom: 0;
+}
+
+/* Text color variations */
+.public-good-review-date.public-good-u-secondary-text-color {
+  color: var(--public-good-color-text-secondary);
+}
+
+/* Size variations */
+.public-good-review-date.public-good-body-s {
+  font-size: var(--public-good-body-small-size);
+  line-height: var(--public-good-body-small-line-height);
+}
+
+.public-good-review-date.public-good-body-xs {
+  font-size: var(--public-good-body-extra-small-size, 0.75rem);
+  line-height: var(--public-good-body-extra-small-line-height, 1.25);
+}
+
+/* Compact variant for sidebars or card footers */
+.public-good-review-date--compact {
+  font-size: var(--public-good-body-extra-small-size, 0.75rem);
+  line-height: var(--public-good-body-extra-small-line-height, 1.25);
+  margin-top: var(--public-good-spacing-3);
+  margin-bottom: 0;
+}
+
+/* Inline variant (dates on same line) */
+.public-good-review-date--inline {
+  white-space: nowrap;
+}
+
+.public-good-review-date--inline br {
+  display: none;
+}
+
+.public-good-review-date--inline::after {
+  content: " • ";
+  margin: 0 var(--public-good-spacing-1);
+}
+
+/* Footer placement (typical NHS pattern) */
+.public-good-review-date--footer {
+  border-top: 1px solid var(--public-good-color-border);
+  color: var(--public-good-color-text-secondary);
+  font-size: var(--public-good-body-small-size);
+  line-height: var(--public-good-body-small-line-height);
+  margin-top: var(--public-good-spacing-7);
+  padding-top: var(--public-good-spacing-4);
+  margin-bottom: 0;
+}
+
+/* Highlighted variant for content that needs attention */
+.public-good-review-date--highlighted {
+  background-color: var(--public-good-color-background-secondary);
+  border-left: var(--public-good-border-width-thick) solid var(--public-good-color-warning);
+  color: var(--public-good-color-text);
+  font-weight: var(--public-good-font-weight-medium);
+  padding: var(--public-good-spacing-3);
+  margin-top: var(--public-good-spacing-4);
+  margin-bottom: var(--public-good-spacing-4);
+}
+
+/* Warning variant for overdue content */
+.public-good-review-date--warning {
+  background-color: #fef7e0;
+  border: 1px solid #f4c242;
+  border-radius: var(--public-good-border-radius-medium);
+  color: #7d4e00;
+  font-weight: var(--public-good-font-weight-medium);
+  padding: var(--public-good-spacing-3);
+  margin-top: var(--public-good-spacing-4);
+  margin-bottom: var(--public-good-spacing-4);
+}
+
+.public-good-review-date--warning::before {
+  content: "⚠️ ";
+  margin-right: var(--public-good-spacing-1);
+}
+
+/* Critical variant for severely overdue content */
+.public-good-review-date--critical {
+  background-color: #fdf2f2;
+  border: 1px solid #dc2626;
+  border-radius: var(--public-good-border-radius-medium);
+  color: #991b1b;
+  font-weight: var(--public-good-font-weight-bold);
+  padding: var(--public-good-spacing-3);
+  margin-top: var(--public-good-spacing-4);
+  margin-bottom: var(--public-good-spacing-4);
+}
+
+.public-good-review-date--critical::before {
+  content: "🚨 ";
+  margin-right: var(--public-good-spacing-1);
+}
+
+/* Responsive design */
+@media (max-width: 40.0625em) {
+  .public-good-review-date--inline {
+    white-space: normal;
+  }
+  
+  .public-good-review-date--inline br {
+    display: block;
+  }
+  
+  .public-good-review-date--inline::after {
+    display: none;
+  }
+  
+  .public-good-review-date--footer {
+    margin-top: var(--public-good-spacing-5);
+    padding-top: var(--public-good-spacing-3);
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .public-good-review-date {
+    color: var(--public-good-color-text);
+  }
+  
+  .public-good-review-date--footer {
+    border-top-color: var(--public-good-color-text);
+  }
+  
+  .public-good-review-date--highlighted {
+    border-left-width: 4px;
+    border-left-color: var(--public-good-color-text);
+  }
+  
+  .public-good-review-date--warning {
+    border-color: #7d4e00;
+    color: #5d3a00;
+  }
+  
+  .public-good-review-date--critical {
+    border-color: #991b1b;
+    color: #7f1d1d;
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .public-good-review-date {
+    transition: none;
+  }
+}
+
+/* Print styles */
+@media print {
+  .public-good-review-date {
+    color: #000000;
+    font-size: 10pt;
+    line-height: 1.2;
+  }
+  
+  .public-good-review-date--footer {
+    border-top: 1px solid #000000;
+    page-break-inside: avoid;
+  }
+  
+  .public-good-review-date--highlighted,
+  .public-good-review-date--warning,
+  .public-good-review-date--critical {
+    background-color: transparent;
+    border: 1px solid #000000;
+    color: #000000;
+  }
+  
+  .public-good-review-date--warning::before,
+  .public-good-review-date--critical::before {
+    content: "[WARNING] ";
+  }
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+  .public-good-review-date--highlighted {
+    background-color: var(--public-good-color-background-secondary);
+    border-left-color: var(--public-good-color-warning);
+  }
+  
+  .public-good-review-date--warning {
+    background-color: rgba(244, 194, 66, 0.1);
+    border-color: #f4c242;
+    color: #fbbf24;
+  }
+  
+  .public-good-review-date--critical {
+    background-color: rgba(220, 38, 38, 0.1);
+    border-color: #dc2626;
+    color: #f87171;
+  }
+}
+
+/* Focus styles for interactive review dates */
+.public-good-review-date[tabindex]:focus {
+  outline: var(--public-good-spacing-focus-width) solid var(--public-good-color-focus);
+  outline-offset: var(--public-good-spacing-focus-offset);
+  background-color: var(--public-good-color-focus-background, rgba(255, 221, 0, 0.1));
+}
+
+/* Utility classes for common patterns */
+.public-good-u-review-date-spacing {
+  margin-top: var(--public-good-spacing-7);
+  margin-bottom: 0;
+}
+
+.public-good-u-review-date-secondary {
+  color: var(--public-good-color-text-secondary);
+  font-size: var(--public-good-body-small-size);
+  line-height: var(--public-good-body-small-line-height);
+}
+
+/* Animation for dynamic updates */
+@keyframes reviewDateUpdate {
+  0% {
+    opacity: 0.5;
+    transform: translateY(2px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.public-good-review-date--updating {
+  animation: reviewDateUpdate 0.2s ease-out;
+}
+
+/* Screen reader only content for better accessibility */
+.public-good-review-date .public-good-visually-hidden {
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+}
+
+/* Windows High Contrast Mode */
+@media screen and (-ms-high-contrast: active) {
+  .public-good-review-date {
+    color: windowText;
+  }
+  
+  .public-good-review-date--footer {
+    border-top-color: windowText;
+  }
+  
+  .public-good-review-date--highlighted {
+    border-left-color: highlight;
+  }
+  
+  .public-good-review-date--warning,
+  .public-good-review-date--critical {
+    border-color: windowText;
+    color: windowText;
+  }
+}

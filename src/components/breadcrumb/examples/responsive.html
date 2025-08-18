@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Responsive Breadcrumb Example</title>
+  <link rel="stylesheet" href="../../../index.css">
+</head>
+<body>
+  <div class="example-container">
+    <h1>Responsive Breadcrumb Example</h1>
+    
+    <p>The breadcrumb component adapts to different screen sizes. On desktop and tablet, the full breadcrumb trail is shown. On mobile devices, a simplified "back" link is displayed instead.</p>
+    
+    <div class="viewport-info">
+      <p><strong>Current viewport:</strong> <span id="viewport-size"></span></p>
+      <p><strong>Breadcrumb behavior:</strong> <span id="breadcrumb-behavior"></span></p>
+    </div>
+    
+    <div class="breadcrumb-demo">
+      <h2>Multi-Level Service Navigation</h2>
+      <div id="service-breadcrumb-container"></div>
+      
+      <div class="content-simulation">
+        <h3>Find a GP near you</h3>
+        <p>Use our service to find and book appointments with local general practitioners.</p>
+        <p>On desktop, you can see the full navigation path above. On mobile, you'll see a "Back to Services" link that takes you to the previous page.</p>
+      </div>
+    </div>
+    
+    <div class="breadcrumb-demo">
+      <h2>Deep Content Navigation</h2>
+      <div id="content-breadcrumb-container"></div>
+      
+      <div class="content-simulation">
+        <h3>Understanding Depression</h3>
+        <p>Depression is a common mental health condition that affects how you feel, think and act.</p>
+        <p>The breadcrumb above shows your path through our content hierarchy. Try resizing your browser window to see how it adapts.</p>
+      </div>
+    </div>
+    
+    <div class="testing-section">
+      <h2>Test Responsive Behavior</h2>
+      <p>Use the buttons below to simulate different viewport sizes:</p>
+      
+      <div class="viewport-controls">
+        <button id="desktop-view" class="viewport-btn">Desktop View (1024px)</button>
+        <button id="tablet-view" class="viewport-btn">Tablet View (768px)</button>
+        <button id="mobile-view" class="viewport-btn">Mobile View (375px)</button>
+      </div>
+      
+      <div class="current-view">
+        <div id="test-breadcrumb-container"></div>
+      </div>
+    </div>
+    
+    <style>
+      .example-container {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 2rem;
+      }
+      
+      h1 {
+        color: var(--public-good-color-primary);
+        margin-bottom: 2rem;
+      }
+      
+      h2 {
+        margin-top: 2rem;
+        margin-bottom: 1rem;
+        color: var(--public-good-color-text);
+      }
+      
+      h3 {
+        margin-top: 1.5rem;
+        margin-bottom: 0.5rem;
+        color: var(--public-good-color-text);
+      }
+      
+      p {
+        margin-bottom: 1rem;
+        color: var(--public-good-color-text-secondary);
+      }
+      
+      .viewport-info {
+        background-color: var(--public-good-color-background-secondary);
+        padding: 1rem;
+        border-radius: 4px;
+        margin-bottom: 2rem;
+        border-left: 4px solid var(--public-good-color-primary);
+      }
+      
+      .viewport-info p {
+        margin-bottom: 0.5rem;
+      }
+      
+      .viewport-info p:last-child {
+        margin-bottom: 0;
+      }
+      
+      .breadcrumb-demo {
+        margin-bottom: 3rem;
+        padding: 1.5rem;
+        border: 1px solid var(--public-good-color-border);
+        border-radius: 4px;
+        background: var(--public-good-color-background);
+      }
+      
+      .content-simulation {
+        margin-top: 1.5rem;
+        padding-top: 1.5rem;
+        border-top: 1px solid var(--public-good-color-border);
+      }
+      
+      .testing-section {
+        margin-top: 3rem;
+        padding: 2rem;
+        background-color: var(--public-good-color-background-secondary);
+        border-radius: 8px;
+      }
+      
+      .viewport-controls {
+        display: flex;
+        gap: 1rem;
+        margin-bottom: 2rem;
+        flex-wrap: wrap;
+      }
+      
+      .viewport-btn {
+        padding: 0.5rem 1rem;
+        border: 2px solid var(--public-good-color-primary);
+        background: var(--public-good-color-background);
+        color: var(--public-good-color-primary);
+        border-radius: 4px;
+        cursor: pointer;
+        font-weight: 500;
+        transition: all 0.2s ease;
+      }
+      
+      .viewport-btn:hover {
+        background: var(--public-good-color-primary);
+        color: var(--public-good-color-text-inverse);
+      }
+      
+      .viewport-btn.active {
+        background: var(--public-good-color-primary);
+        color: var(--public-good-color-text-inverse);
+      }
+      
+      .current-view {
+        padding: 1.5rem;
+        border: 1px solid var(--public-good-color-border);
+        border-radius: 4px;
+        background: var(--public-good-color-background);
+        min-height: 80px;
+      }
+      
+      #service-breadcrumb-container,
+      #content-breadcrumb-container,
+      #test-breadcrumb-container {
+        margin-bottom: 0;
+      }
+      
+      /* Media query indicators */
+      @media (max-width: 767px) {
+        .viewport-info::before {
+          content: "📱 ";
+        }
+      }
+      
+      @media (min-width: 768px) and (max-width: 1023px) {
+        .viewport-info::before {
+          content: "📱 ";
+        }
+      }
+      
+      @media (min-width: 1024px) {
+        .viewport-info::before {
+          content: "💻 ";
+        }
+      }
+    </style>
+  </div>
+
+  <script type="module">
+    import { createBreadcrumb } from '../breadcrumb.js'
+    
+    // Service navigation breadcrumb
+    const serviceBreadcrumb = createBreadcrumb({
+      items: [
+        { text: 'Home', href: '/' },
+        { text: 'Services', href: '/services' },
+        { text: 'Find a GP', href: '/services/find-a-gp' },
+        { text: 'Book appointment' }
+      ]
+    })
+    
+    document.getElementById('service-breadcrumb-container').appendChild(serviceBreadcrumb.element)
+    
+    // Content navigation breadcrumb
+    const contentBreadcrumb = createBreadcrumb({
+      items: [
+        { text: 'Home', href: '/' },
+        { text: 'Health A-Z', href: '/health-a-z' },
+        { text: 'Mental health', href: '/health-a-z/mental-health' },
+        { text: 'Depression', href: '/health-a-z/mental-health/depression' },
+        { text: 'Understanding depression' }
+      ]
+    })
+    
+    document.getElementById('content-breadcrumb-container').appendChild(contentBreadcrumb.element)
+    
+    // Test breadcrumb for viewport simulation
+    const testBreadcrumb = createBreadcrumb({
+      items: [
+        { text: 'Home', href: '/' },
+        { text: 'Emergency', href: '/emergency' },
+        { text: 'First aid', href: '/emergency/first-aid' },
+        { text: 'CPR guidance' }
+      ]
+    })
+    
+    document.getElementById('test-breadcrumb-container').appendChild(testBreadcrumb.element)
+    
+    // Viewport detection and display
+    function updateViewportInfo() {
+      const width = window.innerWidth
+      const viewportSize = document.getElementById('viewport-size')
+      const breadcrumbBehavior = document.getElementById('breadcrumb-behavior')
+      
+      viewportSize.textContent = `${width}px`
+      
+      if (width < 768) {
+        breadcrumbBehavior.textContent = 'Mobile view - showing back link only'
+      } else {
+        breadcrumbBehavior.textContent = 'Desktop/tablet view - showing full breadcrumb'
+      }
+    }
+    
+    // Update on load and resize
+    updateViewportInfo()
+    window.addEventListener('resize', updateViewportInfo)
+    
+    // Viewport simulation buttons
+    const desktopBtn = document.getElementById('desktop-view')
+    const tabletBtn = document.getElementById('tablet-view')
+    const mobileBtn = document.getElementById('mobile-view')
+    
+    function setActiveButton(activeBtn) {
+      [desktopBtn, tabletBtn, mobileBtn].forEach(btn => {
+        btn.classList.remove('active')
+      })
+      activeBtn.classList.add('active')
+    }
+    
+    desktopBtn.addEventListener('click', () => {
+      document.body.style.width = '1024px'
+      document.body.style.margin = '0 auto'
+      setActiveButton(desktopBtn)
+      setTimeout(updateViewportInfo, 100)
+    })
+    
+    tabletBtn.addEventListener('click', () => {
+      document.body.style.width = '768px'
+      document.body.style.margin = '0 auto'
+      setActiveButton(tabletBtn)
+      setTimeout(updateViewportInfo, 100)
+    })
+    
+    mobileBtn.addEventListener('click', () => {
+      document.body.style.width = '375px'
+      document.body.style.margin = '0 auto'
+      setActiveButton(mobileBtn)
+      setTimeout(updateViewportInfo, 100)
+    })
+    
+    // Set initial active button
+    if (window.innerWidth >= 1024) {
+      setActiveButton(desktopBtn)
+    } else if (window.innerWidth >= 768) {
+      setActiveButton(tabletBtn)
+    } else {
+      setActiveButton(mobileBtn)
+    }
+    
+    // Add event listeners for analytics
+    document.addEventListener('public-good:breadcrumb:click', (event) => {
+      console.log('Breadcrumb clicked:', event.detail)
+    })
+  </script>
+</body>
+</html>

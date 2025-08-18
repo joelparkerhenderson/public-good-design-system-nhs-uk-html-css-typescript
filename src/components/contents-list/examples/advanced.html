@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contents List - Advanced Examples</title>
+    <link rel="stylesheet" href="../../../core/base.css">
+    <link rel="stylesheet" href="../contents-list.css">
+    <style>
+        body {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 2rem;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+        .example {
+            margin-bottom: 3rem;
+            padding: 2rem;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+        }
+        .example h3 {
+            margin-top: 0;
+            color: #0066cc;
+        }
+        .demo-controls {
+            margin-top: 1rem;
+            padding: 1rem;
+            background: #f5f5f5;
+            border-radius: 4px;
+        }
+        .demo-controls button {
+            margin: 0.25rem;
+            padding: 0.5rem 1rem;
+            border: 1px solid #ccc;
+            background: white;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .demo-controls button:hover {
+            background: #f0f0f0;
+        }
+        .two-column {
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 2rem;
+            margin-top: 1rem;
+        }
+        .content-area {
+            padding: 1rem;
+            background: #f8f9fa;
+            border-radius: 4px;
+        }
+        .stats {
+            margin-top: 1rem;
+            padding: 1rem;
+            background: #e8f4fd;
+            border-radius: 4px;
+            font-family: monospace;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+    <h1>Contents List Component - Advanced Examples</h1>
+    
+    <div class="example">
+        <h3>Programmatic Control</h3>
+        <p>Demonstrates creating and manipulating contents lists with JavaScript.</p>
+        
+        <div id="programmatic-container"></div>
+
+        <div class="demo-controls">
+            <button id="create-basic">Create Basic List</button>
+            <button id="create-long">Create Long List</button>
+            <button id="set-current-1">Set Current: Page 1</button>
+            <button id="set-current-3">Set Current: Page 3</button>
+            <button id="get-items">Get All Items</button>
+            <button id="clear-list">Clear</button>
+        </div>
+
+        <div class="stats" id="stats-display">
+            Click buttons above to see programmatic control in action.
+        </div>
+    </div>
+
+    <div class="example">
+        <h3>Data Attribute Initialization</h3>
+        <p>Contents list initialized from data attributes with JSON configuration.</p>
+        
+        <div data-module="public-good-contents-list" 
+             data-items='[
+                {"href": "/guide/intro", "text": "Introduction"},
+                {"href": "/guide/setup", "text": "Setup"},
+                {"href": "/guide/usage", "text": "Usage", "current": true},
+                {"href": "/guide/advanced", "text": "Advanced"},
+                {"href": "/guide/faq", "text": "FAQ"}
+             ]'
+             data-classes="example-contents-list"
+             data-aria-label="User guide navigation"
+             data-hidden-heading="Guide Sections">
+        </div>
+
+        <div class="demo-controls">
+            <button id="init-from-data">Initialize from Data Attributes</button>
+        </div>
+    </div>
+
+    <div class="example">
+        <h3>Integration with Page Content</h3>
+        <p>Contents list that updates based on page navigation simulation.</p>
+        
+        <div class="two-column">
+            <div>
+                <nav id="integrated-contents-list" class="public-good-contents-list" role="navigation" aria-label="Article sections">
+                    <h2 class="public-good-u-visually-hidden">Contents</h2>
+                    <ol class="public-good-contents-list__list">
+                        <li class="public-good-contents-list__item" aria-current="page">
+                            <span class="public-good-contents-list__current">Introduction</span>
+                        </li>
+                        <li class="public-good-contents-list__item">
+                            <a class="public-good-contents-list__link" href="#background" data-section="background">Background</a>
+                        </li>
+                        <li class="public-good-contents-list__item">
+                            <a class="public-good-contents-list__link" href="#methodology" data-section="methodology">Methodology</a>
+                        </li>
+                        <li class="public-good-contents-list__item">
+                            <a class="public-good-contents-list__link" href="#results" data-section="results">Results</a>
+                        </li>
+                        <li class="public-good-contents-list__item">
+                            <a class="public-good-contents-list__link" href="#conclusion" data-section="conclusion">Conclusion</a>
+                        </li>
+                    </ol>
+                </nav>
+            </div>
+            
+            <div class="content-area" id="section-content">
+                <h4>Introduction</h4>
+                <p>This is the introduction section. Click on other sections in the contents list to see the content change and the current page indicator update.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="example">
+        <h3>Multiple Contents Lists</h3>
+        <p>Multiple contents lists on the same page with different configurations.</p>
+        
+        <h4>Main Navigation</h4>
+        <nav class="public-good-contents-list" role="navigation" aria-label="Main sections">
+            <h2 class="public-good-u-visually-hidden">Main Sections</h2>
+            <ol class="public-good-contents-list__list">
+                <li class="public-good-contents-list__item">
+                    <a class="public-good-contents-list__link" href="#overview">Overview</a>
+                </li>
+                <li class="public-good-contents-list__item" aria-current="page">
+                    <span class="public-good-contents-list__current">Details</span>
+                </li>
+                <li class="public-good-contents-list__item">
+                    <a class="public-good-contents-list__link" href="#summary">Summary</a>
+                </li>
+            </ol>
+        </nav>
+
+        <h4>Sub-navigation</h4>
+        <nav class="public-good-contents-list" role="navigation" aria-label="Detail subsections">
+            <h2 class="public-good-u-visually-hidden">Detail Subsections</h2>
+            <ol class="public-good-contents-list__list">
+                <li class="public-good-contents-list__item">
+                    <a class="public-good-contents-list__link" href="#details-part1">Part 1</a>
+                </li>
+                <li class="public-good-contents-list__item" aria-current="page">
+                    <span class="public-good-contents-list__current">Part 2</span>
+                </li>
+                <li class="public-good-contents-list__item">
+                    <a class="public-good-contents-list__link" href="#details-part3">Part 3</a>
+                </li>
+                <li class="public-good-contents-list__item">
+                    <a class="public-good-contents-list__link" href="#details-part4">Part 4</a>
+                </li>
+            </ol>
+        </nav>
+    </div>
+
+    <script type="module">
+        import { 
+            createContentsList, 
+            createSimpleContentsList,
+            setCurrentPage,
+            getContentsListItems,
+            initializeContentsLists 
+        } from '../contents-list.js';
+        
+        let currentContentsList = null;
+        
+        // Section content data
+        const sectionContent = {
+            introduction: {
+                title: 'Introduction',
+                content: 'This is the introduction section. Click on other sections in the contents list to see the content change and the current page indicator update.'
+            },
+            background: {
+                title: 'Background',
+                content: 'Background information provides context for understanding the topic. This section covers the historical development and current state of knowledge.'
+            },
+            methodology: {
+                title: 'Methodology',
+                content: 'The methodology section describes the approach taken to gather and analyze information. It outlines the systematic process used in this work.'
+            },
+            results: {
+                title: 'Results',
+                content: 'The results section presents the findings and outcomes. Key discoveries and important data points are highlighted here.'
+            },
+            conclusion: {
+                title: 'Conclusion',
+                content: 'The conclusion summarizes the key points and provides final thoughts. It ties together all the information presented in previous sections.'
+            }
+        };
+        
+        document.addEventListener('DOMContentLoaded', () => {
+            setupProgrammaticControls();
+            setupDataAttributeDemo();
+            setupIntegratedNavigation();
+        });
+        
+        function setupProgrammaticControls() {
+            const container = document.getElementById('programmatic-container');
+            const statsDisplay = document.getElementById('stats-display');
+            
+            document.getElementById('create-basic').addEventListener('click', () => {
+                const items = [
+                    { href: '/page1', text: 'Page 1', current: true },
+                    { href: '/page2', text: 'Page 2' },
+                    { href: '/page3', text: 'Page 3' }
+                ];
+                
+                currentContentsList = createContentsList({ 
+                    items,
+                    ariaLabel: 'Programmatically created navigation'
+                });
+                
+                container.innerHTML = '';
+                container.appendChild(currentContentsList);
+                
+                statsDisplay.textContent = 'Created basic contents list with 3 items';
+            });
+            
+            document.getElementById('create-long').addEventListener('click', () => {
+                const items = Array.from({ length: 8 }, (_, i) => ({
+                    href: `/section${i + 1}`,
+                    text: `Section ${i + 1}`,
+                    current: i === 2
+                }));
+                
+                currentContentsList = createSimpleContentsList(items);
+                
+                container.innerHTML = '';
+                container.appendChild(currentContentsList);
+                
+                statsDisplay.textContent = 'Created long contents list with 8 items';
+            });
+            
+            document.getElementById('set-current-1').addEventListener('click', () => {
+                if (currentContentsList) {
+                    setCurrentPage(currentContentsList, '/page1');
+                    statsDisplay.textContent = 'Set current page to Page 1';
+                } else {
+                    statsDisplay.textContent = 'No contents list to update. Create one first.';
+                }
+            });
+            
+            document.getElementById('set-current-3').addEventListener('click', () => {
+                if (currentContentsList) {
+                    setCurrentPage(currentContentsList, '/page3');
+                    statsDisplay.textContent = 'Set current page to Page 3';
+                } else {
+                    statsDisplay.textContent = 'No contents list to update. Create one first.';
+                }
+            });
+            
+            document.getElementById('get-items').addEventListener('click', () => {
+                if (currentContentsList) {
+                    const items = getContentsListItems(currentContentsList);
+                    const itemsList = items.map(item => 
+                        `${item.text}${item.current ? ' (current)' : ''}`
+                    ).join(', ');
+                    statsDisplay.textContent = `Items: ${itemsList}`;
+                } else {
+                    statsDisplay.textContent = 'No contents list to analyze. Create one first.';
+                }
+            });
+            
+            document.getElementById('clear-list').addEventListener('click', () => {
+                container.innerHTML = '';
+                currentContentsList = null;
+                statsDisplay.textContent = 'Contents list cleared';
+            });
+        }
+        
+        function setupDataAttributeDemo() {
+            document.getElementById('init-from-data').addEventListener('click', () => {
+                const instances = initializeContentsLists();
+                console.log(`Initialized ${instances.length} contents list(s) from data attributes`);
+            });
+        }
+        
+        function setupIntegratedNavigation() {
+            const contentsList = document.getElementById('integrated-contents-list');
+            const contentArea = document.getElementById('section-content');
+            
+            // Add click handlers to navigation links
+            const links = contentsList.querySelectorAll('.public-good-contents-list__link');
+            links.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    
+                    const section = link.getAttribute('data-section');
+                    if (section && sectionContent[section]) {
+                        // Update content
+                        const content = sectionContent[section];
+                        contentArea.innerHTML = `
+                            <h4>${content.title}</h4>
+                            <p>${content.content}</p>
+                        `;
+                        
+                        // Update current page indicator
+                        setCurrentPage(contentsList, link.href);
+                    }
+                });
+            });
+        }
+    </script>
+</body>
+</html>

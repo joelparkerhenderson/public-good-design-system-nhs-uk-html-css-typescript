@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Select - Multiple Selection Example</title>
+  <link rel="stylesheet" href="../../../styles/index.css">
+  <link rel="stylesheet" href="../select.css">
+</head>
+<body>
+  <div class="public-good-width-container">
+    <main class="public-good-main-wrapper">
+      <div class="public-good-grid-row">
+        <div class="public-good-grid-column-two-thirds">
+          <h1>Select - Multiple Selection Example</h1>
+          
+          <p class="public-good-body-l">
+            Use multiple select when users need to choose more than one option from a list. 
+            Only use this pattern when necessary - checkboxes are usually better.
+          </p>
+
+          <div id="multiple-example"></div>
+          
+          <p>
+            <button type="button" id="get-values">Get selected values</button>
+            <button type="button" id="clear-selection">Clear selection</button>
+          </p>
+
+          <div id="output" style="margin-top: 1rem; padding: 1rem; background: #f0f4f5; border-left: 4px solid #005eb8; display: none;">
+            <h3>Selected values:</h3>
+            <ul id="selected-values"></ul>
+          </div>
+
+          <h2>When to use multiple select</h2>
+          <ul>
+            <li>when users need to select multiple related options</li>
+            <li>when space is very limited</li>
+            <li>when all options are familiar to users</li>
+          </ul>
+
+          <h2>When not to use multiple select</h2>
+          <ul>
+            <li>use checkboxes instead - they're easier to use</li>
+            <li>when users need to see all options at once</li>
+            <li>when options require explanation</li>
+          </ul>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script type="module">
+    import { createMultiSelect } from '../select.js'
+
+    // Multiple select example
+    const multiSelect = createMultiSelect(
+      'symptoms',
+      'Which symptoms are you experiencing?',
+      [
+        { value: 'headache', text: 'Headache' },
+        { value: 'fever', text: 'Fever' },
+        { value: 'cough', text: 'Cough' },
+        { value: 'sore-throat', text: 'Sore throat' },
+        { value: 'fatigue', text: 'Fatigue' },
+        { value: 'nausea', text: 'Nausea' },
+        { value: 'dizziness', text: 'Dizziness' },
+        { value: 'shortness-of-breath', text: 'Shortness of breath' }
+      ],
+      { 
+        hint: 'Hold Ctrl (Windows) or Cmd (Mac) while clicking to select multiple options',
+        size: 6 
+      }
+    )
+
+    document.getElementById('multiple-example').appendChild(multiSelect.element)
+
+    // Demo buttons
+    document.getElementById('get-values').addEventListener('click', () => {
+      const values = multiSelect.getValue()
+      const selectedOptions = multiSelect.getSelectedOption()
+      const output = document.getElementById('output')
+      const list = document.getElementById('selected-values')
+      
+      list.innerHTML = ''
+      
+      if (Array.isArray(values) && values.length > 0) {
+        values.forEach((value, index) => {
+          const li = document.createElement('li')
+          li.textContent = `${selectedOptions[index].text} (${value})`
+          list.appendChild(li)
+        })
+        output.style.display = 'block'
+      } else {
+        const li = document.createElement('li')
+        li.textContent = 'No symptoms selected'
+        list.appendChild(li)
+        output.style.display = 'block'
+      }
+    })
+
+    document.getElementById('clear-selection').addEventListener('click', () => {
+      // Clear all selections
+      const select = multiSelect.select
+      Array.from(select.options).forEach(option => {
+        option.selected = false
+      })
+      
+      // Trigger change event
+      const changeEvent = new Event('change', { bubbles: true })
+      select.dispatchEvent(changeEvent)
+      
+      document.getElementById('output').style.display = 'none'
+    })
+
+    // Add event listener for demonstration
+    multiSelect.element.addEventListener('public-good:select:changed', (event) => {
+      console.log('Symptoms selected:', event.detail.value)
+    })
+  </script>
+</body>
+</html>

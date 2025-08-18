@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fieldset Component - Basic Example</title>
+  <link rel="stylesheet" href="../../index.css">
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      line-height: 1.6;
+      margin: 0;
+      padding: 20px;
+      background-color: #f5f5f5;
+    }
+    
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      background: white;
+      padding: 40px;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+    
+    h1 {
+      color: #333;
+      border-bottom: 2px solid #0078d4;
+      padding-bottom: 10px;
+    }
+    
+    .example {
+      margin: 30px 0;
+      padding: 20px;
+      border: 1px solid #e1e5e9;
+      border-radius: 4px;
+      background: #fafbfc;
+    }
+    
+    .example h3 {
+      margin-top: 0;
+      color: #0078d4;
+    }
+    
+    .public-good-form-group {
+      margin-bottom: 20px;
+    }
+    
+    .public-good-label {
+      display: block;
+      font-weight: bold;
+      margin-bottom: 5px;
+      color: #333;
+    }
+    
+    .public-good-input {
+      width: 100%;
+      max-width: 300px;
+      padding: 8px 12px;
+      border: 2px solid #ccc;
+      border-radius: 4px;
+      font-size: 16px;
+    }
+    
+    .public-good-input:focus {
+      outline: 3px solid #ffbf47;
+      outline-offset: 0;
+      border-color: #333;
+    }
+    
+    .public-good-button {
+      background-color: #0078d4;
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      font-size: 16px;
+      border-radius: 4px;
+      cursor: pointer;
+      margin-top: 20px;
+    }
+    
+    .public-good-button:hover {
+      background-color: #106ebe;
+    }
+    
+    .public-good-button:focus {
+      outline: 3px solid #ffbf47;
+      outline-offset: 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Fieldset Component - Basic Examples</h1>
+    <p>This page demonstrates the basic usage of the Fieldset component for grouping related form elements.</p>
+
+    <div class="example">
+      <h3>Basic Contact Information Fieldset</h3>
+      <div data-public-good-fieldset data-legend-text="Contact Information">
+        <div class="public-good-form-group">
+          <label for="contact-name" class="public-good-label">Full Name</label>
+          <input type="text" id="contact-name" class="public-good-input" required>
+        </div>
+        
+        <div class="public-good-form-group">
+          <label for="contact-email" class="public-good-label">Email Address</label>
+          <input type="email" id="contact-email" class="public-good-input" required>
+        </div>
+        
+        <div class="public-good-form-group">
+          <label for="contact-phone" class="public-good-label">Phone Number</label>
+          <input type="tel" id="contact-phone" class="public-good-input">
+        </div>
+      </div>
+    </div>
+
+    <div class="example">
+      <h3>Address Information Fieldset</h3>
+      <div data-public-good-fieldset data-legend-text="Address">
+        <div class="public-good-form-group">
+          <label for="address-line-1" class="public-good-label">Address Line 1</label>
+          <input type="text" id="address-line-1" class="public-good-input" required>
+        </div>
+        
+        <div class="public-good-form-group">
+          <label for="address-line-2" class="public-good-label">Address Line 2 (Optional)</label>
+          <input type="text" id="address-line-2" class="public-good-input">
+        </div>
+        
+        <div class="public-good-form-group">
+          <label for="address-city" class="public-good-label">City</label>
+          <input type="text" id="address-city" class="public-good-input" required>
+        </div>
+        
+        <div class="public-good-form-group">
+          <label for="address-postcode" class="public-good-label">Postcode</label>
+          <input type="text" id="address-postcode" class="public-good-input" required>
+        </div>
+      </div>
+    </div>
+
+    <div class="example">
+      <h3>Date of Birth Fieldset</h3>
+      <div data-public-good-fieldset data-legend-text="Date of Birth">
+        <div style="display: flex; gap: 20px; flex-wrap: wrap;">
+          <div class="public-good-form-group">
+            <label for="dob-day" class="public-good-label">Day</label>
+            <input type="text" id="dob-day" class="public-good-input" style="width: 60px;" maxlength="2" inputmode="numeric">
+          </div>
+          
+          <div class="public-good-form-group">
+            <label for="dob-month" class="public-good-label">Month</label>
+            <input type="text" id="dob-month" class="public-good-input" style="width: 60px;" maxlength="2" inputmode="numeric">
+          </div>
+          
+          <div class="public-good-form-group">
+            <label for="dob-year" class="public-good-label">Year</label>
+            <input type="text" id="dob-year" class="public-good-input" style="width: 80px;" maxlength="4" inputmode="numeric">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="example">
+      <h3>Fieldset with HTML Legend</h3>
+      <div data-public-good-fieldset data-legend-html="<span>Emergency Contact <em>(Optional)</em></span>">
+        <div class="public-good-form-group">
+          <label for="emergency-name" class="public-good-label">Contact Name</label>
+          <input type="text" id="emergency-name" class="public-good-input">
+        </div>
+        
+        <div class="public-good-form-group">
+          <label for="emergency-phone" class="public-good-label">Contact Phone</label>
+          <input type="tel" id="emergency-phone" class="public-good-input">
+        </div>
+        
+        <div class="public-good-form-group">
+          <label for="emergency-relationship" class="public-good-label">Relationship</label>
+          <input type="text" id="emergency-relationship" class="public-good-input" placeholder="e.g., Spouse, Parent, Friend">
+        </div>
+      </div>
+    </div>
+
+    <div class="example">
+      <h3>Nested Fieldsets Example</h3>
+      <div data-public-good-fieldset data-legend-text="Personal Details">
+        <div class="public-good-form-group">
+          <label for="personal-title" class="public-good-label">Title</label>
+          <select id="personal-title" class="public-good-input" style="width: auto;">
+            <option value="">Select title</option>
+            <option value="mr">Mr</option>
+            <option value="mrs">Mrs</option>
+            <option value="miss">Miss</option>
+            <option value="ms">Ms</option>
+            <option value="dr">Dr</option>
+          </select>
+        </div>
+        
+        <div class="public-good-form-group">
+          <label for="personal-first-name" class="public-good-label">First Name</label>
+          <input type="text" id="personal-first-name" class="public-good-input" required>
+        </div>
+        
+        <div class="public-good-form-group">
+          <label for="personal-last-name" class="public-good-label">Last Name</label>
+          <input type="text" id="personal-last-name" class="public-good-input" required>
+        </div>
+      </div>
+    </div>
+
+    <button type="submit" class="public-good-button">Submit Form</button>
+  </div>
+
+  <script type="module">
+    import { initializeFieldsets } from '../fieldset.js'
+    
+    // Initialize all fieldsets on the page
+    document.addEventListener('DOMContentLoaded', () => {
+      const fieldsets = initializeFieldsets()
+      console.log(`Initialized ${fieldsets.length} fieldsets`)
+      
+      // Add some interactivity
+      fieldsets.forEach((fieldset, index) => {
+        fieldset.element.addEventListener('public-good:fieldset:legend-changed', (event) => {
+          console.log('Legend changed:', event.detail)
+        })
+        
+        fieldset.element.addEventListener('public-good:fieldset:content-changed', (event) => {
+          console.log('Content changed:', event.detail)
+        })
+      })
+    })
+  </script>
+</body>
+</html>

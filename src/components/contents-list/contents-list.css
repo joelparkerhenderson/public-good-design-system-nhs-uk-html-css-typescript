@@ -1,0 +1,133 @@
+/**
+ * Contents List Component Styles
+ * Converted from NHS UK Design System to Public Good Design System
+ */
+
+.public-good-contents-list {
+  margin-bottom: var(--public-good-spacing-7);
+}
+
+.public-good-contents-list__list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.public-good-contents-list__item {
+  padding: 0 0 0 var(--public-good-spacing-5);
+  position: relative;
+  margin-bottom: var(--public-good-spacing-2);
+}
+
+.public-good-contents-list__item::before {
+  content: "";
+  display: block;
+  left: 0;
+  position: absolute;
+  top: 0.75em;
+  width: var(--public-good-spacing-3);
+  border-top: 1px solid var(--public-good-color-border-secondary);
+}
+
+.public-good-contents-list__link {
+  display: inline-block;
+  text-decoration: underline;
+  color: var(--public-good-color-link);
+  padding: var(--public-good-spacing-1) 0;
+  line-height: var(--public-good-line-height-base);
+}
+
+.public-good-contents-list__link:hover {
+  color: var(--public-good-color-link-hover);
+  text-decoration-thickness: max(3px, 0.1875rem, 0.12em);
+}
+
+.public-good-contents-list__link:focus {
+  outline: var(--public-good-focus-width) solid var(--public-good-color-focus);
+  outline-offset: 0;
+  color: var(--public-good-color-text);
+  background-color: var(--public-good-color-focus);
+  box-shadow: 0 -2px var(--public-good-color-focus), 0 4px var(--public-good-color-text);
+  text-decoration: none;
+}
+
+.public-good-contents-list__current {
+  font-weight: var(--public-good-font-weight-bold);
+  color: var(--public-good-color-text);
+  padding: var(--public-good-spacing-1) 0;
+  display: inline-block;
+  line-height: var(--public-good-line-height-base);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .public-good-contents-list {
+    margin-bottom: var(--public-good-spacing-5);
+  }
+  
+  .public-good-contents-list__item {
+    padding-left: var(--public-good-spacing-4);
+  }
+  
+  .public-good-contents-list__item::before {
+    width: var(--public-good-spacing-2);
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .public-good-contents-list__item::before {
+    border-top-width: 2px;
+    border-color: var(--public-good-color-text);
+  }
+  
+  .public-good-contents-list__link {
+    text-decoration-thickness: 2px;
+  }
+  
+  .public-good-contents-list__link:hover {
+    text-decoration-thickness: 3px;
+  }
+}
+
+/* Print styles */
+@media print {
+  .public-good-contents-list {
+    margin-bottom: var(--public-good-spacing-4);
+  }
+  
+  .public-good-contents-list__link {
+    color: var(--public-good-color-text) !important;
+    text-decoration: none !important;
+  }
+  
+  .public-good-contents-list__link::after {
+    content: " (" attr(href) ")";
+    font-size: 0.9em;
+    color: var(--public-good-color-text-secondary);
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .public-good-contents-list__link {
+    transition: none;
+  }
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+  .public-good-contents-list__item::before {
+    border-color: var(--public-good-color-border-secondary, #666);
+  }
+}
+
+/* Focus management for keyboard navigation */
+.public-good-contents-list__link:focus-visible {
+  outline: var(--public-good-focus-width) solid var(--public-good-color-focus);
+}
+
+/* Skip link integration */
+.public-good-contents-list:focus-within {
+  scroll-margin-top: var(--public-good-spacing-4);
+}

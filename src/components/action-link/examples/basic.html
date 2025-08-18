@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Action Link Examples - Public Good Design System</title>
+  <link rel="stylesheet" href="../../../index.css">
+  <link rel="stylesheet" href="../action-link.css">
+  <style>
+    body {
+      padding: 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .example {
+      margin: 2rem 0;
+      padding: 1.5rem;
+      border: 1px solid #d8dde0;
+      border-radius: 8px;
+    }
+    .example h3 {
+      margin-top: 0;
+      color: #005eb8;
+    }
+    .example-code {
+      background: #f0f4f5;
+      padding: 1rem;
+      border-radius: 4px;
+      font-family: 'Courier New', monospace;
+      font-size: 0.875rem;
+      margin-top: 1rem;
+      white-space: pre-wrap;
+      overflow-x: auto;
+    }
+  </style>
+</head>
+<body>
+  <h1>Action Link Component Examples</h1>
+  <p>Examples of the Action Link component in various configurations and use cases.</p>
+
+  <div class="example">
+    <h3>Basic Action Link</h3>
+    <p>A standard action link for general navigation.</p>
+    
+    <div class="public-good-action-link">
+      <a href="/services" class="public-good-action-link__link">
+        <svg class="public-good-icon public-good-icon--arrow-right-circle" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" width="36" height="36">
+          <path d="M0 0h24v24H0z" fill="none"></path>
+          <path d="M12 2a10 10 0 0 0-9.95 9h11.64L9.74 7.05a1 1 0 0 1 1.41-1.41l5.66 5.65a1 1 0 0 1 0 1.42l-5.66 5.65a1 1 0 0 1-1.41 0 1 1 0 0 1 0-1.41L13.69 13H2.05A10 10 0 1 0 12 2z"></path>
+        </svg>
+        <span class="public-good-action-link__text">Find services near you</span>
+      </a>
+    </div>
+
+    <div class="example-code">&lt;div class="public-good-action-link"&gt;
+  &lt;a href="/services" class="public-good-action-link__link"&gt;
+    &lt;svg class="public-good-icon public-good-icon--arrow-right-circle" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" width="36" height="36"&gt;
+      &lt;path d="M0 0h24v24H0z" fill="none"&gt;&lt;/path&gt;
+      &lt;path d="M12 2a10 10 0 0 0-9.95 9h11.64L9.74 7.05a1 1 0 0 1 1.41-1.41l5.66 5.65a1 1 0 0 1 0 1.42l-5.66 5.65a1 1 0 0 1-1.41 0 1 1 0 0 1 0-1.41L13.69 13H2.05A10 10 0 1 0 12 2z"&gt;&lt;/path&gt;
+    &lt;/svg&gt;
+    &lt;span class="public-good-action-link__text"&gt;Find services near you&lt;/span&gt;
+  &lt;/a&gt;
+&lt;/div&gt;</div>
+  </div>
+
+  <div class="example">
+    <h3>External Link (New Window)</h3>
+    <p>An action link that opens in a new window with proper security attributes.</p>
+    
+    <div class="public-good-action-link">
+      <a href="https://www.example.com" class="public-good-action-link__link" target="_blank" rel="noopener noreferrer">
+        <svg class="public-good-icon public-good-icon--arrow-right-circle" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" width="36" height="36">
+          <path d="M0 0h24v24H0z" fill="none"></path>
+          <path d="M12 2a10 10 0 0 0-9.95 9h11.64L9.74 7.05a1 1 0 0 1 1.41-1.41l5.66 5.65a1 1 0 0 1 0 1.42l-5.66 5.65a1 1 0 0 1-1.41 0 1 1 0 0 1 0-1.41L13.69 13H2.05A10 10 0 1 0 12 2z"></path>
+        </svg>
+        <span class="public-good-action-link__text">Visit external service</span>
+      </a>
+    </div>
+
+    <div class="example-code">&lt;div class="public-good-action-link"&gt;
+  &lt;a href="https://www.example.com" class="public-good-action-link__link" target="_blank" rel="noopener noreferrer"&gt;
+    &lt;svg class="public-good-icon public-good-icon--arrow-right-circle" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" width="36" height="36"&gt;
+      &lt;path d="M0 0h24v24H0z" fill="none"&gt;&lt;/path&gt;
+      &lt;path d="M12 2a10 10 0 0 0-9.95 9h11.64L9.74 7.05a1 1 0 0 1 1.41-1.41l5.66 5.65a1 1 0 0 1 0 1.42l-5.66 5.65a1 1 0 0 1-1.41 0 1 1 0 0 1 0-1.41L13.69 13H2.05A10 10 0 1 0 12 2z"&gt;&lt;/path&gt;
+    &lt;/svg&gt;
+    &lt;span class="public-good-action-link__text"&gt;Visit external service&lt;/span&gt;
+  &lt;/a&gt;
+&lt;/div&gt;</div>
+  </div>
+
+  <div class="example">
+    <h3>Urgent Action Link</h3>
+    <p>A variant for urgent or high-priority actions using modifier classes.</p>
+    
+    <div class="public-good-action-link public-good-action-link--urgent">
+      <a href="/urgent-care" class="public-good-action-link__link">
+        <svg class="public-good-icon public-good-icon--arrow-right-circle" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" width="36" height="36">
+          <path d="M0 0h24v24H0z" fill="none"></path>
+          <path d="M12 2a10 10 0 0 0-9.95 9h11.64L9.74 7.05a1 1 0 0 1 1.41-1.41l5.66 5.65a1 1 0 0 1 0 1.42l-5.66 5.65a1 1 0 0 1-1.41 0 1 1 0 0 1 0-1.41L13.69 13H2.05A10 10 0 1 0 12 2z"></path>
+        </svg>
+        <span class="public-good-action-link__text">Get urgent care now</span>
+      </a>
+    </div>
+
+    <div class="example-code">&lt;div class="public-good-action-link public-good-action-link--urgent"&gt;
+  &lt;a href="/urgent-care" class="public-good-action-link__link"&gt;
+    &lt;svg class="public-good-icon public-good-icon--arrow-right-circle" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" width="36" height="36"&gt;
+      &lt;path d="M0 0h24v24H0z" fill="none"&gt;&lt;/path&gt;
+      &lt;path d="M12 2a10 10 0 0 0-9.95 9h11.64L9.74 7.05a1 1 0 0 1 1.41-1.41l5.66 5.65a1 1 0 0 1 0 1.42l-5.66 5.65a1 1 0 0 1-1.41 0 1 1 0 0 1 0-1.41L13.69 13H2.05A10 10 0 1 0 12 2z"&gt;&lt;/path&gt;
+    &lt;/svg&gt;
+    &lt;span class="public-good-action-link__text"&gt;Get urgent care now&lt;/span&gt;
+  &lt;/a&gt;
+&lt;/div&gt;</div>
+  </div>
+
+  <div class="example">
+    <h3>Secondary Action Link</h3>
+    <p>A subdued variant for secondary actions.</p>
+    
+    <div class="public-good-action-link public-good-action-link--secondary">
+      <a href="/more-info" class="public-good-action-link__link">
+        <svg class="public-good-icon public-good-icon--arrow-right-circle" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" width="36" height="36">
+          <path d="M0 0h24v24H0z" fill="none"></path>
+          <path d="M12 2a10 10 0 0 0-9.95 9h11.64L9.74 7.05a1 1 0 0 1 1.41-1.41l5.66 5.65a1 1 0 0 1 0 1.42l-5.66 5.65a1 1 0 0 1-1.41 0 1 1 0 0 1 0-1.41L13.69 13H2.05A10 10 0 1 0 12 2z"></path>
+        </svg>
+        <span class="public-good-action-link__text">Learn more about our services</span>
+      </a>
+    </div>
+
+    <div class="example-code">&lt;div class="public-good-action-link public-good-action-link--secondary"&gt;
+  &lt;a href="/more-info" class="public-good-action-link__link"&gt;
+    &lt;svg class="public-good-icon public-good-icon--arrow-right-circle" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" width="36" height="36"&gt;
+      &lt;path d="M0 0h24v24H0z" fill="none"&gt;&lt;/path&gt;
+      &lt;path d="M12 2a10 10 0 0 0-9.95 9h11.64L9.74 7.05a1 1 0 0 1 1.41-1.41l5.66 5.65a1 1 0 0 1 0 1.42l-5.66 5.65a1 1 0 0 1-1.41 0 1 1 0 0 1 0-1.41L13.69 13H2.05A10 10 0 1 0 12 2z"&gt;&lt;/path&gt;
+    &lt;/svg&gt;
+    &lt;span class="public-good-action-link__text"&gt;Learn more about our services&lt;/span&gt;
+  &lt;/a&gt;
+&lt;/div&gt;</div>
+  </div>
+
+  <div class="example">
+    <h3>With Custom Attributes</h3>
+    <p>Action link with additional data attributes and ARIA properties.</p>
+    
+    <div class="public-good-action-link">
+      <a href="/book-appointment" 
+         class="public-good-action-link__link" 
+         data-analytics="action-link-book"
+         data-category="appointments"
+         aria-describedby="appointment-help">
+        <svg class="public-good-icon public-good-icon--arrow-right-circle" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" width="36" height="36">
+          <path d="M0 0h24v24H0z" fill="none"></path>
+          <path d="M12 2a10 10 0 0 0-9.95 9h11.64L9.74 7.05a1 1 0 0 1 1.41-1.41l5.66 5.65a1 1 0 0 1 0 1.42l-5.66 5.65a1 1 0 0 1-1.41 0 1 1 0 0 1 0-1.41L13.69 13H2.05A10 10 0 1 0 12 2z"></path>
+        </svg>
+        <span class="public-good-action-link__text">Book an appointment</span>
+      </a>
+      <p id="appointment-help" style="font-size: 0.875rem; color: #768692; margin-top: 0.5rem;">
+        You'll need your reference number and contact details.
+      </p>
+    </div>
+
+    <div class="example-code">&lt;div class="public-good-action-link"&gt;
+  &lt;a href="/book-appointment" 
+     class="public-good-action-link__link" 
+     data-analytics="action-link-book"
+     data-category="appointments"
+     aria-describedby="appointment-help"&gt;
+    &lt;svg class="public-good-icon public-good-icon--arrow-right-circle" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" width="36" height="36"&gt;
+      &lt;path d="M0 0h24v24H0z" fill="none"&gt;&lt;/path&gt;
+      &lt;path d="M12 2a10 10 0 0 0-9.95 9h11.64L9.74 7.05a1 1 0 0 1 1.41-1.41l5.66 5.65a1 1 0 0 1 0 1.42l-5.66 5.65a1 1 0 0 1-1.41 0 1 1 0 0 1 0-1.41L13.69 13H2.05A10 10 0 1 0 12 2z"&gt;&lt;/path&gt;
+    &lt;/svg&gt;
+    &lt;span class="public-good-action-link__text"&gt;Book an appointment&lt;/span&gt;
+  &lt;/a&gt;
+  &lt;p id="appointment-help"&gt;You'll need your reference number and contact details.&lt;/p&gt;
+&lt;/div&gt;</div>
+  </div>
+
+  <div class="example">
+    <h3>Multiple Action Links</h3>
+    <p>Multiple action links in a vertical layout.</p>
+    
+    <div class="public-good-action-link">
+      <a href="/find-hospital" class="public-good-action-link__link">
+        <svg class="public-good-icon public-good-icon--arrow-right-circle" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" width="36" height="36">
+          <path d="M0 0h24v24H0z" fill="none"></path>
+          <path d="M12 2a10 10 0 0 0-9.95 9h11.64L9.74 7.05a1 1 0 0 1 1.41-1.41l5.66 5.65a1 1 0 0 1 0 1.42l-5.66 5.65a1 1 0 0 1-1.41 0 1 1 0 0 1 0-1.41L13.69 13H2.05A10 10 0 1 0 12 2z"></path>
+        </svg>
+        <span class="public-good-action-link__text">Find a hospital near you</span>
+      </a>
+    </div>
+
+    <div class="public-good-action-link">
+      <a href="/find-gp" class="public-good-action-link__link">
+        <svg class="public-good-icon public-good-icon--arrow-right-circle" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" width="36" height="36">
+          <path d="M0 0h24v24H0z" fill="none"></path>
+          <path d="M12 2a10 10 0 0 0-9.95 9h11.64L9.74 7.05a1 1 0 0 1 1.41-1.41l5.66 5.65a1 1 0 0 1 0 1.42l-5.66 5.65a1 1 0 0 1-1.41 0 1 1 0 0 1 0-1.41L13.69 13H2.05A10 10 0 1 0 12 2z"></path>
+        </svg>
+        <span class="public-good-action-link__text">Find a GP practice</span>
+      </a>
+    </div>
+
+    <div class="public-good-action-link">
+      <a href="/find-pharmacy" class="public-good-action-link__link">
+        <svg class="public-good-icon public-good-icon--arrow-right-circle" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" width="36" height="36">
+          <path d="M0 0h24v24H0z" fill="none"></path>
+          <path d="M12 2a10 10 0 0 0-9.95 9h11.64L9.74 7.05a1 1 0 0 1 1.41-1.41l5.66 5.65a1 1 0 0 1 0 1.42l-5.66 5.65a1 1 0 0 1-1.41 0 1 1 0 0 1 0-1.41L13.69 13H2.05A10 10 0 1 0 12 2z"></path>
+        </svg>
+        <span class="public-good-action-link__text">Find a pharmacy</span>
+      </a>
+    </div>
+  </div>
+
+  <script type="module" src="../action-link.ts"></script>
+</body>
+</html>

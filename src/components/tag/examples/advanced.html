@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tag Component - Advanced Examples</title>
+  <link rel="stylesheet" href="../tag.css">
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem;
+      line-height: 1.6;
+      background-color: #f9f9f9;
+    }
+    .example {
+      margin-bottom: 2rem;
+      padding: 2rem;
+      border: 1px solid #e0e0e0;
+      border-radius: 8px;
+      background-color: white;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    .example h3 {
+      margin-top: 0;
+      color: #333;
+      border-bottom: 2px solid #0066cc;
+      padding-bottom: 0.5rem;
+    }
+    .controls {
+      margin-bottom: 1rem;
+      padding: 1rem;
+      background-color: #f5f5f5;
+      border-radius: 4px;
+    }
+    .controls button {
+      margin: 0.25rem;
+      padding: 0.5rem 1rem;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      background-color: white;
+      cursor: pointer;
+    }
+    .controls button:hover {
+      background-color: #e8f4f8;
+    }
+    .controls input, .controls select {
+      margin: 0.25rem;
+      padding: 0.5rem;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+    .demo-output {
+      min-height: 100px;
+      padding: 1rem;
+      border: 2px dashed #ccc;
+      border-radius: 4px;
+      margin: 1rem 0;
+      background-color: #fafafa;
+    }
+    .table-example {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 1rem;
+    }
+    .table-example th,
+    .table-example td {
+      padding: 0.75rem;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+    }
+    .table-example th {
+      background-color: #f8f9fa;
+      font-weight: 600;
+    }
+    .filter-controls {
+      margin-bottom: 1rem;
+    }
+    .filter-controls label {
+      display: inline-block;
+      margin-right: 1rem;
+      font-weight: 500;
+    }
+    .log-output {
+      background-color: #1e1e1e;
+      color: #ffffff;
+      padding: 1rem;
+      border-radius: 4px;
+      font-family: 'Courier New', monospace;
+      font-size: 0.9rem;
+      max-height: 200px;
+      overflow-y: auto;
+      margin-top: 1rem;
+    }
+    .tag-builder {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+    .form-group {
+      display: flex;
+      flex-direction: column;
+    }
+    .form-group label {
+      margin-bottom: 0.25rem;
+      font-weight: 500;
+    }
+    .status-board {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+    .status-column {
+      background-color: #f8f9fa;
+      border-radius: 8px;
+      padding: 1rem;
+      border: 1px solid #e9ecef;
+    }
+    .status-column h4 {
+      margin: 0 0 1rem 0;
+      color: #495057;
+      text-align: center;
+      border-bottom: 1px solid #dee2e6;
+      padding-bottom: 0.5rem;
+    }
+    .status-item {
+      margin-bottom: 0.5rem;
+      padding: 0.5rem;
+      background-color: white;
+      border-radius: 4px;
+      border: 1px solid #e9ecef;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+  </style>
+</head>
+<body>
+  <h1>Tag Component - Advanced Examples</h1>
+  <p>Advanced usage patterns and interactive demonstrations of the tag component.</p>
+
+  <div class="example">
+    <h3>Dynamic Tag Builder</h3>
+    <div class="tag-builder">
+      <div class="form-group">
+        <label for="tag-text">Tag Text:</label>
+        <input type="text" id="tag-text" placeholder="Enter tag text" value="Sample Tag">
+      </div>
+      <div class="form-group">
+        <label for="tag-color">Color:</label>
+        <select id="tag-color">
+          <option value="default">Default</option>
+          <option value="grey">Grey</option>
+          <option value="red">Red</option>
+          <option value="green">Green</option>
+          <option value="blue">Blue</option>
+          <option value="white">White</option>
+          <option value="aqua-green">Aqua Green</option>
+          <option value="purple">Purple</option>
+          <option value="pink">Pink</option>
+          <option value="orange">Orange</option>
+          <option value="yellow">Yellow</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="tag-size">Size:</label>
+        <select id="tag-size">
+          <option value="">Regular</option>
+          <option value="small">Small</option>
+          <option value="large">Large</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="tag-interactive">Interactive:</label>
+        <input type="checkbox" id="tag-interactive">
+      </div>
+    </div>
+    <div class="controls">
+      <button id="create-tag">Create Tag</button>
+      <button id="clear-tags">Clear All</button>
+    </div>
+    <div class="demo-output" id="tag-output">
+      <!-- Generated tags will appear here -->
+    </div>
+  </div>
+
+  <div class="example">
+    <h3>Tag Filtering System</h3>
+    <div class="filter-controls">
+      <label>
+        <input type="radio" name="filter" value="all" checked> All
+      </label>
+      <label>
+        <input type="radio" name="filter" value="active"> Active Only
+      </label>
+      <label>
+        <input type="radio" name="filter" value="inactive"> Inactive Only
+      </label>
+      <label>
+        <input type="radio" name="filter" value="pending"> Pending Only
+      </label>
+      <label>
+        <input type="radio" name="filter" value="completed"> Completed Only
+      </label>
+    </div>
+    <table class="table-example" id="items-table">
+      <thead>
+        <tr>
+          <th>Item</th>
+          <th>Status</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Items will be generated here -->
+      </tbody>
+    </table>
+  </div>
+
+  <div class="example">
+    <h3>Status Board</h3>
+    <div class="controls">
+      <input type="text" id="new-item-text" placeholder="Enter new item">
+      <button id="add-to-todo">Add to To Do</button>
+      <button id="simulate-workflow">Simulate Workflow</button>
+    </div>
+    <div class="status-board">
+      <div class="status-column">
+        <h4>To Do</h4>
+        <div id="todo-items">
+          <!-- To do items -->
+        </div>
+      </div>
+      <div class="status-column">
+        <h4>In Progress</h4>
+        <div id="progress-items">
+          <!-- In progress items -->
+        </div>
+      </div>
+      <div class="status-column">
+        <h4>Review</h4>
+        <div id="review-items">
+          <!-- Review items -->
+        </div>
+      </div>
+      <div class="status-column">
+        <h4>Done</h4>
+        <div id="done-items">
+          <!-- Done items -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="example">
+    <h3>Tag Events & Analytics</h3>
+    <div class="controls">
+      <button id="reset-analytics">Reset Analytics</button>
+    </div>
+    <div class="demo-output">
+      <strong class="public-good-tag public-good-tag--interactive public-good-tag--green" data-analytics="success">Success</strong>
+      <strong class="public-good-tag public-good-tag--interactive public-good-tag--red" data-analytics="error">Error</strong>
+      <strong class="public-good-tag public-good-tag--interactive public-good-tag--blue" data-analytics="info">Info</strong>
+      <strong class="public-good-tag public-good-tag--interactive public-good-tag--orange" data-analytics="warning">Warning</strong>
+      <strong class="public-good-tag public-good-tag--removable" data-analytics="removable">Removable</strong>
+    </div>
+    <div class="log-output" id="analytics-log">
+      Analytics log will appear here...
+    </div>
+  </div>
+
+  <div class="example">
+    <h3>Accessibility Testing</h3>
+    <div class="controls">
+      <button id="validate-tags">Validate Accessibility</button>
+      <button id="test-keyboard">Test Keyboard Navigation</button>
+    </div>
+    <div class="demo-output">
+      <strong class="public-good-tag">Good Tag</strong>
+      <strong class="public-good-tag">Another Good Tag</strong>
+      <div class="public-good-tag">Bad Tag (Not Strong)</div>
+      <strong class="public-good-tag"></strong>
+      <strong class="public-good-tag">This is a very long tag text that probably should be shorter for better usability</strong>
+      <strong class="public-good-tag">Click Here</strong>
+    </div>
+    <div class="log-output" id="validation-log">
+      Validation results will appear here...
+    </div>
+  </div>
+
+  <script type="module">
+    import { 
+      createTag, 
+      createTagContainer, 
+      setTagColor, 
+      setTagText,
+      getTagColor,
+      validateTags,
+      initializeTags 
+    } from '../tag.js';
+
+    // Initialize components
+    document.addEventListener('DOMContentLoaded', () => {
+      initializeTags();
+      initializeTagBuilder();
+      initializeFilterSystem();
+      initializeStatusBoard();
+      initializeAnalytics();
+      initializeAccessibilityTesting();
+    });
+
+    // Tag Builder
+    function initializeTagBuilder() {
+      const createBtn = document.getElementById('create-tag');
+      const clearBtn = document.getElementById('clear-tags');
+      const output = document.getElementById('tag-output');
+
+      createBtn.addEventListener('click', () => {
+        const text = document.getElementById('tag-text').value;
+        const color = document.getElementById('tag-color').value;
+        const size = document.getElementById('tag-size').value;
+        const interactive = document.getElementById('tag-interactive').checked;
+
+        if (!text.trim()) return;
+
+        const tag = createTag({ 
+          text: text.trim(),
+          color: color === 'default' ? undefined : color
+        });
+
+        if (size) {
+          tag.classList.add(`public-good-tag--${size}`);
+        }
+
+        if (interactive) {
+          tag.classList.add('public-good-tag--interactive');
+          tag.addEventListener('click', () => {
+            logEvent(`Clicked: ${tag.textContent}`);
+          });
+        }
+
+        output.appendChild(tag);
+      });
+
+      clearBtn.addEventListener('click', () => {
+        output.innerHTML = '';
+      });
+    }
+
+    // Filtering System
+    function initializeFilterSystem() {
+      const tableItems = [
+        { name: 'Project Alpha', status: 'active', description: 'Main development project' },
+        { name: 'Bug Fix 001', status: 'completed', description: 'Critical bug resolution' },
+        { name: 'Feature Beta', status: 'pending', description: 'New feature implementation' },
+        { name: 'Code Review', status: 'active', description: 'Peer review process' },
+        { name: 'Testing Phase', status: 'inactive', description: 'Quality assurance testing' },
+        { name: 'Documentation', status: 'pending', description: 'User manual updates' },
+        { name: 'Deployment', status: 'completed', description: 'Production deployment' }
+      ];
+
+      const tbody = document.querySelector('#items-table tbody');
+      const filterRadios = document.querySelectorAll('input[name="filter"]');
+
+      function renderTable(filter = 'all') {
+        tbody.innerHTML = '';
+        
+        const filteredItems = filter === 'all' 
+          ? tableItems 
+          : tableItems.filter(item => item.status === filter);
+
+        filteredItems.forEach(item => {
+          const row = document.createElement('tr');
+          const statusColors = {
+            active: 'green',
+            inactive: 'grey',
+            pending: 'orange',
+            completed: 'blue'
+          };
+
+          row.innerHTML = `
+            <td>${item.name}</td>
+            <td><strong class="public-good-tag public-good-tag--${statusColors[item.status]}">${item.status}</strong></td>
+            <td>${item.description}</td>
+          `;
+          tbody.appendChild(row);
+        });
+      }
+
+      filterRadios.forEach(radio => {
+        radio.addEventListener('change', (e) => {
+          renderTable(e.target.value);
+        });
+      });
+
+      // Initial render
+      renderTable();
+    }
+
+    // Status Board
+    function initializeStatusBoard() {
+      const addBtn = document.getElementById('add-to-todo');
+      const simulateBtn = document.getElementById('simulate-workflow');
+      const newItemInput = document.getElementById('new-item-text');
+      
+      let itemCounter = 1;
+
+      addBtn.addEventListener('click', () => {
+        const text = newItemInput.value.trim();
+        if (!text) return;
+
+        addItemToColumn('todo-items', text, 'Todo', 'grey');
+        newItemInput.value = '';
+      });
+
+      simulateBtn.addEventListener('click', () => {
+        const sampleItems = [
+          'Review API documentation',
+          'Update user interface',
+          'Fix authentication bug',
+          'Write unit tests',
+          'Deploy to staging'
+        ];
+        
+        sampleItems.forEach((item, index) => {
+          setTimeout(() => {
+            addItemToColumn('todo-items', item, 'Todo', 'grey');
+            
+            setTimeout(() => moveItemThroughWorkflow(item), (index + 1) * 1500);
+          }, index * 300);
+        });
+      });
+
+      function addItemToColumn(columnId, text, status, color) {
+        const column = document.getElementById(columnId);
+        const item = document.createElement('div');
+        item.className = 'status-item';
+        item.innerHTML = `
+          <span>${text}</span>
+          <strong class="public-good-tag public-good-tag--${color}">${status}</strong>
+        `;
+        item.dataset.itemText = text;
+        column.appendChild(item);
+      }
+
+      function moveItemThroughWorkflow(itemText) {
+        const stages = [
+          { from: 'todo-items', to: 'progress-items', status: 'In Progress', color: 'blue' },
+          { from: 'progress-items', to: 'review-items', status: 'Review', color: 'orange' },
+          { from: 'review-items', to: 'done-items', status: 'Done', color: 'green' }
+        ];
+
+        let stageIndex = 0;
+        
+        function moveToNextStage() {
+          if (stageIndex >= stages.length) return;
+          
+          const stage = stages[stageIndex];
+          const fromColumn = document.getElementById(stage.from);
+          const toColumn = document.getElementById(stage.to);
+          
+          const item = Array.from(fromColumn.children).find(
+            child => child.dataset.itemText === itemText
+          );
+          
+          if (item) {
+            item.remove();
+            addItemToColumn(stage.to, itemText, stage.status, stage.color);
+            logEvent(`Moved "${itemText}" to ${stage.status}`);
+          }
+          
+          stageIndex++;
+          if (stageIndex < stages.length) {
+            setTimeout(moveToNextStage, 2000);
+          }
+        }
+        
+        setTimeout(moveToNextStage, 1000);
+      }
+    }
+
+    // Analytics
+    function initializeAnalytics() {
+      const analyticsLog = document.getElementById('analytics-log');
+      const resetBtn = document.getElementById('reset-analytics');
+      
+      // Track clicks on analytics tags
+      document.querySelectorAll('[data-analytics]').forEach(tag => {
+        tag.addEventListener('click', (e) => {
+          const type = e.target.dataset.analytics;
+          logEvent(`Analytics: ${type} tag clicked`);
+          
+          if (type === 'removable') {
+            e.target.style.opacity = '0.5';
+            setTimeout(() => e.target.remove(), 300);
+            logEvent('Analytics: Removable tag removed');
+          }
+        });
+      });
+
+      resetBtn.addEventListener('click', () => {
+        analyticsLog.innerHTML = 'Analytics log cleared...';
+      });
+
+      function logEvent(message) {
+        const timestamp = new Date().toLocaleTimeString();
+        const entry = document.createElement('div');
+        entry.textContent = `[${timestamp}] ${message}`;
+        analyticsLog.appendChild(entry);
+        analyticsLog.scrollTop = analyticsLog.scrollHeight;
+      }
+
+      // Make logEvent available globally
+      window.logEvent = logEvent;
+    }
+
+    // Accessibility Testing
+    function initializeAccessibilityTesting() {
+      const validateBtn = document.getElementById('validate-tags');
+      const keyboardBtn = document.getElementById('test-keyboard');
+      const validationLog = document.getElementById('validation-log');
+
+      validateBtn.addEventListener('click', () => {
+        const result = validateTags(document);
+        validationLog.innerHTML = '';
+        
+        const summary = document.createElement('div');
+        summary.innerHTML = `<strong>Found ${result.tags.length} tags with ${result.issues.length} issues:</strong>`;
+        validationLog.appendChild(summary);
+        
+        result.issues.forEach(issue => {
+          const issueDiv = document.createElement('div');
+          issueDiv.textContent = `• ${issue}`;
+          issueDiv.style.color = '#d32f2f';
+          validationLog.appendChild(issueDiv);
+        });
+        
+        if (result.issues.length === 0) {
+          const successDiv = document.createElement('div');
+          successDiv.textContent = '✅ All tags pass accessibility validation!';
+          successDiv.style.color = '#388e3c';
+          validationLog.appendChild(successDiv);
+        }
+      });
+
+      keyboardBtn.addEventListener('click', () => {
+        const interactiveTags = document.querySelectorAll('.public-good-tag--interactive');
+        if (interactiveTags.length > 0) {
+          interactiveTags[0].focus();
+          logEvent('Accessibility: Focused first interactive tag');
+        }
+      });
+    }
+
+    // Global log function
+    function logEvent(message) {
+      if (window.logEvent) {
+        window.logEvent(message);
+      }
+    }
+  </script>
+</body>
+</html>

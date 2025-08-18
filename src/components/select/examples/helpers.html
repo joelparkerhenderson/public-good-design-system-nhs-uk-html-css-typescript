@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Select - Helper Functions Example</title>
+  <link rel="stylesheet" href="../../../styles/index.css">
+  <link rel="stylesheet" href="../select.css">
+</head>
+<body>
+  <div class="public-good-width-container">
+    <main class="public-good-main-wrapper">
+      <div class="public-good-grid-row">
+        <div class="public-good-grid-column-two-thirds">
+          <h1>Select - Helper Functions Example</h1>
+          
+          <p class="public-good-body-l">
+            The select component provides several helper functions for common use cases.
+          </p>
+
+          <h2>Simple select</h2>
+          <p>Use <code>createSimpleSelect()</code> for basic dropdowns.</p>
+          <div id="simple-example"></div>
+
+          <h2>Required select</h2>
+          <p>Use <code>createRequiredSelect()</code> for mandatory selections.</p>
+          <div id="required-example"></div>
+
+          <h2>Multiple select</h2>
+          <p>Use <code>createMultiSelect()</code> for multiple selections.</p>
+          <div id="multi-example"></div>
+
+          <h2>Dynamic options</h2>
+          <p>You can add and remove options dynamically.</p>
+          <div id="dynamic-example"></div>
+          <p>
+            <button type="button" id="add-option">Add option</button>
+            <button type="button" id="remove-option">Remove last option</button>
+          </p>
+
+          <h2>Enable/Disable</h2>
+          <p>You can enable and disable selects programmatically.</p>
+          <div id="disable-example"></div>
+          <p>
+            <button type="button" id="disable-select">Disable</button>
+            <button type="button" id="enable-select">Enable</button>
+          </p>
+
+          <h2>JavaScript Code Examples</h2>
+          <pre><code>import { 
+  createSimpleSelect, 
+  createRequiredSelect, 
+  createMultiSelect 
+} from './select.js'
+
+// Simple select
+const simple = createSimpleSelect('transport', 'How do you travel?', [
+  { value: 'car', text: 'Car' },
+  { value: 'bus', text: 'Bus' }
+])
+
+// Required select
+const required = createRequiredSelect('priority', 'Priority level', [
+  { value: 'high', text: 'High' },
+  { value: 'low', text: 'Low' }
+])
+
+// Multiple select
+const multi = createMultiSelect('skills', 'Your skills', [
+  { value: 'html', text: 'HTML' },
+  { value: 'css', text: 'CSS' }
+])</code></pre>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script type="module">
+    import { 
+      createSimpleSelect, 
+      createRequiredSelect, 
+      createMultiSelect 
+    } from '../select.js'
+
+    // Simple select example
+    const simpleSelect = createSimpleSelect(
+      'transport',
+      'How do you usually travel to appointments?',
+      [
+        { value: 'car', text: 'Car' },
+        { value: 'public-transport', text: 'Public transport' },
+        { value: 'walking', text: 'Walking' },
+        { value: 'cycling', text: 'Cycling' },
+        { value: 'taxi', text: 'Taxi' }
+      ],
+      { hint: 'This helps us plan parking and accessibility' }
+    )
+    document.getElementById('simple-example').appendChild(simpleSelect.element)
+
+    // Required select example
+    const requiredSelect = createRequiredSelect(
+      'urgency',
+      'How urgent is your appointment?',
+      [
+        { value: '', text: 'Select urgency level' },
+        { value: 'emergency', text: 'Emergency - within 24 hours' },
+        { value: 'urgent', text: 'Urgent - within a week' },
+        { value: 'routine', text: 'Routine - within a month' }
+      ],
+      { hint: 'This helps us prioritise your request' }
+    )
+    document.getElementById('required-example').appendChild(requiredSelect.element)
+
+    // Multiple select example
+    const multiSelect = createMultiSelect(
+      'conditions',
+      'Do you have any of these conditions?',
+      [
+        { value: 'diabetes', text: 'Diabetes' },
+        { value: 'asthma', text: 'Asthma' },
+        { value: 'hypertension', text: 'High blood pressure' },
+        { value: 'arthritis', text: 'Arthritis' },
+        { value: 'depression', text: 'Depression' },
+        { value: 'anxiety', text: 'Anxiety' }
+      ],
+      { 
+        hint: 'Select all that apply - this helps us provide better care',
+        size: 4 
+      }
+    )
+    document.getElementById('multi-example').appendChild(multiSelect.element)
+
+    // Dynamic options example
+    const dynamicSelect = createSimpleSelect(
+      'dynamic',
+      'Dynamic options',
+      [
+        { value: 'option1', text: 'Option 1' },
+        { value: 'option2', text: 'Option 2' }
+      ]
+    )
+    document.getElementById('dynamic-example').appendChild(dynamicSelect.element)
+
+    let optionCounter = 3
+    document.getElementById('add-option').addEventListener('click', () => {
+      dynamicSelect.addOption({ 
+        value: `option${optionCounter}`, 
+        text: `Option ${optionCounter}` 
+      })
+      optionCounter++
+    })
+
+    document.getElementById('remove-option').addEventListener('click', () => {
+      if (dynamicSelect.config.options.length > 1) {
+        const lastOption = dynamicSelect.config.options[dynamicSelect.config.options.length - 1]
+        dynamicSelect.removeOption(lastOption.value)
+      }
+    })
+
+    // Enable/disable example
+    const disableSelect = createSimpleSelect(
+      'status',
+      'Current status',
+      [
+        { value: 'active', text: 'Active' },
+        { value: 'inactive', text: 'Inactive' },
+        { value: 'pending', text: 'Pending' }
+      ]
+    )
+    document.getElementById('disable-example').appendChild(disableSelect.element)
+
+    document.getElementById('disable-select').addEventListener('click', () => {
+      disableSelect.disable()
+    })
+
+    document.getElementById('enable-select').addEventListener('click', () => {
+      disableSelect.enable()
+    })
+
+    // Add event listeners for demonstration
+    simpleSelect.element.addEventListener('public-good:select:changed', (event) => {
+      console.log('Transport method:', event.detail.value)
+    })
+
+    requiredSelect.element.addEventListener('public-good:select:changed', (event) => {
+      console.log('Urgency level:', event.detail.value)
+    })
+
+    multiSelect.element.addEventListener('public-good:select:changed', (event) => {
+      console.log('Selected conditions:', event.detail.value)
+    })
+  </script>
+</body>
+</html>

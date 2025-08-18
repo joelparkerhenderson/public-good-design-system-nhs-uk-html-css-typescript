@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contents List - Basic Examples</title>
+    <link rel="stylesheet" href="../../../core/base.css">
+    <link rel="stylesheet" href="../contents-list.css">
+    <style>
+        body {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+        .example {
+            margin-bottom: 3rem;
+            padding: 2rem;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+        }
+        .example h3 {
+            margin-top: 0;
+            color: #0066cc;
+        }
+        .page-content {
+            margin-top: 2rem;
+            padding: 1rem;
+            background: #f8f9fa;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Contents List Component - Basic Examples</h1>
+    
+    <div class="example">
+        <h3>Basic Contents List</h3>
+        <p>A simple navigation for multi-page content with one current page highlighted.</p>
+        
+        <nav class="public-good-contents-list" role="navigation" aria-label="Pages in this guide">
+            <h2 class="public-good-u-visually-hidden">Contents</h2>
+            <ol class="public-good-contents-list__list">
+                <li class="public-good-contents-list__item" aria-current="page">
+                    <span class="public-good-contents-list__current">What is AMD?</span>
+                </li>
+                <li class="public-good-contents-list__item">
+                    <a class="public-good-contents-list__link" href="#symptoms">Symptoms</a>
+                </li>
+                <li class="public-good-contents-list__item">
+                    <a class="public-good-contents-list__link" href="#diagnosis">Getting diagnosed</a>
+                </li>
+                <li class="public-good-contents-list__item">
+                    <a class="public-good-contents-list__link" href="#treatments">Treatments</a>
+                </li>
+                <li class="public-good-contents-list__item">
+                    <a class="public-good-contents-list__link" href="#living">Living with AMD</a>
+                </li>
+            </ol>
+        </nav>
+
+        <div class="page-content">
+            <h4>Current Page Content</h4>
+            <p>This represents the content for the current page "What is AMD?". The contents list above shows this page as current (highlighted in bold) while other pages remain as clickable links.</p>
+        </div>
+    </div>
+
+    <div class="example">
+        <h3>Contents List for Documentation</h3>
+        <p>Example usage for technical documentation or help guides.</p>
+        
+        <nav class="public-good-contents-list" role="navigation" aria-label="Documentation sections">
+            <h2 class="public-good-u-visually-hidden">Contents</h2>
+            <ol class="public-good-contents-list__list">
+                <li class="public-good-contents-list__item">
+                    <a class="public-good-contents-list__link" href="#introduction">Introduction</a>
+                </li>
+                <li class="public-good-contents-list__item">
+                    <a class="public-good-contents-list__link" href="#getting-started">Getting started</a>
+                </li>
+                <li class="public-good-contents-list__item" aria-current="page">
+                    <span class="public-good-contents-list__current">Configuration</span>
+                </li>
+                <li class="public-good-contents-list__item">
+                    <a class="public-good-contents-list__link" href="#advanced">Advanced usage</a>
+                </li>
+                <li class="public-good-contents-list__item">
+                    <a class="public-good-contents-list__link" href="#troubleshooting">Troubleshooting</a>
+                </li>
+                <li class="public-good-contents-list__item">
+                    <a class="public-good-contents-list__link" href="#api">API reference</a>
+                </li>
+            </ol>
+        </nav>
+    </div>
+
+    <div class="example">
+        <h3>Short Contents List</h3>
+        <p>Example with fewer items for smaller guides or processes.</p>
+        
+        <nav class="public-good-contents-list" role="navigation" aria-label="Process steps">
+            <h2 class="public-good-u-visually-hidden">Contents</h2>
+            <ol class="public-good-contents-list__list">
+                <li class="public-good-contents-list__item">
+                    <a class="public-good-contents-list__link" href="#step1">Step 1: Preparation</a>
+                </li>
+                <li class="public-good-contents-list__item">
+                    <a class="public-good-contents-list__link" href="#step2">Step 2: Application</a>
+                </li>
+                <li class="public-good-contents-list__item" aria-current="page">
+                    <span class="public-good-contents-list__current">Step 3: Review</span>
+                </li>
+                <li class="public-good-contents-list__item">
+                    <a class="public-good-contents-list__link" href="#step4">Step 4: Completion</a>
+                </li>
+            </ol>
+        </nav>
+    </div>
+
+    <div class="example">
+        <h3>Custom Aria Label</h3>
+        <p>Contents list with custom navigation label for better accessibility context.</p>
+        
+        <nav class="public-good-contents-list" role="navigation" aria-label="Health information topics">
+            <h2 class="public-good-u-visually-hidden">Health Topics</h2>
+            <ol class="public-good-contents-list__list">
+                <li class="public-good-contents-list__item">
+                    <a class="public-good-contents-list__link" href="#overview">Overview</a>
+                </li>
+                <li class="public-good-contents-list__item">
+                    <a class="public-good-contents-list__link" href="#prevention">Prevention</a>
+                </li>
+                <li class="public-good-contents-list__item">
+                    <a class="public-good-contents-list__link" href="#symptoms">Symptoms</a>
+                </li>
+                <li class="public-good-contents-list__item" aria-current="page">
+                    <span class="public-good-contents-list__current">Treatment options</span>
+                </li>
+                <li class="public-good-contents-list__item">
+                    <a class="public-good-contents-list__link" href="#support">Support resources</a>
+                </li>
+            </ol>
+        </nav>
+    </div>
+
+    <script type="module">
+        import { createContentsList, setCurrentPage } from '../contents-list.js';
+        
+        // Example of programmatic usage
+        console.log('Contents list examples loaded');
+        
+        // You can programmatically create contents lists:
+        // const items = [
+        //     { href: '/page1', text: 'Page 1' },
+        //     { href: '/page2', text: 'Page 2', current: true },
+        //     { href: '/page3', text: 'Page 3' }
+        // ];
+        // const contentsList = createContentsList({ items });
+        // document.body.appendChild(contentsList);
+        
+        // Or update current page:
+        // setCurrentPage(contentsList, '/page3');
+    </script>
+</body>
+</html>

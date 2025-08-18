@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Basic Breadcrumb Example</title>
+  <link rel="stylesheet" href="../../../index.css">
+</head>
+<body>
+  <div class="example-container">
+    <h1>Basic Breadcrumb Example</h1>
+    
+    <h2>Three-Level Breadcrumb</h2>
+    <p>A standard breadcrumb showing the user's location in the site hierarchy.</p>
+    
+    <div id="basic-breadcrumb-container"></div>
+    
+    <h2>Two-Level Breadcrumb</h2>
+    <p>A simpler breadcrumb with fewer levels.</p>
+    
+    <div id="simple-breadcrumb-container"></div>
+    
+    <h2>Using Data Attributes</h2>
+    <p>Breadcrumb initialized from HTML data attributes.</p>
+    
+    <div data-public-good-breadcrumb 
+         data-items='[
+           {"text": "Home", "href": "/"},
+           {"text": "Health A-Z", "href": "/health-a-z"},
+           {"text": "Mental health", "href": "/health-a-z/mental-health"},
+           {"text": "Depression"}
+         ]'
+         data-label-text="Page navigation">
+    </div>
+    
+    <h2>Breadcrumb from URL</h2>
+    <p>Automatically generated breadcrumb based on the current page URL.</p>
+    
+    <div id="url-breadcrumb-container"></div>
+    
+    <style>
+      .example-container {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 2rem;
+      }
+      
+      h1 {
+        color: var(--public-good-color-primary);
+        margin-bottom: 2rem;
+      }
+      
+      h2 {
+        margin-top: 2rem;
+        margin-bottom: 0.5rem;
+        color: var(--public-good-color-text);
+      }
+      
+      p {
+        margin-bottom: 1rem;
+        color: var(--public-good-color-text-secondary);
+      }
+      
+      #basic-breadcrumb-container,
+      #simple-breadcrumb-container,
+      #url-breadcrumb-container {
+        margin-bottom: 2rem;
+        padding: 1rem;
+        border: 1px solid var(--public-good-color-border);
+        border-radius: 4px;
+        background: var(--public-good-color-background);
+      }
+      
+      [data-public-good-breadcrumb] {
+        margin-bottom: 2rem;
+        padding: 1rem;
+        border: 1px solid var(--public-good-color-border);
+        border-radius: 4px;
+        background: var(--public-good-color-background);
+      }
+    </style>
+  </div>
+
+  <script type="module">
+    import { createBreadcrumb, createBreadcrumbFromUrl } from '../breadcrumb.js'
+    
+    // Basic three-level breadcrumb
+    const basicBreadcrumb = createBreadcrumb({
+      items: [
+        { text: 'Home', href: '/' },
+        { text: 'Services', href: '/services' },
+        { text: 'Find a GP', href: '/services/find-a-gp' },
+        { text: 'Book appointment' }
+      ]
+    })
+    
+    document.getElementById('basic-breadcrumb-container').appendChild(basicBreadcrumb.element)
+    
+    // Simple two-level breadcrumb
+    const simpleBreadcrumb = createBreadcrumb({
+      items: [
+        { text: 'Home', href: '/' },
+        { text: 'Contact us' }
+      ]
+    })
+    
+    document.getElementById('simple-breadcrumb-container').appendChild(simpleBreadcrumb.element)
+    
+    // URL-based breadcrumb with custom mappings
+    const urlBreadcrumb = createBreadcrumbFromUrl('/', {
+      'components': 'Components',
+      'breadcrumb': 'Breadcrumb',
+      'examples': 'Examples',
+      'basic.html': 'Basic Example'
+    })
+    
+    document.getElementById('url-breadcrumb-container').appendChild(urlBreadcrumb.element)
+    
+    // Add event listeners for analytics
+    document.addEventListener('public-good:breadcrumb:click', (event) => {
+      console.log('Breadcrumb clicked:', event.detail)
+    })
+  </script>
+</body>
+</html>

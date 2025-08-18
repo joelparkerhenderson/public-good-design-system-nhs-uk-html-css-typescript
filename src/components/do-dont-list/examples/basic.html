@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Do and Don't List - Basic Examples</title>
+  <link rel="stylesheet" href="../../../index.css">
+  <style>
+    body {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 2rem;
+      font-family: var(--public-good-font-family);
+      line-height: 1.6;
+      color: var(--public-good-color-text);
+    }
+    
+    .example-section {
+      margin-bottom: 3rem;
+      padding-bottom: 2rem;
+      border-bottom: 1px solid var(--public-good-color-border);
+    }
+    
+    .example-section:last-child {
+      border-bottom: none;
+    }
+    
+    .example-title {
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      color: var(--public-good-color-text);
+    }
+    
+    .example-description {
+      margin-bottom: 2rem;
+      color: var(--public-good-color-text-secondary);
+    }
+  </style>
+</head>
+<body>
+  <h1>Do and Don't List - Basic Examples</h1>
+  <p>This page demonstrates basic usage of the Do and Don't List component from the Public Good Design System.</p>
+
+  <div class="example-section">
+    <h2 class="example-title">Transportation Safety Guidelines</h2>
+    <p class="example-description">A complete do and don't list with both positive and negative guidance.</p>
+    <div id="transportation-example"></div>
+  </div>
+
+  <div class="example-section">
+    <h2 class="example-title">Do-Only List</h2>
+    <p class="example-description">A list containing only positive guidance items.</p>
+    <div id="do-only-example"></div>
+  </div>
+
+  <div class="example-section">
+    <h2 class="example-title">Don't-Only List</h2>
+    <p class="example-description">A list containing only items to avoid.</p>
+    <div id="dont-only-example"></div>
+  </div>
+
+  <div class="example-section">
+    <h2 class="example-title">List Without Icons</h2>
+    <p class="example-description">A simple list without visual indicators.</p>
+    <div id="no-icons-example"></div>
+  </div>
+
+  <div class="example-section">
+    <h2 class="example-title">List with HTML Content</h2>
+    <p class="example-description">A list containing rich HTML content including links and formatting.</p>
+    <div id="html-content-example"></div>
+  </div>
+
+  <div class="example-section">
+    <h2 class="example-title">Dynamic Example</h2>
+    <p class="example-description">A list that can be modified programmatically with buttons.</p>
+    <div id="dynamic-example"></div>
+    <div style="margin-top: 1rem;">
+      <button id="add-do-btn">Add Do Item</button>
+      <button id="add-dont-btn">Add Don't Item</button>
+      <button id="remove-do-btn">Remove First Do Item</button>
+      <button id="remove-dont-btn">Remove First Don't Item</button>
+      <button id="change-title-btn">Change Title</button>
+    </div>
+  </div>
+
+  <script type="module">
+    import { createDoDontList, createDoList, createDontList, createSimpleDoDontList } from '../do-dont-list.js'
+
+    // Transportation safety guidelines
+    const transportationList = createDoDontList({
+      title: 'Transportation Safety Guidelines',
+      doItems: [
+        { text: 'Always wear your seatbelt' },
+        { text: 'Check your mirrors before changing lanes' },
+        { text: 'Maintain a safe following distance' },
+        { text: 'Use turn signals when changing direction' },
+        { text: 'Keep your hands on the wheel at 10 and 2' }
+      ],
+      dontItems: [
+        { text: 'Use your mobile phone while driving' },
+        { text: 'Drive when you\'re tired or impaired' },
+        { text: 'Tailgate other vehicles' },
+        { text: 'Speed in residential areas' }
+      ]
+    })
+    document.getElementById('transportation-example').appendChild(transportationList.element)
+
+    // Do-only list
+    const doOnlyList = createDoList([
+      'Save your work frequently',
+      'Use version control for all projects',
+      'Write clear, descriptive commit messages',
+      'Test your code before committing',
+      'Keep your dependencies up to date'
+    ], { 
+      title: 'Development Best Practices'
+    })
+    document.getElementById('do-only-example').appendChild(doOnlyList.element)
+
+    // Don't-only list  
+    const dontOnlyList = createDontList([
+      'Commit sensitive information like passwords',
+      'Work directly on the main branch',
+      'Skip code reviews',
+      'Use deprecated libraries',
+      'Ignore error messages'
+    ], {
+      title: 'Common Development Mistakes'
+    })
+    document.getElementById('dont-only-example').appendChild(dontOnlyList.element)
+
+    // List without icons
+    const noIconsList = createSimpleDoDontList(
+      ['Follow accessibility guidelines', 'Use semantic HTML'],
+      ['Use divs for everything', 'Ignore keyboard navigation'],
+      { 
+        title: 'Web Development Guidelines',
+        showIcons: false 
+      }
+    )
+    document.getElementById('no-icons-example').appendChild(noIconsList.element)
+
+    // List with HTML content
+    const htmlContentList = createDoDontList({
+      title: 'Accessibility Best Practices',
+      doItems: [
+        {
+          text: 'Use semantic HTML',
+          html: '<p>Use <strong>semantic HTML</strong> elements like <code>&lt;nav&gt;</code>, <code>&lt;main&gt;</code>, and <code>&lt;aside&gt;</code> to provide meaning to your content.</p>'
+        },
+        {
+          text: 'Provide alternative text',
+          html: '<p>Always provide <code>alt</code> attributes for images that describe the content or purpose of the image.</p>'
+        },
+        {
+          text: 'Test with screen readers',
+          html: '<p>Regularly test your website with screen readers like <a href="https://www.nvaccess.org/" target="_blank">NVDA</a> or <a href="https://support.apple.com/guide/voiceover/" target="_blank">VoiceOver</a>.</p>'
+        }
+      ],
+      dontItems: [
+        {
+          text: 'Rely solely on color',
+          html: '<p>Don\'t rely <em>only</em> on color to convey important information. Always provide additional visual or textual cues.</p>'
+        },
+        {
+          text: 'Use placeholder text as labels',
+          html: '<p>Don\'t use <code>placeholder</code> text as the only label for form inputs. Always provide proper <code>&lt;label&gt;</code> elements.</p>'
+        }
+      ]
+    })
+    document.getElementById('html-content-example').appendChild(htmlContentList.element)
+
+    // Dynamic example
+    const dynamicList = createDoDontList({
+      title: 'Dynamic Guidelines',
+      doItems: [
+        { text: 'Initial do item' }
+      ],
+      dontItems: [
+        { text: 'Initial don\'t item' }
+      ]
+    })
+    document.getElementById('dynamic-example').appendChild(dynamicList.element)
+
+    // Dynamic controls
+    let doCounter = 1
+    let dontCounter = 1
+    let titleCounter = 1
+
+    document.getElementById('add-do-btn').addEventListener('click', () => {
+      doCounter++
+      dynamicList.addDoItem({ text: `New do item #${doCounter}` })
+    })
+
+    document.getElementById('add-dont-btn').addEventListener('click', () => {
+      dontCounter++
+      dynamicList.addDontItem({ text: `New don't item #${dontCounter}` })
+    })
+
+    document.getElementById('remove-do-btn').addEventListener('click', () => {
+      if (dynamicList.getDoItems().length > 0) {
+        dynamicList.removeDoItem(0)
+      }
+    })
+
+    document.getElementById('remove-dont-btn').addEventListener('click', () => {
+      if (dynamicList.getDontItems().length > 0) {
+        dynamicList.removeDontItem(0)
+      }
+    })
+
+    document.getElementById('change-title-btn').addEventListener('click', () => {
+      titleCounter++
+      dynamicList.setTitle(`Updated Title #${titleCounter}`)
+    })
+
+    // Event listeners for analytics
+    document.addEventListener('public-good:do-dont-list:item-added', (event) => {
+      console.log('Item added:', event.detail)
+    })
+
+    document.addEventListener('public-good:do-dont-list:item-removed', (event) => {
+      console.log('Item removed:', event.detail)
+    })
+  </script>
+</body>
+</html>

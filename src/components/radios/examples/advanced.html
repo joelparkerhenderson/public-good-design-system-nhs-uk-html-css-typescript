@@ -1,0 +1,975 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Radios Component - Advanced Examples</title>
+  <link rel="stylesheet" href="../../../index.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: var(--public-good-spacing-6);
+      background-color: var(--public-good-color-white);
+    }
+    
+    .example-section {
+      margin-bottom: var(--public-good-spacing-8);
+      padding: var(--public-good-spacing-6);
+      border: var(--public-good-border-width-thin) solid var(--public-good-color-border);
+      border-radius: var(--public-good-border-radius-medium);
+    }
+    
+    .example-title {
+      margin-top: 0;
+      color: var(--public-good-color-text);
+      font-size: var(--public-good-heading-3-size);
+      margin-bottom: var(--public-good-spacing-4);
+    }
+    
+    .example-description {
+      margin-bottom: var(--public-good-spacing-4);
+      color: var(--public-good-color-text-secondary);
+    }
+    
+    .demo-controls {
+      margin: var(--public-good-spacing-4) 0;
+      padding: var(--public-good-spacing-4);
+      background-color: var(--public-good-color-background-secondary);
+      border-radius: var(--public-good-border-radius-medium);
+    }
+    
+    .demo-controls label {
+      display: block;
+      margin-bottom: var(--public-good-spacing-2);
+      font-weight: var(--public-good-font-weight-medium);
+    }
+    
+    .demo-controls input,
+    .demo-controls select,
+    .demo-controls textarea {
+      width: 100%;
+      padding: var(--public-good-spacing-2);
+      margin-bottom: var(--public-good-spacing-3);
+      border: var(--public-good-border-width-medium) solid var(--public-good-color-border);
+      border-radius: var(--public-good-border-radius-medium);
+      box-sizing: border-box;
+    }
+    
+    .demo-controls button {
+      background-color: var(--public-good-color-button-primary);
+      color: var(--public-good-color-text-inverse);
+      border: none;
+      padding: var(--public-good-spacing-3) var(--public-good-spacing-4);
+      border-radius: var(--public-good-border-radius-medium);
+      cursor: pointer;
+      margin-right: var(--public-good-spacing-2);
+      margin-bottom: var(--public-good-spacing-2);
+    }
+    
+    .demo-controls button:hover {
+      background-color: var(--public-good-color-button-primary-hover);
+    }
+    
+    .analytics-log {
+      margin-top: var(--public-good-spacing-4);
+      padding: var(--public-good-spacing-4);
+      background-color: #f8f8f8;
+      border-radius: var(--public-good-border-radius-medium);
+      font-family: monospace;
+      font-size: 0.9em;
+      max-height: 200px;
+      overflow-y: auto;
+      border: 1px solid #ddd;
+    }
+    
+    .responsive-demo {
+      border: 2px dashed var(--public-good-color-border);
+      padding: var(--public-good-spacing-4);
+      margin: var(--public-good-spacing-4) 0;
+      resize: horizontal;
+      overflow: auto;
+      min-width: 300px;
+      max-width: 100%;
+    }
+    
+    .validation-demo {
+      padding: var(--public-good-spacing-4);
+      border: 1px solid var(--public-good-color-border);
+      border-radius: var(--public-good-border-radius-medium);
+      margin: var(--public-good-spacing-4) 0;
+    }
+    
+    .performance-stats {
+      background-color: #e8f4f8;
+      padding: var(--public-good-spacing-3);
+      border-radius: var(--public-good-border-radius-medium);
+      margin: var(--public-good-spacing-4) 0;
+      font-family: monospace;
+      font-size: 0.9em;
+    }
+    
+    .conditional-showcase {
+      border: 1px solid var(--public-good-color-border);
+      border-radius: var(--public-good-border-radius-medium);
+      padding: var(--public-good-spacing-4);
+      margin: var(--public-good-spacing-4) 0;
+    }
+    
+    .workflow-step {
+      display: flex;
+      align-items: flex-start;
+      gap: var(--public-good-spacing-3);
+      margin-bottom: var(--public-good-spacing-4);
+      padding: var(--public-good-spacing-3);
+      border: 1px solid var(--public-good-color-border);
+      border-radius: var(--public-good-border-radius-medium);
+    }
+    
+    .workflow-number {
+      background-color: var(--public-good-color-blue);
+      color: white;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.9em;
+      font-weight: bold;
+      flex-shrink: 0;
+    }
+    
+    .guidance-box {
+      background-color: #fff2e5;
+      border-left: 4px solid #ff8c00;
+      padding: var(--public-good-spacing-3);
+      margin: var(--public-good-spacing-4) 0;
+      font-size: var(--public-good-body-small-size);
+    }
+  </style>
+</head>
+<body>
+  <h1>Radios Component - Advanced Examples</h1>
+  <p>Advanced features, customization options, and integration patterns for the radios component.</p>
+
+  <!-- Dynamic Radio Management -->
+  <div class="example-section">
+    <h2 class="example-title">Dynamic Radio Management</h2>
+    <p class="example-description">
+      Demonstrates dynamic creation and real-time option management for radio button groups.
+    </p>
+    
+    <div class="demo-controls">
+      <label for="radio-legend">Radio Group Legend:</label>
+      <input type="text" id="radio-legend" value="What is your preferred appointment time?" />
+      
+      <label for="radio-hint">Hint Text (optional):</label>
+      <input type="text" id="radio-hint" placeholder="Enter hint text..." />
+      
+      <label for="option-value">New Option Value:</label>
+      <input type="text" id="option-value" placeholder="morning" />
+      
+      <label for="option-text">New Option Text:</label>
+      <input type="text" id="option-text" placeholder="Morning (9am - 12pm)" />
+      
+      <label for="option-hint">New Option Hint (optional):</label>
+      <input type="text" id="option-hint" placeholder="Early appointments available" />
+      
+      <label>
+        <input type="checkbox" id="inline-layout"> Inline Layout
+      </label>
+      
+      <label>
+        <input type="checkbox" id="small-size"> Small Size
+      </label>
+      
+      <button onclick="updateDynamicRadios()">Update Radio Group</button>
+      <button onclick="addOption()">Add Option</button>
+      <button onclick="removeLastOption()">Remove Last Option</button>
+      <button onclick="clearSelection()">Clear Selection</button>
+    </div>
+    
+    <div id="dynamic-radios"></div>
+    
+    <div class="analytics-log" id="selection-log">
+      <strong>Selection Log:</strong><br>
+      Make selections above to see real-time updates...
+    </div>
+  </div>
+
+  <!-- Complex Conditional Content -->
+  <div class="example-section">
+    <h2 class="example-title">Complex Conditional Content</h2>
+    <p class="example-description">
+      Advanced conditional content patterns with nested forms and complex interactions.
+    </p>
+    
+    <div class="conditional-showcase">
+      <div id="complex-conditional-radios"></div>
+    </div>
+  </div>
+
+  <!-- Multi-step Form Integration -->
+  <div class="example-section">
+    <h2 class="example-title">Multi-step Form Integration</h2>
+    <p class="example-description">
+      Radio buttons integrated into a multi-step form workflow with validation and progress tracking.
+    </p>
+    
+    <div class="guidance-box">
+      <strong>Workflow Guidance:</strong> This demonstrates how radio buttons can be used throughout 
+      a multi-step process with proper validation and state management.
+    </div>
+    
+    <div class="demo-controls">
+      <button onclick="startWorkflow()">Start Workflow</button>
+      <button onclick="nextStep()">Next Step</button>
+      <button onclick="previousStep()">Previous Step</button>
+      <button onclick="resetWorkflow()">Reset</button>
+      <button onclick="validateCurrentStep()">Validate Step</button>
+    </div>
+    
+    <div id="workflow-container">
+      <div class="workflow-step">
+        <div class="workflow-number">1</div>
+        <div>
+          <h4>Patient Information</h4>
+          <p>Tell us about yourself</p>
+          <div id="workflow-step-1"></div>
+        </div>
+      </div>
+      
+      <div class="workflow-step">
+        <div class="workflow-number">2</div>
+        <div>
+          <h4>Appointment Preferences</h4>
+          <p>Choose your preferred appointment details</p>
+          <div id="workflow-step-2"></div>
+        </div>
+      </div>
+      
+      <div class="workflow-step">
+        <div class="workflow-number">3</div>
+        <div>
+          <h4>Contact Preferences</h4>
+          <p>How would you like us to contact you?</p>
+          <div id="workflow-step-3"></div>
+        </div>
+      </div>
+      
+      <div class="workflow-step">
+        <div class="workflow-number">4</div>
+        <div>
+          <h4>Confirmation</h4>
+          <p>Review and confirm your choices</p>
+          <div id="workflow-step-4"></div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="performance-stats" id="workflow-status">
+      <strong>Workflow Status:</strong><br>
+      Current step: <span id="current-step">Not started</span><br>
+      Validation state: <span id="validation-state">Pending</span><br>
+      Completed steps: <span id="completed-steps">0/4</span>
+    </div>
+  </div>
+
+  <!-- Form Validation and Error Handling -->
+  <div class="example-section">
+    <h2 class="example-title">Advanced Validation and Error Handling</h2>
+    <p class="example-description">
+      Comprehensive validation patterns with custom error messages and recovery flows.
+    </p>
+    
+    <div class="demo-controls">
+      <button onclick="triggerValidation()">Validate Form</button>
+      <button onclick="showCustomError()">Show Custom Error</button>
+      <button onclick="clearErrors()">Clear All Errors</button>
+      <button onclick="simulateServerError()">Simulate Server Error</button>
+    </div>
+    
+    <div class="validation-demo">
+      <div id="validation-radios-1"></div>
+      <div id="validation-radios-2"></div>
+      <div id="validation-radios-3"></div>
+    </div>
+    
+    <div class="analytics-log" id="validation-log">
+      <strong>Validation Log:</strong><br>
+      Use the buttons above to test validation scenarios...
+    </div>
+  </div>
+
+  <!-- Accessibility Testing -->
+  <div class="example-section">
+    <h2 class="example-title">Accessibility Features</h2>
+    <p class="example-description">
+      Comprehensive accessibility testing and screen reader support demonstration.
+    </p>
+    
+    <div class="demo-controls">
+      <button onclick="testKeyboardNavigation()">Test Keyboard Navigation</button>
+      <button onclick="testScreenReaderSupport()">Test Screen Reader Support</button>
+      <button onclick="testFocusManagement()">Test Focus Management</button>
+      <button onclick="runFullAccessibilityCheck()">Full Accessibility Check</button>
+    </div>
+    
+    <div id="accessibility-radios"></div>
+    
+    <div class="analytics-log" id="accessibility-results">
+      <strong>Accessibility Test Results:</strong><br>
+      Use the buttons above to run accessibility tests...
+    </div>
+  </div>
+
+  <!-- Responsive Design Testing -->
+  <div class="example-section">
+    <h2 class="example-title">Responsive Design Behavior</h2>
+    <p class="example-description">
+      Resize the container below to see how radio buttons adapt to different screen sizes.
+    </p>
+    
+    <div class="responsive-demo">
+      <div id="responsive-radios"></div>
+    </div>
+    
+    <p><em>Drag the bottom-right corner of the container above to resize it.</em></p>
+  </div>
+
+  <!-- Performance Testing -->
+  <div class="example-section">
+    <h2 class="example-title">Performance and Memory Management</h2>
+    <p class="example-description">
+      Performance testing and memory management demonstration with large numbers of radio groups.
+    </p>
+    
+    <div class="demo-controls">
+      <button onclick="createManyRadioGroups()">Create 20 Radio Groups</button>
+      <button onclick="updateAllRadioGroups()">Update All Groups</button>
+      <button onclick="destroyAllRadioGroups()">Destroy All</button>
+      <button onclick="measurePerformance()">Measure Performance</button>
+    </div>
+    
+    <div class="performance-stats" id="performance-stats">
+      <strong>Performance Stats:</strong><br>
+      Active radio groups: <span id="group-count">0</span><br>
+      Total radio options: <span id="option-count">0</span><br>
+      Last operation time: <span id="operation-time">0 ms</span><br>
+      Memory estimate: <span id="memory-estimate">0 KB</span>
+    </div>
+    
+    <div id="performance-container" style="max-height: 300px; overflow-y: auto; border: 1px solid #ddd; padding: 10px;"></div>
+  </div>
+
+  <script type="module">
+    import { 
+      createRadios,
+      createSimpleRadios,
+      createInlineRadios,
+      createSmallRadios
+    } from '../radios.js'
+
+    // Global variables for advanced examples
+    let currentDynamicRadios = null
+    let selectionLog = []
+    let performanceRadioGroups = []
+    let workflowRadios = {}
+    let workflowState = {
+      currentStep: 0,
+      completedSteps: [],
+      formData: {}
+    }
+
+    // Dynamic radio management
+    window.updateDynamicRadios = function() {
+      const legend = document.getElementById('radio-legend').value
+      const hint = document.getElementById('radio-hint').value
+      const inline = document.getElementById('inline-layout').checked
+      const small = document.getElementById('small-size').checked
+      
+      const container = document.getElementById('dynamic-radios')
+      container.innerHTML = ''
+      
+      if (currentDynamicRadios) {
+        currentDynamicRadios.destroy()
+      }
+      
+      currentDynamicRadios = createRadios({
+        name: 'dynamic-appointment-time',
+        legend: legend,
+        hint: hint || undefined,
+        inline: inline,
+        small: small,
+        options: [
+          { value: 'morning', text: 'Morning (9am - 12pm)', hint: 'Early appointments available' },
+          { value: 'afternoon', text: 'Afternoon (1pm - 5pm)', hint: 'Most popular time slot' },
+          { value: 'evening', text: 'Evening (6pm - 8pm)', hint: 'Limited availability' }
+        ]
+      })
+      
+      container.appendChild(currentDynamicRadios.element)
+      
+      // Add event listener for selection tracking
+      currentDynamicRadios.element.addEventListener('public-good:radios:changed', (event) => {
+        logSelection(event.detail.value, event.detail.option.text)
+      })
+    }
+
+    window.addOption = function() {
+      if (!currentDynamicRadios) return
+      
+      const value = document.getElementById('option-value').value
+      const text = document.getElementById('option-text').value
+      const hint = document.getElementById('option-hint').value
+      
+      if (value && text) {
+        const newOption = {
+          value: value,
+          text: text,
+          hint: hint || undefined
+        }
+        
+        currentDynamicRadios.addOption(newOption)
+        
+        // Clear inputs
+        document.getElementById('option-value').value = ''
+        document.getElementById('option-text').value = ''
+        document.getElementById('option-hint').value = ''
+        
+        logSelection('OPTION_ADDED', `Added: ${text}`)
+      }
+    }
+
+    window.removeLastOption = function() {
+      if (!currentDynamicRadios || currentDynamicRadios.config.options.length === 0) return
+      
+      const lastOption = currentDynamicRadios.config.options[currentDynamicRadios.config.options.length - 1]
+      const removed = currentDynamicRadios.removeOption(lastOption.value)
+      
+      if (removed) {
+        logSelection('OPTION_REMOVED', `Removed: ${lastOption.text}`)
+      }
+    }
+
+    window.clearSelection = function() {
+      if (!currentDynamicRadios) return
+      
+      currentDynamicRadios.options.forEach(radio => {
+        radio.checked = false
+      })
+      
+      logSelection('SELECTION_CLEARED', 'All selections cleared')
+    }
+
+    function logSelection(value, text) {
+      const timestamp = new Date().toLocaleTimeString()
+      selectionLog.push(`[${timestamp}] ${value}: ${text}`)
+      
+      const logElement = document.getElementById('selection-log')
+      const recent = selectionLog.slice(-10) // Show last 10 events
+      logElement.innerHTML = '<strong>Selection Log:</strong><br>' + recent.join('<br>')
+    }
+
+    // Initialize dynamic radios
+    updateDynamicRadios()
+
+    // Complex conditional content
+    const complexConditionalRadios = createRadios({
+      name: 'medical-history',
+      legend: 'Do you have any significant medical history?',
+      hint: 'This helps us provide better care',
+      options: [
+        { 
+          value: 'none', 
+          text: 'No significant medical history' 
+        },
+        { 
+          value: 'chronic-conditions', 
+          text: 'Yes, I have chronic conditions',
+          conditional: `
+            <div style="margin-top: 15px;">
+              <h4>Chronic Conditions</h4>
+              <div style="margin-bottom: 15px;">
+                <label><input type="checkbox" name="conditions" value="diabetes"> Diabetes</label><br>
+                <label><input type="checkbox" name="conditions" value="hypertension"> High Blood Pressure</label><br>
+                <label><input type="checkbox" name="conditions" value="asthma"> Asthma</label><br>
+                <label><input type="checkbox" name="conditions" value="arthritis"> Arthritis</label>
+              </div>
+              <label for="condition-details">Additional details:</label>
+              <textarea id="condition-details" rows="3" style="width: 100%; margin-top: 5px;" placeholder="Please provide more information about your conditions..."></textarea>
+            </div>
+          `
+        },
+        { 
+          value: 'previous-surgery', 
+          text: 'Yes, I have had previous surgeries',
+          conditional: `
+            <div style="margin-top: 15px;">
+              <h4>Previous Surgeries</h4>
+              <label for="surgery-type">Type of surgery:</label>
+              <select id="surgery-type" style="width: 100%; margin: 5px 0 15px 0;">
+                <option value="">Select surgery type</option>
+                <option value="cardiac">Cardiac Surgery</option>
+                <option value="orthopedic">Orthopedic Surgery</option>
+                <option value="general">General Surgery</option>
+                <option value="other">Other</option>
+              </select>
+              <label for="surgery-date">Approximate date:</label>
+              <input type="month" id="surgery-date" style="width: 100%; margin: 5px 0 15px 0;">
+              <label for="surgery-notes">Additional notes:</label>
+              <textarea id="surgery-notes" rows="2" style="width: 100%; margin-top: 5px;" placeholder="Any complications or important details..."></textarea>
+            </div>
+          `
+        },
+        { 
+          value: 'medications', 
+          text: 'Yes, I take regular medications',
+          conditional: `
+            <div style="margin-top: 15px;">
+              <h4>Current Medications</h4>
+              <div id="medication-list">
+                <div style="margin-bottom: 10px;">
+                  <label>Medication name:</label>
+                  <input type="text" style="width: 48%; margin-right: 2%;" placeholder="e.g. Lisinopril">
+                  <label>Dosage:</label>
+                  <input type="text" style="width: 48%;" placeholder="e.g. 10mg daily">
+                </div>
+              </div>
+              <button type="button" onclick="addMedicationField()" style="background: #005eb8; color: white; border: none; padding: 8px 16px; border-radius: 4px; margin-top: 10px;">Add Another Medication</button>
+            </div>
+          `
+        }
+      ]
+    })
+    document.getElementById('complex-conditional-radios').appendChild(complexConditionalRadios.element)
+
+    // Add medication field function
+    window.addMedicationField = function() {
+      const container = document.getElementById('medication-list')
+      const newField = document.createElement('div')
+      newField.style.marginBottom = '10px'
+      newField.innerHTML = `
+        <label>Medication name:</label>
+        <input type="text" style="width: 48%; margin-right: 2%;" placeholder="e.g. Metformin">
+        <label>Dosage:</label>
+        <input type="text" style="width: 48%;" placeholder="e.g. 500mg twice daily">
+      `
+      container.appendChild(newField)
+    }
+
+    // Multi-step workflow
+    const workflowSteps = {
+      1: {
+        name: 'patient-type',
+        legend: 'What type of patient are you?',
+        options: [
+          { value: 'new', text: 'New patient', hint: 'First time registering with this practice' },
+          { value: 'existing', text: 'Existing patient', hint: 'Already registered with this practice' },
+          { value: 'temporary', text: 'Temporary patient', hint: 'Visiting the area temporarily' }
+        ]
+      },
+      2: {
+        name: 'appointment-urgency',
+        legend: 'How urgent is your appointment?',
+        options: [
+          { value: 'emergency', text: 'Emergency', hint: 'Life-threatening or severe symptoms' },
+          { value: 'urgent', text: 'Urgent', hint: 'Need to be seen within 48 hours' },
+          { value: 'routine', text: 'Routine', hint: 'Can wait 1-2 weeks' },
+          { value: 'follow-up', text: 'Follow-up', hint: 'Pre-arranged follow-up appointment' }
+        ]
+      },
+      3: {
+        name: 'contact-method',
+        legend: 'How would you like to be contacted?',
+        options: [
+          { value: 'phone', text: 'Phone call' },
+          { value: 'email', text: 'Email' },
+          { value: 'text', text: 'Text message' },
+          { value: 'post', text: 'Postal mail' }
+        ]
+      },
+      4: {
+        name: 'confirmation',
+        legend: 'Please confirm your appointment request',
+        options: [
+          { value: 'confirm', text: 'Yes, submit my appointment request' },
+          { value: 'review', text: 'No, I want to review my answers' }
+        ]
+      }
+    }
+
+    window.startWorkflow = function() {
+      workflowState.currentStep = 1
+      workflowState.completedSteps = []
+      workflowState.formData = {}
+      showWorkflowStep(1)
+      updateWorkflowStatus()
+    }
+
+    window.nextStep = function() {
+      if (workflowState.currentStep < 4) {
+        // Validate current step
+        const currentRadios = workflowRadios[workflowState.currentStep]
+        if (currentRadios && currentRadios.getValue()) {
+          workflowState.formData[currentRadios.config.name] = currentRadios.getValue()
+          workflowState.completedSteps.push(workflowState.currentStep)
+          workflowState.currentStep++
+          showWorkflowStep(workflowState.currentStep)
+          updateWorkflowStatus()
+        } else {
+          alert('Please make a selection before proceeding to the next step.')
+        }
+      }
+    }
+
+    window.previousStep = function() {
+      if (workflowState.currentStep > 1) {
+        workflowState.currentStep--
+        showWorkflowStep(workflowState.currentStep)
+        updateWorkflowStatus()
+      }
+    }
+
+    window.resetWorkflow = function() {
+      Object.values(workflowRadios).forEach(radios => radios.destroy())
+      workflowRadios = {}
+      workflowState = { currentStep: 0, completedSteps: [], formData: {} }
+      
+      // Clear all step containers
+      for (let i = 1; i <= 4; i++) {
+        document.getElementById(`workflow-step-${i}`).innerHTML = ''
+      }
+      
+      updateWorkflowStatus()
+    }
+
+    window.validateCurrentStep = function() {
+      if (workflowState.currentStep === 0) {
+        alert('Please start the workflow first.')
+        return
+      }
+      
+      const currentRadios = workflowRadios[workflowState.currentStep]
+      if (currentRadios && currentRadios.getValue()) {
+        alert(`Step ${workflowState.currentStep} is valid. Selected: ${currentRadios.getValue()}`)
+      } else {
+        const stepConfig = workflowSteps[workflowState.currentStep]
+        currentRadios.showError('Please select an option to continue.')
+      }
+    }
+
+    function showWorkflowStep(step) {
+      const stepConfig = workflowSteps[step]
+      const container = document.getElementById(`workflow-step-${step}`)
+      
+      if (workflowRadios[step]) {
+        workflowRadios[step].destroy()
+      }
+      
+      workflowRadios[step] = createRadios(stepConfig)
+      container.innerHTML = ''
+      container.appendChild(workflowRadios[step].element)
+      
+      // Restore previous selection if available
+      if (workflowState.formData[stepConfig.name]) {
+        workflowRadios[step].setValue(workflowState.formData[stepConfig.name])
+      }
+    }
+
+    function updateWorkflowStatus() {
+      document.getElementById('current-step').textContent = 
+        workflowState.currentStep === 0 ? 'Not started' : `Step ${workflowState.currentStep}`
+      document.getElementById('validation-state').textContent = 
+        workflowState.currentStep === 0 ? 'Pending' : 'Active'
+      document.getElementById('completed-steps').textContent = 
+        `${workflowState.completedSteps.length}/4`
+    }
+
+    // Form validation examples
+    const validationRadios1 = createRadios({
+      name: 'required-field-1',
+      legend: 'This field is required',
+      hint: 'You must select one option',
+      options: [
+        { value: 'option1', text: 'Option 1' },
+        { value: 'option2', text: 'Option 2' }
+      ]
+    })
+    document.getElementById('validation-radios-1').appendChild(validationRadios1.element)
+
+    const validationRadios2 = createRadios({
+      name: 'conditional-required',
+      legend: 'Conditional validation example',
+      hint: 'This becomes required based on other selections',
+      options: [
+        { value: 'yes', text: 'Yes, I agree' },
+        { value: 'no', text: 'No, I disagree' },
+        { value: 'maybe', text: 'I need more information' }
+      ]
+    })
+    document.getElementById('validation-radios-2').appendChild(validationRadios2.element)
+
+    const validationRadios3 = createRadios({
+      name: 'custom-validation',
+      legend: 'Custom validation rules',
+      hint: 'Must select "approved" option to proceed',
+      options: [
+        { value: 'approved', text: 'Approved' },
+        { value: 'pending', text: 'Pending review' },
+        { value: 'rejected', text: 'Rejected' }
+      ]
+    })
+    document.getElementById('validation-radios-3').appendChild(validationRadios3.element)
+
+    let validationLog = []
+
+    window.triggerValidation = function() {
+      let isValid = true
+      const radiosToValidate = [validationRadios1, validationRadios2, validationRadios3]
+      
+      radiosToValidate.forEach((radios, index) => {
+        const value = radios.getValue()
+        if (!value) {
+          radios.showError(`Please select an option for ${radios.config.legend}`)
+          isValid = false
+          logValidation(`Validation failed for ${radios.config.name}: No selection made`)
+        } else {
+          radios.hideError()
+          logValidation(`Validation passed for ${radios.config.name}: ${value}`)
+        }
+      })
+      
+      // Custom validation for radios3
+      if (validationRadios3.getValue() && validationRadios3.getValue() !== 'approved') {
+        validationRadios3.showError('You must select "Approved" to proceed')
+        isValid = false
+        logValidation('Custom validation failed: Must select "approved"')
+      }
+      
+      logValidation(`Overall validation: ${isValid ? 'PASSED' : 'FAILED'}`)
+    }
+
+    window.showCustomError = function() {
+      validationRadios1.showError('This is a custom error message for demonstration purposes')
+      logValidation('Custom error displayed on validation-radios-1')
+    }
+
+    window.clearErrors = function() {
+      [validationRadios1, validationRadios2, validationRadios3].forEach(radios => {
+        radios.hideError()
+      })
+      logValidation('All errors cleared')
+    }
+
+    window.simulateServerError = function() {
+      validationRadios2.showError('Server validation failed: This option is not available at this time')
+      logValidation('Server error simulated on validation-radios-2')
+    }
+
+    function logValidation(message) {
+      const timestamp = new Date().toLocaleTimeString()
+      validationLog.push(`[${timestamp}] ${message}`)
+      
+      const logElement = document.getElementById('validation-log')
+      const recent = validationLog.slice(-15) // Show last 15 events
+      logElement.innerHTML = '<strong>Validation Log:</strong><br>' + recent.join('<br>')
+    }
+
+    // Accessibility testing
+    const accessibilityRadios = createRadios({
+      name: 'accessibility-test',
+      legend: 'Accessibility Test Radio Group',
+      hint: 'This radio group is used for accessibility testing',
+      legendIsHeading: true,
+      options: [
+        { value: 'option1', text: 'First option', hint: 'This is the first option hint' },
+        { value: 'option2', text: 'Second option', hint: 'This is the second option hint' },
+        { value: 'option3', text: 'Third option' }
+      ]
+    })
+    document.getElementById('accessibility-radios').appendChild(accessibilityRadios.element)
+
+    let accessibilityLog = []
+
+    window.testKeyboardNavigation = function() {
+      logAccessibility('Testing keyboard navigation...')
+      
+      // Focus the first radio button
+      accessibilityRadios.options[0].focus()
+      logAccessibility('Focused first radio button')
+      
+      // Simulate Tab navigation
+      setTimeout(() => {
+        accessibilityRadios.options[1].focus()
+        logAccessibility('Moved focus to second radio button')
+        
+        setTimeout(() => {
+          accessibilityRadios.options[2].focus()
+          logAccessibility('Moved focus to third radio button')
+          logAccessibility('Keyboard navigation test completed')
+        }, 500)
+      }, 500)
+    }
+
+    window.testScreenReaderSupport = function() {
+      logAccessibility('Testing screen reader support...')
+      
+      const fieldset = accessibilityRadios.element
+      const legend = accessibilityRadios.legend
+      
+      logAccessibility(`Fieldset role: ${fieldset.getAttribute('role') || 'default (group)'}`)
+      logAccessibility(`Legend text: "${legend.textContent}"`)
+      
+      accessibilityRadios.options.forEach((input, index) => {
+        const describedBy = input.getAttribute('aria-describedby')
+        const label = fieldset.querySelector(`label[for="${input.id}"]`)
+        
+        logAccessibility(`Radio ${index + 1}:`)
+        logAccessibility(`  - ID: ${input.id}`)
+        logAccessibility(`  - Label: "${label?.textContent}"`)
+        logAccessibility(`  - Described by: ${describedBy || 'none'}`)
+      })
+      
+      logAccessibility('Screen reader support test completed')
+    }
+
+    window.testFocusManagement = function() {
+      logAccessibility('Testing focus management...')
+      
+      // Test focus on each radio button
+      accessibilityRadios.options.forEach((input, index) => {
+        setTimeout(() => {
+          input.focus()
+          const hasFocus = document.activeElement === input
+          logAccessibility(`Radio ${index + 1} focus: ${hasFocus ? 'SUCCESS' : 'FAILED'}`)
+          
+          if (index === accessibilityRadios.options.length - 1) {
+            logAccessibility('Focus management test completed')
+          }
+        }, index * 300)
+      })
+    }
+
+    window.runFullAccessibilityCheck = function() {
+      logAccessibility('=== FULL ACCESSIBILITY CHECK ===')
+      testScreenReaderSupport()
+      setTimeout(() => {
+        testKeyboardNavigation()
+        setTimeout(() => {
+          testFocusManagement()
+          setTimeout(() => {
+            logAccessibility('=== ACCESSIBILITY CHECK COMPLETED ===')
+          }, 2000)
+        }, 2000)
+      }, 1000)
+    }
+
+    function logAccessibility(message) {
+      const timestamp = new Date().toLocaleTimeString()
+      accessibilityLog.push(`[${timestamp}] ${message}`)
+      
+      const logElement = document.getElementById('accessibility-results')
+      const recent = accessibilityLog.slice(-20) // Show last 20 events
+      logElement.innerHTML = '<strong>Accessibility Test Results:</strong><br>' + recent.join('<br>')
+    }
+
+    // Responsive design demo
+    const responsiveRadios = createRadios({
+      name: 'responsive-test',
+      legend: 'Responsive Design Test',
+      hint: 'This radio group adapts to different container sizes',
+      inline: true,
+      options: [
+        { value: 'mobile', text: 'Mobile' },
+        { value: 'tablet', text: 'Tablet' },
+        { value: 'desktop', text: 'Desktop' },
+        { value: 'large', text: 'Large Screen' }
+      ]
+    })
+    document.getElementById('responsive-radios').appendChild(responsiveRadios.element)
+
+    // Performance testing
+    window.createManyRadioGroups = function() {
+      const container = document.getElementById('performance-container')
+      const startTime = performance.now()
+      
+      for (let i = 0; i < 20; i++) {
+        const radios = createSimpleRadios(
+          `perf-group-${i}`,
+          `Performance Test Group ${i + 1}`,
+          [
+            { value: 'option1', text: 'Option 1' },
+            { value: 'option2', text: 'Option 2' },
+            { value: 'option3', text: 'Option 3' }
+          ]
+        )
+        
+        const wrapper = document.createElement('div')
+        wrapper.style.marginBottom = '10px'
+        wrapper.appendChild(radios.element)
+        container.appendChild(wrapper)
+        
+        performanceRadioGroups.push(radios)
+      }
+      
+      const endTime = performance.now()
+      updatePerformanceStats(endTime - startTime)
+    }
+
+    window.updateAllRadioGroups = function() {
+      const startTime = performance.now()
+      
+      performanceRadioGroups.forEach((radios, index) => {
+        const randomValue = radios.config.options[Math.floor(Math.random() * radios.config.options.length)].value
+        radios.setValue(randomValue)
+      })
+      
+      const endTime = performance.now()
+      updatePerformanceStats(endTime - startTime)
+    }
+
+    window.destroyAllRadioGroups = function() {
+      const startTime = performance.now()
+      
+      performanceRadioGroups.forEach(radios => radios.destroy())
+      performanceRadioGroups = []
+      document.getElementById('performance-container').innerHTML = ''
+      
+      const endTime = performance.now()
+      updatePerformanceStats(endTime - startTime)
+    }
+
+    window.measurePerformance = function() {
+      const startTime = performance.now()
+      
+      // Create and destroy a test radio group
+      const testRadios = createSimpleRadios('perf-test', 'Performance Test', [
+        { value: 'test1', text: 'Test 1' },
+        { value: 'test2', text: 'Test 2' }
+      ])
+      testRadios.destroy()
+      
+      const endTime = performance.now()
+      updatePerformanceStats(endTime - startTime)
+    }
+
+    function updatePerformanceStats(operationTime) {
+      document.getElementById('group-count').textContent = performanceRadioGroups.length
+      document.getElementById('option-count').textContent = performanceRadioGroups.reduce((total, radios) => total + radios.options.length, 0)
+      document.getElementById('operation-time').textContent = Math.round(operationTime)
+      
+      // Rough memory estimation (2KB per radio group)
+      const memoryEstimate = performanceRadioGroups.length * 2
+      document.getElementById('memory-estimate').textContent = memoryEstimate
+    }
+
+    // Initialize performance stats
+    updatePerformanceStats(0)
+
+    console.log('Advanced radios examples loaded successfully')
+  </script>
+</body>
+</html>

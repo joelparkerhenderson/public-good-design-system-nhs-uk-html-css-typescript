@@ -1,0 +1,527 @@
+/**
+ * Tabs Component
+ * Converted from NHS UK Design System to Public Good Design System
+ * 
+ * Styles for accessible tab navigation with keyboard support and responsive design.
+ */
+
+.public-good-tabs {
+  margin-bottom: var(--public-good-spacing-5, 32px);
+  font-family: var(--public-good-font-family, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif);
+}
+
+/* Tabs title (fallback when JS is disabled) */
+.public-good-tabs__title {
+  font-size: var(--public-good-font-size-large, 1.125rem);
+  font-weight: var(--public-good-font-weight-bold, 700);
+  line-height: var(--public-good-line-height-heading, 1.25);
+  margin: 0 0 var(--public-good-spacing-3, 16px) 0;
+  color: var(--public-good-color-text, #212b32);
+  border-bottom: 1px solid var(--public-good-color-border, #d8dde0);
+  padding-bottom: var(--public-good-spacing-2, 12px);
+}
+
+/* Hide title when JavaScript is enabled */
+.public-good-tabs[data-module="public-good-tabs"] .public-good-tabs__title {
+  display: none;
+}
+
+/* Tab list */
+.public-good-tabs__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  border-bottom: 1px solid var(--public-good-color-border, #d8dde0);
+  background-color: var(--public-good-color-grey-6, #f8f8f8);
+  border-radius: var(--public-good-border-radius, 4px) var(--public-good-border-radius, 4px) 0 0;
+  overflow: hidden;
+}
+
+/* Tab list items */
+.public-good-tabs__list-item {
+  margin: 0;
+  position: relative;
+}
+
+/* Individual tabs */
+.public-good-tabs__tab {
+  display: block;
+  padding: var(--public-good-spacing-3, 16px) var(--public-good-spacing-4, 24px);
+  border: none;
+  background: transparent;
+  color: var(--public-good-color-link, #0066cc);
+  text-decoration: none;
+  font-family: inherit;
+  font-size: var(--public-good-font-size-body, 1rem);
+  font-weight: var(--public-good-font-weight-normal, 400);
+  line-height: var(--public-good-line-height-body, 1.5);
+  cursor: pointer;
+  position: relative;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+  border-bottom: 3px solid transparent;
+  border-radius: 0;
+}
+
+/* Tab hover state */
+.public-good-tabs__tab:hover {
+  color: var(--public-good-color-link-hover, #003d7a);
+  background-color: var(--public-good-color-grey-5, #f0f0f0);
+  text-decoration: none;
+}
+
+/* Tab focus state */
+.public-good-tabs__tab:focus {
+  outline: 3px solid var(--public-good-color-focus, #ffeb3b);
+  outline-offset: -3px;
+  background-color: var(--public-good-color-focus, #ffeb3b);
+  color: var(--public-good-color-text, #212b32);
+  box-shadow: inset 0 0 0 2px var(--public-good-color-focus, #ffeb3b);
+}
+
+/* Active tab state */
+.public-good-tabs__tab[aria-selected="true"],
+.public-good-tabs__tab--active {
+  background-color: white;
+  color: var(--public-good-color-text, #212b32);
+  border-bottom-color: var(--public-good-color-link, #0066cc);
+  font-weight: var(--public-good-font-weight-bold, 700);
+  position: relative;
+  z-index: 1;
+}
+
+.public-good-tabs__tab[aria-selected="true"]:hover,
+.public-good-tabs__tab--active:hover {
+  background-color: white;
+  color: var(--public-good-color-text, #212b32);
+}
+
+/* Selected list item styling */
+.public-good-tabs__list-item--selected .public-good-tabs__tab {
+  background-color: white;
+  color: var(--public-good-color-text, #212b32);
+  border-bottom-color: var(--public-good-color-link, #0066cc);
+  font-weight: var(--public-good-font-weight-bold, 700);
+}
+
+/* Disabled tab state */
+.public-good-tabs__tab:disabled,
+.public-good-tabs__tab[aria-disabled="true"],
+.public-good-tabs__tab--disabled {
+  color: var(--public-good-color-text-secondary, #666666);
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.public-good-tabs__tab:disabled:hover,
+.public-good-tabs__tab[aria-disabled="true"]:hover,
+.public-good-tabs__tab--disabled:hover {
+  background-color: transparent;
+  color: var(--public-good-color-text-secondary, #666666);
+}
+
+/* Tab panels */
+.public-good-tabs__panel {
+  padding: var(--public-good-spacing-4, 24px);
+  background-color: white;
+  border: 1px solid var(--public-good-color-border, #d8dde0);
+  border-top: none;
+  border-radius: 0 0 var(--public-good-border-radius, 4px) var(--public-good-border-radius, 4px);
+  margin-bottom: var(--public-good-spacing-4, 24px);
+  min-height: 200px;
+}
+
+/* Hidden panels */
+.public-good-tabs__panel[hidden] {
+  display: none;
+}
+
+/* Active panel styling */
+.public-good-tabs__panel--active {
+  display: block;
+}
+
+/* Panel focus state for keyboard navigation */
+.public-good-tabs__panel:focus {
+  outline: 3px solid var(--public-good-color-focus, #ffeb3b);
+  outline-offset: -3px;
+}
+
+/* Vertical tabs variant */
+.public-good-tabs--vertical {
+  display: flex;
+  gap: 0;
+}
+
+.public-good-tabs--vertical .public-good-tabs__list {
+  flex-direction: column;
+  flex: 0 0 250px;
+  border-bottom: none;
+  border-right: 1px solid var(--public-good-color-border, #d8dde0);
+  border-radius: var(--public-good-border-radius, 4px) 0 0 var(--public-good-border-radius, 4px);
+}
+
+.public-good-tabs--vertical .public-good-tabs__tab {
+  text-align: left;
+  border-bottom: none;
+  border-right: 3px solid transparent;
+  padding: var(--public-good-spacing-3, 16px);
+}
+
+.public-good-tabs--vertical .public-good-tabs__tab[aria-selected="true"],
+.public-good-tabs--vertical .public-good-tabs__tab--active {
+  border-right-color: var(--public-good-color-link, #0066cc);
+  border-bottom-color: transparent;
+}
+
+.public-good-tabs--vertical .public-good-tabs__panel {
+  flex: 1;
+  border-left: none;
+  border-radius: 0 var(--public-good-border-radius, 4px) var(--public-good-border-radius, 4px) 0;
+  margin-bottom: 0;
+}
+
+/* Compact tabs variant */
+.public-good-tabs--compact .public-good-tabs__tab {
+  padding: var(--public-good-spacing-2, 12px) var(--public-good-spacing-3, 16px);
+  font-size: var(--public-good-font-size-small, 0.875rem);
+}
+
+.public-good-tabs--compact .public-good-tabs__panel {
+  padding: var(--public-good-spacing-3, 16px);
+  min-height: 150px;
+}
+
+/* Large tabs variant */
+.public-good-tabs--large .public-good-tabs__tab {
+  padding: var(--public-good-spacing-4, 24px) var(--public-good-spacing-5, 32px);
+  font-size: var(--public-good-font-size-large, 1.125rem);
+}
+
+.public-good-tabs--large .public-good-tabs__panel {
+  padding: var(--public-good-spacing-5, 32px);
+  min-height: 250px;
+}
+
+/* Borderless tabs variant */
+.public-good-tabs--borderless .public-good-tabs__list {
+  background-color: transparent;
+  border-bottom: 1px solid var(--public-good-color-border, #d8dde0);
+}
+
+.public-good-tabs--borderless .public-good-tabs__panel {
+  border: none;
+  border-top: 1px solid var(--public-good-color-border, #d8dde0);
+  border-radius: 0;
+  background-color: transparent;
+}
+
+/* Pills variant */
+.public-good-tabs--pills .public-good-tabs__list {
+  background-color: transparent;
+  border-bottom: none;
+  gap: var(--public-good-spacing-1, 8px);
+  padding: var(--public-good-spacing-2, 12px);
+}
+
+.public-good-tabs--pills .public-good-tabs__tab {
+  border-radius: var(--public-good-border-radius, 4px);
+  border: 1px solid var(--public-good-color-border, #d8dde0);
+  border-bottom: 1px solid var(--public-good-color-border, #d8dde0);
+  background-color: var(--public-good-color-grey-6, #f8f8f8);
+}
+
+.public-good-tabs--pills .public-good-tabs__tab[aria-selected="true"],
+.public-good-tabs--pills .public-good-tabs__tab--active {
+  background-color: var(--public-good-color-link, #0066cc);
+  color: white;
+  border-color: var(--public-good-color-link, #0066cc);
+  border-bottom-color: var(--public-good-color-link, #0066cc);
+}
+
+.public-good-tabs--pills .public-good-tabs__panel {
+  border: 1px solid var(--public-good-color-border, #d8dde0);
+  border-radius: var(--public-good-border-radius, 4px);
+}
+
+/* Mobile responsive behavior */
+@media (max-width: 768px) {
+  .public-good-tabs__list {
+    flex-direction: column;
+    border-radius: var(--public-good-border-radius, 4px);
+    border-bottom: none;
+  }
+
+  .public-good-tabs__tab {
+    text-align: left;
+    border-bottom: 1px solid var(--public-good-color-border-light, #e8edee);
+    border-radius: 0;
+    padding: var(--public-good-spacing-3, 16px);
+  }
+
+  .public-good-tabs__tab:last-child {
+    border-bottom: none;
+  }
+
+  .public-good-tabs__tab[aria-selected="true"],
+  .public-good-tabs__tab--active {
+    border-left: 4px solid var(--public-good-color-link, #0066cc);
+    border-bottom-color: var(--public-good-color-border-light, #e8edee);
+    padding-left: calc(var(--public-good-spacing-3, 16px) - 4px);
+  }
+
+  .public-good-tabs__panel {
+    border-radius: var(--public-good-border-radius, 4px);
+    border-top: 1px solid var(--public-good-color-border, #d8dde0);
+    margin-top: var(--public-good-spacing-2, 12px);
+    padding: var(--public-good-spacing-3, 16px);
+  }
+
+  /* Vertical tabs become horizontal on mobile */
+  .public-good-tabs--vertical {
+    flex-direction: column;
+  }
+
+  .public-good-tabs--vertical .public-good-tabs__list {
+    flex: none;
+    border-right: none;
+    border-radius: var(--public-good-border-radius, 4px);
+  }
+
+  .public-good-tabs--vertical .public-good-tabs__tab {
+    border-right: none;
+    border-left: none;
+    border-bottom: 1px solid var(--public-good-color-border-light, #e8edee);
+  }
+
+  .public-good-tabs--vertical .public-good-tabs__tab[aria-selected="true"],
+  .public-good-tabs--vertical .public-good-tabs__tab--active {
+    border-left: 4px solid var(--public-good-color-link, #0066cc);
+    border-right-color: transparent;
+    padding-left: calc(var(--public-good-spacing-3, 16px) - 4px);
+  }
+
+  .public-good-tabs--vertical .public-good-tabs__panel {
+    border-left: 1px solid var(--public-good-color-border, #d8dde0);
+    border-radius: var(--public-good-border-radius, 4px);
+  }
+}
+
+/* Small mobile devices */
+@media (max-width: 480px) {
+  .public-good-tabs__tab {
+    padding: var(--public-good-spacing-2, 12px);
+    font-size: var(--public-good-font-size-small, 0.875rem);
+  }
+
+  .public-good-tabs__panel {
+    padding: var(--public-good-spacing-2, 12px);
+    min-height: 150px;
+  }
+
+  .public-good-tabs--pills .public-good-tabs__list {
+    flex-direction: column;
+    gap: var(--public-good-spacing-1, 8px);
+  }
+}
+
+/* Progressive enhancement - when JS is disabled */
+@media (max-width: 768px) {
+  .public-good-tabs:not([data-module="public-good-tabs"]) .public-good-tabs__list {
+    display: none;
+  }
+
+  .public-good-tabs:not([data-module="public-good-tabs"]) .public-good-tabs__title {
+    display: block;
+  }
+
+  .public-good-tabs:not([data-module="public-good-tabs"]) .public-good-tabs__panel {
+    display: block !important;
+    border: 1px solid var(--public-good-color-border, #d8dde0);
+    border-radius: var(--public-good-border-radius, 4px);
+    margin-bottom: var(--public-good-spacing-3, 16px);
+  }
+
+  .public-good-tabs:not([data-module="public-good-tabs"]) .public-good-tabs__panel:before {
+    content: attr(aria-label);
+    display: block;
+    font-weight: var(--public-good-font-weight-bold, 700);
+    font-size: var(--public-good-font-size-large, 1.125rem);
+    margin-bottom: var(--public-good-spacing-3, 16px);
+    padding-bottom: var(--public-good-spacing-2, 12px);
+    border-bottom: 1px solid var(--public-good-color-border-light, #e8edee);
+    color: var(--public-good-color-link, #0066cc);
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .public-good-tabs__list {
+    border: 2px solid;
+  }
+
+  .public-good-tabs__tab {
+    border: 1px solid;
+  }
+
+  .public-good-tabs__tab[aria-selected="true"],
+  .public-good-tabs__tab--active {
+    background-color: Highlight;
+    color: HighlightText;
+    border-color: HighlightText;
+  }
+
+  .public-good-tabs__panel {
+    border: 2px solid;
+  }
+}
+
+/* Forced colors mode support (Windows High Contrast) */
+@media (forced-colors: active) {
+  .public-good-tabs__list {
+    border: 1px solid ButtonText;
+    background-color: ButtonFace;
+  }
+
+  .public-good-tabs__tab {
+    color: LinkText;
+    border-color: ButtonText;
+  }
+
+  .public-good-tabs__tab:hover {
+    background-color: Highlight;
+    color: HighlightText;
+  }
+
+  .public-good-tabs__tab[aria-selected="true"],
+  .public-good-tabs__tab--active {
+    background-color: ButtonFace;
+    color: ButtonText;
+    border-color: ButtonText;
+  }
+
+  .public-good-tabs__panel {
+    border: 1px solid ButtonText;
+    background-color: ButtonFace;
+    color: ButtonText;
+  }
+}
+
+/* Print styles */
+@media print {
+  .public-good-tabs__list {
+    display: none;
+  }
+
+  .public-good-tabs__title {
+    display: block !important;
+    page-break-after: avoid;
+  }
+
+  .public-good-tabs__panel {
+    display: block !important;
+    border: 1pt solid #000;
+    border-radius: 0;
+    padding: 12pt;
+    margin-bottom: 12pt;
+    page-break-inside: avoid;
+  }
+
+  .public-good-tabs__panel:before {
+    content: attr(aria-label);
+    display: block;
+    font-weight: bold;
+    font-size: 14pt;
+    margin-bottom: 6pt;
+    border-bottom: 1pt solid #000;
+    padding-bottom: 3pt;
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .public-good-tabs__tab {
+    transition: none;
+  }
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+  .public-good-tabs__list {
+    background-color: var(--public-good-color-grey-2, #2a2a2a);
+    border-color: var(--public-good-color-grey-3, #404040);
+  }
+
+  .public-good-tabs__tab {
+    color: var(--public-good-color-link-inverse, #66b3ff);
+  }
+
+  .public-good-tabs__tab:hover {
+    color: var(--public-good-color-link-hover-inverse, #99ccff);
+    background-color: var(--public-good-color-grey-3, #404040);
+  }
+
+  .public-good-tabs__tab[aria-selected="true"],
+  .public-good-tabs__tab--active {
+    background-color: var(--public-good-color-grey-1, #1a1a1a);
+    color: var(--public-good-color-white, #ffffff);
+    border-bottom-color: var(--public-good-color-link-inverse, #66b3ff);
+  }
+
+  .public-good-tabs__panel {
+    background-color: var(--public-good-color-grey-1, #1a1a1a);
+    border-color: var(--public-good-color-grey-3, #404040);
+    color: var(--public-good-color-white, #ffffff);
+  }
+}
+
+/* Focus management for keyboard navigation */
+.public-good-tabs__tab:focus-visible {
+  outline: 3px solid var(--public-good-color-focus, #ffeb3b);
+  outline-offset: -3px;
+}
+
+/* Loading state */
+.public-good-tabs--loading .public-good-tabs__panel {
+  position: relative;
+  opacity: 0.7;
+  pointer-events: none;
+}
+
+.public-good-tabs--loading .public-good-tabs__panel::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.6), transparent);
+  animation: tabsLoading 1.5s ease-in-out infinite;
+}
+
+@keyframes tabsLoading {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+/* Color variables for tabs */
+:root {
+  --public-good-color-grey-6: #f8f8f8;
+  --public-good-color-grey-5: #f0f0f0;
+  --public-good-color-grey-4: #e8e8e8;
+  --public-good-color-grey-3: #404040;
+  --public-good-color-grey-2: #2a2a2a;
+  --public-good-color-grey-1: #1a1a1a;
+  --public-good-color-border: #d8dde0;
+  --public-good-color-border-light: #e8edee;
+  --public-good-color-text-secondary: #666666;
+  --public-good-color-link-inverse: #66b3ff;
+  --public-good-color-link-hover-inverse: #99ccff;
+  --public-good-color-white: #ffffff;
+}

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Select - Basic Example</title>
+  <link rel="stylesheet" href="../../../styles/index.css">
+  <link rel="stylesheet" href="../select.css">
+</head>
+<body>
+  <div class="public-good-width-container">
+    <main class="public-good-main-wrapper">
+      <div class="public-good-grid-row">
+        <div class="public-good-grid-column-two-thirds">
+          <h1>Select - Basic Example</h1>
+          
+          <p class="public-good-body-l">
+            Use select to let users choose an option from a long list. Only use select as a last resort.
+          </p>
+
+          <div id="basic-example"></div>
+          
+          <h2>When to use select</h2>
+          <ul>
+            <li>when you have 4 or more options</li>
+            <li>when space is limited</li>
+            <li>when options are familiar to users</li>
+          </ul>
+
+          <h2>When not to use select</h2>
+          <ul>
+            <li>with less than 4 options - use radio buttons instead</li>
+            <li>when options are not familiar - users might not understand them</li>
+            <li>when you need users to compare options - use radio buttons</li>
+          </ul>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script type="module">
+    import { createSelect } from '../select.js'
+
+    // Basic select example
+    const basicSelect = createSelect({
+      name: 'country',
+      label: 'What is your country?',
+      options: [
+        { value: 'england', text: 'England' },
+        { value: 'northern-ireland', text: 'Northern Ireland' },
+        { value: 'scotland', text: 'Scotland' },
+        { value: 'wales', text: 'Wales' }
+      ]
+    })
+
+    document.getElementById('basic-example').appendChild(basicSelect.element)
+
+    // Add event listener for demonstration
+    basicSelect.element.addEventListener('public-good:select:changed', (event) => {
+      console.log('Selection changed:', event.detail.value)
+    })
+  </script>
+</body>
+</html>

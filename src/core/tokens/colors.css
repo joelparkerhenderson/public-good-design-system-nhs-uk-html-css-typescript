@@ -1,0 +1,100 @@
+/**
+ * Public Good Design System - Color Tokens
+ * Converted from NHS UK Design System colors
+ */
+
+:root {
+  /* Primary colors */
+  --public-good-color-blue: #005eb8;
+  --public-good-color-white: #ffffff;
+  --public-good-color-black: #000000;
+
+  /* Secondary colors */
+  --public-good-color-green: #00703c;
+  --public-good-color-purple: #330072;
+  --public-good-color-pink: #ae2573;
+  --public-good-color-red: #d5281b;
+  --public-good-color-orange: #ed8b00;
+  --public-good-color-yellow: #ffeb3b;
+
+  /* Grayscale */
+  --public-good-color-grey-1: #f0f4f5;
+  --public-good-color-grey-2: #d8dde0;
+  --public-good-color-grey-3: #aeb7bd;
+  --public-good-color-grey-4: #768692;
+  --public-good-color-grey-5: #425563;
+
+  /* State colors */
+  --public-good-color-focus: #ffdd00;
+  --public-good-color-error: #d5281b;
+  --public-good-color-success: #00703c;
+  --public-good-color-warning: #ed8b00;
+  --public-good-color-info: #005eb8;
+
+  /* Background colors */
+  --public-good-color-background: var(--public-good-color-white);
+  --public-good-color-background-alt: var(--public-good-color-grey-1);
+  --public-good-color-background-dark: var(--public-good-color-grey-5);
+  --public-good-color-background-disabled: var(--public-good-color-grey-1);
+
+  /* Text colors */
+  --public-good-color-text: var(--public-good-color-black);
+  --public-good-color-text-secondary: var(--public-good-color-grey-4);
+  --public-good-color-text-inverse: var(--public-good-color-white);
+
+  /* Border colors */
+  --public-good-color-border: var(--public-good-color-grey-3);
+  --public-good-color-border-light: var(--public-good-color-grey-2);
+  --public-good-color-border-dark: var(--public-good-color-grey-4);
+  --public-good-color-border-hover: var(--public-good-color-grey-4);
+  --public-good-color-border-subtle: var(--public-good-color-grey-2);
+  --public-good-color-border-disabled: var(--public-good-color-grey-2);
+
+  /* Link colors */
+  --public-good-color-link: var(--public-good-color-blue);
+  --public-good-color-link-hover: var(--public-good-color-purple);
+  --public-good-color-link-visited: var(--public-good-color-purple);
+  --public-good-color-link-active: var(--public-good-color-orange);
+
+  /* Focus */
+  --public-good-color-focus: #ffdd00;
+  --public-good-color-focus-text: #0b0c0c;
+  
+  /* Buttons */
+  --public-good-color-button-primary: #005eb8;
+  --public-good-color-button-primary-hover: #004494;
+  --public-good-color-button-primary-active: #003972;
+  --public-good-color-button-shadow: #003972;
+  
+  --public-good-color-button-secondary: #f0f4f5;
+  --public-good-color-button-secondary-text: #005eb8;
+  --public-good-color-button-secondary-hover: #d9e2e6;
+  --public-good-color-button-secondary-active: #c4d1d6;
+  --public-good-color-button-secondary-border: #768692;
+  --public-good-color-button-secondary-shadow: #c4d1d6;
+  
+  --public-good-color-button-secondary-solid: #768692;
+  
+  --public-good-color-button-reverse: #ffffff;
+  --public-good-color-button-reverse-text: #005eb8;
+  --public-good-color-button-reverse-hover: #f2f2f2;
+  --public-good-color-button-reverse-active: #d9d9d9;
+  --public-good-color-button-reverse-shadow: #d9d9d9;
+  
+  --public-good-color-button-warning: #da291c;
+  --public-good-color-button-warning-hover: #b71c1c;
+  --public-good-color-button-warning-active: #8b1c1c;
+  --public-good-color-button-warning-shadow: #8b1c1c;
+  
+  --public-good-color-button-success: #00703c;
+  --public-good-color-button-success-hover: #005530;
+  --public-good-color-button-success-active: #004225;
+  --public-good-color-button-success-shadow: #004225;
+  
+  /* Card colors */
+  --public-good-color-card-care-border: var(--public-good-color-info);
+  --public-good-color-card-care-background: var(--public-good-color-background);
+  --public-good-color-card-care-header-bg: var(--public-good-color-info);
+  --public-good-color-card-care-header-text: var(--public-good-color-text-inverse);
+  --public-good-color-card-care-arrow: var(--public-good-color-info);
+}

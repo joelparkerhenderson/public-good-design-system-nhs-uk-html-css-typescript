@@ -1,0 +1,203 @@
+/**
+ * Error Summary Component Styles
+ * Converted from NHS UK Design System to Public Good Design System
+ */
+
+.public-good-error-summary {
+  margin-bottom: var(--public-good-spacing-5);
+  border: var(--public-good-border-width-mobile, 4px) solid var(--public-good-color-error);
+  padding: var(--public-good-spacing-4);
+}
+
+@media (min-width: 768px) {
+  .public-good-error-summary {
+    margin-bottom: var(--public-good-spacing-7);
+    border-width: var(--public-good-border-width, 5px);
+  }
+}
+
+.public-good-error-summary:focus {
+  border: var(--public-good-focus-width) solid var(--public-good-color-focus);
+  box-shadow: 0 0 0 var(--public-good-focus-width) var(--public-good-color-focus);
+  outline: var(--public-good-focus-width) solid transparent;
+}
+
+.public-good-error-summary__title {
+  margin-top: 0;
+  margin-bottom: var(--public-good-spacing-4);
+  font-size: var(--public-good-font-size-large);
+  font-weight: var(--public-good-font-weight-bold);
+  line-height: var(--public-good-line-height-heading);
+  color: var(--public-good-color-text);
+}
+
+.public-good-error-summary__body {
+  font-size: var(--public-good-font-size-base);
+  line-height: var(--public-good-line-height-base);
+  color: var(--public-good-color-text);
+}
+
+.public-good-error-summary__body p {
+  margin-top: 0;
+  margin-bottom: var(--public-good-spacing-4);
+}
+
+.public-good-error-summary__list {
+  margin-bottom: 0;
+  margin-top: 0;
+  padding-left: var(--public-good-spacing-4);
+  list-style-type: disc;
+}
+
+.public-good-error-summary__list li {
+  margin-bottom: var(--public-good-spacing-1);
+}
+
+.public-good-error-summary__list a {
+  font-weight: var(--public-good-font-weight-bold);
+  color: var(--public-good-color-error);
+  text-decoration: underline;
+  text-decoration-thickness: max(1px, 0.0625rem);
+  text-underline-offset: 0.1em;
+}
+
+.public-good-error-summary__list a:link,
+.public-good-error-summary__list a:visited {
+  color: var(--public-good-color-error);
+}
+
+.public-good-error-summary__list a:hover {
+  color: var(--public-good-color-error-hover, var(--public-good-color-error));
+  text-decoration-thickness: max(3px, 0.1875rem, 0.12em);
+}
+
+.public-good-error-summary__list a:active {
+  color: var(--public-good-color-error-active, var(--public-good-color-error));
+}
+
+.public-good-error-summary__list a:focus {
+  outline: var(--public-good-focus-width) solid var(--public-good-color-focus);
+  outline-offset: 0;
+  color: var(--public-good-color-text);
+  background-color: var(--public-good-color-focus);
+  box-shadow: 0 -2px var(--public-good-color-focus), 0 4px var(--public-good-color-text);
+  text-decoration: none;
+}
+
+/* Responsive adjustments */
+@media (max-width: 767px) {
+  .public-good-error-summary {
+    padding: var(--public-good-spacing-3);
+  }
+  
+  .public-good-error-summary__title {
+    font-size: var(--public-good-font-size-medium);
+  }
+  
+  .public-good-error-summary__body {
+    font-size: var(--public-good-font-size-small);
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .public-good-error-summary {
+    border-width: 6px;
+  }
+  
+  .public-good-error-summary__list a {
+    text-decoration-thickness: 2px;
+  }
+  
+  .public-good-error-summary__list a:hover {
+    text-decoration-thickness: 4px;
+  }
+}
+
+/* Print styles */
+@media print {
+  .public-good-error-summary {
+    border: 2px solid #000;
+    background: #fff;
+    color: #000;
+    page-break-inside: avoid;
+  }
+  
+  .public-good-error-summary__list a {
+    color: #000 !important;
+    text-decoration: underline !important;
+  }
+  
+  .public-good-error-summary__list a::after {
+    content: " (" attr(href) ")";
+    font-size: 0.9em;
+    font-weight: normal;
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .public-good-error-summary:focus {
+    transition: none;
+  }
+  
+  .public-good-error-summary__list a {
+    transition: none;
+  }
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+  .public-good-error-summary {
+    border-color: var(--public-good-color-error-dark, #ff6b6b);
+    background-color: var(--public-good-color-background-dark, #1a1a1a);
+  }
+  
+  .public-good-error-summary__list a {
+    color: var(--public-good-color-error-dark, #ff6b6b);
+  }
+}
+
+/* Animation for when error summary appears */
+.public-good-error-summary[aria-hidden="false"] {
+  animation: error-summary-appear 0.3s ease-in-out;
+}
+
+@keyframes error-summary-appear {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Focus management styles */
+.public-good-error-summary[tabindex="-1"]:focus {
+  outline-offset: -4px;
+}
+
+/* Ensure proper spacing when error summary is at top of page */
+.public-good-error-summary:first-child {
+  margin-top: var(--public-good-spacing-4);
+}
+
+/* Live region for screen reader announcements */
+.public-good-error-summary[role="alert"] {
+  /* Ensure alert is announced */
+  position: relative;
+}
+
+/* Error count indicator */
+.public-good-error-summary__count {
+  font-weight: var(--public-good-font-weight-bold);
+  color: var(--public-good-color-error);
+}
+
+/* Hide error summary when no errors */
+.public-good-error-summary:empty,
+.public-good-error-summary[data-error-count="0"] {
+  display: none;
+}

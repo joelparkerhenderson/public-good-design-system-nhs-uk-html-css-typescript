@@ -1,0 +1,92 @@
+/**
+ * Character Count Component Styles
+ * Converted from NHS UK Design System to Public Good Design System
+ */
+
+.public-good-character-count {
+  margin-bottom: var(--public-good-spacing-6);
+}
+
+.public-good-character-count .public-good-form-group,
+.public-good-character-count .public-good-textarea {
+  margin-bottom: var(--public-good-spacing-1);
+}
+
+.public-good-character-count__message {
+  margin-bottom: 0;
+  margin-top: 0;
+}
+
+.public-good-character-count__message--disabled {
+  visibility: hidden;
+}
+
+.public-good-character-count__status {
+  font-weight: var(--public-good-font-weight-bold);
+  font-size: var(--public-good-font-size-small);
+  line-height: var(--public-good-line-height-small);
+  margin-top: var(--public-good-spacing-1);
+  margin-bottom: 0;
+  padding: var(--public-good-spacing-1) 0;
+}
+
+.public-good-character-count__sr-status {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  overflow: hidden !important;
+  clip: rect(0 0 0 0) !important;
+  clip-path: inset(50%) !important;
+  border: 0 !important;
+  white-space: nowrap !important;
+}
+
+/* Threshold and error states */
+.public-good-character-count__status.public-good-error-message {
+  color: var(--public-good-color-error);
+  border-left: var(--public-good-border-width-thick) solid var(--public-good-color-error);
+  padding-left: var(--public-good-spacing-2);
+}
+
+.public-good-character-count__status.public-good-hint {
+  color: var(--public-good-color-text-secondary);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .public-good-character-count {
+    margin-bottom: var(--public-good-spacing-4);
+  }
+  
+  .public-good-character-count__status {
+    font-size: var(--public-good-font-size-small);
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .public-good-character-count__status.public-good-error-message {
+    border-left-width: calc(var(--public-good-border-width-thick) * 1.5);
+  }
+}
+
+/* Focus and interaction states */
+.public-good-character-count .public-good-textarea:focus + .public-good-character-count__status {
+  /* Ensure count message is visible when textarea is focused */
+  opacity: 1;
+}
+
+/* Animation for count updates */
+.public-good-character-count__status {
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+
+/* Print styles */
+@media print {
+  .public-good-character-count__status,
+  .public-good-character-count__sr-status {
+    display: none !important;
+  }
+}

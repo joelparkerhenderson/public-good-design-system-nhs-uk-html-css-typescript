@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Table Component - Basic Examples</title>
+    <link rel="stylesheet" href="../../../core/base.css">
+    <link rel="stylesheet" href="../table.css">
+    <style>
+        body {
+            margin: 0;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f8f9fa;
+        }
+        .example-notice {
+            background: #e8f4fd;
+            color: #003d7a;
+            padding: 1rem;
+            margin: 1rem;
+            border-left: 4px solid #0066cc;
+            border-radius: 0 4px 4px 0;
+        }
+        .example-notice strong {
+            color: #003d7a;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        .example-section {
+            margin-bottom: 3rem;
+            padding: 2rem;
+            background: white;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+        .example-section h2 {
+            margin-top: 0;
+            color: #0066cc;
+            border-bottom: 2px solid #0066cc;
+            padding-bottom: 0.5rem;
+        }
+        .example-section h3 {
+            color: #495057;
+            margin-top: 2rem;
+        }
+        .demo-controls {
+            margin: 1rem 0;
+            padding: 1rem;
+            background: #f8f9fa;
+            border-radius: 4px;
+            border-left: 4px solid #17a2b8;
+        }
+        .demo-controls button {
+            margin: 0.25rem;
+            padding: 0.5rem 1rem;
+            background: #0066cc;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.875rem;
+        }
+        .demo-controls button:hover {
+            background: #003d7a;
+        }
+        .demo-controls button:disabled {
+            background: #6c757d;
+            cursor: not-allowed;
+        }
+        .code-block {
+            background: #2d3748;
+            color: #e2e8f0;
+            padding: 1rem;
+            border-radius: 4px;
+            font-family: 'Courier New', Consolas, Monaco, monospace;
+            font-size: 0.875rem;
+            overflow-x: auto;
+            margin: 1rem 0;
+        }
+        .table-wrapper {
+            margin: 2rem 0;
+            overflow-x: auto;
+        }
+        /* Color variables for examples */
+        :root {
+            --public-good-color-text: #212b32;
+            --public-good-color-text-secondary: #666666;
+            --public-good-color-link: #0066cc;
+            --public-good-color-link-hover: #003d7a;
+            --public-good-color-focus: #ffeb3b;
+            --public-good-spacing-1: 8px;
+            --public-good-spacing-2: 12px;
+            --public-good-spacing-3: 16px;
+            --public-good-spacing-4: 24px;
+            --public-good-spacing-5: 32px;
+        }
+        /* Mobile responsive */
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+            .example-section {
+                padding: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="example-notice">
+            <strong>Interactive Examples:</strong> These tables demonstrate different table styles and functionalities. Try sorting, resizing your browser window to see responsive behavior, and testing with keyboard navigation.
+        </div>
+
+        <div class="example-section">
+            <h1>Table Component - Basic Examples</h1>
+            <p>This page demonstrates the Table component with various configurations including basic tables, sortable tables, responsive tables, and different styling variants.</p>
+        </div>
+
+        <div class="example-section">
+            <h2>Basic Table</h2>
+            <p>A simple data table with standard styling and semantic HTML structure.</p>
+            
+            <div class="table-wrapper">
+                <table class="public-good-table">
+                    <caption class="public-good-table__caption">Patient symptoms and possible causes</caption>
+                    <thead class="public-good-table__head">
+                        <tr class="public-good-table__row">
+                            <th scope="col" class="public-good-table__header">Symptom</th>
+                            <th scope="col" class="public-good-table__header">Possible cause</th>
+                            <th scope="col" class="public-good-table__header">Action needed</th>
+                        </tr>
+                    </thead>
+                    <tbody class="public-good-table__body">
+                        <tr class="public-good-table__row">
+                            <td class="public-good-table__cell">Persistent cough with fever</td>
+                            <td class="public-good-table__cell">Respiratory infection</td>
+                            <td class="public-good-table__cell">See healthcare provider within 24 hours</td>
+                        </tr>
+                        <tr class="public-good-table__row">
+                            <td class="public-good-table__cell">Sudden severe headache</td>
+                            <td class="public-good-table__cell">Migraine or tension headache</td>
+                            <td class="public-good-table__cell">Take pain relief and rest</td>
+                        </tr>
+                        <tr class="public-good-table__row">
+                            <td class="public-good-table__cell">Chest pain with shortness of breath</td>
+                            <td class="public-good-table__cell">Cardiac or respiratory issue</td>
+                            <td class="public-good-table__cell"><strong>Seek immediate medical attention</strong></td>
+                        </tr>
+                        <tr class="public-good-table__row">
+                            <td class="public-good-table__cell">Skin rash with itching</td>
+                            <td class="public-good-table__cell">Allergic reaction or eczema</td>
+                            <td class="public-good-table__cell">Use antihistamine and monitor</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="code-block">
+&lt;table class="public-good-table"&gt;
+  &lt;caption class="public-good-table__caption"&gt;Patient symptoms and possible causes&lt;/caption&gt;
+  &lt;thead class="public-good-table__head"&gt;
+    &lt;tr class="public-good-table__row"&gt;
+      &lt;th scope="col" class="public-good-table__header"&gt;Symptom&lt;/th&gt;
+      &lt;th scope="col" class="public-good-table__header"&gt;Possible cause&lt;/th&gt;
+      &lt;th scope="col" class="public-good-table__header"&gt;Action needed&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody class="public-good-table__body"&gt;
+    &lt;tr class="public-good-table__row"&gt;
+      &lt;td class="public-good-table__cell"&gt;Persistent cough with fever&lt;/td&gt;
+      &lt;td class="public-good-table__cell"&gt;Respiratory infection&lt;/td&gt;
+      &lt;td class="public-good-table__cell"&gt;See healthcare provider within 24 hours&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;!-- More rows --&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+            </div>
+        </div>
+
+        <div class="example-section">
+            <h2>Numeric Data Table</h2>
+            <p>A table with numeric columns that are right-aligned for better readability.</p>
+            
+            <div class="table-wrapper">
+                <table class="public-good-table">
+                    <caption class="public-good-table__caption">Prescription charges comparison</caption>
+                    <thead class="public-good-table__head">
+                        <tr class="public-good-table__row">
+                            <th scope="col" class="public-good-table__header">Service</th>
+                            <th scope="col" class="public-good-table__header public-good-table__header--numeric">Current charge</th>
+                            <th scope="col" class="public-good-table__header public-good-table__header--numeric">New charge</th>
+                            <th scope="col" class="public-good-table__header public-good-table__header--numeric">Change</th>
+                        </tr>
+                    </thead>
+                    <tbody class="public-good-table__body">
+                        <tr class="public-good-table__row">
+                            <th scope="row" class="public-good-table__header">Single prescription</th>
+                            <td class="public-good-table__cell public-good-table__cell--numeric">£9.65</td>
+                            <td class="public-good-table__cell public-good-table__cell--numeric">£9.90</td>
+                            <td class="public-good-table__cell public-good-table__cell--numeric">+£0.25</td>
+                        </tr>
+                        <tr class="public-good-table__row">
+                            <th scope="row" class="public-good-table__header">3-month prepayment</th>
+                            <td class="public-good-table__cell public-good-table__cell--numeric">£31.25</td>
+                            <td class="public-good-table__cell public-good-table__cell--numeric">£32.05</td>
+                            <td class="public-good-table__cell public-good-table__cell--numeric">+£0.80</td>
+                        </tr>
+                        <tr class="public-good-table__row">
+                            <th scope="row" class="public-good-table__header">12-month prepayment</th>
+                            <td class="public-good-table__cell public-good-table__cell--numeric">£111.60</td>
+                            <td class="public-good-table__cell public-good-table__cell--numeric">£114.50</td>
+                            <td class="public-good-table__cell public-good-table__cell--numeric">+£2.90</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="code-block">
+&lt;th scope="col" class="public-good-table__header public-good-table__header--numeric"&gt;Amount&lt;/th&gt;
+&lt;td class="public-good-table__cell public-good-table__cell--numeric"&gt;£9.65&lt;/td&gt;
+            </div>
+        </div>
+
+        <div class="example-section">
+            <h2>Sortable Table</h2>
+            <p>A table with sorting functionality. Click on column headers to sort the data.</p>
+            
+            <div class="demo-controls">
+                <strong>Try these actions:</strong>
+                <button onclick="sortTable('name', 'asc')">Sort by Name (A-Z)</button>
+                <button onclick="sortTable('score', 'desc')">Sort by Score (High-Low)</button>
+                <button onclick="clearTableSort()">Reset Sort</button>
+            </div>
+            
+            <div class="table-wrapper">
+                <table id="sortable-table" class="public-good-table public-good-table--sortable" data-module="public-good-table" data-sortable="true">
+                    <caption class="public-good-table__caption">Student assessment scores</caption>
+                    <thead class="public-good-table__head">
+                        <tr class="public-good-table__row">
+                            <th scope="col" class="public-good-table__header public-good-table__header--sortable" data-column="name">
+                                Student Name
+                                <button class="public-good-table__sort-button" type="button" aria-label="Sort by Student Name">
+                                    <span class="public-good-table__sort-icon" aria-hidden="true"></span>
+                                </button>
+                            </th>
+                            <th scope="col" class="public-good-table__header public-good-table__header--sortable public-good-table__header--numeric" data-column="score">
+                                Score
+                                <button class="public-good-table__sort-button" type="button" aria-label="Sort by Score">
+                                    <span class="public-good-table__sort-icon" aria-hidden="true"></span>
+                                </button>
+                            </th>
+                            <th scope="col" class="public-good-table__header public-good-table__header--sortable" data-column="grade">
+                                Grade
+                                <button class="public-good-table__sort-button" type="button" aria-label="Sort by Grade">
+                                    <span class="public-good-table__sort-icon" aria-hidden="true"></span>
+                                </button>
+                            </th>
+                            <th scope="col" class="public-good-table__header" data-no-sort>
+                                Actions
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody class="public-good-table__body">
+                        <tr class="public-good-table__row">
+                            <td class="public-good-table__cell">Alice Johnson</td>
+                            <td class="public-good-table__cell public-good-table__cell--numeric">95</td>
+                            <td class="public-good-table__cell">A</td>
+                            <td class="public-good-table__cell">
+                                <button type="button" style="padding: 0.25rem 0.5rem; font-size: 0.75rem;">View Details</button>
+                            </td>
+                        </tr>
+                        <tr class="public-good-table__row">
+                            <td class="public-good-table__cell">Bob Smith</td>
+                            <td class="public-good-table__cell public-good-table__cell--numeric">87</td>
+                            <td class="public-good-table__cell">B+</td>
+                            <td class="public-good-table__cell">
+                                <button type="button" style="padding: 0.25rem 0.5rem; font-size: 0.75rem;">View Details</button>
+                            </td>
+                        </tr>
+                        <tr class="public-good-table__row">
+                            <td class="public-good-table__cell">Charlie Brown</td>
+                            <td class="public-good-table__cell public-good-table__cell--numeric">92</td>
+                            <td class="public-good-table__cell">A-</td>
+                            <td class="public-good-table__cell">
+                                <button type="button" style="padding: 0.25rem 0.5rem; font-size: 0.75rem;">View Details</button>
+                            </td>
+                        </tr>
+                        <tr class="public-good-table__row">
+                            <td class="public-good-table__cell">Diana Prince</td>
+                            <td class="public-good-table__cell public-good-table__cell--numeric">98</td>
+                            <td class="public-good-table__cell">A+</td>
+                            <td class="public-good-table__cell">
+                                <button type="button" style="padding: 0.25rem 0.5rem; font-size: 0.75rem;">View Details</button>
+                            </td>
+                        </tr>
+                        <tr class="public-good-table__row">
+                            <td class="public-good-table__cell">Edward Wilson</td>
+                            <td class="public-good-table__cell public-good-table__cell--numeric">78</td>
+                            <td class="public-good-table__cell">C+</td>
+                            <td class="public-good-table__cell">
+                                <button type="button" style="padding: 0.25rem 0.5rem; font-size: 0.75rem;">View Details</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="code-block">
+&lt;table class="public-good-table public-good-table--sortable" data-module="public-good-table" data-sortable="true"&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th scope="col" class="public-good-table__header public-good-table__header--sortable" data-column="name"&gt;
+        Student Name
+        &lt;button class="public-good-table__sort-button" type="button" aria-label="Sort by Student Name"&gt;
+          &lt;span class="public-good-table__sort-icon" aria-hidden="true"&gt;&lt;/span&gt;
+        &lt;/button&gt;
+      &lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+&lt;/table&gt;
+            </div>
+        </div>
+
+        <div class="example-section">
+            <h2>Responsive Table</h2>
+            <p>This table adapts to smaller screens by stacking data vertically. Resize your browser window to see the responsive behavior.</p>
+            
+            <div class="table-wrapper">
+                <table class="public-good-table public-good-table--responsive" data-module="public-good-table" data-responsive="true">
+                    <caption class="public-good-table__caption">Medical appointment schedule</caption>
+                    <thead class="public-good-table__head">
+                        <tr class="public-good-table__row">
+                            <th scope="col" class="public-good-table__header">Date</th>
+                            <th scope="col" class="public-good-table__header">Time</th>
+                            <th scope="col" class="public-good-table__header">Patient</th>
+                            <th scope="col" class="public-good-table__header">Type</th>
+                            <th scope="col" class="public-good-table__header">Doctor</th>
+                            <th scope="col" class="public-good-table__header">Status</th>
+                        </tr>
+                    </thead>
+                    <tbody class="public-good-table__body">
+                        <tr class="public-good-table__row">
+                            <td class="public-good-table__cell" data-label="Date">Monday, 20 Aug 2024</td>
+                            <td class="public-good-table__cell" data-label="Time">9:00 AM</td>
+                            <td class="public-good-table__cell" data-label="Patient">Sarah Connor</td>
+                            <td class="public-good-table__cell" data-label="Type">Check-up</td>
+                            <td class="public-good-table__cell" data-label="Doctor">Dr. Smith</td>
+                            <td class="public-good-table__cell" data-label="Status">Confirmed</td>
+                        </tr>
+                        <tr class="public-good-table__row">
+                            <td class="public-good-table__cell" data-label="Date">Monday, 20 Aug 2024</td>
+                            <td class="public-good-table__cell" data-label="Time">10:30 AM</td>
+                            <td class="public-good-table__cell" data-label="Patient">John Walker</td>
+                            <td class="public-good-table__cell" data-label="Type">Follow-up</td>
+                            <td class="public-good-table__cell" data-label="Doctor">Dr. Johnson</td>
+                            <td class="public-good-table__cell" data-label="Status">Pending</td>
+                        </tr>
+                        <tr class="public-good-table__row">
+                            <td class="public-good-table__cell" data-label="Date">Monday, 20 Aug 2024</td>
+                            <td class="public-good-table__cell" data-label="Time">2:00 PM</td>
+                            <td class="public-good-table__cell" data-label="Patient">Maria Garcia</td>
+                            <td class="public-good-table__cell" data-label="Type">Consultation</td>
+                            <td class="public-good-table__cell" data-label="Doctor">Dr. Brown</td>
+                            <td class="public-good-table__cell" data-label="Status">Confirmed</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="code-block">
+&lt;table class="public-good-table public-good-table--responsive" data-module="public-good-table" data-responsive="true"&gt;
+  &lt;!-- Table content with data-label attributes for mobile --&gt;
+  &lt;td class="public-good-table__cell" data-label="Date"&gt;Monday, 20 Aug 2024&lt;/td&gt;
+&lt;/table&gt;
+            </div>
+        </div>
+
+        <div class="example-section">
+            <h2>Table Variants</h2>
+            <p>Different styling variants for tables including striped, compact, and bordered styles.</p>
+
+            <h3>Striped Table</h3>
+            <div class="table-wrapper">
+                <table class="public-good-table public-good-table--striped">
+                    <caption class="public-good-table__caption">Service availability</caption>
+                    <thead class="public-good-table__head">
+                        <tr class="public-good-table__row">
+                            <th scope="col" class="public-good-table__header">Service</th>
+                            <th scope="col" class="public-good-table__header">Availability</th>
+                            <th scope="col" class="public-good-table__header">Contact</th>
+                        </tr>
+                    </thead>
+                    <tbody class="public-good-table__body">
+                        <tr class="public-good-table__row">
+                            <td class="public-good-table__cell">Emergency Services</td>
+                            <td class="public-good-table__cell">24/7</td>
+                            <td class="public-good-table__cell">999</td>
+                        </tr>
+                        <tr class="public-good-table__row">
+                            <td class="public-good-table__cell">GP Services</td>
+                            <td class="public-good-table__cell">Mon-Fri 8AM-6PM</td>
+                            <td class="public-good-table__cell">Call surgery</td>
+                        </tr>
+                        <tr class="public-good-table__row">
+                            <td class="public-good-table__cell">Pharmacy</td>
+                            <td class="public-good-table__cell">Mon-Sat 9AM-5PM</td>
+                            <td class="public-good-table__cell">01234 567890</td>
+                        </tr>
+                        <tr class="public-good-table__row">
+                            <td class="public-good-table__cell">Mental Health Support</td>
+                            <td class="public-good-table__cell">Mon-Fri 9AM-5PM</td>
+                            <td class="public-good-table__cell">Online booking</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3>Compact Bordered Table</h3>
+            <div class="table-wrapper">
+                <table class="public-good-table public-good-table--compact public-good-table--bordered">
+                    <caption class="public-good-table__caption">Quick reference guide</caption>
+                    <thead class="public-good-table__head">
+                        <tr class="public-good-table__row">
+                            <th scope="col" class="public-good-table__header">Code</th>
+                            <th scope="col" class="public-good-table__header">Description</th>
+                            <th scope="col" class="public-good-table__header">Status</th>
+                        </tr>
+                    </thead>
+                    <tbody class="public-good-table__body">
+                        <tr class="public-good-table__row">
+                            <td class="public-good-table__cell">A01</td>
+                            <td class="public-good-table__cell">Primary assessment</td>
+                            <td class="public-good-table__cell">Active</td>
+                        </tr>
+                        <tr class="public-good-table__row">
+                            <td class="public-good-table__cell">B02</td>
+                            <td class="public-good-table__cell">Secondary review</td>
+                            <td class="public-good-table__cell">Pending</td>
+                        </tr>
+                        <tr class="public-good-table__row">
+                            <td class="public-good-table__cell">C03</td>
+                            <td class="public-good-table__cell">Final evaluation</td>
+                            <td class="public-good-table__cell">Complete</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="example-section">
+            <h2>Accessibility Features</h2>
+            <p>All tables include proper accessibility features:</p>
+            <ul>
+                <li><strong>Captions:</strong> Descriptive table captions for screen readers</li>
+                <li><strong>Scope attributes:</strong> Proper header-data relationships</li>
+                <li><strong>Keyboard navigation:</strong> Full keyboard support for sortable tables</li>
+                <li><strong>ARIA labels:</strong> Clear labeling for interactive elements</li>
+                <li><strong>Focus indicators:</strong> Visible focus states for accessibility</li>
+            </ul>
+
+            <h3>Testing Your Tables</h3>
+            <ol>
+                <li><strong>Keyboard Test:</strong> Use Tab, Enter, and Space to navigate and sort</li>
+                <li><strong>Screen Reader Test:</strong> Test with NVDA, JAWS, or VoiceOver</li>
+                <li><strong>Mobile Test:</strong> Check responsive behavior on small screens</li>
+                <li><strong>Sort Test:</strong> Verify sorting works correctly with various data types</li>
+                <li><strong>High Contrast Test:</strong> Check visibility in high contrast mode</li>
+            </ol>
+        </div>
+    </div>
+
+    <script type="module">
+        import { 
+            Table,
+            initializeTables,
+            validateTableAccessibility
+        } from '../table.js';
+        
+        let sortableTableInstance = null;
+        
+        document.addEventListener('DOMContentLoaded', () => {
+            // Initialize all tables with data-module attribute
+            const instances = initializeTables();
+            console.log(`Initialized ${instances.length} table instances`);
+            
+            // Get specific sortable table instance for demo controls
+            const sortableTable = document.getElementById('sortable-table');
+            if (sortableTable) {
+                sortableTableInstance = instances.find(instance => 
+                    instance.getElement() === sortableTable
+                );
+            }
+
+            // Add event listeners for table events
+            instances.forEach(instance => {
+                const element = instance.getElement();
+                element.addEventListener('table:sorted', (event) => {
+                    console.log('Table sorted:', {
+                        column: event.detail.column,
+                        direction: event.detail.direction,
+                        table: element.caption?.textContent || 'Unnamed table'
+                    });
+                });
+            });
+
+            // Validate table accessibility
+            const validation = validateTableAccessibility();
+            console.log('Table accessibility validation:', validation);
+            
+            if (validation.issues.length === 0) {
+                console.log('✓ All tables are accessible');
+            } else {
+                console.warn('Table accessibility issues found:', validation.issues);
+            }
+
+            // Make demo functions available globally
+            window.sortTable = (column, direction) => {
+                if (sortableTableInstance) {
+                    sortableTableInstance.setSort(column, direction);
+                }
+            };
+
+            window.clearTableSort = () => {
+                if (sortableTableInstance) {
+                    sortableTableInstance.clearSort();
+                }
+            };
+
+            // Log instructions for testing
+            console.log(`
+Table Testing Instructions:
+1. Click column headers in sortable tables to sort
+2. Use Tab and Enter keys for keyboard navigation
+3. Resize browser window to test responsive behavior
+4. Try the demo control buttons
+
+Found ${validation.tables.length} tables on this page with ${instances.length} interactive instances.
+            `);
+
+            // Show responsive behavior hint
+            const showResponsiveHint = () => {
+                const isSmallScreen = window.innerWidth <= 768;
+                const responsiveTables = document.querySelectorAll('.public-good-table--responsive');
+                
+                if (isSmallScreen && responsiveTables.length > 0) {
+                    console.log('📱 Responsive tables are now in mobile mode - data is stacked vertically');
+                } else if (responsiveTables.length > 0) {
+                    console.log('🖥️ Responsive tables are in desktop mode - try resizing to see mobile behavior');
+                }
+            };
+
+            showResponsiveHint();
+            window.addEventListener('resize', showResponsiveHint);
+
+            // Keyboard navigation help
+            document.addEventListener('keydown', (event) => {
+                if (event.key === 'F1') {
+                    event.preventDefault();
+                    alert(`
+Table Keyboard Navigation Help:
+• Tab: Move to next interactive element
+• Enter/Space: Sort by column (in sortable tables)
+• Arrow Keys: Navigate within table cells
+• Shift+Tab: Move to previous interactive element
+
+Table Features:
+• Click column headers to sort data
+• Tables adapt to small screens automatically
+• All content is accessible via keyboard
+                    `);
+                }
+            });
+
+            // Show help hint
+            setTimeout(() => {
+                if (!sessionStorage.getItem('table-help-shown')) {
+                    console.log('💡 Press F1 for keyboard navigation help');
+                    sessionStorage.setItem('table-help-shown', 'true');
+                }
+            }, 2000);
+        });
+    </script>
+</body>
+</html>

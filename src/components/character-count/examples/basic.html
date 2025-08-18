@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Character Count - Basic Example</title>
+    <link rel="stylesheet" href="../../../core/base.css">
+    <link rel="stylesheet" href="../character-count.css">
+    <style>
+        body {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+        .example {
+            margin-bottom: 3rem;
+            padding: 2rem;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+        }
+        .example h3 {
+            margin-top: 0;
+            color: #0066cc;
+        }
+    </style>
+</head>
+<body>
+    <h1>Character Count Component - Basic Examples</h1>
+    
+    <div class="example">
+        <h3>Basic Character Count (100 characters)</h3>
+        <div class="public-good-character-count" data-module="public-good-character-count" data-maxlength="100">
+            <div class="public-good-form-group">
+                <label class="public-good-label" for="feedback-basic">
+                    Feedback
+                </label>
+                <textarea class="public-good-textarea public-good-js-character-count" 
+                          id="feedback-basic" 
+                          name="feedback" 
+                          rows="5"
+                          aria-describedby="feedback-basic-info"></textarea>
+                <div id="feedback-basic-info" class="public-good-hint public-good-character-count__message">
+                    You can enter up to 100 characters
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="example">
+        <h3>Character Count with Hint (200 characters)</h3>
+        <div class="public-good-character-count" data-module="public-good-character-count" data-maxlength="200">
+            <div class="public-good-form-group">
+                <label class="public-good-label" for="comments-hint">
+                    Additional comments
+                </label>
+                <div id="comments-hint-hint" class="public-good-hint">
+                    Please provide any additional information that might be helpful
+                </div>
+                <textarea class="public-good-textarea public-good-js-character-count" 
+                          id="comments-hint" 
+                          name="comments" 
+                          rows="4"
+                          aria-describedby="comments-hint-hint comments-hint-info"></textarea>
+                <div id="comments-hint-info" class="public-good-hint public-good-character-count__message">
+                    You can enter up to 200 characters
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="example">
+        <h3>Word Count (50 words)</h3>
+        <div class="public-good-character-count" data-module="public-good-character-count" data-maxwords="50">
+            <div class="public-good-form-group">
+                <label class="public-good-label" for="description-words">
+                    Description
+                </label>
+                <textarea class="public-good-textarea public-good-js-character-count" 
+                          id="description-words" 
+                          name="description" 
+                          rows="6"
+                          aria-describedby="description-words-info"></textarea>
+                <div id="description-words-info" class="public-good-hint public-good-character-count__message">
+                    You can enter up to 50 words
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="example">
+        <h3>Character Count with Threshold (150 characters, 75% threshold)</h3>
+        <p>The counter only appears when you reach 75% of the limit (113+ characters).</p>
+        <div class="public-good-character-count" data-module="public-good-character-count" data-maxlength="150" data-threshold="75">
+            <div class="public-good-form-group">
+                <label class="public-good-label" for="feedback-threshold">
+                    Detailed feedback
+                </label>
+                <textarea class="public-good-textarea public-good-js-character-count" 
+                          id="feedback-threshold" 
+                          name="detailed-feedback" 
+                          rows="5"
+                          aria-describedby="feedback-threshold-info"></textarea>
+                <div id="feedback-threshold-info" class="public-good-hint public-good-character-count__message">
+                    You can enter up to 150 characters
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="example">
+        <h3>Character Count with Error State</h3>
+        <div class="public-good-character-count" data-module="public-good-character-count" data-maxlength="100">
+            <div class="public-good-form-group public-good-form-group--error">
+                <label class="public-good-label" for="feedback-error">
+                    Feedback (required)
+                </label>
+                <p id="feedback-error-error" class="public-good-error-message">
+                    <span class="public-good-u-visually-hidden">Error: </span>
+                    Enter your feedback
+                </p>
+                <textarea class="public-good-textarea public-good-js-character-count public-good-textarea--error" 
+                          id="feedback-error" 
+                          name="feedback-error" 
+                          rows="4"
+                          aria-describedby="feedback-error-error feedback-error-info"></textarea>
+                <div id="feedback-error-info" class="public-good-hint public-good-character-count__message">
+                    You can enter up to 100 characters
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="module">
+        import { initializeCharacterCounts } from '../character-count.js';
+        
+        // Initialize all character count components on the page
+        document.addEventListener('DOMContentLoaded', () => {
+            initializeCharacterCounts();
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,301 @@
+/**
+ * Tag Component
+ * Converted from NHS UK Design System to Public Good Design System
+ * 
+ * Styles for status indicators with color variants.
+ */
+
+.public-good-tag {
+  display: inline-block;
+  padding: var(--public-good-spacing-1, 4px) var(--public-good-spacing-2, 8px);
+  margin-right: var(--public-good-spacing-2, 8px);
+  margin-bottom: var(--public-good-spacing-1, 4px);
+  font-family: var(--public-good-font-family, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif);
+  font-size: var(--public-good-font-size-small, 0.875rem);
+  font-weight: var(--public-good-font-weight-bold, 700);
+  line-height: var(--public-good-line-height-tight, 1.2);
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border-radius: var(--public-good-border-radius-small, 2px);
+  white-space: nowrap;
+  
+  /* Default color scheme (blue) */
+  background-color: var(--public-good-color-blue, #0066cc);
+  color: var(--public-good-color-white, #ffffff);
+  border: 1px solid transparent;
+}
+
+/* Ensure proper contrast and readability */
+.public-good-tag:not(:last-child) {
+  margin-right: var(--public-good-spacing-2, 8px);
+}
+
+/* Grey variant */
+.public-good-tag--grey {
+  background-color: var(--public-good-color-grey-3, #666666);
+  color: var(--public-good-color-white, #ffffff);
+}
+
+/* Red variant */
+.public-good-tag--red {
+  background-color: var(--public-good-color-red, #d32f2f);
+  color: var(--public-good-color-white, #ffffff);
+}
+
+/* Green variant */
+.public-good-tag--green {
+  background-color: var(--public-good-color-green, #388e3c);
+  color: var(--public-good-color-white, #ffffff);
+}
+
+/* Blue variant (explicit) */
+.public-good-tag--blue {
+  background-color: var(--public-good-color-blue, #0066cc);
+  color: var(--public-good-color-white, #ffffff);
+}
+
+/* White variant */
+.public-good-tag--white {
+  background-color: var(--public-good-color-white, #ffffff);
+  color: var(--public-good-color-text, #212b32);
+  border-color: var(--public-good-color-border, #d8dde0);
+}
+
+/* Aqua green variant */
+.public-good-tag--aqua-green {
+  background-color: var(--public-good-color-aqua-green, #00897b);
+  color: var(--public-good-color-white, #ffffff);
+}
+
+/* Purple variant */
+.public-good-tag--purple {
+  background-color: var(--public-good-color-purple, #7b1fa2);
+  color: var(--public-good-color-white, #ffffff);
+}
+
+/* Pink variant */
+.public-good-tag--pink {
+  background-color: var(--public-good-color-pink, #c2185b);
+  color: var(--public-good-color-white, #ffffff);
+}
+
+/* Orange variant */
+.public-good-tag--orange {
+  background-color: var(--public-good-color-orange, #f57c00);
+  color: var(--public-good-color-white, #ffffff);
+}
+
+/* Yellow variant */
+.public-good-tag--yellow {
+  background-color: var(--public-good-color-yellow, #fbc02d);
+  color: var(--public-good-color-text, #212b32);
+}
+
+/* Tag container for multiple tags */
+.public-good-tag-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--public-good-spacing-1, 4px) var(--public-good-spacing-2, 8px);
+  margin-bottom: var(--public-good-spacing-3, 16px);
+}
+
+.public-good-tag-container .public-good-tag {
+  margin: 0; /* Remove individual margins when in container */
+}
+
+/* Size variants */
+.public-good-tag--small {
+  padding: 2px var(--public-good-spacing-1, 4px);
+  font-size: var(--public-good-font-size-x-small, 0.75rem);
+}
+
+.public-good-tag--large {
+  padding: var(--public-good-spacing-2, 8px) var(--public-good-spacing-3, 16px);
+  font-size: var(--public-good-font-size-body, 1rem);
+}
+
+/* Interactive tags (when used as buttons) */
+.public-good-tag--interactive {
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.public-good-tag--interactive:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.public-good-tag--interactive:active {
+  transform: translateY(0);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+/* Focus states for interactive tags */
+.public-good-tag--interactive:focus {
+  outline: 3px solid var(--public-good-color-focus, #ffeb3b);
+  outline-offset: 2px;
+}
+
+/* Removable tags (with close button) */
+.public-good-tag--removable {
+  padding-right: var(--public-good-spacing-4, 24px);
+  position: relative;
+}
+
+.public-good-tag--removable::after {
+  content: '×';
+  position: absolute;
+  right: var(--public-good-spacing-1, 4px);
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.2em;
+  font-weight: normal;
+  cursor: pointer;
+  opacity: 0.7;
+  transition: opacity 0.2s ease;
+}
+
+.public-good-tag--removable:hover::after {
+  opacity: 1;
+}
+
+/* Status-specific semantic variants */
+.public-good-tag--active {
+  background-color: var(--public-good-color-success, #4caf50);
+  color: var(--public-good-color-white, #ffffff);
+}
+
+.public-good-tag--inactive {
+  background-color: var(--public-good-color-grey-4, #bdbdbd);
+  color: var(--public-good-color-text, #212b32);
+}
+
+.public-good-tag--pending {
+  background-color: var(--public-good-color-warning, #ff9800);
+  color: var(--public-good-color-text, #212b32);
+}
+
+.public-good-tag--completed {
+  background-color: var(--public-good-color-success, #4caf50);
+  color: var(--public-good-color-white, #ffffff);
+}
+
+.public-good-tag--error {
+  background-color: var(--public-good-color-error, #f44336);
+  color: var(--public-good-color-white, #ffffff);
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .public-good-tag {
+    border: 2px solid;
+  }
+  
+  .public-good-tag--white {
+    border-color: currentColor;
+  }
+  
+  .public-good-tag--yellow,
+  .public-good-tag--inactive,
+  .public-good-tag--pending {
+    border-color: currentColor;
+  }
+}
+
+/* Forced colors mode support (Windows High Contrast) */
+@media (forced-colors: active) {
+  .public-good-tag {
+    background-color: ButtonFace;
+    color: ButtonText;
+    border: 1px solid ButtonText;
+  }
+  
+  .public-good-tag--interactive:hover {
+    background-color: Highlight;
+    color: HighlightText;
+    border-color: HighlightText;
+  }
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+  .public-good-tag {
+    /* Adjust colors for dark mode */
+    filter: brightness(0.8);
+  }
+  
+  .public-good-tag--white {
+    background-color: var(--public-good-color-grey-8, #424242);
+    color: var(--public-good-color-white, #ffffff);
+    border-color: var(--public-good-color-grey-6, #757575);
+  }
+  
+  .public-good-tag--yellow {
+    color: var(--public-good-color-grey-9, #212121);
+  }
+}
+
+/* Print styles */
+@media print {
+  .public-good-tag {
+    background-color: transparent !important;
+    color: #000 !important;
+    border: 1px solid #000 !important;
+    box-shadow: none !important;
+  }
+  
+  .public-good-tag--interactive:hover,
+  .public-good-tag--interactive:focus {
+    transform: none !important;
+    box-shadow: none !important;
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .public-good-tag--interactive {
+    transition: none;
+  }
+  
+  .public-good-tag--interactive:hover {
+    transform: none;
+  }
+  
+  .public-good-tag--interactive:active {
+    transform: none;
+  }
+}
+
+/* Mobile responsive adjustments */
+@media (max-width: 768px) {
+  .public-good-tag {
+    font-size: var(--public-good-font-size-x-small, 0.75rem);
+    padding: 2px var(--public-good-spacing-1, 4px);
+  }
+  
+  .public-good-tag-container {
+    gap: 2px var(--public-good-spacing-1, 4px);
+  }
+}
+
+/* Color variables for tags */
+:root {
+  --public-good-color-blue: #0066cc;
+  --public-good-color-red: #d32f2f;
+  --public-good-color-green: #388e3c;
+  --public-good-color-grey-3: #666666;
+  --public-good-color-grey-4: #bdbdbd;
+  --public-good-color-grey-6: #757575;
+  --public-good-color-grey-8: #424242;
+  --public-good-color-grey-9: #212121;
+  --public-good-color-aqua-green: #00897b;
+  --public-good-color-purple: #7b1fa2;
+  --public-good-color-pink: #c2185b;
+  --public-good-color-orange: #f57c00;
+  --public-good-color-yellow: #fbc02d;
+  --public-good-color-success: #4caf50;
+  --public-good-color-warning: #ff9800;
+  --public-good-color-error: #f44336;
+  --public-good-border-radius-small: 2px;
+}

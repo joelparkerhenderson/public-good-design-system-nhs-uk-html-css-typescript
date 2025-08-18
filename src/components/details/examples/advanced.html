@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Details Component - Advanced Examples</title>
+  <link rel="stylesheet" href="../../../index.css">
+  <style>
+    body {
+      font-family: var(--public-good-font-family);
+      margin: 0;
+      padding: var(--public-good-spacing-6);
+      background-color: var(--public-good-color-background);
+    }
+    
+    .example-section {
+      margin-bottom: var(--public-good-spacing-8);
+    }
+    
+    .example-title {
+      font-size: var(--public-good-font-size-lg);
+      font-weight: var(--public-good-font-weight-bold);
+      margin-bottom: var(--public-good-spacing-4);
+      color: var(--public-good-color-text);
+    }
+    
+    .example-description {
+      margin-bottom: var(--public-good-spacing-5);
+      color: var(--public-good-color-text-secondary);
+    }
+    
+    .nested-details {
+      margin-left: var(--public-good-spacing-4);
+      margin-top: var(--public-good-spacing-3);
+    }
+    
+    .form-section {
+      background: white;
+      padding: var(--public-good-spacing-6);
+      border-radius: var(--public-good-border-radius-medium);
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      margin-bottom: var(--public-good-spacing-6);
+    }
+    
+    .accordion-container {
+      border: var(--public-good-border-width-medium) solid var(--public-good-color-border);
+      border-radius: var(--public-good-border-radius-medium);
+      overflow: hidden;
+    }
+    
+    .accordion-item {
+      border-bottom: var(--public-good-border-width-thin) solid var(--public-good-color-border);
+    }
+    
+    .accordion-item:last-child {
+      border-bottom: none;
+    }
+    
+    .accordion-item .public-good-details {
+      border: none;
+      margin: 0;
+      border-radius: 0;
+    }
+    
+    .faq-section {
+      background: var(--public-good-color-grey-50);
+      padding: var(--public-good-spacing-6);
+      border-radius: var(--public-good-border-radius-medium);
+    }
+    
+    .interactive-content {
+      background: #e8f4fd;
+      padding: var(--public-good-spacing-4);
+      border-radius: var(--public-good-border-radius-medium);
+      margin: var(--public-good-spacing-3) 0;
+    }
+    
+    .status-badge {
+      display: inline-block;
+      padding: var(--public-good-spacing-1) var(--public-good-spacing-2);
+      border-radius: var(--public-good-border-radius-small);
+      font-size: var(--public-good-font-size-sm);
+      font-weight: var(--public-good-font-weight-bold);
+      margin-left: var(--public-good-spacing-2);
+    }
+    
+    .status-open {
+      background-color: var(--public-good-color-green);
+      color: white;
+    }
+    
+    .status-closed {
+      background-color: var(--public-good-color-grey-400);
+      color: white;
+    }
+  </style>
+</head>
+<body>
+  <h1>Details Component - Advanced Examples</h1>
+  
+  <div class="example-section">
+    <h2 class="example-title">Nested Details</h2>
+    <p class="example-description">Details components can be nested to create hierarchical disclosure patterns.</p>
+    
+    <div id="nested-details-container"></div>
+  </div>
+
+  <div class="example-section">
+    <h2 class="example-title">Accordion Pattern</h2>
+    <p class="example-description">Multiple details components working together as an accordion with mutual exclusivity.</p>
+    
+    <div class="accordion-container" id="accordion-container"></div>
+    
+    <div style="margin-top: var(--public-good-spacing-4);">
+      <label>
+        <input type="checkbox" id="exclusive-accordion"> Enable exclusive mode (only one open at a time)
+      </label>
+    </div>
+  </div>
+
+  <div class="example-section">
+    <h2 class="example-title">FAQ Section</h2>
+    <p class="example-description">Frequently asked questions using details components for better scannability.</p>
+    
+    <div class="faq-section" id="faq-container"></div>
+  </div>
+
+  <div class="example-section">
+    <h2 class="example-title">Interactive Form Help</h2>
+    <p class="example-description">Details components providing contextual help within forms.</p>
+    
+    <div class="form-section">
+      <h3>Registration Form</h3>
+      <form id="registration-form">
+        <div style="margin-bottom: var(--public-good-spacing-4);">
+          <label for="email">Email address</label>
+          <input type="email" id="email" name="email" style="width: 100%; margin-top: var(--public-good-spacing-1);">
+          <div id="email-help"></div>
+        </div>
+        
+        <div style="margin-bottom: var(--public-good-spacing-4);">
+          <label for="password">Password</label>
+          <input type="password" id="password" name="password" style="width: 100%; margin-top: var(--public-good-spacing-1);">
+          <div id="password-help"></div>
+        </div>
+        
+        <div style="margin-bottom: var(--public-good-spacing-4);">
+          <label for="phone">Phone number</label>
+          <input type="tel" id="phone" name="phone" style="width: 100%; margin-top: var(--public-good-spacing-1);">
+          <div id="phone-help"></div>
+        </div>
+        
+        <button type="submit" class="public-good-button">Register</button>
+      </form>
+    </div>
+  </div>
+
+  <div class="example-section">
+    <h2 class="example-title">Progressive Disclosure</h2>
+    <p class="example-description">Complex content revealed progressively based on user choices.</p>
+    
+    <div id="progressive-container"></div>
+  </div>
+
+  <div class="example-section">
+    <h2 class="example-title">Dynamic Content Loading</h2>
+    <p class="example-description">Details that load content dynamically when opened.</p>
+    
+    <div id="dynamic-container"></div>
+  </div>
+
+  <script type="module">
+    import { createDetails, createDetailsWithHTML } from '../details.js'
+    
+    // Nested Details Example
+    const createNestedExample = () => {
+      const mainDetails = createDetails({
+        summaryText: 'Healthcare Services',
+        content: `
+          <p>We offer a comprehensive range of healthcare services:</p>
+          <div class="nested-details" id="nested-primary"></div>
+          <div class="nested-details" id="nested-secondary"></div>
+          <div class="nested-details" id="nested-emergency"></div>
+        `
+      })
+      
+      document.getElementById('nested-details-container').appendChild(mainDetails.element)
+      
+      // Add nested details after main element is in DOM
+      setTimeout(() => {
+        const primaryCare = createDetails({
+          summaryText: 'Primary Care Services',
+          content: `
+            <ul>
+              <li>General consultations</li>
+              <li>Health screenings</li>
+              <li>Vaccinations</li>
+              <li>Chronic disease management</li>
+            </ul>
+          `,
+          classes: 'public-good-details--no-border public-good-details--compact'
+        })
+        document.getElementById('nested-primary').appendChild(primaryCare.element)
+        
+        const secondaryCare = createDetails({
+          summaryText: 'Specialist Services',
+          content: `
+            <ul>
+              <li>Cardiology</li>
+              <li>Dermatology</li>
+              <li>Orthopedics</li>
+              <li>Mental health services</li>
+            </ul>
+          `,
+          classes: 'public-good-details--no-border public-good-details--compact'
+        })
+        document.getElementById('nested-secondary').appendChild(secondaryCare.element)
+        
+        const emergencyCare = createDetails({
+          summaryText: 'Emergency Services',
+          content: `
+            <div class="interactive-content">
+              <p><strong>24/7 Emergency Department</strong></p>
+              <p>For life-threatening emergencies, call 999 immediately.</p>
+              <p>For urgent but non-life-threatening conditions:</p>
+              <ul>
+                <li>Call 111 for NHS 24/7 advice</li>
+                <li>Visit our Urgent Care Centre</li>
+                <li>Use the NHS App for digital consultations</li>
+              </ul>
+            </div>
+          `,
+          classes: 'public-good-details--no-border public-good-details--compact'
+        })
+        document.getElementById('nested-emergency').appendChild(emergencyCare.element)
+      }, 100)
+    }
+    
+    // Accordion Pattern
+    const createAccordion = () => {
+      const accordionData = [
+        {
+          summary: 'About our services',
+          content: `
+            <p>We provide comprehensive healthcare services designed to meet the diverse needs of our community. Our team of qualified professionals is committed to delivering high-quality care.</p>
+            <p>Services include preventive care, diagnostic testing, treatment of acute and chronic conditions, and health education.</p>
+          `
+        },
+        {
+          summary: 'Appointment booking',
+          content: `
+            <p>You can book appointments through several convenient methods:</p>
+            <ul>
+              <li><strong>Online:</strong> Use our patient portal available 24/7</li>
+              <li><strong>Phone:</strong> Call our booking line during office hours</li>
+              <li><strong>Mobile app:</strong> Download our app for quick booking</li>
+              <li><strong>In person:</strong> Visit our reception desk</li>
+            </ul>
+            <p>We recommend booking routine appointments at least 2 weeks in advance.</p>
+          `
+        },
+        {
+          summary: 'Insurance and payments',
+          content: `
+            <p>We accept most major insurance plans and offer various payment options:</p>
+            <div class="interactive-content">
+              <h4>Accepted Insurance</h4>
+              <ul>
+                <li>NHS (free at point of use)</li>
+                <li>Private health insurance</li>
+                <li>Corporate health plans</li>
+                <li>International insurance</li>
+              </ul>
+            </div>
+            <p>Payment can be made by cash, card, or through our online payment system.</p>
+          `
+        },
+        {
+          summary: 'Contact information',
+          content: `
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem;">
+              <div>
+                <h4>Main Reception</h4>
+                <p>Phone: 0208 123 4567<br>
+                Email: info@healthcare.nhs.uk<br>
+                Hours: Mon-Fri 8:00-18:00</p>
+              </div>
+              <div>
+                <h4>Emergency Contact</h4>
+                <p>Phone: 0208 123 4999<br>
+                Available: 24/7<br>
+                For life-threatening emergencies: 999</p>
+              </div>
+            </div>
+          `
+        }
+      ]
+      
+      const accordionContainer = document.getElementById('accordion-container')
+      const accordionItems = []
+      
+      accordionData.forEach((item, index) => {
+        const wrapper = document.createElement('div')
+        wrapper.className = 'accordion-item'
+        
+        const details = createDetailsWithHTML(item.summary, item.content)
+        wrapper.appendChild(details.element)
+        accordionContainer.appendChild(wrapper)
+        
+        accordionItems.push(details)
+      })
+      
+      // Exclusive accordion functionality
+      const exclusiveCheckbox = document.getElementById('exclusive-accordion')
+      let isExclusive = false
+      
+      exclusiveCheckbox.addEventListener('change', (e) => {
+        isExclusive = e.target.checked
+        
+        if (isExclusive) {
+          // Close all but the first open one
+          let foundOpen = false
+          accordionItems.forEach(item => {
+            if (item.isOpen() && !foundOpen) {
+              foundOpen = true
+            } else if (item.isOpen()) {
+              item.close()
+            }
+          })
+        }
+      })
+      
+      // Add exclusive behavior
+      accordionItems.forEach((item, index) => {
+        item.element.addEventListener('public-good:details:toggle', (e) => {
+          if (isExclusive && e.detail.isOpen) {
+            // Close all other accordion items
+            accordionItems.forEach((otherItem, otherIndex) => {
+              if (otherIndex !== index && otherItem.isOpen()) {
+                otherItem.close()
+              }
+            })
+          }
+        })
+      })
+      
+      return accordionItems
+    }
+    
+    // FAQ Section
+    const createFAQ = () => {
+      const faqData = [
+        {
+          question: 'How do I register as a new patient?',
+          answer: `
+            <p>To register as a new patient, you'll need to:</p>
+            <ol>
+              <li>Complete our online registration form or visit our reception</li>
+              <li>Provide proof of identity (passport, driving license, or other photo ID)</li>
+              <li>Provide proof of address (utility bill, bank statement, or council tax bill)</li>
+              <li>Fill in our medical history questionnaire</li>
+            </ol>
+            <p>The registration process usually takes 5-10 minutes, and you'll be able to book appointments immediately.</p>
+          `
+        },
+        {
+          question: 'What should I bring to my appointment?',
+          answer: `
+            <p>Please bring the following to your appointment:</p>
+            <ul>
+              <li>A form of identification</li>
+              <li>Your NHS number (if known)</li>
+              <li>A list of current medications</li>
+              <li>Any relevant medical records or test results</li>
+              <li>Your appointment confirmation</li>
+            </ul>
+            <p>If you're unsure about what to bring, please call our reception team who will be happy to help.</p>
+          `
+        },
+        {
+          question: 'How can I cancel or reschedule my appointment?',
+          answer: `
+            <p>You can cancel or reschedule your appointment in several ways:</p>
+            <ul>
+              <li><strong>Online:</strong> Log into your patient portal</li>
+              <li><strong>Phone:</strong> Call our appointment line</li>
+              <li><strong>Mobile app:</strong> Use our mobile application</li>
+            </ul>
+            <p>Please give us at least 24 hours' notice when cancelling to allow us to offer the slot to another patient.</p>
+          `
+        },
+        {
+          question: 'Do you offer home visits?',
+          answer: `
+            <p>Yes, we offer home visits in certain circumstances:</p>
+            <ul>
+              <li>For patients who are housebound due to medical conditions</li>
+              <li>For urgent medical situations where travel is not advisable</li>
+              <li>For routine care of elderly or disabled patients</li>
+            </ul>
+            <p>Home visits are assessed on a case-by-case basis. Please call our reception team to discuss your needs.</p>
+          `
+        }
+      ]
+      
+      const faqContainer = document.getElementById('faq-container')
+      
+      faqData.forEach(faq => {
+        const details = createDetailsWithHTML(faq.question, faq.answer, {
+          classes: 'public-good-details--no-border',
+          summaryClasses: 'faq-question'
+        })
+        faqContainer.appendChild(details.element)
+      })
+    }
+    
+    // Form Help Details
+    const createFormHelp = () => {
+      const emailHelp = createDetails({
+        summaryText: 'Need help with email format?',
+        content: `
+          <p>Your email address should be in the format: name@domain.com</p>
+          <p>Examples of valid email addresses:</p>
+          <ul>
+            <li>john.smith@gmail.com</li>
+            <li>sarah_jones@company.co.uk</li>
+            <li>patient123@nhs.net</li>
+          </ul>
+        `,
+        classes: 'public-good-details--no-border public-good-details--compact'
+      })
+      document.getElementById('email-help').appendChild(emailHelp.element)
+      
+      const passwordHelp = createDetails({
+        summaryText: 'Password requirements',
+        content: `
+          <p>Your password must:</p>
+          <ul>
+            <li>Be at least 8 characters long</li>
+            <li>Include at least one uppercase letter</li>
+            <li>Include at least one lowercase letter</li>
+            <li>Include at least one number</li>
+            <li>Include at least one special character (!@#$%^&*)</li>
+          </ul>
+          <div class="interactive-content">
+            <strong>Tip:</strong> Use a memorable phrase with numbers and symbols for better security.
+          </div>
+        `,
+        classes: 'public-good-details--no-border public-good-details--compact'
+      })
+      document.getElementById('password-help').appendChild(passwordHelp.element)
+      
+      const phoneHelp = createDetails({
+        summaryText: 'Phone number format',
+        content: `
+          <p>Please enter your phone number in one of these formats:</p>
+          <ul>
+            <li>UK landline: 020 1234 5678</li>
+            <li>UK mobile: 07123 456789</li>
+            <li>International: +44 20 1234 5678</li>
+          </ul>
+          <p>We'll use this number for appointment reminders and important updates about your care.</p>
+        `,
+        classes: 'public-good-details--no-border public-good-details--compact'
+      })
+      document.getElementById('phone-help').appendChild(phoneHelp.element)
+      
+      // Form validation integration
+      const form = document.getElementById('registration-form')
+      form.addEventListener('submit', (e) => {
+        e.preventDefault()
+        alert('Form submitted successfully! (Demo only)')
+      })
+    }
+    
+    // Progressive Disclosure
+    const createProgressiveDisclosure = () => {
+      const container = document.getElementById('progressive-container')
+      
+      const serviceType = createDetails({
+        summaryText: 'What type of service do you need?',
+        content: `
+          <div>
+            <label style="display: block; margin-bottom: 0.5rem;">
+              <input type="radio" name="service" value="routine" style="margin-right: 0.5rem;">
+              Routine appointment
+            </label>
+            <label style="display: block; margin-bottom: 0.5rem;">
+              <input type="radio" name="service" value="urgent" style="margin-right: 0.5rem;">
+              Urgent care
+            </label>
+            <label style="display: block; margin-bottom: 0.5rem;">
+              <input type="radio" name="service" value="specialist" style="margin-right: 0.5rem;">
+              Specialist referral
+            </label>
+          </div>
+          <div id="service-details" style="margin-top: 1rem;"></div>
+        `,
+        open: true
+      })
+      container.appendChild(serviceType.element)
+      
+      // Add change listeners for progressive disclosure
+      setTimeout(() => {
+        const radioButtons = container.querySelectorAll('input[name="service"]')
+        const serviceDetails = container.querySelector('#service-details')
+        
+        radioButtons.forEach(radio => {
+          radio.addEventListener('change', (e) => {
+            serviceDetails.innerHTML = ''
+            
+            let nextDetails
+            switch (e.target.value) {
+              case 'routine':
+                nextDetails = createDetails({
+                  summaryText: 'Routine appointment options',
+                  content: `
+                    <p>For routine appointments, you can choose:</p>
+                    <ul>
+                      <li>General health check-up</li>
+                      <li>Follow-up consultation</li>
+                      <li>Medication review</li>
+                      <li>Health screening</li>
+                    </ul>
+                    <p>Typical wait time: 1-2 weeks</p>
+                  `,
+                  classes: 'public-good-details--no-border'
+                })
+                break
+              case 'urgent':
+                nextDetails = createDetails({
+                  summaryText: 'Urgent care information',
+                  content: `
+                    <div class="interactive-content">
+                      <strong>Urgent care is for conditions that:</strong>
+                      <ul>
+                        <li>Are not life-threatening</li>
+                        <li>Cannot wait for a routine appointment</li>
+                        <li>Require medical attention within 24 hours</li>
+                      </ul>
+                    </div>
+                    <p>We aim to see urgent cases within 4 hours.</p>
+                  `,
+                  classes: 'public-good-details--no-border'
+                })
+                break
+              case 'specialist':
+                nextDetails = createDetails({
+                  summaryText: 'Specialist referral process',
+                  content: `
+                    <p>Specialist referrals require:</p>
+                    <ol>
+                      <li>Initial consultation with GP</li>
+                      <li>Medical assessment and review</li>
+                      <li>Referral letter to specialist</li>
+                      <li>Appointment booking with specialist clinic</li>
+                    </ol>
+                    <p>Average wait time: 2-6 weeks depending on specialty</p>
+                  `,
+                  classes: 'public-good-details--no-border'
+                })
+                break
+            }
+            
+            if (nextDetails) {
+              serviceDetails.appendChild(nextDetails.element)
+              nextDetails.open()
+            }
+          })
+        })
+      }, 100)
+    }
+    
+    // Dynamic Content Loading
+    const createDynamicContent = () => {
+      const container = document.getElementById('dynamic-container')
+      
+      const dynamicDetails = createDetails({
+        summaryText: 'Load patient resources (click to load)',
+        content: '<div style="padding: 2rem; text-align: center;">Loading resources...</div>'
+      })
+      container.appendChild(dynamicDetails.element)
+      
+      let contentLoaded = false
+      
+      dynamicDetails.element.addEventListener('public-good:details:toggle', async (e) => {
+        if (e.detail.isOpen && !contentLoaded) {
+          // Simulate async content loading
+          setTimeout(() => {
+            const content = `
+              <div>
+                <h4>Patient Resources</h4>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin: 1rem 0;">
+                  <div class="interactive-content">
+                    <h5>Health Information</h5>
+                    <ul>
+                      <li><a href="#" onclick="alert('Downloaded health guide'); return false;">Health & Wellness Guide</a></li>
+                      <li><a href="#" onclick="alert('Downloaded nutrition info'); return false;">Nutrition Guidelines</a></li>
+                      <li><a href="#" onclick="alert('Downloaded exercise plan'); return false;">Exercise Recommendations</a></li>
+                    </ul>
+                  </div>
+                  <div class="interactive-content">
+                    <h5>Forms & Documents</h5>
+                    <ul>
+                      <li><a href="#" onclick="alert('Downloaded form'); return false;">Registration Form</a></li>
+                      <li><a href="#" onclick="alert('Downloaded consent form'); return false;">Consent Forms</a></li>
+                      <li><a href="#" onclick="alert('Downloaded medical history'); return false;">Medical History Form</a></li>
+                    </ul>
+                  </div>
+                </div>
+                <p><em>Content loaded dynamically at ${new Date().toLocaleTimeString()}</em></p>
+              </div>
+            `
+            
+            dynamicDetails.setContent(content)
+            dynamicDetails.setSummaryText('Patient resources (loaded)')
+            contentLoaded = true
+          }, 1500)
+        }
+      })
+    }
+    
+    // Initialize all examples
+    createNestedExample()
+    const accordionItems = createAccordion()
+    createFAQ()
+    createFormHelp()
+    createProgressiveDisclosure()
+    createDynamicContent()
+    
+    // Global controls
+    const controls = document.createElement('div')
+    controls.innerHTML = `
+      <div style="position: fixed; bottom: 20px; right: 20px; background: white; padding: 1rem; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); border: 2px solid var(--public-good-color-border);">
+        <h4 style="margin: 0 0 0.5rem 0;">Page Controls</h4>
+        <button id="expand-all" class="public-good-button public-good-button--secondary" style="font-size: 0.8rem; padding: 0.25rem 0.5rem; margin: 0.125rem;">Expand All</button>
+        <button id="collapse-all" class="public-good-button public-good-button--secondary" style="font-size: 0.8rem; padding: 0.25rem 0.5rem; margin: 0.125rem;">Collapse All</button>
+        <div id="details-status" style="font-size: 0.75rem; margin-top: 0.5rem; color: var(--public-good-color-text-secondary);"></div>
+      </div>
+    `
+    document.body.appendChild(controls)
+    
+    // Global expand/collapse functionality
+    document.getElementById('expand-all').addEventListener('click', () => {
+      document.querySelectorAll('.public-good-details').forEach(details => {
+        if (!details.open) {
+          details.open = true
+          details.dispatchEvent(new Event('toggle'))
+        }
+      })
+    })
+    
+    document.getElementById('collapse-all').addEventListener('click', () => {
+      document.querySelectorAll('.public-good-details').forEach(details => {
+        if (details.open) {
+          details.open = false
+          details.dispatchEvent(new Event('toggle'))
+        }
+      })
+    })
+    
+    // Status tracking
+    const updateStatus = () => {
+      const allDetails = document.querySelectorAll('.public-good-details')
+      const openDetails = document.querySelectorAll('.public-good-details[open]')
+      
+      document.getElementById('details-status').textContent = 
+        `${openDetails.length}/${allDetails.length} sections open`
+    }
+    
+    // Monitor all toggle events
+    document.addEventListener('public-good:details:toggle', updateStatus)
+    
+    // Initial status
+    setTimeout(updateStatus, 200)
+    
+    console.log('Advanced details examples loaded successfully')
+  </script>
+</body>
+</html>

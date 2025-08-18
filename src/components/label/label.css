@@ -1,0 +1,332 @@
+/**
+ * Label Component Styles
+ * Converted from NHS UK Design System to Public Good Design System
+ * 
+ * Provides accessible form labels with different sizes and styling options.
+ * Essential for form accessibility and proper semantic markup.
+ */
+
+/* Base label styles */
+.public-good-label {
+  display: block;
+  font-weight: 600;
+  color: var(--public-good-color-text);
+  margin-bottom: var(--public-good-spacing-1);
+  font-size: 1rem;
+  line-height: 1.4;
+}
+
+@media (min-width: 40.0625em) {
+  .public-good-label {
+    font-size: 1.1875rem; /* 19px */
+  }
+}
+
+/* Label size modifiers that make labels look like headings */
+.public-good-label--xl,
+.public-good-label--l,
+.public-good-label--m {
+  font-weight: 700;
+  margin-top: 0;
+  margin-bottom: var(--public-good-spacing-3);
+  line-height: 1.2;
+}
+
+.public-good-label--xl {
+  font-size: 2rem;
+  line-height: 1.1;
+}
+
+@media (min-width: 40.0625em) {
+  .public-good-label--xl {
+    font-size: 3rem; /* 48px */
+  }
+}
+
+.public-good-label--l {
+  font-size: 1.5rem;
+}
+
+@media (min-width: 40.0625em) {
+  .public-good-label--l {
+    font-size: 2.25rem; /* 36px */
+  }
+}
+
+.public-good-label--m {
+  font-size: 1.25rem;
+}
+
+@media (min-width: 40.0625em) {
+  .public-good-label--m {
+    font-size: 1.625rem; /* 26px */
+  }
+}
+
+.public-good-label--s {
+  font-weight: 700;
+  margin-top: 0;
+  font-size: 1rem;
+}
+
+@media (min-width: 40.0625em) {
+  .public-good-label--s {
+    font-size: 1.1875rem; /* 19px */
+  }
+}
+
+.public-good-label--xs {
+  font-weight: 600;
+  font-size: 0.875rem;
+  margin-bottom: var(--public-good-spacing-1);
+}
+
+@media (min-width: 40.0625em) {
+  .public-good-label--xs {
+    font-size: 1rem;
+  }
+}
+
+/* When the label is nested inside a heading wrapper, override the heading
+   margin so that it does not interfere with the label styling */
+.public-good-label-wrapper {
+  margin: 0;
+  font-weight: inherit;
+  font-size: inherit;
+  line-height: inherit;
+}
+
+/* Ensure proper spacing in form groups */
+.public-good-form-group .public-good-label {
+  margin-bottom: var(--public-good-spacing-1);
+}
+
+.public-good-form-group .public-good-label--xl,
+.public-good-form-group .public-good-label--l,
+.public-good-form-group .public-good-label--m {
+  margin-bottom: var(--public-good-spacing-2);
+}
+
+/* Interactive states for labels that can receive focus or interaction */
+.public-good-label:hover {
+  cursor: default;
+}
+
+/* When labels contain interactive elements */
+.public-good-label a {
+  color: var(--public-good-color-link);
+  text-decoration: underline;
+}
+
+.public-good-label a:hover {
+  color: var(--public-good-color-link-hover);
+  text-decoration-thickness: 2px;
+}
+
+.public-good-label a:focus {
+  color: var(--public-good-color-black);
+  background-color: var(--public-good-color-focus);
+  text-decoration: none;
+  outline: 3px solid transparent;
+  box-shadow: 0 0 0 3px var(--public-good-color-focus);
+}
+
+.public-good-label a:visited {
+  color: var(--public-good-color-link-visited);
+}
+
+/* Label with required field indicator */
+.public-good-label--required::after {
+  content: ' *';
+  color: var(--public-good-color-error);
+  font-weight: 700;
+}
+
+/* Optional field indicator */
+.public-good-label--optional::after {
+  content: ' (optional)';
+  color: var(--public-good-color-text-secondary);
+  font-weight: 400;
+  font-size: 0.9em;
+}
+
+/* Labels in error state */
+.public-good-form-group--error .public-good-label {
+  color: var(--public-good-color-text);
+}
+
+/* Labels in disabled state */
+.public-good-label--disabled {
+  color: var(--public-good-color-text-disabled);
+  cursor: not-allowed;
+}
+
+/* Inline labels (rare but sometimes needed) */
+.public-good-label--inline {
+  display: inline;
+  margin-bottom: 0;
+  margin-right: var(--public-good-spacing-1);
+}
+
+/* Labels for checkbox and radio inputs */
+.public-good-checkbox + .public-good-label,
+.public-good-radio + .public-good-label {
+  display: inline;
+  margin-bottom: 0;
+  margin-left: var(--public-good-spacing-1);
+  font-weight: 400;
+  cursor: pointer;
+}
+
+/* Ensure proper contrast in high contrast mode */
+@media (forced-colors: active) {
+  .public-good-label {
+    color: FieldText;
+  }
+  
+  .public-good-label--disabled {
+    color: GrayText;
+  }
+  
+  .public-good-label a {
+    color: LinkText;
+  }
+  
+  .public-good-label a:visited {
+    color: VisitedText;
+  }
+}
+
+/* Print styles */
+@media print {
+  .public-good-label {
+    color: var(--public-good-color-black);
+    font-size: 12pt;
+    margin-bottom: 4pt;
+  }
+  
+  .public-good-label--xl {
+    font-size: 24pt;
+    margin-bottom: 8pt;
+  }
+  
+  .public-good-label--l {
+    font-size: 18pt;
+    margin-bottom: 6pt;
+  }
+  
+  .public-good-label--m {
+    font-size: 14pt;
+    margin-bottom: 6pt;
+  }
+  
+  .public-good-label--s {
+    font-size: 12pt;
+    margin-bottom: 4pt;
+  }
+  
+  .public-good-label a {
+    color: var(--public-good-color-black);
+    text-decoration: underline;
+  }
+}
+
+/* Responsive typography adjustments */
+@media (max-width: 40em) {
+  .public-good-label--xl {
+    font-size: 1.75rem;
+  }
+  
+  .public-good-label--l {
+    font-size: 1.375rem;
+  }
+  
+  .public-good-label--m {
+    font-size: 1.125rem;
+  }
+}
+
+/* Animation for dynamic labels */
+@media (prefers-reduced-motion: no-preference) {
+  .public-good-label {
+    transition: color 0.2s ease-in-out;
+  }
+}
+
+/* Disable transitions for users who prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .public-good-label {
+    transition: none;
+  }
+}
+
+/* Ensure labels work well in different contexts */
+.public-good-panel .public-good-label,
+.public-good-card .public-good-label {
+  color: inherit;
+}
+
+/* Labels with icons or badges */
+.public-good-label .public-good-icon {
+  margin-right: var(--public-good-spacing-1);
+  vertical-align: middle;
+}
+
+.public-good-label .public-good-badge {
+  margin-left: var(--public-good-spacing-1);
+  vertical-align: middle;
+}
+
+/* Ensure proper alignment in complex layouts */
+.public-good-label {
+  align-self: start;
+}
+
+/* Labels in grid layouts */
+.public-good-grid .public-good-label {
+  margin-bottom: var(--public-good-spacing-1);
+}
+
+/* Support for right-to-left languages */
+[dir="rtl"] .public-good-label .public-good-icon {
+  margin-right: 0;
+  margin-left: var(--public-good-spacing-1);
+}
+
+[dir="rtl"] .public-good-label .public-good-badge {
+  margin-left: 0;
+  margin-right: var(--public-good-spacing-1);
+}
+
+[dir="rtl"] .public-good-checkbox + .public-good-label,
+[dir="rtl"] .public-good-radio + .public-good-label {
+  margin-left: 0;
+  margin-right: var(--public-good-spacing-1);
+}
+
+/* Ensure good line height for multi-line labels */
+.public-good-label {
+  line-height: 1.4;
+}
+
+.public-good-label--xl,
+.public-good-label--l {
+  line-height: 1.2;
+}
+
+/* Handle very long label text */
+.public-good-label {
+  word-wrap: break-word;
+  hyphens: auto;
+}
+
+/* Prevent label text from being selectable when it shouldn't be */
+.public-good-label--no-select {
+  user-select: none;
+}
+
+/* Focus ring for labels that can receive focus */
+.public-good-label:focus {
+  outline: 3px solid var(--public-good-color-focus);
+  outline-offset: 2px;
+}

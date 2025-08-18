@@ -1,0 +1,362 @@
+/**
+ * Select Component Styles
+ * 
+ * Styling for select dropdown components following NHS UK Design System patterns.
+ * Use select to let users choose an option from a long list but only use it as a last resort.
+ */
+
+.public-good-select {
+  box-sizing: border-box;
+  font-family: var(--public-good-font-family);
+  font-size: var(--public-good-body-size);
+  font-weight: var(--public-good-font-weight-normal);
+  line-height: var(--public-good-body-line-height);
+  color: var(--public-good-color-text);
+  background-color: var(--public-good-color-background);
+  border: var(--public-good-border-width-medium) solid var(--public-good-color-border);
+  border-radius: var(--public-good-border-radius-medium);
+  padding: var(--public-good-spacing-3) var(--public-good-spacing-4);
+  width: 100%;
+  height: auto;
+  min-height: 44px; /* Minimum touch target size */
+  margin: 0;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  /* Custom dropdown arrow */
+  background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath fill='%23212b32' d='M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right var(--public-good-spacing-3) center;
+  background-size: 16px 16px;
+  padding-right: calc(var(--public-good-spacing-4) + 20px); /* Space for arrow */
+}
+
+.public-good-select:hover {
+  border-color: var(--public-good-color-text);
+}
+
+.public-good-select:focus {
+  outline: var(--public-good-spacing-focus-width) solid var(--public-good-color-focus);
+  outline-offset: var(--public-good-spacing-focus-offset);
+  border-color: var(--public-good-color-text);
+  background-color: var(--public-good-color-background);
+  box-shadow: 0 0 0 var(--public-good-border-width-medium) var(--public-good-color-focus);
+}
+
+.public-good-select:disabled {
+  color: var(--public-good-color-text-secondary);
+  background-color: var(--public-good-color-background-secondary);
+  border-color: var(--public-good-color-border);
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+/* Multiple select specific styles */
+.public-good-select[multiple] {
+  background-image: none; /* Remove dropdown arrow for multiple select */
+  padding-right: var(--public-good-spacing-4); /* Reset padding */
+  height: auto;
+  min-height: 88px; /* Minimum height to show multiple options */
+}
+
+.public-good-select[multiple]:focus {
+  box-shadow: none; /* Simplify focus for multiple select */
+}
+
+/* Select options styling */
+.public-good-select option {
+  color: var(--public-good-color-text);
+  background-color: var(--public-good-color-background);
+  padding: var(--public-good-spacing-2);
+}
+
+.public-good-select option:disabled {
+  color: var(--public-good-color-text-secondary);
+  background-color: var(--public-good-color-background-secondary);
+}
+
+.public-good-select option:checked {
+  background-color: var(--public-good-color-button-primary);
+  color: var(--public-good-color-text-inverse);
+}
+
+/* Error state styling */
+.public-good-form-group--error .public-good-select {
+  border-color: var(--public-good-color-error);
+}
+
+.public-good-form-group--error .public-good-select:focus {
+  border-color: var(--public-good-color-text);
+  box-shadow: 0 0 0 var(--public-good-border-width-medium) var(--public-good-color-focus);
+}
+
+/* Disabled form group styling */
+.public-good-form-group--disabled .public-good-select {
+  color: var(--public-good-color-text-secondary);
+  background-color: var(--public-good-color-background-secondary);
+  border-color: var(--public-good-color-border);
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+/* Size variations */
+.public-good-select--small {
+  font-size: var(--public-good-body-small-size);
+  line-height: var(--public-good-body-small-line-height);
+  padding: var(--public-good-spacing-2) var(--public-good-spacing-3);
+  min-height: 36px;
+  background-size: 14px 14px;
+  padding-right: calc(var(--public-good-spacing-3) + 18px);
+}
+
+.public-good-select--large {
+  font-size: var(--public-good-body-large-size);
+  line-height: var(--public-good-body-large-line-height);
+  padding: var(--public-good-spacing-4) var(--public-good-spacing-5);
+  min-height: 52px;
+  background-size: 18px 18px;
+  padding-right: calc(var(--public-good-spacing-5) + 22px);
+}
+
+/* Width variations */
+.public-good-select--width-20 {
+  max-width: 20ex;
+}
+
+.public-good-select--width-10 {
+  max-width: 10ex;
+}
+
+.public-good-select--width-5 {
+  max-width: 5ex;
+}
+
+.public-good-select--width-4 {
+  max-width: 4ex;
+}
+
+.public-good-select--width-3 {
+  max-width: 3ex;
+}
+
+.public-good-select--width-2 {
+  max-width: 2ex;
+}
+
+/* Form group spacing */
+.public-good-form-group .public-good-select {
+  margin-top: var(--public-good-spacing-2);
+}
+
+.public-good-form-group .public-good-hint + .public-good-select {
+  margin-top: var(--public-good-spacing-2);
+}
+
+.public-good-form-group .public-good-error-message + .public-good-select {
+  margin-top: var(--public-good-spacing-2);
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .public-good-select {
+    border-width: var(--public-good-border-width-thick);
+    border-color: var(--public-good-color-text);
+  }
+  
+  .public-good-select:focus {
+    outline-width: var(--public-good-border-width-thick);
+    box-shadow: 0 0 0 var(--public-good-border-width-thick) var(--public-good-color-focus);
+  }
+  
+  .public-good-form-group--error .public-good-select {
+    border-color: var(--public-good-color-error);
+    border-width: var(--public-good-border-width-thick);
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .public-good-select {
+    transition: none;
+  }
+}
+
+/* Print styles */
+@media print {
+  .public-good-select {
+    color: #000000;
+    background-color: transparent;
+    border: 1px solid #000000;
+    background-image: none;
+    padding-right: var(--public-good-spacing-4);
+  }
+  
+  .public-good-select:focus {
+    outline: none;
+    box-shadow: none;
+  }
+  
+  .public-good-select option:checked::after {
+    content: " ✓";
+    font-weight: bold;
+  }
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+  .public-good-select {
+    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath fill='%23ffffff' d='M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z'/%3E%3C/svg%3E");
+  }
+}
+
+/* Windows High Contrast Mode */
+@media screen and (-ms-high-contrast: active) {
+  .public-good-select {
+    border-color: windowText;
+    color: windowText;
+    background-color: window;
+  }
+  
+  .public-good-select:focus {
+    outline-color: highlight;
+    border-color: highlight;
+  }
+  
+  .public-good-select option:checked {
+    background-color: highlight;
+    color: highlightText;
+  }
+  
+  .public-good-form-group--error .public-good-select {
+    border-color: windowText;
+  }
+}
+
+/* Touch device optimizations */
+@media (hover: none) and (pointer: coarse) {
+  .public-good-select {
+    min-height: 48px; /* Larger touch target on touch devices */
+  }
+  
+  .public-good-select--small {
+    min-height: 40px;
+  }
+  
+  .public-good-select--large {
+    min-height: 56px;
+  }
+}
+
+/* Responsive design */
+@media (max-width: 40.0625em) {
+  .public-good-select {
+    font-size: 16px; /* Prevent zoom on iOS */
+    min-height: 48px;
+  }
+  
+  .public-good-select[multiple] {
+    min-height: 96px; /* More space on mobile */
+  }
+  
+  /* Width constraints become less strict on mobile */
+  .public-good-select--width-20,
+  .public-good-select--width-10,
+  .public-good-select--width-5,
+  .public-good-select--width-4,
+  .public-good-select--width-3,
+  .public-good-select--width-2 {
+    max-width: none;
+    width: 100%;
+  }
+}
+
+/* Focus visible for better keyboard navigation */
+.public-good-select:focus-visible {
+  outline: var(--public-good-spacing-focus-width) solid var(--public-good-color-focus);
+  outline-offset: var(--public-good-spacing-focus-offset);
+}
+
+/* Remove focus outline for mouse users */
+.public-good-select:focus:not(:focus-visible) {
+  outline: none;
+  box-shadow: 0 0 0 var(--public-good-border-width-medium) var(--public-good-color-focus);
+}
+
+/* Animation for dynamic updates */
+@keyframes selectUpdate {
+  0% {
+    opacity: 0.7;
+    transform: scale(0.98);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.public-good-select--updating {
+  animation: selectUpdate 0.2s ease-out;
+}
+
+/* Utility classes for common patterns */
+.public-good-u-select-full-width {
+  width: 100%;
+  max-width: none;
+}
+
+.public-good-u-select-auto-width {
+  width: auto;
+  max-width: 100%;
+}
+
+/* Error message and hint spacing when used with select */
+.public-good-form-group .public-good-label + .public-good-hint + .public-good-select,
+.public-good-form-group .public-good-label + .public-good-error-message + .public-good-select,
+.public-good-form-group .public-good-label + .public-good-hint + .public-good-error-message + .public-good-select {
+  margin-top: var(--public-good-spacing-2);
+}
+
+/* Custom validation styles */
+.public-good-select:valid {
+  /* Styles for valid state if needed */
+}
+
+.public-good-select:invalid {
+  /* Let the form group error state handle invalid styling */
+}
+
+.public-good-select:required {
+  /* No special styling for required by default */
+}
+
+/* Screen reader announcements */
+.public-good-select[aria-describedby] {
+  /* Ensure proper spacing for elements described by this select */
+}
+
+/* Loading state */
+.public-good-select--loading {
+  opacity: 0.7;
+  pointer-events: none;
+  background-image: none;
+}
+
+.public-good-select--loading::after {
+  content: "";
+  position: absolute;
+  right: var(--public-good-spacing-3);
+  top: 50%;
+  transform: translateY(-50%);
+  width: 16px;
+  height: 16px;
+  border: 2px solid var(--public-good-color-border);
+  border-top-color: var(--public-good-color-button-primary);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: translateY(-50%) rotate(360deg);
+  }
+}

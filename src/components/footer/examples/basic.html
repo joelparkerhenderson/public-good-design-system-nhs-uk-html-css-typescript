@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Footer Component - Basic Example</title>
+  <link rel="stylesheet" href="../../index.css">
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      line-height: 1.6;
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      background-color: #ffffff;
+    }
+    
+    .main-content {
+      flex: 1;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 40px 20px;
+    }
+    
+    h1 {
+      color: #333;
+      border-bottom: 2px solid #0078d4;
+      padding-bottom: 10px;
+    }
+    
+    .example {
+      margin: 30px 0;
+      padding: 20px;
+      border: 1px solid #e1e5e9;
+      border-radius: 4px;
+      background: #fafbfc;
+    }
+    
+    .example h3 {
+      margin-top: 0;
+      color: #0078d4;
+    }
+    
+    .demo-page {
+      min-height: 60vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      margin: 20px 0;
+      border-radius: 8px;
+      padding: 40px;
+    }
+    
+    .demo-page h2 {
+      margin: 0 0 20px 0;
+      font-size: 2.5em;
+    }
+    
+    .demo-page p {
+      font-size: 1.2em;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    /* Page layout styles */
+    .page-container {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .page-content {
+      flex: 1;
+    }
+  </style>
+</head>
+<body>
+  <div class="page-container">
+    <div class="page-content">
+      <div class="main-content">
+        <h1>Footer Component - Basic Examples</h1>
+        <p>This page demonstrates the basic usage patterns for the Footer component in different page layouts.</p>
+
+        <div class="example">
+          <h3>Simple Website Footer</h3>
+          <p>A basic footer with essential links and copyright information.</p>
+          <div class="demo-page">
+            <h2>Sample Website</h2>
+            <p>This demonstrates how the footer appears at the bottom of a typical website page with content above it.</p>
+          </div>
+        </div>
+
+        <div class="example">
+          <h3>Minimal Footer Example</h3>
+          <p>Below you can see how the footer with just a few links and copyright notice looks.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Basic Footer with Meta Links -->
+    <div data-public-good-footer 
+         data-copyright-holder="Public Good Organization"
+         data-links='[
+           {"text":"Privacy Policy","href":"/privacy"},
+           {"text":"Terms of Service","href":"/terms"},
+           {"text":"Contact Us","href":"/contact"},
+           {"text":"Accessibility Statement","href":"/accessibility"}
+         ]'>
+    </div>
+  </div>
+
+  <!-- Additional Examples in Separate Containers -->
+  <div style="margin: 20px; padding: 20px; border: 2px solid #ccc; border-radius: 8px;">
+    <h3>Footer with External Links</h3>
+    <p>This footer includes links that open in new tabs:</p>
+    
+    <div data-public-good-footer 
+         data-copyright-text="©"
+         data-copyright-holder="External Link Demo Org"
+         data-links='[
+           {"text":"GitHub Repository","href":"https://github.com/example","openInNewTab":true},
+           {"text":"Documentation","href":"https://docs.example.com","openInNewTab":true},
+           {"text":"Support Forum","href":"https://forum.example.com","openInNewTab":true}
+         ]'>
+    </div>
+  </div>
+
+  <div style="margin: 20px; padding: 20px; border: 2px solid #ccc; border-radius: 8px;">
+    <h3>Footer with Copyright Link</h3>
+    <p>This footer has a clickable copyright notice:</p>
+    
+    <div data-public-good-footer 
+         data-copyright-text="©"
+         data-copyright-holder="Linked Copyright Org"
+         data-copyright-url="/copyright-info"
+         data-links='[
+           {"text":"About Us","href":"/about"},
+           {"text":"Blog","href":"/blog"}
+         ]'>
+    </div>
+  </div>
+
+  <div style="margin: 20px; padding: 20px; border: 2px solid #ccc; border-radius: 8px;">
+    <h3>Minimal Footer (Copyright Only)</h3>
+    <p>A minimal footer with just copyright information:</p>
+    
+    <div data-public-good-footer 
+         data-copyright-holder="Minimal Organization"
+         data-links='[]'>
+    </div>
+  </div>
+
+  <div style="margin: 20px; padding: 20px; border: 2px solid #ccc; border-radius: 8px;">
+    <h3>Footer without Container</h3>
+    <p>This footer doesn't use the container wrapper:</p>
+    
+    <div data-public-good-footer 
+         data-container="false"
+         data-copyright-holder="No Container Org"
+         data-links='[
+           {"text":"Simple Link","href":"/simple"}
+         ]'>
+    </div>
+  </div>
+
+  <div style="margin: 20px; padding: 20px; border: 2px solid #ccc; border-radius: 8px;">
+    <h3>Custom CSS Classes Footer</h3>
+    <p>This footer includes custom CSS classes:</p>
+    
+    <div data-public-good-footer 
+         data-classes="public-good-footer--compact"
+         data-copyright-holder="Custom Class Org"
+         data-links='[
+           {"text":"Compact Link 1","href":"/compact1"},
+           {"text":"Compact Link 2","href":"/compact2"}
+         ]'>
+    </div>
+  </div>
+
+  <div style="margin: 20px; padding: 20px; border: 2px solid #ccc; border-radius: 8px;">
+    <h3>Footer from Existing HTML Links</h3>
+    <p>This footer is created from existing link elements in the DOM:</p>
+    
+    <div data-public-good-footer data-copyright-holder="Existing Links Org">
+      <a href="/existing1">Existing Link 1</a>
+      <a href="/existing2">Existing Link 2</a>
+      <a href="https://external.com" target="_blank">External Link</a>
+    </div>
+  </div>
+
+  <script type="module">
+    import { initializeFooters } from '../footer.js'
+    
+    // Initialize all footers on the page
+    document.addEventListener('DOMContentLoaded', () => {
+      const footers = initializeFooters()
+      console.log(`Initialized ${footers.length} footers`)
+      
+      // Add some interactivity
+      footers.forEach((footer, index) => {
+        footer.element.addEventListener('public-good:footer:link-added', (event) => {
+          console.log('Footer link added:', event.detail)
+        })
+        
+        footer.element.addEventListener('public-good:footer:copyright-updated', (event) => {
+          console.log('Footer copyright updated:', event.detail)
+        })
+
+        // Add a subtle hover effect
+        footer.element.addEventListener('mouseenter', () => {
+          footer.element.style.transform = 'translateY(-2px)'
+          footer.element.style.transition = 'transform 0.2s ease'
+        })
+        
+        footer.element.addEventListener('mouseleave', () => {
+          footer.element.style.transform = 'translateY(0)'
+        })
+      })
+      
+      // Demonstrate adding a link dynamically to the first footer
+      if (footers.length > 0) {
+        setTimeout(() => {
+          footers[0].addLink({
+            text: 'Dynamically Added Link',
+            href: '/dynamic'
+          })
+          console.log('Added dynamic link to first footer')
+        }, 3000)
+      }
+    })
+    
+    // Add keyboard navigation enhancement
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'End') {
+        // Jump to footer when End key is pressed
+        const firstFooter = document.querySelector('.public-good-footer')
+        if (firstFooter) {
+          firstFooter.scrollIntoView({ behavior: 'smooth' })
+          const firstLink = firstFooter.querySelector('.public-good-footer__link')
+          if (firstLink) {
+            firstLink.focus()
+          }
+        }
+      }
+    })
+  </script>
+</body>
+</html>

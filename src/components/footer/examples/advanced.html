@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Footer Component - Advanced Examples</title>
+  <link rel="stylesheet" href="../../index.css">
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      line-height: 1.6;
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      background-color: #f5f5f5;
+    }
+    
+    .main-content {
+      flex: 1;
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 40px 20px;
+      background: white;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    
+    h1 {
+      color: #333;
+      border-bottom: 2px solid #0078d4;
+      padding-bottom: 10px;
+    }
+    
+    .example {
+      margin: 30px 0;
+      padding: 20px;
+      border: 1px solid #e1e5e9;
+      border-radius: 4px;
+      background: #fafbfc;
+    }
+    
+    .example h3 {
+      margin-top: 0;
+      color: #0078d4;
+    }
+    
+    .controls {
+      background: #e9ecef;
+      padding: 20px;
+      border-radius: 4px;
+      margin-bottom: 20px;
+    }
+    
+    .controls h4 {
+      margin-top: 0;
+      color: #495057;
+    }
+    
+    .button {
+      background-color: #0078d4;
+      color: white;
+      border: none;
+      padding: 8px 16px;
+      font-size: 14px;
+      border-radius: 4px;
+      cursor: pointer;
+      margin: 5px 5px 5px 0;
+      transition: background-color 0.15s;
+    }
+    
+    .button:hover {
+      background-color: #106ebe;
+    }
+    
+    .button--secondary {
+      background-color: #6c757d;
+    }
+    
+    .button--secondary:hover {
+      background-color: #5a6268;
+    }
+    
+    .button--small {
+      padding: 6px 12px;
+      font-size: 12px;
+    }
+    
+    .demo-content {
+      min-height: 300px;
+      background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 8px;
+      margin: 20px 0;
+      padding: 40px;
+      text-align: center;
+    }
+    
+    .demo-content h2 {
+      margin: 0 0 20px 0;
+      font-size: 2em;
+    }
+    
+    .output {
+      background: #f8f9fa;
+      border: 1px solid #dee2e6;
+      border-radius: 4px;
+      padding: 15px;
+      margin-top: 20px;
+      font-family: 'Courier New', monospace;
+      white-space: pre-wrap;
+      overflow-x: auto;
+      max-height: 200px;
+      overflow-y: auto;
+    }
+    
+    .footer-container {
+      margin: 20px 0;
+      padding: 20px;
+      border: 2px dashed #007bff;
+      border-radius: 8px;
+      background: #f8f9ff;
+    }
+    
+    .page-container {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .page-content {
+      flex: 1;
+    }
+  </style>
+</head>
+<body>
+  <div class="page-container">
+    <div class="page-content">
+      <div class="main-content">
+        <h1>Footer Component - Advanced Examples</h1>
+        <p>This page demonstrates advanced usage patterns, dynamic behavior, and programmatic control of the Footer component.</p>
+
+        <div class="example">
+          <h3>Footer with Navigation Sections</h3>
+          <p>Complex footers with multiple navigation sections:</p>
+          
+          <div data-public-good-footer 
+               data-navigation-sections='[
+                 {
+                   "title": "Services",
+                   "links": [
+                     {"text": "Web Design", "href": "/services/web-design"},
+                     {"text": "Development", "href": "/services/development"},
+                     {"text": "Consulting", "href": "/services/consulting"}
+                   ]
+                 },
+                 {
+                   "title": "Resources",
+                   "links": [
+                     {"text": "Documentation", "href": "/docs"},
+                     {"text": "API Reference", "href": "/api"},
+                     {"text": "Tutorials", "href": "/tutorials"}
+                   ]
+                 },
+                 {
+                   "title": "Company",
+                   "links": [
+                     {"text": "About Us", "href": "/about"},
+                     {"text": "Careers", "href": "/careers"},
+                     {"text": "News", "href": "/news"}
+                   ]
+                 }
+               ]'
+               data-links='[
+                 {"text": "Privacy Policy", "href": "/privacy"},
+                 {"text": "Terms of Service", "href": "/terms"}
+               ]'
+               data-copyright-holder="Advanced Navigation Corp">
+          </div>
+        </div>
+
+        <div class="example">
+          <h3>Dynamic Footer Management</h3>
+          <div class="controls">
+            <h4>Interactive Controls</h4>
+            <button type="button" class="button button--small" onclick="createDynamicFooter()">Create Dynamic Footer</button>
+            <button type="button" class="button button--small" onclick="addLink()">Add Link</button>
+            <button type="button" class="button button--small" onclick="removeLink()">Remove Link</button>
+            <button type="button" class="button button--small" onclick="addNavigationSection()">Add Nav Section</button>
+            <button type="button" class="button button--small" onclick="updateCopyright()">Update Copyright</button>
+            <button type="button" class="button button--secondary button--small" onclick="clearDynamicFooter()">Clear Footer</button>
+          </div>
+          
+          <div id="dynamic-footer-container" class="footer-container">
+            <p><em>Dynamic footer will appear here...</em></p>
+          </div>
+          <div class="output" id="event-log">Event log will appear here...</div>
+        </div>
+
+        <div class="example">
+          <h3>Programmatically Created Footers</h3>
+          <div class="controls">
+            <h4>Create Different Types</h4>
+            <button type="button" class="button button--small" onclick="createNHSFooter()">Create NHS Footer</button>
+            <button type="button" class="button button--small" onclick="createNavigationFooter()">Create Navigation Footer</button>
+            <button type="button" class="button button--small" onclick="createMinimalFooter()">Create Minimal Footer</button>
+            <button type="button" class="button button--secondary button--small" onclick="clearProgrammaticFooters()">Clear All</button>
+          </div>
+          
+          <div id="programmatic-container"></div>
+        </div>
+
+        <div class="example">
+          <h3>NHS-Style Footer</h3>
+          <p>Standard NHS footer with all required links:</p>
+          
+          <div class="demo-content">
+            <div>
+              <h2>NHS Service Demo</h2>
+              <p>This demonstrates how the NHS footer appears on health service websites</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="example">
+          <h3>Footer Variants</h3>
+          <p>Different styling variants of the footer component:</p>
+          
+          <h4>Compact Footer</h4>
+          <div data-public-good-footer 
+               data-classes="public-good-footer--compact"
+               data-copyright-holder="Compact Organization"
+               data-links='[
+                 {"text": "Link 1", "href": "/link1"},
+                 {"text": "Link 2", "href": "/link2"}
+               ]'>
+          </div>
+          
+          <h4>Minimal Footer</h4>
+          <div data-public-good-footer 
+               data-classes="public-good-footer--minimal"
+               data-copyright-holder="Minimal Organization"
+               data-links='[
+                 {"text": "Essential Link", "href": "/essential"}
+               ]'>
+          </div>
+          
+          <h4>Centered Footer</h4>
+          <div data-public-good-footer 
+               data-classes="public-good-footer--centered"
+               data-copyright-holder="Centered Organization"
+               data-links='[
+                 {"text": "Center Link 1", "href": "/center1"},
+                 {"text": "Center Link 2", "href": "/center2"}
+               ]'>
+          </div>
+        </div>
+
+        <div class="example">
+          <h3>Accessibility Features</h3>
+          <p>All footers provide proper semantic structure and keyboard navigation:</p>
+          
+          <div data-public-good-footer 
+               data-visually-hidden-title="Accessibility Support Links"
+               data-copyright-holder="Accessible Organization"
+               data-links='[
+                 {"text": "Accessibility Statement", "href": "/accessibility"},
+                 {"text": "Keyboard Shortcuts", "href": "/shortcuts"},
+                 {"text": "Screen Reader Guide", "href": "/screen-reader"}
+               ]'>
+          </div>
+          
+          <p><strong>Try these keyboard shortcuts:</strong></p>
+          <ul>
+            <li><kbd>Tab</kbd> - Navigate through footer links</li>
+            <li><kbd>Enter</kbd> or <kbd>Space</kbd> - Activate links</li>
+            <li><kbd>End</kbd> - Jump to first footer on page</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- NHS Standard Footer -->
+    <div id="nhs-footer-container"></div>
+  </div>
+
+  <script type="module">
+    import { 
+      createFooter, 
+      initializeFooters, 
+      createNHSFooter,
+      createNavigationFooter,
+      createMinimalFooter,
+      createSimpleFooter
+    } from '../footer.js'
+    
+    let dynamicFooter = null
+    let eventLogElement = null
+    const programmaticFooters = []
+    
+    // Initialize all footers on the page
+    document.addEventListener('DOMContentLoaded', () => {
+      const footers = initializeFooters()
+      console.log(`Initialized ${footers.length} footers`)
+      
+      eventLogElement = document.getElementById('event-log')
+      
+      // Add event listeners to all footers
+      footers.forEach((footer, index) => {
+        addFooterEventListeners(footer, `Footer ${index + 1}`)
+      })
+      
+      // Create NHS footer
+      createNHSFooterExample()
+      
+      // Add keyboard navigation
+      setupKeyboardNavigation()
+    })
+    
+    function addFooterEventListeners(footer, label) {
+      footer.element.addEventListener('public-good:footer:link-added', (event) => {
+        logEvent(`${label}: Link added - "${event.detail.link.text}"`)
+      })
+      
+      footer.element.addEventListener('public-good:footer:link-removed', (event) => {
+        logEvent(`${label}: Link removed - ${event.detail.href}`)
+      })
+      
+      footer.element.addEventListener('public-good:footer:navigation-section-added', (event) => {
+        logEvent(`${label}: Navigation section added - "${event.detail.section.title}"`)
+      })
+      
+      footer.element.addEventListener('public-good:footer:navigation-section-removed', (event) => {
+        logEvent(`${label}: Navigation section removed - "${event.detail.title}"`)
+      })
+      
+      footer.element.addEventListener('public-good:footer:copyright-updated', (event) => {
+        logEvent(`${label}: Copyright updated - "${event.detail.copyrightHolder}"`)
+      })
+    }
+    
+    function logEvent(message) {
+      if (eventLogElement) {
+        const timestamp = new Date().toLocaleTimeString()
+        eventLogElement.textContent = `[${timestamp}] ${message}\n` + eventLogElement.textContent
+      }
+    }
+    
+    function createNHSFooterExample() {
+      const nhsContainer = document.getElementById('nhs-footer-container')
+      const nhsFooter = createNHSFooter([
+        { text: 'Find a Service', href: '/find-service' },
+        { text: 'Health A-Z', href: '/health-az' }
+      ])
+      nhsContainer.appendChild(nhsFooter.element)
+      addFooterEventListeners(nhsFooter, 'NHS Footer')
+    }
+    
+    function setupKeyboardNavigation() {
+      document.addEventListener('keydown', (event) => {
+        if (event.key === 'End') {
+          // Jump to first footer when End key is pressed
+          const firstFooter = document.querySelector('.public-good-footer')
+          if (firstFooter) {
+            firstFooter.scrollIntoView({ behavior: 'smooth' })
+            const firstLink = firstFooter.querySelector('.public-good-footer__link')
+            if (firstLink) {
+              firstLink.focus()
+            }
+          }
+        }
+      })
+    }
+    
+    // Global functions for button controls
+    window.createDynamicFooter = function() {
+      const container = document.getElementById('dynamic-footer-container')
+      
+      if (dynamicFooter) {
+        dynamicFooter.destroy()
+      }
+      
+      dynamicFooter = createFooter({
+        links: [
+          { text: 'Initial Link', href: '/initial' }
+        ],
+        copyrightHolder: 'Dynamic Organization'
+      })
+      
+      container.innerHTML = ''
+      container.appendChild(dynamicFooter.element)
+      addFooterEventListeners(dynamicFooter, 'Dynamic Footer')
+      logEvent('Dynamic footer created')
+    }
+    
+    window.addLink = function() {
+      if (dynamicFooter) {
+        const randomId = Math.random().toString(36).substr(2, 9)
+        dynamicFooter.addLink({
+          text: `Dynamic Link ${randomId}`,
+          href: `/dynamic-${randomId}`
+        })
+      }
+    }
+    
+    window.removeLink = function() {
+      if (dynamicFooter) {
+        const links = dynamicFooter.getLinks()
+        if (links.length > 0) {
+          dynamicFooter.removeLink(links[0].href)
+        }
+      }
+    }
+    
+    window.addNavigationSection = function() {
+      if (dynamicFooter) {
+        const randomId = Math.random().toString(36).substr(2, 9)
+        dynamicFooter.addNavigationSection({
+          title: `Section ${randomId}`,
+          links: [
+            { text: `Nav Link ${randomId}`, href: `/nav-${randomId}` }
+          ]
+        })
+      }
+    }
+    
+    window.updateCopyright = function() {
+      if (dynamicFooter) {
+        const timestamp = new Date().getFullYear()
+        dynamicFooter.updateCopyright('©', `Updated Org ${timestamp}`, '/updated-copyright')
+      }
+    }
+    
+    window.clearDynamicFooter = function() {
+      if (dynamicFooter) {
+        dynamicFooter.destroy()
+        dynamicFooter = null
+        document.getElementById('dynamic-footer-container').innerHTML = '<p><em>Dynamic footer cleared</em></p>'
+        logEvent('Dynamic footer cleared')
+      }
+    }
+    
+    window.createNHSFooter = function() {
+      const container = document.getElementById('programmatic-container')
+      const footer = createNHSFooter()
+      container.appendChild(footer.element)
+      programmaticFooters.push(footer)
+      addFooterEventListeners(footer, `NHS Programmatic ${programmaticFooters.length}`)
+    }
+    
+    window.createNavigationFooter = function() {
+      const container = document.getElementById('programmatic-container')
+      const footer = createNavigationFooter(
+        [
+          {
+            title: 'Quick Links',
+            links: [
+              { text: 'Home', href: '/' },
+              { text: 'About', href: '/about' }
+            ]
+          }
+        ],
+        [
+          { text: 'Contact', href: '/contact' }
+        ]
+      )
+      container.appendChild(footer.element)
+      programmaticFooters.push(footer)
+      addFooterEventListeners(footer, `Navigation Programmatic ${programmaticFooters.length}`)
+    }
+    
+    window.createMinimalFooter = function() {
+      const container = document.getElementById('programmatic-container')
+      const footer = createMinimalFooter('©', 'Minimal Programmatic Org')
+      container.appendChild(footer.element)
+      programmaticFooters.push(footer)
+      addFooterEventListeners(footer, `Minimal Programmatic ${programmaticFooters.length}`)
+    }
+    
+    window.clearProgrammaticFooters = function() {
+      programmaticFooters.forEach(footer => {
+        footer.destroy()
+      })
+      programmaticFooters.length = 0
+      document.getElementById('programmatic-container').innerHTML = ''
+      logEvent('All programmatic footers cleared')
+    }
+    
+    // Add some visual enhancements
+    document.addEventListener('DOMContentLoaded', () => {
+      // Add hover effects to footer links
+      document.addEventListener('mouseover', (event) => {
+        if (event.target.classList.contains('public-good-footer__link')) {
+          event.target.style.transform = 'translateY(-1px)'
+          event.target.style.transition = 'transform 0.15s ease'
+        }
+      })
+      
+      document.addEventListener('mouseout', (event) => {
+        if (event.target.classList.contains('public-good-footer__link')) {
+          event.target.style.transform = 'translateY(0)'
+        }
+      })
+      
+      // Highlight currently focused element
+      document.addEventListener('focusin', (event) => {
+        if (event.target.closest('.public-good-footer')) {
+          event.target.style.boxShadow = '0 0 0 3px rgba(0, 123, 255, 0.25)'
+        }
+      })
+      
+      document.addEventListener('focusout', (event) => {
+        if (event.target.closest('.public-good-footer')) {
+          event.target.style.boxShadow = ''
+        }
+      })
+    })
+  </script>
+</body>
+</html>

@@ -1,0 +1,151 @@
+/**
+ * Public Good Design System - Layout Utilities
+ * Common layout patterns and utilities
+ */
+
+/* Container */
+.public-good-container {
+  width: 100%;
+  max-width: var(--public-good-container-max);
+  margin-inline: auto;
+  padding-inline: var(--public-good-spacing-container);
+}
+
+@media (min-width: 768px) {
+  .public-good-container {
+    padding-inline: var(--public-good-spacing-8);
+  }
+}
+
+@media (min-width: 1024px) {
+  .public-good-container {
+    padding-inline: var(--public-good-spacing-12);
+  }
+}
+
+/* Grid system */
+.public-good-grid {
+  display: grid;
+  gap: var(--public-good-grid-gap);
+  grid-template-columns: repeat(var(--public-good-grid-columns), 1fr);
+}
+
+@media (min-width: 768px) {
+  .public-good-grid {
+    gap: var(--public-good-grid-gap-large);
+  }
+}
+
+/* Grid column utilities */
+.public-good-col-1 { grid-column: span 1; }
+.public-good-col-2 { grid-column: span 2; }
+.public-good-col-3 { grid-column: span 3; }
+.public-good-col-4 { grid-column: span 4; }
+.public-good-col-5 { grid-column: span 5; }
+.public-good-col-6 { grid-column: span 6; }
+.public-good-col-7 { grid-column: span 7; }
+.public-good-col-8 { grid-column: span 8; }
+.public-good-col-9 { grid-column: span 9; }
+.public-good-col-10 { grid-column: span 10; }
+.public-good-col-11 { grid-column: span 11; }
+.public-good-col-12 { grid-column: span 12; }
+
+/* Flexbox utilities */
+.public-good-flex {
+  display: flex;
+}
+
+.public-good-flex-col {
+  display: flex;
+  flex-direction: column;
+}
+
+.public-good-flex-wrap {
+  flex-wrap: wrap;
+}
+
+.public-good-flex-nowrap {
+  flex-wrap: nowrap;
+}
+
+/* Alignment utilities */
+.public-good-justify-start { justify-content: flex-start; }
+.public-good-justify-center { justify-content: center; }
+.public-good-justify-end { justify-content: flex-end; }
+.public-good-justify-between { justify-content: space-between; }
+.public-good-justify-around { justify-content: space-around; }
+.public-good-justify-evenly { justify-content: space-evenly; }
+
+.public-good-items-start { align-items: flex-start; }
+.public-good-items-center { align-items: center; }
+.public-good-items-end { align-items: flex-end; }
+.public-good-items-stretch { align-items: stretch; }
+.public-good-items-baseline { align-items: baseline; }
+
+/* Gap utilities */
+.public-good-gap-0 { gap: var(--public-good-spacing-0); }
+.public-good-gap-1 { gap: var(--public-good-spacing-1); }
+.public-good-gap-2 { gap: var(--public-good-spacing-2); }
+.public-good-gap-3 { gap: var(--public-good-spacing-3); }
+.public-good-gap-4 { gap: var(--public-good-spacing-4); }
+.public-good-gap-5 { gap: var(--public-good-spacing-5); }
+.public-good-gap-6 { gap: var(--public-good-spacing-6); }
+.public-good-gap-8 { gap: var(--public-good-spacing-8); }
+
+/* Width utilities */
+.public-good-w-full { width: 100%; }
+.public-good-w-auto { width: auto; }
+.public-good-w-fit { width: fit-content; }
+.public-good-w-min { width: min-content; }
+.public-good-w-max { width: max-content; }
+
+/* Height utilities */
+.public-good-h-full { height: 100%; }
+.public-good-h-auto { height: auto; }
+.public-good-h-fit { height: fit-content; }
+.public-good-h-min { height: min-content; }
+.public-good-h-max { height: max-content; }
+
+/* Display utilities */
+.public-good-block { display: block; }
+.public-good-inline { display: inline; }
+.public-good-inline-block { display: inline-block; }
+.public-good-hidden { display: none; }
+
+/* Visibility utilities */
+.public-good-visible { visibility: visible; }
+.public-good-invisible { visibility: hidden; }
+
+/* Position utilities */
+.public-good-relative { position: relative; }
+.public-good-absolute { position: absolute; }
+.public-good-fixed { position: fixed; }
+.public-good-sticky { position: sticky; }
+
+/* Overflow utilities */
+.public-good-overflow-visible { overflow: visible; }
+.public-good-overflow-hidden { overflow: hidden; }
+.public-good-overflow-scroll { overflow: scroll; }
+.public-good-overflow-auto { overflow: auto; }
+
+/* Text alignment utilities */
+.public-good-text-left { text-align: left; }
+.public-good-text-center { text-align: center; }
+.public-good-text-right { text-align: right; }
+.public-good-text-justify { text-align: justify; }
+
+/* Responsive visibility utilities */
+.public-good-show-mobile { display: block; }
+.public-good-hide-mobile { display: none; }
+
+@media (min-width: 768px) {
+  .public-good-show-tablet { display: block; }
+  .public-good-hide-tablet { display: none; }
+  .public-good-show-mobile { display: none; }
+  .public-good-hide-mobile { display: block; }
+}
+
+@media (min-width: 1024px) {
+  .public-good-show-desktop { display: block; }
+  .public-good-hide-desktop { display: none; }
+}

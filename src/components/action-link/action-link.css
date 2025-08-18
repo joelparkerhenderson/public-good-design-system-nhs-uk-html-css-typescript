@@ -1,0 +1,162 @@
+/**
+ * Action Link Component Styles
+ * Converted from NHS UK Design System action-link component
+ */
+
+/* Container wrapper */
+.public-good-action-link {
+  margin-bottom: var(--public-good-spacing-8);
+}
+
+/* Main link element */
+.public-good-action-link__link {
+  display: inline-block;
+  position: relative;
+  padding-left: 38px;
+  font-size: var(--public-good-font-size-20);
+  font-weight: var(--public-good-font-weight-bold);
+  line-height: var(--public-good-line-height-normal);
+  color: var(--public-good-color-link);
+  text-decoration: none;
+  min-height: 44px; /* Touch target size */
+}
+
+/* Mobile responsive adjustments */
+@media (max-width: 768px) {
+  .public-good-action-link__link {
+    padding-left: 26px;
+    font-size: var(--public-good-font-size-18);
+  }
+}
+
+/* Hover state */
+.public-good-action-link__link:hover:not(:focus) .public-good-action-link__text {
+  text-decoration: underline;
+  color: var(--public-good-color-link-hover);
+}
+
+/* Focus state */
+.public-good-action-link__link:focus {
+  outline: var(--public-good-spacing-focus-width) solid var(--public-good-color-focus);
+  outline-offset: var(--public-good-spacing-focus-offset);
+  color: var(--public-good-color-text);
+  background-color: var(--public-good-color-focus);
+  box-shadow: 0 -2px var(--public-good-color-focus), 0 4px var(--public-good-color-text);
+}
+
+/* Active state */
+.public-good-action-link__link:active {
+  color: var(--public-good-color-link-active);
+}
+
+/* Visited state */
+.public-good-action-link__link:visited {
+  color: var(--public-good-color-link-visited);
+}
+
+/* Arrow icon styles */
+.public-good-icon--arrow-right-circle {
+  position: absolute;
+  left: -3px;
+  top: -3px;
+  width: 36px;
+  height: 36px;
+  fill: var(--public-good-color-green);
+}
+
+/* Mobile arrow icon adjustments */
+@media (max-width: 768px) {
+  .public-good-icon--arrow-right-circle {
+    left: -2px;
+    top: 1px;
+    width: 24px;
+    height: 24px;
+  }
+}
+
+/* Focus state for icon */
+.public-good-action-link__link:focus .public-good-icon--arrow-right-circle {
+  fill: var(--public-good-color-text);
+}
+
+/* Text wrapper */
+.public-good-action-link__text {
+  color: inherit;
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .public-good-action-link__link {
+    border: var(--public-good-border-width-medium) solid transparent;
+  }
+  
+  .public-good-action-link__link:focus {
+    border-color: var(--public-good-color-text);
+  }
+  
+  .public-good-icon--arrow-right-circle {
+    fill: currentColor;
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .public-good-action-link__link {
+    transition: none;
+  }
+}
+
+/* Print styles */
+@media print {
+  .public-good-action-link__link {
+    color: var(--public-good-color-text);
+    text-decoration: underline;
+  }
+  
+  .public-good-action-link__link:visited {
+    color: var(--public-good-color-text);
+  }
+  
+  .public-good-icon--arrow-right-circle {
+    fill: var(--public-good-color-text);
+  }
+}
+
+/* RTL support */
+[dir="rtl"] .public-good-action-link__link {
+  padding-left: 0;
+  padding-right: 38px;
+}
+
+[dir="rtl"] .public-good-icon--arrow-right-circle {
+  left: auto;
+  right: -3px;
+  transform: scaleX(-1);
+}
+
+@media (max-width: 768px) {
+  [dir="rtl"] .public-good-action-link__link {
+    padding-right: 26px;
+  }
+  
+  [dir="rtl"] .public-good-icon--arrow-right-circle {
+    right: -2px;
+  }
+}
+
+/* Variant classes */
+.public-good-action-link--urgent .public-good-action-link__link {
+  color: var(--public-good-color-error);
+}
+
+.public-good-action-link--urgent .public-good-icon--arrow-right-circle {
+  fill: var(--public-good-color-error);
+}
+
+.public-good-action-link--secondary .public-good-action-link__link {
+  color: var(--public-good-color-text-secondary);
+}
+
+.public-good-action-link--secondary .public-good-icon--arrow-right-circle {
+  fill: var(--public-good-color-text-secondary);
+}

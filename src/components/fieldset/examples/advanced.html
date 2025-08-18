@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fieldset Component - Advanced Examples</title>
+  <link rel="stylesheet" href="../../index.css">
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      line-height: 1.6;
+      margin: 0;
+      padding: 20px;
+      background-color: #f5f5f5;
+    }
+    
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      background: white;
+      padding: 40px;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+    
+    h1 {
+      color: #333;
+      border-bottom: 2px solid #0078d4;
+      padding-bottom: 10px;
+    }
+    
+    .example {
+      margin: 30px 0;
+      padding: 20px;
+      border: 1px solid #e1e5e9;
+      border-radius: 4px;
+      background: #fafbfc;
+    }
+    
+    .example h3 {
+      margin-top: 0;
+      color: #0078d4;
+    }
+    
+    .public-good-form-group {
+      margin-bottom: 20px;
+    }
+    
+    .public-good-label {
+      display: block;
+      font-weight: bold;
+      margin-bottom: 5px;
+      color: #333;
+    }
+    
+    .public-good-input {
+      width: 100%;
+      max-width: 300px;
+      padding: 8px 12px;
+      border: 2px solid #ccc;
+      border-radius: 4px;
+      font-size: 16px;
+    }
+    
+    .public-good-input:focus {
+      outline: 3px solid #ffbf47;
+      outline-offset: 0;
+      border-color: #333;
+    }
+    
+    .public-good-button {
+      background-color: #0078d4;
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      font-size: 16px;
+      border-radius: 4px;
+      cursor: pointer;
+      margin: 10px 10px 10px 0;
+    }
+    
+    .public-good-button:hover {
+      background-color: #106ebe;
+    }
+    
+    .public-good-button:focus {
+      outline: 3px solid #ffbf47;
+      outline-offset: 0;
+    }
+    
+    .public-good-button--secondary {
+      background-color: #6c757d;
+    }
+    
+    .public-good-button--secondary:hover {
+      background-color: #5a6268;
+    }
+    
+    .public-good-button--small {
+      padding: 8px 16px;
+      font-size: 14px;
+    }
+    
+    .controls {
+      background: #e9ecef;
+      padding: 20px;
+      border-radius: 4px;
+      margin-bottom: 20px;
+    }
+    
+    .controls h4 {
+      margin-top: 0;
+      color: #495057;
+    }
+    
+    .flex-row {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+    
+    .flex-row > div {
+      flex: 1;
+      min-width: 200px;
+    }
+    
+    .date-input {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    
+    .date-input .public-good-form-group {
+      margin-bottom: 0;
+    }
+    
+    .date-input .public-good-input {
+      width: 60px;
+      text-align: center;
+    }
+    
+    .date-input .public-good-input[maxlength="4"] {
+      width: 80px;
+    }
+    
+    .checkbox-group {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    
+    .checkbox-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    
+    .checkbox-item input[type="checkbox"] {
+      width: auto;
+    }
+    
+    .radio-group {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    
+    .radio-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    
+    .radio-item input[type="radio"] {
+      width: auto;
+    }
+    
+    .output {
+      background: #f8f9fa;
+      border: 1px solid #dee2e6;
+      border-radius: 4px;
+      padding: 15px;
+      margin-top: 20px;
+      font-family: 'Courier New', monospace;
+      white-space: pre-wrap;
+      overflow-x: auto;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Fieldset Component - Advanced Examples</h1>
+    <p>This page demonstrates advanced usage patterns, dynamic behavior, and programmatic control of the Fieldset component.</p>
+
+    <div class="example">
+      <h3>Page Heading Fieldset</h3>
+      <p>Fieldsets can contain page headings using different heading levels:</p>
+      
+      <div data-public-good-fieldset 
+           data-legend-text="Main Application Form" 
+           data-legend-is-page-heading="true"
+           data-legend-heading-level="1">
+        <p>This fieldset uses an H1 heading as the page title.</p>
+        <div class="public-good-form-group">
+          <label for="app-type" class="public-good-label">Application Type</label>
+          <select id="app-type" class="public-good-input">
+            <option value="">Select type</option>
+            <option value="new">New Application</option>
+            <option value="renewal">Renewal</option>
+            <option value="amendment">Amendment</option>
+          </select>
+        </div>
+      </div>
+      
+      <div data-public-good-fieldset 
+           data-legend-text="Personal Information Section" 
+           data-legend-is-page-heading="true"
+           data-legend-heading-level="2">
+        <div class="public-good-form-group">
+          <label for="section-name" class="public-good-label">Full Name</label>
+          <input type="text" id="section-name" class="public-good-input">
+        </div>
+      </div>
+    </div>
+
+    <div class="example">
+      <h3>Dynamic Content Management</h3>
+      <div class="controls">
+        <h4>Interactive Controls</h4>
+        <button type="button" class="public-good-button public-good-button--small" onclick="updateLegend()">Update Legend</button>
+        <button type="button" class="public-good-button public-good-button--small" onclick="addContent()">Add Content</button>
+        <button type="button" class="public-good-button public-good-button--small" onclick="clearContent()">Clear Content</button>
+        <button type="button" class="public-good-button public-good-button--small" onclick="toggleDisabled()">Toggle Disabled</button>
+      </div>
+      
+      <div id="dynamic-fieldset-container"></div>
+      <div class="output" id="event-log">Event log will appear here...</div>
+    </div>
+
+    <div class="example">
+      <h3>Programmatically Created Fieldsets</h3>
+      <div class="controls">
+        <h4>Create Different Types</h4>
+        <button type="button" class="public-good-button public-good-button--small" onclick="createAddressFieldset()">Create Address Fieldset</button>
+        <button type="button" class="public-good-button public-good-button--small" onclick="createDateFieldset()">Create Date Fieldset</button>
+        <button type="button" class="public-good-button public-good-button--small" onclick="createCustomFieldset()">Create Custom Fieldset</button>
+        <button type="button" class="public-good-button public-good-button--secondary public-good-button--small" onclick="clearProgrammaticFieldsets()">Clear All</button>
+      </div>
+      
+      <div id="programmatic-container"></div>
+    </div>
+
+    <div class="example">
+      <h3>Complex Form with Multiple Fieldsets</h3>
+      <form id="complex-form">
+        <div data-public-good-fieldset data-legend-text="Account Information">
+          <div class="flex-row">
+            <div class="public-good-form-group">
+              <label for="username" class="public-good-label">Username</label>
+              <input type="text" id="username" class="public-good-input" required>
+            </div>
+            <div class="public-good-form-group">
+              <label for="email" class="public-good-label">Email</label>
+              <input type="email" id="email" class="public-good-input" required>
+            </div>
+          </div>
+          
+          <div class="flex-row">
+            <div class="public-good-form-group">
+              <label for="password" class="public-good-label">Password</label>
+              <input type="password" id="password" class="public-good-input" required>
+            </div>
+            <div class="public-good-form-group">
+              <label for="confirm-password" class="public-good-label">Confirm Password</label>
+              <input type="password" id="confirm-password" class="public-good-input" required>
+            </div>
+          </div>
+        </div>
+
+        <div data-public-good-fieldset data-legend-text="Profile Information">
+          <div class="flex-row">
+            <div class="public-good-form-group">
+              <label for="first-name" class="public-good-label">First Name</label>
+              <input type="text" id="first-name" class="public-good-input" required>
+            </div>
+            <div class="public-good-form-group">
+              <label for="last-name" class="public-good-label">Last Name</label>
+              <input type="text" id="last-name" class="public-good-input" required>
+            </div>
+          </div>
+          
+          <div class="public-good-form-group">
+            <label for="bio" class="public-good-label">Biography</label>
+            <textarea id="bio" class="public-good-input" style="width: 100%; height: 100px; max-width: 100%; resize: vertical;"></textarea>
+          </div>
+        </div>
+
+        <div data-public-good-fieldset data-legend-text="Preferences">
+          <div class="public-good-form-group">
+            <span class="public-good-label">Notification Settings</span>
+            <div class="checkbox-group">
+              <label class="checkbox-item">
+                <input type="checkbox" id="email-notifications" value="email">
+                <span>Email notifications</span>
+              </label>
+              <label class="checkbox-item">
+                <input type="checkbox" id="sms-notifications" value="sms">
+                <span>SMS notifications</span>
+              </label>
+              <label class="checkbox-item">
+                <input type="checkbox" id="push-notifications" value="push">
+                <span>Push notifications</span>
+              </label>
+            </div>
+          </div>
+          
+          <div class="public-good-form-group">
+            <span class="public-good-label">Theme Preference</span>
+            <div class="radio-group">
+              <label class="radio-item">
+                <input type="radio" name="theme" value="light" checked>
+                <span>Light theme</span>
+              </label>
+              <label class="radio-item">
+                <input type="radio" name="theme" value="dark">
+                <span>Dark theme</span>
+              </label>
+              <label class="radio-item">
+                <input type="radio" name="theme" value="auto">
+                <span>Auto (system preference)</span>
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <button type="submit" class="public-good-button">Create Account</button>
+        <button type="button" class="public-good-button public-good-button--secondary">Cancel</button>
+      </form>
+    </div>
+
+    <div class="example">
+      <h3>Accessibility Features Demonstration</h3>
+      <p>All fieldsets provide proper semantic structure and keyboard navigation:</p>
+      
+      <div data-public-good-fieldset data-legend-text="Accessibility Test">
+        <div class="public-good-form-group">
+          <label for="accessible-input-1" class="public-good-label">First Input</label>
+          <input type="text" id="accessible-input-1" class="public-good-input" placeholder="Press Tab to navigate">
+        </div>
+        
+        <div class="public-good-form-group">
+          <label for="accessible-input-2" class="public-good-label">Second Input</label>
+          <input type="text" id="accessible-input-2" class="public-good-input" placeholder="Continue with Tab">
+        </div>
+        
+        <div class="public-good-form-group">
+          <label for="accessible-select" class="public-good-label">Select Option</label>
+          <select id="accessible-select" class="public-good-input">
+            <option value="">Choose an option</option>
+            <option value="option1">Option 1</option>
+            <option value="option2">Option 2</option>
+            <option value="option3">Option 3</option>
+          </select>
+        </div>
+        
+        <button type="button" class="public-good-button">Submit</button>
+      </div>
+    </div>
+  </div>
+
+  <script type="module">
+    import { 
+      createFieldset, 
+      initializeFieldsets, 
+      createAddressFieldset, 
+      createDateFieldset,
+      createSimpleFieldset 
+    } from '../fieldset.js'
+    
+    let dynamicFieldset = null
+    let eventLogElement = null
+    const programmaticFieldsets = []
+    
+    // Initialize all fieldsets on the page
+    document.addEventListener('DOMContentLoaded', () => {
+      const fieldsets = initializeFieldsets()
+      console.log(`Initialized ${fieldsets.length} fieldsets`)
+      
+      eventLogElement = document.getElementById('event-log')
+      
+      // Add event listeners to all fieldsets
+      fieldsets.forEach((fieldset, index) => {
+        addFieldsetEventListeners(fieldset, `Fieldset ${index + 1}`)
+      })
+      
+      // Create initial dynamic fieldset
+      createDynamicFieldset()
+      
+      // Add form submit handler
+      document.getElementById('complex-form').addEventListener('submit', (e) => {
+        e.preventDefault()
+        alert('Form submitted! (This is just a demo)')
+      })
+    })
+    
+    function addFieldsetEventListeners(fieldset, label) {
+      fieldset.element.addEventListener('public-good:fieldset:legend-changed', (event) => {
+        logEvent(`${label}: Legend changed to "${event.detail.legend.text || event.detail.legend.html}"`)
+      })
+      
+      fieldset.element.addEventListener('public-good:fieldset:content-changed', (event) => {
+        logEvent(`${label}: Content changed`)
+      })
+      
+      fieldset.element.addEventListener('public-good:fieldset:content-added', (event) => {
+        logEvent(`${label}: Content added`)
+      })
+      
+      fieldset.element.addEventListener('public-good:fieldset:content-cleared', (event) => {
+        logEvent(`${label}: Content cleared`)
+      })
+      
+      fieldset.element.addEventListener('public-good:fieldset:disabled-changed', (event) => {
+        logEvent(`${label}: Disabled state changed to ${event.detail.disabled}`)
+      })
+    }
+    
+    function logEvent(message) {
+      if (eventLogElement) {
+        const timestamp = new Date().toLocaleTimeString()
+        eventLogElement.textContent = `[${timestamp}] ${message}\n` + eventLogElement.textContent
+      }
+    }
+    
+    function createDynamicFieldset() {
+      const container = document.getElementById('dynamic-fieldset-container')
+      
+      dynamicFieldset = createFieldset({
+        legend: { text: 'Dynamic Fieldset Example' },
+        content: `
+          <div class="public-good-form-group">
+            <label for="dynamic-input" class="public-good-label">Dynamic Input</label>
+            <input type="text" id="dynamic-input" class="public-good-input" placeholder="This content can be modified">
+          </div>
+        `
+      })
+      
+      container.appendChild(dynamicFieldset.element)
+      addFieldsetEventListeners(dynamicFieldset, 'Dynamic Fieldset')
+    }
+    
+    // Global functions for button controls
+    window.updateLegend = function() {
+      if (dynamicFieldset) {
+        const isPageHeading = Math.random() > 0.5
+        const headingLevel = Math.floor(Math.random() * 6) + 1
+        
+        dynamicFieldset.setLegend({
+          text: `Updated Legend ${Date.now()}`,
+          isPageHeading,
+          headingLevel: isPageHeading ? headingLevel : undefined
+        })
+      }
+    }
+    
+    window.addContent = function() {
+      if (dynamicFieldset) {
+        const randomId = Math.random().toString(36).substr(2, 9)
+        dynamicFieldset.addContent(`
+          <div class="public-good-form-group">
+            <label for="added-${randomId}" class="public-good-label">Added Field ${randomId}</label>
+            <input type="text" id="added-${randomId}" class="public-good-input" placeholder="Dynamically added">
+          </div>
+        `)
+      }
+    }
+    
+    window.clearContent = function() {
+      if (dynamicFieldset) {
+        dynamicFieldset.clearContent()
+      }
+    }
+    
+    window.toggleDisabled = function() {
+      if (dynamicFieldset) {
+        const isCurrentlyDisabled = dynamicFieldset.isDisabled()
+        dynamicFieldset.setDisabled(!isCurrentlyDisabled)
+      }
+    }
+    
+    window.createAddressFieldset = function() {
+      const container = document.getElementById('programmatic-container')
+      const fieldset = createAddressFieldset('Programmatic Address')
+      container.appendChild(fieldset.element)
+      programmaticFieldsets.push(fieldset)
+      addFieldsetEventListeners(fieldset, `Address Fieldset ${programmaticFieldsets.length}`)
+    }
+    
+    window.createDateFieldset = function() {
+      const container = document.getElementById('programmatic-container')
+      const fieldset = createDateFieldset('Programmatic Date')
+      container.appendChild(fieldset.element)
+      programmaticFieldsets.push(fieldset)
+      addFieldsetEventListeners(fieldset, `Date Fieldset ${programmaticFieldsets.length}`)
+    }
+    
+    window.createCustomFieldset = function() {
+      const container = document.getElementById('programmatic-container')
+      const fieldset = createSimpleFieldset(
+        'Custom Programmatic Fieldset',
+        `
+          <div class="public-good-form-group">
+            <label for="custom-${Date.now()}" class="public-good-label">Custom Field</label>
+            <input type="text" id="custom-${Date.now()}" class="public-good-input" placeholder="Custom input">
+          </div>
+        `,
+        {
+          classes: 'public-good-fieldset--bordered',
+          role: 'group'
+        }
+      )
+      container.appendChild(fieldset.element)
+      programmaticFieldsets.push(fieldset)
+      addFieldsetEventListeners(fieldset, `Custom Fieldset ${programmaticFieldsets.length}`)
+    }
+    
+    window.clearProgrammaticFieldsets = function() {
+      programmaticFieldsets.forEach(fieldset => {
+        fieldset.destroy()
+      })
+      programmaticFieldsets.length = 0
+      logEvent('All programmatic fieldsets cleared')
+    }
+  </script>
+</body>
+</html>

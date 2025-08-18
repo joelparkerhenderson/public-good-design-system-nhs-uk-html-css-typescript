@@ -1,0 +1,1078 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skip Link Component - Advanced Examples</title>
+    <link rel="stylesheet" href="../../../core/base.css">
+    <link rel="stylesheet" href="../skip-link.css">
+    <style>
+        body {
+            margin: 0;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #fafafa;
+        }
+        .example {
+            margin: 2rem auto;
+            max-width: 1200px;
+            padding: 2rem;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+        .example h3 {
+            margin-top: 0;
+            color: #0066cc;
+        }
+        .example-description {
+            margin-bottom: 1.5rem;
+            color: #666;
+            font-size: 1rem;
+            line-height: 1.5;
+        }
+        .demo-controls {
+            margin: 1rem 0;
+            padding: 1rem;
+            background: #f8f9fa;
+            border-radius: 4px;
+            border: 1px solid #e9ecef;
+        }
+        .demo-controls h4 {
+            margin: 0 0 0.5rem 0;
+            color: #495057;
+        }
+        .demo-controls button {
+            margin: 0.25rem;
+            padding: 0.5rem 1rem;
+            border: 1px solid #ccc;
+            background: white;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: background-color 0.2s ease;
+        }
+        .demo-controls button:hover {
+            background: #f0f0f0;
+        }
+        .demo-controls button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        .demo-controls input, .demo-controls select, .demo-controls textarea {
+            margin: 0.25rem;
+            padding: 0.5rem;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-family: inherit;
+        }
+        .form-group {
+            margin-bottom: 1rem;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 0.25rem;
+            font-weight: 500;
+            color: #495057;
+        }
+        .status-display {
+            margin: 1rem 0;
+            padding: 1rem;
+            background: #e8f4fd;
+            border: 1px solid #bae6fd;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            color: #003d7a;
+        }
+        .two-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-top: 1rem;
+        }
+        /* Mock application layouts */
+        .mock-spa {
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            overflow: hidden;
+            background: white;
+            height: 400px;
+            position: relative;
+        }
+        .mock-header {
+            background: #0066cc;
+            color: white;
+            padding: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .mock-nav {
+            background: #f8f9fa;
+            padding: 0.5rem 1rem;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        .mock-nav a {
+            margin-right: 1rem;
+            color: #0066cc;
+            text-decoration: none;
+            padding: 0.25rem 0.5rem;
+        }
+        .mock-nav a:hover, .mock-nav a.active {
+            background: #e3f2fd;
+            border-radius: 4px;
+        }
+        .mock-content {
+            padding: 1rem;
+            height: calc(400px - 120px);
+            overflow-y: auto;
+        }
+        .mock-sidebar {
+            background: #f1f3f4;
+            padding: 1rem;
+            border-right: 1px solid #e0e0e0;
+            width: 200px;
+            position: absolute;
+            top: 80px;
+            left: 0;
+            bottom: 0;
+            overflow-y: auto;
+        }
+        .mock-main-content {
+            margin-left: 200px;
+            padding: 1rem;
+            height: calc(320px - 2rem);
+            overflow-y: auto;
+        }
+        .form-layout {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .form-section {
+            padding: 1.5rem;
+            margin: 1rem 0;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            background: white;
+        }
+        .form-section h4 {
+            margin-top: 0;
+            color: #495057;
+            border-bottom: 1px solid #e0e0e0;
+            padding-bottom: 0.5rem;
+        }
+        .form-section:focus {
+            outline: 3px solid #ffeb3b;
+            outline-offset: 2px;
+        }
+        .validation-container {
+            border: 2px solid #28a745;
+            border-radius: 4px;
+            padding: 1rem;
+            margin: 1rem 0;
+            background: #f8fff9;
+        }
+        .validation-error {
+            border-color: #dc3545;
+            background: #fff8f8;
+            color: #721c24;
+        }
+        .skip-link-demo {
+            position: relative;
+            min-height: 300px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        /* Color variables */
+        :root {
+            --public-good-color-text: #212b32;
+            --public-good-color-text-secondary: #666666;
+            --public-good-color-link: #0066cc;
+            --public-good-color-link-hover: #003d7a;
+            --public-good-color-focus: #ffeb3b;
+            --public-good-spacing-1: 8px;
+            --public-good-spacing-2: 12px;
+            --public-good-spacing-3: 16px;
+            --public-good-spacing-4: 24px;
+        }
+        .hidden {
+            display: none;
+        }
+        @media (max-width: 768px) {
+            .two-column {
+                grid-template-columns: 1fr;
+            }
+            .mock-sidebar {
+                position: relative;
+                width: 100%;
+                height: auto;
+            }
+            .mock-main-content {
+                margin-left: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Dynamic skip links will be inserted here -->
+    <div id="dynamic-skip-links"></div>
+
+    <div class="example">
+        <h1>Skip Link Component - Advanced Examples</h1>
+        <p class="example-description">
+            This page demonstrates advanced skip link patterns including dynamic creation, 
+            single-page application integration, form navigation, and accessibility validation.
+        </p>
+    </div>
+
+    <div class="example">
+        <h3>Dynamic Skip Link Creation</h3>
+        <p class="example-description">Create and manage skip links dynamically based on page content.</p>
+        
+        <div class="two-column">
+            <div>
+                <h4>Skip Link Builder</h4>
+                <div class="demo-controls">
+                    <div class="form-group">
+                        <label for="skip-text">Skip Link Text:</label>
+                        <input type="text" id="skip-text" placeholder="e.g., Skip to content">
+                    </div>
+                    <div class="form-group">
+                        <label for="skip-target">Target ID:</label>
+                        <input type="text" id="skip-target" placeholder="e.g., main-content">
+                    </div>
+                    <div class="form-group">
+                        <label for="skip-position">Position:</label>
+                        <select id="skip-position">
+                            <option value="top">Top of page</option>
+                            <option value="before-header">Before header</option>
+                            <option value="after-header">After header</option>
+                        </select>
+                    </div>
+                    <div style="margin-top: 1rem;">
+                        <button id="add-skip-link">Add Skip Link</button>
+                        <button id="clear-skip-links">Clear All</button>
+                        <button id="validate-skip-links">Validate Links</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div>
+                <h4>Generated Skip Links</h4>
+                <div id="skip-links-preview" class="status-display">
+                    No skip links created yet. Use the controls to add them.
+                </div>
+            </div>
+        </div>
+
+        <div class="validation-container" id="validation-results">
+            <strong>Validation Status:</strong> Ready to validate skip links.
+        </div>
+    </div>
+
+    <div class="example">
+        <h3>Single Page Application (SPA) Navigation</h3>
+        <p class="example-description">Demonstrates how skip links adapt to different views in a single-page application.</p>
+        
+        <div class="skip-link-demo">
+            <!-- SPA skip links will be inserted here -->
+            <div id="spa-skip-links"></div>
+            
+            <div class="mock-spa">
+                <div class="mock-header">
+                    <h2>SPA Demo Application</h2>
+                    <div>Current Route: <span id="current-route">Dashboard</span></div>
+                </div>
+                
+                <div class="mock-nav">
+                    <a href="#dashboard" class="active" data-route="dashboard">Dashboard</a>
+                    <a href="#profile" data-route="profile">Profile</a>
+                    <a href="#settings" data-route="settings">Settings</a>
+                    <a href="#help" data-route="help">Help</a>
+                </div>
+                
+                <div id="spa-content" class="mock-content">
+                    <!-- Content will be dynamically loaded -->
+                </div>
+            </div>
+        </div>
+        
+        <div class="demo-controls">
+            <h4>Route Navigation</h4>
+            <button data-route="dashboard">Dashboard</button>
+            <button data-route="profile">Profile</button>
+            <button data-route="settings">Settings</button>
+            <button data-route="help">Help</button>
+        </div>
+
+        <div class="status-display" id="spa-status">
+            Navigate between routes to see how skip links adapt to each view.
+        </div>
+    </div>
+
+    <div class="example">
+        <h3>Form Navigation Skip Links</h3>
+        <p class="example-description">Skip links for complex forms with multiple sections.</p>
+        
+        <div id="form-skip-links"></div>
+        
+        <div class="form-layout">
+            <div class="form-section" id="personal-info" tabindex="-1">
+                <h4>Personal Information</h4>
+                <div class="form-group">
+                    <label for="first-name">First Name:</label>
+                    <input type="text" id="first-name" name="firstName">
+                </div>
+                <div class="form-group">
+                    <label for="last-name">Last Name:</label>
+                    <input type="text" id="last-name" name="lastName">
+                </div>
+                <div class="form-group">
+                    <label for="email">Email Address:</label>
+                    <input type="email" id="email" name="email">
+                </div>
+            </div>
+
+            <div class="form-section" id="address-info" tabindex="-1">
+                <h4>Address Information</h4>
+                <div class="form-group">
+                    <label for="street">Street Address:</label>
+                    <input type="text" id="street" name="street">
+                </div>
+                <div class="form-group">
+                    <label for="city">City:</label>
+                    <input type="text" id="city" name="city">
+                </div>
+                <div class="form-group">
+                    <label for="postal">Postal Code:</label>
+                    <input type="text" id="postal" name="postal">
+                </div>
+            </div>
+
+            <div class="form-section" id="preferences" tabindex="-1">
+                <h4>Preferences</h4>
+                <div class="form-group">
+                    <label>
+                        <input type="checkbox" name="newsletter"> Subscribe to newsletter
+                    </label>
+                </div>
+                <div class="form-group">
+                    <label>
+                        <input type="checkbox" name="notifications"> Email notifications
+                    </label>
+                </div>
+                <div class="form-group">
+                    <label for="language">Preferred Language:</label>
+                    <select id="language" name="language">
+                        <option value="en">English</option>
+                        <option value="es">Spanish</option>
+                        <option value="fr">French</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-section" id="form-summary" tabindex="-1">
+                <h4>Summary & Submit</h4>
+                <p>Review your information above and submit when ready.</p>
+                <button type="submit">Submit Form</button>
+                <button type="reset">Reset Form</button>
+            </div>
+        </div>
+
+        <div class="demo-controls">
+            <h4>Form Actions</h4>
+            <button id="create-form-skip-links">Create Form Skip Links</button>
+            <button id="remove-form-skip-links">Remove Skip Links</button>
+            <button id="test-form-navigation">Test Navigation</button>
+        </div>
+    </div>
+
+    <div class="example">
+        <h3>Complex Layout with Sidebar</h3>
+        <p class="example-description">Skip links for layouts with sidebar navigation and multiple content areas.</p>
+        
+        <div class="skip-link-demo">
+            <div id="sidebar-skip-links"></div>
+            
+            <div class="mock-spa">
+                <div class="mock-header">
+                    <h2>Documentation Site</h2>
+                    <div>Section: Getting Started</div>
+                </div>
+                
+                <div class="mock-sidebar" id="sidebar-nav" tabindex="-1">
+                    <h5>Navigation</h5>
+                    <ul style="list-style: none; padding: 0;">
+                        <li><a href="#intro">Introduction</a></li>
+                        <li><a href="#installation">Installation</a></li>
+                        <li><a href="#quickstart">Quick Start</a></li>
+                        <li><a href="#examples">Examples</a></li>
+                        <li><a href="#api">API Reference</a></li>
+                    </ul>
+                    
+                    <h5>On This Page</h5>
+                    <ul style="list-style: none; padding: 0;">
+                        <li><a href="#overview">Overview</a></li>
+                        <li><a href="#setup">Setup</a></li>
+                        <li><a href="#usage">Usage</a></li>
+                    </ul>
+                </div>
+                
+                <div class="mock-main-content" id="main-docs-content" tabindex="-1">
+                    <h3 id="overview">Overview</h3>
+                    <p>This documentation explains how to use the component library effectively. The sidebar provides quick navigation to different sections.</p>
+                    
+                    <h3 id="setup">Setup</h3>
+                    <p>Follow these steps to get started with the library in your project.</p>
+                    <ol>
+                        <li>Install the package</li>
+                        <li>Import the components</li>
+                        <li>Initialize the design system</li>
+                    </ol>
+                    
+                    <h3 id="usage">Usage</h3>
+                    <p>Here are the basic usage patterns for common scenarios.</p>
+                    
+                    <div id="search-section" tabindex="-1" style="margin-top: 2rem; padding: 1rem; border: 1px solid #e0e0e0; border-radius: 4px;">
+                        <h4>Search Documentation</h4>
+                        <input type="search" placeholder="Search docs..." style="width: 100%; padding: 0.5rem;">
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="demo-controls">
+            <h4>Layout Controls</h4>
+            <button id="create-sidebar-skip-links">Create Sidebar Skip Links</button>
+            <button id="toggle-sidebar">Toggle Sidebar</button>
+            <button id="focus-search">Focus Search</button>
+        </div>
+    </div>
+
+    <div class="example">
+        <h3>Accessibility Validation & Testing</h3>
+        <p class="example-description">Tools for validating and testing skip link accessibility.</p>
+        
+        <div class="two-column">
+            <div>
+                <h4>Validation Tools</h4>
+                <div class="demo-controls">
+                    <button id="run-full-validation">Run Full Validation</button>
+                    <button id="test-keyboard-navigation">Test Keyboard Navigation</button>
+                    <button id="simulate-screen-reader">Simulate Screen Reader</button>
+                    <button id="check-missing-targets">Check Missing Targets</button>
+                </div>
+                
+                <h4>Accessibility Checklist</h4>
+                <ul id="accessibility-checklist">
+                    <li>✓ Skip links are first interactive elements</li>
+                    <li>✓ Skip links are hidden until focused</li>
+                    <li>✓ All targets exist and are focusable</li>
+                    <li>✓ Skip links have descriptive text</li>
+                    <li>✓ Smooth scrolling respects user preferences</li>
+                </ul>
+            </div>
+            
+            <div>
+                <h4>Validation Results</h4>
+                <div id="validation-output" class="status-display">
+                    Click "Run Full Validation" to test all skip links on this page.
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="example">
+        <h3>Custom Skip Link Styles</h3>
+        <p class="example-description">Examples of different skip link visual treatments.</p>
+        
+        <div class="demo-controls">
+            <h4>Style Variants</h4>
+            <button id="show-default-style">Default Style</button>
+            <button id="show-high-contrast-style">High Contrast</button>
+            <button id="show-compact-style">Compact Style</button>
+            <button id="show-custom-brand-style">Custom Brand</button>
+        </div>
+
+        <div id="style-preview" class="skip-link-demo">
+            <div id="style-skip-links"></div>
+            <div style="padding: 2rem; text-align: center;">
+                <p>Press Tab to see the skip link with the selected style.</p>
+                <div id="style-target" tabindex="-1" style="margin-top: 2rem; padding: 1rem; border: 2px dashed #0066cc; border-radius: 4px;">
+                    <h4>Style Demo Target</h4>
+                    <p>This is the target for testing different skip link styles.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Targets for dynamic skip links -->
+    <div id="dynamic-target-1" tabindex="-1" style="padding: 1rem; margin: 1rem 0; border: 1px solid #ddd; border-radius: 4px; display: none;">
+        <h4>Dynamic Target 1</h4>
+        <p>This is a dynamically created target element.</p>
+    </div>
+    
+    <div id="dynamic-target-2" tabindex="-1" style="padding: 1rem; margin: 1rem 0; border: 1px solid #ddd; border-radius: 4px; display: none;">
+        <h4>Dynamic Target 2</h4>
+        <p>This is another dynamically created target element.</p>
+    </div>
+
+    <script type="module">
+        import { 
+            SkipLink,
+            createSkipLink,
+            createPageSkipLinks,
+            createMainContentSkipLink,
+            ensureSkipTarget,
+            validateSkipLinks,
+            initializeSkipLinks
+        } from '../skip-link.js';
+        
+        let skipLinkInstances = [];
+        let spaSkipLinks = [];
+        let formSkipLinks = [];
+        let sidebarSkipLinks = [];
+        
+        document.addEventListener('DOMContentLoaded', () => {
+            setupDynamicSkipLinks();
+            setupSPADemo();
+            setupFormSkipLinks();
+            setupSidebarDemo();
+            setupValidationTools();
+            setupStyleDemo();
+        });
+        
+        function setupDynamicSkipLinks() {
+            document.getElementById('add-skip-link').addEventListener('click', () => {
+                const text = document.getElementById('skip-text').value.trim();
+                const target = document.getElementById('skip-target').value.trim();
+                const position = document.getElementById('skip-position').value;
+                
+                if (!text || !target) {
+                    alert('Please enter both skip link text and target ID');
+                    return;
+                }
+                
+                // Ensure target exists
+                ensureSkipTarget(target);
+                
+                // Create skip link
+                const skipLink = createSkipLink({
+                    text: text,
+                    href: `#${target}`
+                });
+                
+                // Position the skip link
+                const container = document.getElementById('dynamic-skip-links');
+                if (position === 'top') {
+                    container.appendChild(skipLink);
+                } else {
+                    document.body.insertBefore(skipLink, document.body.firstChild);
+                }
+                
+                // Initialize skip link instance
+                const instance = new SkipLink(skipLink, {
+                    scrollBehavior: 'smooth',
+                    focusTarget: true
+                });
+                
+                skipLinkInstances.push(instance);
+                
+                // Show target for demo
+                const targetElement = document.getElementById(target);
+                if (targetElement) {
+                    targetElement.style.display = 'block';
+                }
+                
+                // Update preview
+                updateSkipLinksPreview();
+                
+                // Clear inputs
+                document.getElementById('skip-text').value = '';
+                document.getElementById('skip-target').value = '';
+            });
+            
+            document.getElementById('clear-skip-links').addEventListener('click', () => {
+                skipLinkInstances.forEach(instance => instance.destroy());
+                skipLinkInstances = [];
+                document.getElementById('dynamic-skip-links').innerHTML = '';
+                
+                // Hide dynamic targets
+                document.getElementById('dynamic-target-1').style.display = 'none';
+                document.getElementById('dynamic-target-2').style.display = 'none';
+                
+                updateSkipLinksPreview();
+            });
+            
+            document.getElementById('validate-skip-links').addEventListener('click', () => {
+                const validation = validateSkipLinks();
+                displayValidationResults(validation);
+            });
+        }
+        
+        function updateSkipLinksPreview() {
+            const preview = document.getElementById('skip-links-preview');
+            const validation = validateSkipLinks();
+            
+            if (validation.skipLinks.length === 0) {
+                preview.textContent = 'No skip links found on page.';
+                return;
+            }
+            
+            const skipLinkInfo = validation.skipLinks.map((link, index) => {
+                return `${index + 1}. "${link.textContent}" → ${link.getAttribute('href')}`;
+            }).join('\n');
+            
+            preview.textContent = `Found ${validation.skipLinks.length} skip links:\n${skipLinkInfo}`;
+        }
+        
+        function displayValidationResults(validation) {
+            const container = document.getElementById('validation-results');
+            
+            if (validation.issues.length === 0) {
+                container.className = 'validation-container';
+                container.innerHTML = `
+                    <strong>✓ Validation Passed</strong><br>
+                    Found ${validation.skipLinks.length} skip links with ${validation.targets.length} valid targets.<br>
+                    All skip links are properly configured.
+                `;
+            } else {
+                container.className = 'validation-container validation-error';
+                container.innerHTML = `
+                    <strong>⚠ Validation Issues Found</strong><br>
+                    Found ${validation.skipLinks.length} skip links with ${validation.issues.length} issues:<br>
+                    ${validation.issues.map(issue => `• ${issue}`).join('<br>')}
+                `;
+            }
+        }
+        
+        function setupSPADemo() {
+            const routes = {
+                dashboard: {
+                    title: 'Dashboard',
+                    content: `
+                        <div id="dashboard-main" tabindex="-1">
+                            <h3>Dashboard Overview</h3>
+                            <p>Welcome to your dashboard. Here you can see an overview of your account activity.</p>
+                            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin: 1rem 0;">
+                                <div style="padding: 1rem; background: #f8f9fa; border-radius: 4px;">
+                                    <h4>Recent Activity</h4>
+                                    <p>5 new notifications</p>
+                                </div>
+                                <div style="padding: 1rem; background: #f8f9fa; border-radius: 4px;">
+                                    <h4>Account Status</h4>
+                                    <p>All systems operational</p>
+                                </div>
+                            </div>
+                        </div>
+                    `,
+                    skipLinks: [
+                        { text: 'Skip to dashboard content', href: '#dashboard-main' }
+                    ]
+                },
+                profile: {
+                    title: 'Profile',
+                    content: `
+                        <div id="profile-form" tabindex="-1">
+                            <h3>User Profile</h3>
+                            <form>
+                                <div class="form-group">
+                                    <label for="profile-name">Display Name:</label>
+                                    <input type="text" id="profile-name" value="John Doe">
+                                </div>
+                                <div class="form-group">
+                                    <label for="profile-email">Email:</label>
+                                    <input type="email" id="profile-email" value="john@example.com">
+                                </div>
+                                <button type="submit">Update Profile</button>
+                            </form>
+                        </div>
+                        <div id="profile-avatar" tabindex="-1" style="margin-top: 2rem; padding: 1rem; border: 1px solid #e0e0e0; border-radius: 4px;">
+                            <h4>Profile Picture</h4>
+                            <p>Upload a new profile picture</p>
+                            <input type="file" accept="image/*">
+                        </div>
+                    `,
+                    skipLinks: [
+                        { text: 'Skip to profile form', href: '#profile-form' },
+                        { text: 'Skip to avatar settings', href: '#profile-avatar' }
+                    ]
+                },
+                settings: {
+                    title: 'Settings',
+                    content: `
+                        <div id="general-settings" tabindex="-1">
+                            <h3>General Settings</h3>
+                            <div class="form-group">
+                                <label><input type="checkbox" checked> Email notifications</label>
+                            </div>
+                            <div class="form-group">
+                                <label><input type="checkbox"> SMS notifications</label>
+                            </div>
+                        </div>
+                        <div id="privacy-settings" tabindex="-1" style="margin-top: 2rem; padding: 1rem; border: 1px solid #e0e0e0; border-radius: 4px;">
+                            <h4>Privacy Settings</h4>
+                            <div class="form-group">
+                                <label><input type="checkbox"> Make profile public</label>
+                            </div>
+                            <div class="form-group">
+                                <label><input type="checkbox" checked> Allow search indexing</label>
+                            </div>
+                        </div>
+                        <div id="danger-zone" tabindex="-1" style="margin-top: 2rem; padding: 1rem; border: 2px solid #dc3545; border-radius: 4px; background: #fff5f5;">
+                            <h4 style="color: #dc3545;">Danger Zone</h4>
+                            <p>These actions cannot be undone.</p>
+                            <button style="background: #dc3545; color: white; border: none; padding: 0.5rem 1rem; border-radius: 4px;">Delete Account</button>
+                        </div>
+                    `,
+                    skipLinks: [
+                        { text: 'Skip to general settings', href: '#general-settings' },
+                        { text: 'Skip to privacy settings', href: '#privacy-settings' },
+                        { text: 'Skip to danger zone', href: '#danger-zone' }
+                    ]
+                },
+                help: {
+                    title: 'Help',
+                    content: `
+                        <div id="help-search" tabindex="-1">
+                            <h3>Help & Support</h3>
+                            <div class="form-group">
+                                <label for="help-query">Search help articles:</label>
+                                <input type="search" id="help-query" placeholder="What do you need help with?">
+                            </div>
+                        </div>
+                        <div id="help-categories" tabindex="-1" style="margin-top: 2rem;">
+                            <h4>Help Categories</h4>
+                            <ul>
+                                <li><a href="#getting-started">Getting Started</a></li>
+                                <li><a href="#account-management">Account Management</a></li>
+                                <li><a href="#troubleshooting">Troubleshooting</a></li>
+                                <li><a href="#contact">Contact Support</a></li>
+                            </ul>
+                        </div>
+                        <div id="contact-support" tabindex="-1" style="margin-top: 2rem; padding: 1rem; background: #f8f9fa; border-radius: 4px;">
+                            <h4>Contact Support</h4>
+                            <p>Can't find what you're looking for?</p>
+                            <button>Contact Support Team</button>
+                        </div>
+                    `,
+                    skipLinks: [
+                        { text: 'Skip to help search', href: '#help-search' },
+                        { text: 'Skip to help categories', href: '#help-categories' },
+                        { text: 'Skip to contact support', href: '#contact-support' }
+                    ]
+                }
+            };
+            
+            function loadRoute(routeName) {
+                const route = routes[routeName];
+                if (!route) return;
+                
+                // Update content
+                document.getElementById('spa-content').innerHTML = route.content;
+                document.getElementById('current-route').textContent = route.title;
+                
+                // Update navigation
+                document.querySelectorAll('.mock-nav a').forEach(link => {
+                    link.classList.toggle('active', link.dataset.route === routeName);
+                });
+                
+                // Clear existing skip links
+                spaSkipLinks.forEach(instance => instance.destroy());
+                spaSkipLinks = [];
+                document.getElementById('spa-skip-links').innerHTML = '';
+                
+                // Create new skip links
+                const container = createPageSkipLinks(route.skipLinks);
+                document.getElementById('spa-skip-links').appendChild(container);
+                
+                // Initialize skip link instances
+                const skipLinkElements = container.querySelectorAll('.public-good-skip-link');
+                skipLinkElements.forEach(element => {
+                    const instance = new SkipLink(element, {
+                        scrollBehavior: 'smooth',
+                        focusTarget: true
+                    });
+                    spaSkipLinks.push(instance);
+                });
+                
+                // Update status
+                document.getElementById('spa-status').textContent = 
+                    `Loaded ${route.title} with ${route.skipLinks.length} skip links`;
+            }
+            
+            // Route navigation handlers
+            document.querySelectorAll('[data-route]').forEach(button => {
+                button.addEventListener('click', (event) => {
+                    event.preventDefault();
+                    const route = event.target.dataset.route;
+                    loadRoute(route);
+                });
+            });
+            
+            // Initialize with dashboard
+            loadRoute('dashboard');
+        }
+        
+        function setupFormSkipLinks() {
+            document.getElementById('create-form-skip-links').addEventListener('click', () => {
+                // Clear existing
+                formSkipLinks.forEach(instance => instance.destroy());
+                formSkipLinks = [];
+                document.getElementById('form-skip-links').innerHTML = '';
+                
+                // Create form skip links
+                const links = [
+                    { text: 'Skip to personal information', href: '#personal-info' },
+                    { text: 'Skip to address information', href: '#address-info' },
+                    { text: 'Skip to preferences', href: '#preferences' },
+                    { text: 'Skip to form summary', href: '#form-summary' }
+                ];
+                
+                const container = createPageSkipLinks(links);
+                document.getElementById('form-skip-links').appendChild(container);
+                
+                // Initialize instances
+                const skipLinkElements = container.querySelectorAll('.public-good-skip-link');
+                skipLinkElements.forEach(element => {
+                    const instance = new SkipLink(element, {
+                        scrollBehavior: 'smooth',
+                        focusTarget: true
+                    });
+                    formSkipLinks.push(instance);
+                });
+            });
+            
+            document.getElementById('remove-form-skip-links').addEventListener('click', () => {
+                formSkipLinks.forEach(instance => instance.destroy());
+                formSkipLinks = [];
+                document.getElementById('form-skip-links').innerHTML = '';
+            });
+            
+            document.getElementById('test-form-navigation').addEventListener('click', () => {
+                if (formSkipLinks.length === 0) {
+                    alert('Please create form skip links first');
+                    return;
+                }
+                
+                // Cycle through form sections
+                const sections = ['personal-info', 'address-info', 'preferences', 'form-summary'];
+                let currentIndex = 0;
+                
+                function focusNextSection() {
+                    const section = document.getElementById(sections[currentIndex]);
+                    if (section) {
+                        section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                        section.focus();
+                        currentIndex = (currentIndex + 1) % sections.length;
+                        
+                        if (currentIndex === 0) {
+                            setTimeout(() => {
+                                alert('Form navigation test completed!');
+                            }, 1000);
+                        } else {
+                            setTimeout(focusNextSection, 2000);
+                        }
+                    }
+                }
+                
+                focusNextSection();
+            });
+        }
+        
+        function setupSidebarDemo() {
+            document.getElementById('create-sidebar-skip-links').addEventListener('click', () => {
+                // Clear existing
+                sidebarSkipLinks.forEach(instance => instance.destroy());
+                sidebarSkipLinks = [];
+                document.getElementById('sidebar-skip-links').innerHTML = '';
+                
+                // Create sidebar skip links
+                const links = [
+                    { text: 'Skip to main content', href: '#main-docs-content' },
+                    { text: 'Skip to sidebar navigation', href: '#sidebar-nav' },
+                    { text: 'Skip to search', href: '#search-section' }
+                ];
+                
+                const container = createPageSkipLinks(links);
+                document.getElementById('sidebar-skip-links').appendChild(container);
+                
+                // Initialize instances
+                const skipLinkElements = container.querySelectorAll('.public-good-skip-link');
+                skipLinkElements.forEach(element => {
+                    const instance = new SkipLink(element, {
+                        scrollBehavior: 'smooth',
+                        focusTarget: true
+                    });
+                    sidebarSkipLinks.push(instance);
+                });
+            });
+            
+            document.getElementById('toggle-sidebar').addEventListener('click', () => {
+                const sidebar = document.querySelector('.mock-sidebar');
+                const mainContent = document.querySelector('.mock-main-content');
+                
+                if (sidebar.style.display === 'none') {
+                    sidebar.style.display = 'block';
+                    mainContent.style.marginLeft = '200px';
+                } else {
+                    sidebar.style.display = 'none';
+                    mainContent.style.marginLeft = '0';
+                }
+            });
+            
+            document.getElementById('focus-search').addEventListener('click', () => {
+                const searchInput = document.querySelector('#search-section input');
+                if (searchInput) {
+                    searchInput.focus();
+                }
+            });
+        }
+        
+        function setupValidationTools() {
+            document.getElementById('run-full-validation').addEventListener('click', () => {
+                const validation = validateSkipLinks();
+                const output = document.getElementById('validation-output');
+                
+                let result = `<strong>Full Validation Results:</strong><br><br>`;
+                result += `Skip Links Found: ${validation.skipLinks.length}<br>`;
+                result += `Valid Targets: ${validation.targets.length}<br>`;
+                result += `Issues: ${validation.issues.length}<br><br>`;
+                
+                if (validation.issues.length === 0) {
+                    result += `<span style="color: #28a745;">✓ All skip links are properly configured</span>`;
+                } else {
+                    result += `<strong>Issues Found:</strong><br>`;
+                    result += validation.issues.map(issue => `• ${issue}`).join('<br>');
+                }
+                
+                result += `<br><br><strong>Skip Links:</strong><br>`;
+                validation.skipLinks.forEach((link, index) => {
+                    result += `${index + 1}. "${link.textContent}" → ${link.getAttribute('href')}<br>`;
+                });
+                
+                output.innerHTML = result;
+            });
+            
+            document.getElementById('test-keyboard-navigation').addEventListener('click', () => {
+                alert(`Keyboard Navigation Test:
+
+1. Press Tab to move to the next interactive element
+2. Press Shift+Tab to move to the previous element
+3. Press Enter or Space to activate links and buttons
+4. Use arrow keys within components when applicable
+
+Skip Link Specific:
+• Skip links should be first when pressing Tab
+• Skip links should be visible when focused
+• Activating skip links should move focus to targets
+• Target elements should receive visible focus indication
+
+Try this now with the skip links on this page!`);
+            });
+            
+            document.getElementById('simulate-screen-reader').addEventListener('click', () => {
+                const validation = validateSkipLinks();
+                let announcement = `Screen reader simulation: `;
+                
+                if (validation.skipLinks.length === 0) {
+                    announcement += `No skip links found on this page.`;
+                } else {
+                    announcement += `${validation.skipLinks.length} skip links available. `;
+                    validation.skipLinks.forEach(link => {
+                        announcement += `Link: ${link.textContent}. `;
+                    });
+                }
+                
+                // Use speech synthesis if available
+                if ('speechSynthesis' in window) {
+                    const utterance = new SpeechSynthesisUtterance(announcement);
+                    utterance.rate = 0.8;
+                    speechSynthesis.speak(utterance);
+                } else {
+                    alert(`Screen Reader Simulation:\n\n${announcement}\n\nNote: This is a simplified simulation. Actual screen readers provide much more detailed information.`);
+                }
+            });
+            
+            document.getElementById('check-missing-targets').addEventListener('click', () => {
+                const validation = validateSkipLinks();
+                const output = document.getElementById('validation-output');
+                
+                const missingTargets = validation.issues.filter(issue => 
+                    issue.includes('does not exist')
+                );
+                
+                if (missingTargets.length === 0) {
+                    output.innerHTML = `<strong>✓ Target Check Passed</strong><br>All skip link targets exist and are accessible.`;
+                } else {
+                    output.innerHTML = `<strong>⚠ Missing Targets Found:</strong><br>${missingTargets.map(issue => `• ${issue}`).join('<br>')}`;
+                }
+            });
+        }
+        
+        function setupStyleDemo() {
+            const styles = {
+                default: 'public-good-skip-link',
+                'high-contrast': 'public-good-skip-link public-good-skip-link--high-contrast',
+                compact: 'public-good-skip-link public-good-skip-link--compact',
+                'custom-brand': 'public-good-skip-link custom-brand-skip-link'
+            };
+            
+            // Add custom brand styles
+            const customStyles = document.createElement('style');
+            customStyles.textContent = `
+                .custom-brand-skip-link {
+                    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+                    color: white !important;
+                    border: 2px solid white !important;
+                    font-weight: bold !important;
+                    text-transform: uppercase !important;
+                    letter-spacing: 1px !important;
+                }
+                .custom-brand-skip-link:focus:hover {
+                    background: white !important;
+                    color: #667eea !important;
+                    border-color: #667eea !important;
+                }
+            `;
+            document.head.appendChild(customStyles);
+            
+            Object.keys(styles).forEach(styleName => {
+                document.getElementById(`show-${styleName}-style`).addEventListener('click', () => {
+                    // Clear existing style skip link
+                    document.getElementById('style-skip-links').innerHTML = '';
+                    
+                    // Create new skip link with selected style
+                    const skipLink = document.createElement('a');
+                    skipLink.href = '#style-target';
+                    skipLink.textContent = `Skip to target (${styleName} style)`;
+                    skipLink.className = styles[styleName];
+                    
+                    document.getElementById('style-skip-links').appendChild(skipLink);
+                    
+                    // Initialize skip link instance
+                    const instance = new SkipLink(skipLink, {
+                        scrollBehavior: 'smooth',
+                        focusTarget: true
+                    });
+                    
+                    // Focus the skip link to show the style
+                    setTimeout(() => {
+                        skipLink.focus();
+                    }, 100);
+                });
+            });
+        }
+        
+        // Initialize validation on load
+        setTimeout(() => {
+            const validation = validateSkipLinks();
+            console.log('Page loaded with skip link validation:', validation);
+            updateSkipLinksPreview();
+        }, 1000);
+    </script>
+</body>
+</html>

@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Back Link Examples - Public Good Design System</title>
+  <link rel="stylesheet" href="../../../index.css">
+  <link rel="stylesheet" href="../back-link.css">
+  <style>
+    body {
+      padding: 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .example {
+      margin: 2rem 0;
+      padding: 1.5rem;
+      border: 1px solid #d8dde0;
+      border-radius: 8px;
+    }
+    .example h3 {
+      margin-top: 0;
+      color: #005eb8;
+    }
+    .example-code {
+      background: #f0f4f5;
+      padding: 1rem;
+      border-radius: 4px;
+      font-family: 'Courier New', monospace;
+      font-size: 0.875rem;
+      margin-top: 1rem;
+      white-space: pre-wrap;
+      overflow-x: auto;
+    }
+    .dark-background {
+      background: #005eb8;
+      padding: 1rem;
+      border-radius: 4px;
+      margin: 1rem 0;
+    }
+  </style>
+</head>
+<body>
+  <h1>Back Link Component Examples</h1>
+  <p>Examples of the Back Link component in various configurations and use cases.</p>
+
+  <div class="example">
+    <h3>Default Back Link</h3>
+    <p>A standard back link with default "Back" text.</p>
+    
+    <div class="public-good-back-link">
+      <a href="/previous-page" class="public-good-back-link__link">
+        <svg class="public-good-icon public-good-icon--chevron-left" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" height="24" width="24">
+          <path d="M8.5 12c0-.3.1-.5.3-.7l5-5c.4-.4 1-.4 1.4 0s.4 1 0 1.4L10.9 12l4.3 4.3c.4.4.4 1 0 1.4s-1 .4-1.4 0l-5-5c-.2-.2-.3-.4-.3-.7z"></path>
+        </svg>
+        Back
+      </a>
+    </div>
+
+    <div class="example-code">&lt;div class="public-good-back-link"&gt;
+  &lt;a href="/previous-page" class="public-good-back-link__link"&gt;
+    &lt;svg class="public-good-icon public-good-icon--chevron-left" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" height="24" width="24"&gt;
+      &lt;path d="M8.5 12c0-.3.1-.5.3-.7l5-5c.4-.4 1-.4 1.4 0s.4 1 0 1.4L10.9 12l4.3 4.3c.4.4.4 1 0 1.4s-1 .4-1.4 0l-5-5c-.2-.2-.3-.4-.3-.7z"&gt;&lt;/path&gt;
+    &lt;/svg&gt;
+    Back
+  &lt;/a&gt;
+&lt;/div&gt;</div>
+  </div>
+
+  <div class="example">
+    <h3>Custom Text</h3>
+    <p>Back link with descriptive text about the destination.</p>
+    
+    <div class="public-good-back-link">
+      <a href="/services" class="public-good-back-link__link">
+        <svg class="public-good-icon public-good-icon--chevron-left" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" height="24" width="24">
+          <path d="M8.5 12c0-.3.1-.5.3-.7l5-5c.4-.4 1-.4 1.4 0s.4 1 0 1.4L10.9 12l4.3 4.3c.4.4.4 1 0 1.4s-1 .4-1.4 0l-5-5c-.2-.2-.3-.4-.3-.7z"></path>
+        </svg>
+        Back to services
+      </a>
+    </div>
+
+    <div class="example-code">&lt;div class="public-good-back-link"&gt;
+  &lt;a href="/services" class="public-good-back-link__link"&gt;
+    &lt;svg class="public-good-icon public-good-icon--chevron-left" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" height="24" width="24"&gt;
+      &lt;path d="M8.5 12c0-.3.1-.5.3-.7l5-5c.4-.4 1-.4 1.4 0s.4 1 0 1.4L10.9 12l4.3 4.3c.4.4.4 1 0 1.4s-1 .4-1.4 0l-5-5c-.2-.2-.3-.4-.3-.7z"&gt;&lt;/path&gt;
+    &lt;/svg&gt;
+    Back to services
+  &lt;/a&gt;
+&lt;/div&gt;</div>
+  </div>
+
+  <div class="example">
+    <h3>Button Element</h3>
+    <p>Back link as a button element for JavaScript-powered navigation.</p>
+    
+    <div class="public-good-back-link">
+      <button type="button" class="public-good-back-link__link" onclick="alert('Button clicked! In real usage, this would call window.history.back() or custom navigation logic.')">
+        <svg class="public-good-icon public-good-icon--chevron-left" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" height="24" width="24">
+          <path d="M8.5 12c0-.3.1-.5.3-.7l5-5c.4-.4 1-.4 1.4 0s.4 1 0 1.4L10.9 12l4.3 4.3c.4.4.4 1 0 1.4s-1 .4-1.4 0l-5-5c-.2-.2-.3-.4-.3-.7z"></path>
+        </svg>
+        Back
+      </button>
+    </div>
+
+    <div class="example-code">&lt;div class="public-good-back-link"&gt;
+  &lt;button type="button" class="public-good-back-link__link" onclick="window.history.back()"&gt;
+    &lt;svg class="public-good-icon public-good-icon--chevron-left" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" height="24" width="24"&gt;
+      &lt;path d="M8.5 12c0-.3.1-.5.3-.7l5-5c.4-.4 1-.4 1.4 0s.4 1 0 1.4L10.9 12l4.3 4.3c.4.4.4 1 0 1.4s-1 .4-1.4 0l-5-5c-.2-.2-.3-.4-.3-.7z"&gt;&lt;/path&gt;
+    &lt;/svg&gt;
+    Back
+  &lt;/button&gt;
+&lt;/div&gt;</div>
+  </div>
+
+  <div class="example">
+    <h3>Reverse (White Text)</h3>
+    <p>Back link variant for use on dark backgrounds.</p>
+    
+    <div class="dark-background">
+      <div class="public-good-back-link public-good-back-link--reverse">
+        <a href="/previous-page" class="public-good-back-link__link">
+          <svg class="public-good-icon public-good-icon--chevron-left" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" height="24" width="24">
+            <path d="M8.5 12c0-.3.1-.5.3-.7l5-5c.4-.4 1-.4 1.4 0s.4 1 0 1.4L10.9 12l4.3 4.3c.4.4.4 1 0 1.4s-1 .4-1.4 0l-5-5c-.2-.2-.3-.4-.3-.7z"></path>
+          </svg>
+          Back
+        </a>
+      </div>
+    </div>
+
+    <div class="example-code">&lt;div class="public-good-back-link public-good-back-link--reverse"&gt;
+  &lt;a href="/previous-page" class="public-good-back-link__link"&gt;
+    &lt;svg class="public-good-icon public-good-icon--chevron-left" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" height="24" width="24"&gt;
+      &lt;path d="M8.5 12c0-.3.1-.5.3-.7l5-5c.4-.4 1-.4 1.4 0s.4 1 0 1.4L10.9 12l4.3 4.3c.4.4.4 1 0 1.4s-1 .4-1.4 0l-5-5c-.2-.2-.3-.4-.3-.7z"&gt;&lt;/path&gt;
+    &lt;/svg&gt;
+    Back
+  &lt;/a&gt;
+&lt;/div&gt;</div>
+  </div>
+
+  <div class="example">
+    <h3>With Custom HTML Content</h3>
+    <p>Back link with rich HTML content including screen reader text.</p>
+    
+    <div class="public-good-back-link">
+      <a href="/step-1" class="public-good-back-link__link">
+        <svg class="public-good-icon public-good-icon--chevron-left" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" height="24" width="24">
+          <path d="M8.5 12c0-.3.1-.5.3-.7l5-5c.4-.4 1-.4 1.4 0s.4 1 0 1.4L10.9 12l4.3 4.3c.4.4.4 1 0 1.4s-1 .4-1.4 0l-5-5c-.2-.2-.3-.4-.3-.7z"></path>
+        </svg>
+        Back to <span class="public-good-sr-only">step 1: </span>personal details
+      </a>
+    </div>
+
+    <div class="example-code">&lt;div class="public-good-back-link"&gt;
+  &lt;a href="/step-1" class="public-good-back-link__link"&gt;
+    &lt;svg class="public-good-icon public-good-icon--chevron-left" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" height="24" width="24"&gt;
+      &lt;path d="M8.5 12c0-.3.1-.5.3-.7l5-5c.4-.4 1-.4 1.4 0s.4 1 0 1.4L10.9 12l4.3 4.3c.4.4.4 1 0 1.4s-1 .4-1.4 0l-5-5c-.2-.2-.3-.4-.3-.7z"&gt;&lt;/path&gt;
+    &lt;/svg&gt;
+    Back to &lt;span class="public-good-sr-only"&gt;step 1: &lt;/span&gt;personal details
+  &lt;/a&gt;
+&lt;/div&gt;</div>
+  </div>
+
+  <div class="example">
+    <h3>Disabled Button State</h3>
+    <p>Button back link in disabled state.</p>
+    
+    <div class="public-good-back-link">
+      <button type="button" class="public-good-back-link__link" disabled>
+        <svg class="public-good-icon public-good-icon--chevron-left" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" height="24" width="24">
+          <path d="M8.5 12c0-.3.1-.5.3-.7l5-5c.4-.4 1-.4 1.4 0s.4 1 0 1.4L10.9 12l4.3 4.3c.4.4.4 1 0 1.4s-1 .4-1.4 0l-5-5c-.2-.2-.3-.4-.3-.7z"></path>
+        </svg>
+        Back (disabled)
+      </button>
+    </div>
+
+    <div class="example-code">&lt;div class="public-good-back-link"&gt;
+  &lt;button type="button" class="public-good-back-link__link" disabled&gt;
+    &lt;svg class="public-good-icon public-good-icon--chevron-left" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" height="24" width="24"&gt;
+      &lt;path d="M8.5 12c0-.3.1-.5.3-.7l5-5c.4-.4 1-.4 1.4 0s.4 1 0 1.4L10.9 12l4.3 4.3c.4.4.4 1 0 1.4s-1 .4-1.4 0l-5-5c-.2-.2-.3-.4-.3-.7z"&gt;&lt;/path&gt;
+    &lt;/svg&gt;
+    Back (disabled)
+  &lt;/button&gt;
+&lt;/div&gt;</div>
+  </div>
+
+  <div class="example">
+    <h3>Compact Variant</h3>
+    <p>Smaller back link for use in constrained spaces.</p>
+    
+    <div class="public-good-back-link public-good-back-link--compact">
+      <a href="/previous-page" class="public-good-back-link__link">
+        <svg class="public-good-icon public-good-icon--chevron-left" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" height="24" width="24">
+          <path d="M8.5 12c0-.3.1-.5.3-.7l5-5c.4-.4 1-.4 1.4 0s.4 1 0 1.4L10.9 12l4.3 4.3c.4.4.4 1 0 1.4s-1 .4-1.4 0l-5-5c-.2-.2-.3-.4-.3-.7z"></path>
+        </svg>
+        Back
+      </a>
+    </div>
+
+    <div class="example-code">&lt;div class="public-good-back-link public-good-back-link--compact"&gt;
+  &lt;a href="/previous-page" class="public-good-back-link__link"&gt;
+    &lt;svg class="public-good-icon public-good-icon--chevron-left" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" height="24" width="24"&gt;
+      &lt;path d="M8.5 12c0-.3.1-.5.3-.7l5-5c.4-.4 1-.4 1.4 0s.4 1 0 1.4L10.9 12l4.3 4.3c.4.4.4 1 0 1.4s-1 .4-1.4 0l-5-5c-.2-.2-.3-.4-.3-.7z"&gt;&lt;/path&gt;
+    &lt;/svg&gt;
+    Back
+  &lt;/a&gt;
+&lt;/div&gt;</div>
+  </div>
+
+  <div class="example">
+    <h3>In Multi-Step Journey</h3>
+    <p>Multiple back links showing progression through a journey.</p>
+    
+    <h4>Step 3: Review</h4>
+    <div class="public-good-back-link">
+      <a href="/step-2" class="public-good-back-link__link">
+        <svg class="public-good-icon public-good-icon--chevron-left" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" height="24" width="24">
+          <path d="M8.5 12c0-.3.1-.5.3-.7l5-5c.4-.4 1-.4 1.4 0s.4 1 0 1.4L10.9 12l4.3 4.3c.4.4.4 1 0 1.4s-1 .4-1.4 0l-5-5c-.2-.2-.3-.4-.3-.7z"></path>
+        </svg>
+        Back to contact details
+      </a>
+    </div>
+    
+    <p>Review your information before submitting...</p>
+    
+    <hr style="margin: 2rem 0;">
+    
+    <h4>Step 2: Contact Details</h4>
+    <div class="public-good-back-link">
+      <a href="/step-1" class="public-good-back-link__link">
+        <svg class="public-good-icon public-good-icon--chevron-left" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" height="24" width="24">
+          <path d="M8.5 12c0-.3.1-.5.3-.7l5-5c.4-.4 1-.4 1.4 0s.4 1 0 1.4L10.9 12l4.3 4.3c.4.4.4 1 0 1.4s-1 .4-1.4 0l-5-5c-.2-.2-.3-.4-.3-.7z"></path>
+        </svg>
+        Back to personal details
+      </a>
+    </div>
+  </div>
+
+  <script type="module">
+    // Example JavaScript functionality for back links
+    document.querySelectorAll('button.public-good-back-link__link').forEach(button => {
+      if (!button.disabled && !button.onclick) {
+        button.addEventListener('click', () => {
+          // Simple history back functionality
+          if (window.history.length > 1) {
+            window.history.back()
+          } else {
+            // Fallback to home page
+            window.location.href = '/'
+          }
+        })
+      }
+    })
+    
+    // Example of dynamic enable/disable
+    setTimeout(() => {
+      const disabledButton = document.querySelector('button[disabled]')
+      if (disabledButton) {
+        // Re-enable after 3 seconds for demo
+        setTimeout(() => {
+          disabledButton.disabled = false
+          disabledButton.textContent = 'Back (now enabled)'
+        }, 3000)
+      }
+    }, 100)
+  </script>
+
+  <script type="module" src="../back-link.ts"></script>
+</body>
+</html>

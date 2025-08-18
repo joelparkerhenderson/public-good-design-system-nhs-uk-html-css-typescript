@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Card Component - Groups and Layouts</title>
+  <link rel="stylesheet" href="../../../index.css">
+  <style>
+    body {
+      font-family: var(--public-good-font-family);
+      margin: 0;
+      padding: var(--public-good-spacing-6);
+      background-color: var(--public-good-color-background);
+    }
+    
+    .example-section {
+      margin-bottom: var(--public-good-spacing-8);
+    }
+    
+    .example-title {
+      font-size: var(--public-good-font-size-lg);
+      font-weight: var(--public-good-font-weight-bold);
+      margin-bottom: var(--public-good-spacing-4);
+      color: var(--public-good-color-text);
+    }
+    
+    .example-description {
+      margin-bottom: var(--public-good-spacing-5);
+      color: var(--public-good-color-text-secondary);
+    }
+    
+    .grid-layout {
+      display: grid;
+      gap: var(--public-good-spacing-5);
+    }
+    
+    .grid-layout.two-columns {
+      grid-template-columns: 1fr 1fr;
+    }
+    
+    .grid-layout.three-columns {
+      grid-template-columns: repeat(3, 1fr);
+    }
+    
+    .grid-layout.four-columns {
+      grid-template-columns: repeat(4, 1fr);
+    }
+    
+    @media (max-width: 1024px) {
+      .grid-layout.four-columns {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    
+    @media (max-width: 768px) {
+      .grid-layout.two-columns,
+      .grid-layout.three-columns,
+      .grid-layout.four-columns {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <h1>Card Component - Groups and Layouts</h1>
+  
+  <div class="example-section">
+    <h2 class="example-title">Card Group (Using createCardGroup)</h2>
+    <p class="example-description">Cards can be grouped together using the createCardGroup utility for consistent spacing and layout.</p>
+    
+    <div id="card-group-example"></div>
+  </div>
+
+  <div class="example-section">
+    <h2 class="example-title">Two Column Grid</h2>
+    <p class="example-description">Cards arranged in a two-column responsive grid layout.</p>
+    
+    <div class="grid-layout two-columns">
+      <div data-public-good-card 
+           data-heading="Mental health and wellbeing"
+           data-description="Find information and support to help with mental health problems"
+           data-primary="true"
+           data-clickable="true"
+           data-href="#mental-health">
+      </div>
+      
+      <div data-public-good-card 
+           data-heading="Healthy living"
+           data-description="Advice to help you live a healthier life including diet, exercise and stopping smoking"
+           data-primary="true"
+           data-clickable="true"
+           data-href="#healthy-living">
+      </div>
+    </div>
+  </div>
+
+  <div class="example-section">
+    <h2 class="example-title">Three Column Grid</h2>
+    <p class="example-description">Top task cards arranged in a three-column layout (maximum 3 recommended).</p>
+    
+    <div class="grid-layout three-columns">
+      <div data-public-good-card 
+           data-heading="Find services near you"
+           data-top-task="true"
+           data-clickable="true"
+           data-href="#find-services"
+           data-heading-level="5"
+           data-heading-classes="public-good-heading-xs">
+      </div>
+      
+      <div data-public-good-card 
+           data-heading="Book an appointment"
+           data-top-task="true"
+           data-clickable="true"
+           data-href="#book-appointment"
+           data-heading-level="5"
+           data-heading-classes="public-good-heading-xs">
+      </div>
+      
+      <div data-public-good-card 
+           data-heading="Order repeat prescription"
+           data-top-task="true"
+           data-clickable="true"
+           data-href="#prescription"
+           data-heading-level="5"
+           data-heading-classes="public-good-heading-xs">
+      </div>
+    </div>
+  </div>
+
+  <div class="example-section">
+    <h2 class="example-title">Four Column Grid</h2>
+    <p class="example-description">Secondary cards in a four-column responsive grid that collapses to two columns on tablet and one column on mobile.</p>
+    
+    <div class="grid-layout four-columns">
+      <div data-public-good-card 
+           data-heading="Conditions A-Z"
+           data-description="Find information about health conditions"
+           data-secondary="true"
+           data-clickable="true"
+           data-href="#conditions">
+      </div>
+      
+      <div data-public-good-card 
+           data-heading="Medicines A-Z"
+           data-description="Find information about medicines"
+           data-secondary="true"
+           data-clickable="true"
+           data-href="#medicines">
+      </div>
+      
+      <div data-public-good-card 
+           data-heading="Pregnancy and baby"
+           data-description="Information for pregnant women and new parents"
+           data-secondary="true"
+           data-clickable="true"
+           data-href="#pregnancy">
+      </div>
+      
+      <div data-public-good-card 
+           data-heading="Health A-Z"
+           data-description="Health information and advice"
+           data-secondary="true"
+           data-clickable="true"
+           data-href="#health">
+      </div>
+    </div>
+  </div>
+
+  <div class="example-section">
+    <h2 class="example-title">Mixed Content Layout</h2>
+    <p class="example-description">Combining different card types in a single layout for complex page structures.</p>
+    
+    <!-- Feature card full width -->
+    <div data-public-good-card 
+         data-heading="COVID-19 vaccine information"
+         data-description="Find out about COVID-19 vaccines including who can get them and how to book"
+         data-feature="true"
+         data-href="#covid-vaccine"
+         data-heading-classes="public-good-heading-m">
+    </div>
+    
+    <!-- Primary cards in two columns -->
+    <div class="grid-layout two-columns">
+      <div data-public-good-card 
+           data-heading="NHS services"
+           data-description="Find NHS services near you"
+           data-primary="true"
+           data-clickable="true"
+           data-href="#nhs-services">
+      </div>
+      
+      <div data-public-good-card 
+           data-heading="Health and care"
+           data-description="Information and advice about health and care"
+           data-primary="true"
+           data-clickable="true"
+           data-href="#health-care">
+      </div>
+    </div>
+    
+    <!-- Care card -->
+    <div data-public-good-card 
+         data-heading="If you think you have coronavirus symptoms:"
+         data-type="non-urgent"
+         data-heading-level="3">
+      <ul>
+        <li>stay at home</li>
+        <li>get a test</li>
+        <li>follow the latest guidance</li>
+      </ul>
+      <p>Find out more about <a href="#">coronavirus symptoms and testing</a>.</p>
+    </div>
+  </div>
+
+  <div class="example-section">
+    <h2 class="example-title">Dynamic Card Management</h2>
+    <p class="example-description">Examples of dynamic card creation and management using JavaScript.</p>
+    
+    <button id="add-card-btn" class="public-good-button public-good-button--secondary">Add Card</button>
+    <button id="remove-card-btn" class="public-good-button public-good-button--secondary">Remove Last Card</button>
+    <button id="toggle-clickable-btn" class="public-good-button public-good-button--secondary">Toggle Clickable</button>
+    
+    <div id="dynamic-cards-container" class="grid-layout two-columns" style="margin-top: var(--public-good-spacing-5);"></div>
+  </div>
+
+  <script type="module">
+    import { initializeCards, createCard, createCardGroup, createPrimaryCard, createSecondaryCard } from '../card.js'
+    
+    // Initialize all cards on the page
+    initializeCards()
+    
+    // Create card group example
+    const cardGroupContainer = document.getElementById('card-group-example')
+    const card1 = createCard({
+      heading: 'Services and teams',
+      description: 'Find contact details for health services and teams',
+      clickable: true,
+      href: '#services'
+    })
+    
+    const card2 = createCard({
+      heading: 'Referrals and appointments',
+      description: 'How to refer patients and book appointments',
+      clickable: true,
+      href: '#referrals'
+    })
+    
+    const card3 = createCard({
+      heading: 'Clinical guidance',
+      description: 'Evidence-based guidance for healthcare professionals',
+      clickable: true,
+      href: '#guidance'
+    })
+    
+    const cardGroup = createCardGroup([card1, card2, card3])
+    cardGroupContainer.appendChild(cardGroup)
+    
+    // Dynamic card management
+    const dynamicContainer = document.getElementById('dynamic-cards-container')
+    const dynamicCards = []
+    let cardCounter = 1
+    
+    document.getElementById('add-card-btn').addEventListener('click', () => {
+      const newCard = createSecondaryCard({
+        heading: `Dynamic Card ${cardCounter}`,
+        description: `This is dynamically created card number ${cardCounter}`,
+        clickable: true,
+        href: `#dynamic-${cardCounter}`
+      })
+      
+      dynamicCards.push(newCard)
+      dynamicContainer.appendChild(newCard.element)
+      cardCounter++
+    })
+    
+    document.getElementById('remove-card-btn').addEventListener('click', () => {
+      if (dynamicCards.length > 0) {
+        const lastCard = dynamicCards.pop()
+        lastCard.destroy()
+      }
+    })
+    
+    document.getElementById('toggle-clickable-btn').addEventListener('click', () => {
+      dynamicCards.forEach(card => {
+        const isClickable = card.element.classList.contains('public-good-card--clickable')
+        card.setClickable(!isClickable)
+      })
+    })
+    
+    // Analytics tracking
+    document.addEventListener('public-good:card:click', (event) => {
+      console.log('Card group analytics:', {
+        heading: event.detail.heading,
+        variant: event.detail.variant,
+        href: event.detail.href,
+        position: Array.from(event.target.parentElement?.children || []).indexOf(event.target) + 1,
+        timestamp: new Date().toISOString()
+      })
+      
+      // Prevent navigation for demo purposes
+      if (event.detail.href && event.detail.href.startsWith('#')) {
+        event.preventDefault()
+        alert(`Card clicked: "${event.detail.heading}"\nPosition in layout: ${Array.from(event.target.parentElement?.children || []).indexOf(event.target) + 1}`)
+      }
+    })
+  </script>
+</body>
+</html>

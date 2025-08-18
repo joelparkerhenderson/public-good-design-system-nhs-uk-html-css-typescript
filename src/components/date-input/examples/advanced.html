@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Date Input Component - Advanced Examples</title>
+  <link rel="stylesheet" href="../../../index.css">
+  <style>
+    body {
+      font-family: var(--public-good-font-family);
+      margin: 0;
+      padding: var(--public-good-spacing-6);
+      background-color: var(--public-good-color-background);
+    }
+    
+    .example-section {
+      margin-bottom: var(--public-good-spacing-8);
+    }
+    
+    .example-title {
+      font-size: var(--public-good-font-size-lg);
+      font-weight: var(--public-good-font-weight-bold);
+      margin-bottom: var(--public-good-spacing-4);
+      color: var(--public-good-color-text);
+    }
+    
+    .example-description {
+      margin-bottom: var(--public-good-spacing-5);
+      color: var(--public-good-color-text-secondary);
+    }
+    
+    .form-section {
+      background: white;
+      padding: var(--public-good-spacing-6);
+      border-radius: var(--public-good-border-radius-medium);
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      margin-bottom: var(--public-good-spacing-6);
+    }
+    
+    .form-actions {
+      margin-top: var(--public-good-spacing-6);
+      padding-top: var(--public-good-spacing-4);
+      border-top: 1px solid var(--public-good-color-border);
+    }
+    
+    .status-display {
+      padding: var(--public-good-spacing-4);
+      margin-top: var(--public-good-spacing-4);
+      border-radius: var(--public-good-border-radius-medium);
+      background: var(--public-good-color-grey-50);
+      font-family: monospace;
+      font-size: var(--public-good-font-size-sm);
+    }
+    
+    .validation-result {
+      display: inline-block;
+      padding: var(--public-good-spacing-1) var(--public-good-spacing-2);
+      border-radius: var(--public-good-border-radius-small);
+      font-size: var(--public-good-font-size-sm);
+      font-weight: var(--public-good-font-weight-bold);
+      margin-left: var(--public-good-spacing-2);
+    }
+    
+    .validation-result.valid {
+      background: var(--public-good-color-success);
+      color: white;
+    }
+    
+    .validation-result.invalid {
+      background: var(--public-good-color-error);
+      color: white;
+    }
+    
+    .date-range {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      gap: var(--public-good-spacing-4);
+      align-items: end;
+    }
+    
+    .date-range-separator {
+      padding: var(--public-good-spacing-2);
+      font-weight: var(--public-good-font-weight-bold);
+      text-align: center;
+    }
+    
+    @media (max-width: 48em) {
+      .date-range {
+        grid-template-columns: 1fr;
+        gap: var(--public-good-spacing-3);
+      }
+      
+      .date-range-separator {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <h1>Date Input Component - Advanced Examples</h1>
+  
+  <div class="example-section">
+    <h2 class="example-title">Form Validation Example</h2>
+    <p class="example-description">Complete form with multiple date inputs and comprehensive validation.</p>
+    
+    <div class="form-section">
+      <h3>Personal Information</h3>
+      
+      <div id="birth-date-input"></div>
+      <div id="passport-issue-date-input" style="margin-top: var(--public-good-spacing-6);"></div>
+      <div id="passport-expiry-date-input" style="margin-top: var(--public-good-spacing-6);"></div>
+      
+      <div class="form-actions">
+        <button id="validate-form" class="public-good-button">Validate Form</button>
+        <button id="submit-form" class="public-good-button public-good-button--secondary" style="margin-left: var(--public-good-spacing-3);">Submit</button>
+        <button id="reset-form" class="public-good-button public-good-button--secondary" style="margin-left: var(--public-good-spacing-3);">Reset</button>
+      </div>
+      
+      <div id="form-status" class="status-display" style="display: none;"></div>
+    </div>
+  </div>
+
+  <div class="example-section">
+    <h2 class="example-title">Date Range Picker</h2>
+    <p class="example-description">Two date inputs working together to create a date range.</p>
+    
+    <div class="form-section">
+      <h3>Select Date Range</h3>
+      
+      <div class="date-range">
+        <div id="start-date-input"></div>
+        <div class="date-range-separator">to</div>
+        <div id="end-date-input"></div>
+      </div>
+      
+      <div class="form-actions">
+        <button id="validate-range" class="public-good-button">Validate Range</button>
+        <button id="clear-range" class="public-good-button public-good-button--secondary" style="margin-left: var(--public-good-spacing-3);">Clear Range</button>
+        <button id="set-this-month" class="public-good-button public-good-button--secondary" style="margin-left: var(--public-good-spacing-3);">This Month</button>
+      </div>
+      
+      <div id="range-status" class="status-display" style="display: none;"></div>
+    </div>
+  </div>
+
+  <div class="example-section">
+    <h2 class="example-title">Dynamic Date Inputs</h2>
+    <p class="example-description">Date inputs that can be added and removed dynamically.</p>
+    
+    <div class="form-section">
+      <h3>Employment History</h3>
+      <p>Add your employment dates (most recent first):</p>
+      
+      <div id="employment-dates"></div>
+      
+      <div class="form-actions">
+        <button id="add-employment" class="public-good-button public-good-button--secondary">Add Employment Date</button>
+        <button id="validate-employment" class="public-good-button" style="margin-left: var(--public-good-spacing-3);">Validate All</button>
+      </div>
+      
+      <div id="employment-status" class="status-display" style="display: none;"></div>
+    </div>
+  </div>
+
+  <div class="example-section">
+    <h2 class="example-title">Date Input with Custom Validation</h2>
+    <p class="example-description">Date input with business rule validation (must be 18+ years old).</p>
+    
+    <div class="form-section">
+      <h3>Age Verification</h3>
+      
+      <div id="age-verification-input"></div>
+      
+      <div class="form-actions">
+        <button id="check-age" class="public-good-button">Check Age</button>
+        <button id="clear-age" class="public-good-button public-good-button--secondary" style="margin-left: var(--public-good-spacing-3);">Clear</button>
+      </div>
+      
+      <div id="age-status" class="status-display" style="display: none;"></div>
+    </div>
+  </div>
+
+  <script type="module">
+    import { createDateInput, createSimpleDateInput } from '../date-input.js'
+    
+    // Personal Information Form
+    const birthDateInput = createDateInput({
+      namePrefix: 'birth-date',
+      fieldset: {
+        legend: {
+          text: 'What is your date of birth?'
+        }
+      },
+      hint: {
+        text: 'For example, 31 3 1980'
+      }
+    })
+    document.getElementById('birth-date-input').appendChild(birthDateInput.element)
+    
+    const passportIssueDateInput = createDateInput({
+      namePrefix: 'passport-issue',
+      fieldset: {
+        legend: {
+          text: 'When was your passport issued?'
+        }
+      },
+      hint: {
+        text: 'This is shown on page 1 of your passport'
+      }
+    })
+    document.getElementById('passport-issue-date-input').appendChild(passportIssueDateInput.element)
+    
+    const passportExpiryDateInput = createDateInput({
+      namePrefix: 'passport-expiry',
+      fieldset: {
+        legend: {
+          text: 'When does your passport expire?'
+        }
+      },
+      hint: {
+        text: 'This is shown on page 1 of your passport'
+      }
+    })
+    document.getElementById('passport-expiry-date-input').appendChild(passportExpiryDateInput.element)
+    
+    // Date Range Picker
+    const startDateInput = createDateInput({
+      namePrefix: 'start-date',
+      fieldset: {
+        legend: {
+          text: 'Start date'
+        }
+      },
+      hint: {
+        text: 'For example, 1 4 2023'
+      }
+    })
+    document.getElementById('start-date-input').appendChild(startDateInput.element)
+    
+    const endDateInput = createDateInput({
+      namePrefix: 'end-date',
+      fieldset: {
+        legend: {
+          text: 'End date'
+        }
+      },
+      hint: {
+        text: 'For example, 30 4 2023'
+      }
+    })
+    document.getElementById('end-date-input').appendChild(endDateInput.element)
+    
+    // Age Verification
+    const ageVerificationInput = createDateInput({
+      namePrefix: 'age-verification',
+      fieldset: {
+        legend: {
+          text: 'Enter your date of birth to verify you are 18 or older'
+        }
+      },
+      hint: {
+        text: 'For example, 15 3 1990'
+      }
+    })
+    document.getElementById('age-verification-input').appendChild(ageVerificationInput.element)
+    
+    // Dynamic Employment Dates
+    let employmentCounter = 0
+    const employmentDateInputs = []
+    
+    const addEmploymentDate = () => {
+      employmentCounter++
+      const container = document.getElementById('employment-dates')
+      
+      const wrapper = document.createElement('div')
+      wrapper.style.marginBottom = 'var(--public-good-spacing-4)'
+      wrapper.style.padding = 'var(--public-good-spacing-4)'
+      wrapper.style.border = '1px solid var(--public-good-color-border)'
+      wrapper.style.borderRadius = 'var(--public-good-border-radius-medium)'
+      wrapper.style.position = 'relative'
+      
+      const startDate = createDateInput({
+        namePrefix: `employment-start-${employmentCounter}`,
+        fieldset: {
+          legend: {
+            text: `Employment ${employmentCounter} - Start date`
+          }
+        }
+      })
+      
+      const endDate = createDateInput({
+        namePrefix: `employment-end-${employmentCounter}`,
+        fieldset: {
+          legend: {
+            text: `Employment ${employmentCounter} - End date`
+          }
+        }
+      })
+      
+      const removeButton = document.createElement('button')
+      removeButton.textContent = 'Remove'
+      removeButton.className = 'public-good-button public-good-button--secondary'
+      removeButton.style.position = 'absolute'
+      removeButton.style.top = 'var(--public-good-spacing-2)'
+      removeButton.style.right = 'var(--public-good-spacing-2)'
+      
+      removeButton.addEventListener('click', () => {
+        container.removeChild(wrapper)
+        const startIndex = employmentDateInputs.findIndex(emp => emp.start === startDate)
+        if (startIndex !== -1) {
+          employmentDateInputs.splice(startIndex, 1)
+        }
+      })
+      
+      wrapper.appendChild(startDate.element)
+      wrapper.appendChild(endDate.element)
+      wrapper.appendChild(removeButton)
+      container.appendChild(wrapper)
+      
+      employmentDateInputs.push({ start: startDate, end: endDate, id: employmentCounter })
+    }
+    
+    // Form Validation Logic
+    const validatePersonalInfo = () => {
+      const results = {
+        birthDate: birthDateInput.validate(),
+        passportIssue: passportIssueDateInput.validate(),
+        passportExpiry: passportExpiryDateInput.validate()
+      }
+      
+      let isValid = Object.values(results).every(Boolean)
+      
+      // Additional business logic validation
+      if (isValid) {
+        const birthDate = birthDateInput.getDate()
+        const issueDate = passportIssueDateInput.getDate()
+        const expiryDate = passportExpiryDateInput.getDate()
+        
+        if (issueDate && expiryDate && issueDate >= expiryDate) {
+          passportExpiryDateInput.setError('Expiry date must be after issue date')
+          isValid = false
+        }
+        
+        if (birthDate && issueDate && issueDate <= birthDate) {
+          passportIssueDateInput.setError('Issue date must be after birth date')
+          isValid = false
+        }
+      }
+      
+      return { results, isValid }
+    }
+    
+    const validateDateRange = () => {
+      const startValid = startDateInput.validate()
+      const endValid = endDateInput.validate()
+      
+      let isValid = startValid && endValid
+      let message = ''
+      
+      if (isValid) {
+        const startDate = startDateInput.getDate()
+        const endDate = endDateInput.getDate()
+        
+        if (startDate && endDate) {
+          if (startDate >= endDate) {
+            endDateInput.setError('End date must be after start date')
+            isValid = false
+            message = 'End date must be after start date'
+          } else {
+            const diffTime = Math.abs(endDate - startDate)
+            const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24))
+            message = `Date range: ${diffDays} days`
+          }
+        }
+      }
+      
+      return { isValid, message }
+    }
+    
+    const checkAge = () => {
+      const isValid = ageVerificationInput.validate()
+      
+      if (isValid) {
+        const birthDate = ageVerificationInput.getDate()
+        if (birthDate) {
+          const today = new Date()
+          const age = today.getFullYear() - birthDate.getFullYear()
+          const monthDiff = today.getMonth() - birthDate.getMonth()
+          
+          const actualAge = monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthDate.getDate()) 
+            ? age - 1 
+            : age
+          
+          if (actualAge < 18) {
+            ageVerificationInput.setError('You must be 18 or older')
+            return { isValid: false, age: actualAge }
+          } else {
+            ageVerificationInput.clearError()
+            return { isValid: true, age: actualAge }
+          }
+        }
+      }
+      
+      return { isValid: false, age: null }
+    }
+    
+    // Event Listeners
+    document.getElementById('validate-form').addEventListener('click', () => {
+      const validation = validatePersonalInfo()
+      const statusEl = document.getElementById('form-status')
+      statusEl.style.display = 'block'
+      statusEl.innerHTML = `
+        <div>Form Validation Results:</div>
+        <div>Birth Date: ${validation.results.birthDate ? '✅' : '❌'}</div>
+        <div>Passport Issue: ${validation.results.passportIssue ? '✅' : '❌'}</div>
+        <div>Passport Expiry: ${validation.results.passportExpiry ? '✅' : '❌'}</div>
+        <div style="margin-top: 8px; font-weight: bold;">
+          Overall: ${validation.isValid ? '✅ Valid' : '❌ Invalid'}
+        </div>
+      `
+    })
+    
+    document.getElementById('submit-form').addEventListener('click', () => {
+      const validation = validatePersonalInfo()
+      if (validation.isValid) {
+        alert('Form submitted successfully!')
+      } else {
+        alert('Please fix validation errors before submitting')
+      }
+    })
+    
+    document.getElementById('reset-form').addEventListener('click', () => {
+      birthDateInput.clear()
+      passportIssueDateInput.clear()
+      passportExpiryDateInput.clear()
+      document.getElementById('form-status').style.display = 'none'
+    })
+    
+    document.getElementById('validate-range').addEventListener('click', () => {
+      const validation = validateDateRange()
+      const statusEl = document.getElementById('range-status')
+      statusEl.style.display = 'block'
+      statusEl.innerHTML = `
+        <div>Range Validation: ${validation.isValid ? '✅ Valid' : '❌ Invalid'}</div>
+        <div>${validation.message}</div>
+      `
+    })
+    
+    document.getElementById('clear-range').addEventListener('click', () => {
+      startDateInput.clear()
+      endDateInput.clear()
+      document.getElementById('range-status').style.display = 'none'
+    })
+    
+    document.getElementById('set-this-month').addEventListener('click', () => {
+      const now = new Date()
+      const firstDay = new Date(now.getFullYear(), now.getMonth(), 1)
+      const lastDay = new Date(now.getFullYear(), now.getMonth() + 1, 0)
+      
+      startDateInput.setDate(firstDay)
+      endDateInput.setDate(lastDay)
+    })
+    
+    document.getElementById('add-employment').addEventListener('click', addEmploymentDate)
+    
+    document.getElementById('validate-employment').addEventListener('click', () => {
+      const results = employmentDateInputs.map(emp => ({
+        id: emp.id,
+        startValid: emp.start.validate(),
+        endValid: emp.end.validate()
+      }))
+      
+      const statusEl = document.getElementById('employment-status')
+      statusEl.style.display = 'block'
+      statusEl.innerHTML = `
+        <div>Employment Date Validation:</div>
+        ${results.map(result => `
+          <div>Employment ${result.id}: 
+            Start ${result.startValid ? '✅' : '❌'}, 
+            End ${result.endValid ? '✅' : '❌'}
+          </div>
+        `).join('')}
+      `
+    })
+    
+    document.getElementById('check-age').addEventListener('click', () => {
+      const ageCheck = checkAge()
+      const statusEl = document.getElementById('age-status')
+      statusEl.style.display = 'block'
+      
+      if (ageCheck.isValid) {
+        statusEl.innerHTML = `
+          <div style="color: green;">✅ Age verification passed</div>
+          <div>Age: ${ageCheck.age} years old</div>
+        `
+      } else {
+        statusEl.innerHTML = `
+          <div style="color: red;">❌ Age verification failed</div>
+          <div>${ageCheck.age !== null ? `Age: ${ageCheck.age} years old (must be 18+)` : 'Invalid date'}</div>
+        `
+      }
+    })
+    
+    document.getElementById('clear-age').addEventListener('click', () => {
+      ageVerificationInput.clear()
+      document.getElementById('age-status').style.display = 'none'
+    })
+    
+    // Initialize with one employment date
+    addEmploymentDate()
+    
+    // Event tracking for analytics
+    document.addEventListener('public-good:date-input:change', (event) => {
+      console.log('Date input analytics:', {
+        component: 'date-input',
+        action: 'field-change',
+        namePrefix: event.detail.namePrefix,
+        field: event.detail.field,
+        hasValue: !!event.detail.value,
+        timestamp: new Date().toISOString()
+      })
+    })
+    
+    // Accessibility announcements
+    const announceValidation = (isValid, context) => {
+      const announcement = document.createElement('div')
+      announcement.setAttribute('aria-live', 'polite')
+      announcement.className = 'public-good-sr-only'
+      announcement.textContent = `${context} validation ${isValid ? 'passed' : 'failed'}`
+      document.body.appendChild(announcement)
+      
+      setTimeout(() => {
+        document.body.removeChild(announcement)
+      }, 1000)
+    }
+    
+    // Auto-save functionality
+    let autoSaveTimeout
+    const autoSave = () => {
+      clearTimeout(autoSaveTimeout)
+      autoSaveTimeout = setTimeout(() => {
+        const formData = {
+          birthDate: birthDateInput.getValues(),
+          passportIssue: passportIssueDateInput.getValues(),
+          passportExpiry: passportExpiryDateInput.getValues(),
+          dateRange: {
+            start: startDateInput.getValues(),
+            end: endDateInput.getValues()
+          },
+          timestamp: new Date().toISOString()
+        }
+        
+        localStorage.setItem('dateInputFormData', JSON.stringify(formData))
+        console.log('Form auto-saved:', formData)
+      }, 2000)
+    }
+    
+    // Load saved data
+    const loadSavedData = () => {
+      const savedData = localStorage.getItem('dateInputFormData')
+      if (savedData) {
+        try {
+          const data = JSON.parse(savedData)
+          birthDateInput.setValues(data.birthDate)
+          passportIssueDateInput.setValues(data.passportIssue)
+          passportExpiryDateInput.setValues(data.passportExpiry)
+          startDateInput.setValues(data.dateRange.start)
+          endDateInput.setValues(data.dateRange.end)
+          console.log('Form data loaded from auto-save')
+        } catch (error) {
+          console.warn('Error loading saved form data:', error)
+        }
+      }
+    }
+    
+    // Set up auto-save
+    document.addEventListener('public-good:date-input:change', autoSave)
+    
+    // Load data on page load
+    loadSavedData()
+  </script>
+</body>
+</html>

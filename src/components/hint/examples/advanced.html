@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hint Component - Advanced Examples</title>
+    <link rel="stylesheet" href="../../../core/base.css">
+    <link rel="stylesheet" href="../hint.css">
+    <style>
+        body {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 2rem;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+        .example {
+            margin-bottom: 3rem;
+            padding: 2rem;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+        }
+        .example h3 {
+            margin-top: 0;
+            color: #0066cc;
+        }
+        .example-description {
+            margin-bottom: 1rem;
+            color: #666;
+        }
+        .demo-controls {
+            margin: 1rem 0;
+            padding: 1rem;
+            background: #f5f5f5;
+            border-radius: 4px;
+        }
+        .demo-controls button {
+            margin: 0.25rem;
+            padding: 0.5rem 1rem;
+            border: 1px solid #ccc;
+            background: white;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.9rem;
+        }
+        .demo-controls button:hover {
+            background: #f0f0f0;
+        }
+        .demo-controls input, .demo-controls textarea {
+            margin: 0.25rem;
+            padding: 0.5rem;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-family: inherit;
+            width: 100%;
+            max-width: 400px;
+        }
+        .demo-controls textarea {
+            height: 80px;
+            resize: vertical;
+        }
+        .form-group {
+            margin-bottom: 1rem;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+        }
+        .status-display {
+            margin: 1rem 0;
+            padding: 1rem;
+            background: #e8f4fd;
+            border-radius: 4px;
+            font-family: monospace;
+            font-size: 0.9em;
+        }
+        /* Mock form styling */
+        .public-good-form-group {
+            margin-bottom: 1.5rem;
+        }
+        .public-good-label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+        .public-good-input, .public-good-textarea {
+            width: 100%;
+            max-width: 400px;
+            padding: 0.5rem;
+            border: 2px solid #ccc;
+            border-radius: 4px;
+            font-family: inherit;
+            font-size: 1rem;
+        }
+        .public-good-input:focus, .public-good-textarea:focus {
+            outline: 3px solid #ffeb3b;
+            outline-offset: 0;
+            border-color: #0066cc;
+        }
+        .public-good-input--error, .public-good-textarea--error {
+            border-color: #d5281b;
+        }
+        .public-good-error-message {
+            color: #d5281b;
+            font-weight: bold;
+            margin-top: 0.25rem;
+            font-size: 0.9rem;
+        }
+        .validation-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-top: 1rem;
+        }
+        /* Color variables */
+        :root {
+            --public-good-color-text-secondary: #666666;
+            --public-good-color-link: #0066cc;
+            --public-good-color-link-hover: #003d7a;
+            --public-good-color-link-visited: #4c2c92;
+            --public-good-color-black: #212b32;
+            --public-good-color-focus: #ffeb3b;
+            --public-good-color-grey-4: #f0f0f0;
+            --public-good-color-grey-5: #f8f8f8;
+            --public-good-color-border: #d8dde0;
+            --public-good-color-success: #00703c;
+            --public-good-color-warning: #f47738;
+            --public-good-color-error: #d5281b;
+            --public-good-spacing-1: 8px;
+            --public-good-spacing-2: 12px;
+            --public-good-spacing-3: 16px;
+            --public-good-spacing-4: 24px;
+        }
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <h1>Hint Component - Advanced Examples</h1>
+    
+    <div class="example">
+        <h3>Dynamic Hint Management</h3>
+        <p class="example-description">Demonstrates programmatic control of hint content and visibility.</p>
+        
+        <div class="public-good-form-group">
+            <label class="public-good-label" for="dynamic-input">Dynamic input field</label>
+            <div id="dynamic-hint" class="public-good-hint">This hint will be updated dynamically</div>
+            <input class="public-good-input" id="dynamic-input" name="dynamicField" type="text" aria-describedby="dynamic-hint">
+        </div>
+
+        <div class="demo-controls">
+            <h4>Hint Controls</h4>
+            <div class="form-group">
+                <label for="hint-text">Hint Text:</label>
+                <textarea id="hint-text" placeholder="Enter new hint text...">This hint will be updated dynamically</textarea>
+            </div>
+            <div style="margin-top: 1rem;">
+                <button id="update-text">Update Text</button>
+                <button id="update-html">Update with HTML</button>
+                <button id="hide-hint">Hide Hint</button>
+                <button id="show-hint">Show Hint</button>
+                <button id="add-class">Add Custom Class</button>
+                <button id="remove-class">Remove Custom Class</button>
+            </div>
+        </div>
+
+        <div class="status-display" id="hint-status">
+            Hint status information will appear here.
+        </div>
+    </div>
+
+    <div class="example">
+        <h3>Form Field Association</h3>
+        <p class="example-description">Demonstrates automatic hint association with form fields.</p>
+        
+        <div id="association-form">
+            <div class="public-good-form-group">
+                <label class="public-good-label" for="username-field">Username</label>
+                <input class="public-good-input" id="username-field" name="username" type="text">
+            </div>
+        </div>
+
+        <div class="demo-controls">
+            <h4>Association Controls</h4>
+            <div class="form-group">
+                <label for="association-text">Hint Text:</label>
+                <input type="text" id="association-text" value="Enter a unique username (3-20 characters)" placeholder="Enter hint text...">
+            </div>
+            <div style="margin-top: 1rem;">
+                <button id="create-hint">Create and Associate Hint</button>
+                <button id="remove-hint">Remove Hint</button>
+                <button id="show-associations">Show Field Associations</button>
+            </div>
+        </div>
+
+        <div class="status-display" id="association-status">
+            Association information will appear here.
+        </div>
+    </div>
+
+    <div class="example">
+        <h3>Contextual Hints with Validation</h3>
+        <p class="example-description">Hints that change based on validation state and user input.</p>
+        
+        <div class="validation-container">
+            <div>
+                <h4>Registration Form</h4>
+                <form id="validation-form">
+                    <div class="public-good-form-group">
+                        <label class="public-good-label" for="val-username">Username</label>
+                        <div id="username-hint" class="public-good-hint">Choose a unique username (3-20 characters, letters and numbers only)</div>
+                        <input class="public-good-input" id="val-username" name="username" type="text" aria-describedby="username-hint">
+                        <div id="username-error" class="public-good-error-message hidden"></div>
+                    </div>
+
+                    <div class="public-good-form-group">
+                        <label class="public-good-label" for="val-email">Email address</label>
+                        <div id="email-hint" class="public-good-hint">We'll use this to send you important account updates</div>
+                        <input class="public-good-input" id="val-email" name="email" type="email" aria-describedby="email-hint">
+                        <div id="email-error" class="public-good-error-message hidden"></div>
+                    </div>
+
+                    <div class="public-good-form-group">
+                        <label class="public-good-label" for="val-password">Password</label>
+                        <div id="password-hint" class="public-good-hint">Must be at least 8 characters with uppercase, lowercase, number, and symbol</div>
+                        <input class="public-good-input" id="val-password" name="password" type="password" aria-describedby="password-hint">
+                        <div id="password-error" class="public-good-error-message hidden"></div>
+                    </div>
+
+                    <button type="button" id="validate-form">Validate Form</button>
+                    <button type="button" id="reset-form">Reset Form</button>
+                </form>
+            </div>
+            
+            <div>
+                <h4>Validation Status</h4>
+                <div class="status-display" id="validation-status">
+                    Form validation status will appear here as you interact with the fields.
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="example">
+        <h3>Progressive Disclosure Hints</h3>
+        <p class="example-description">Hints that appear and change based on user selections and context.</p>
+        
+        <div class="public-good-form-group">
+            <label class="public-good-label" for="account-type">Account type</label>
+            <select class="public-good-input" id="account-type" name="accountType">
+                <option value="">-- Please select --</option>
+                <option value="personal">Personal</option>
+                <option value="business">Business</option>
+                <option value="nonprofit">Non-profit</option>
+            </select>
+            <div id="account-type-hint" class="public-good-hint hidden">Please select an account type to continue</div>
+        </div>
+
+        <div id="additional-fields" class="hidden">
+            <div class="public-good-form-group">
+                <label class="public-good-label" for="organization-name">Organization name</label>
+                <div id="org-name-hint" class="public-good-hint">Enter the full legal name of your organization</div>
+                <input class="public-good-input" id="organization-name" name="orgName" type="text" aria-describedby="org-name-hint">
+            </div>
+        </div>
+
+        <div class="demo-controls">
+            <h4>Progressive Hints</h4>
+            <p>Select an account type above to see contextual hints appear.</p>
+            <button id="reset-selection">Reset Selection</button>
+        </div>
+    </div>
+
+    <div class="example">
+        <h3>Live Region Hints</h3>
+        <p class="example-description">Hints that update dynamically and announce changes to screen readers.</p>
+        
+        <div class="public-good-form-group">
+            <label class="public-good-label" for="live-input">Search query</label>
+            <div id="live-hint" class="public-good-hint" role="status" aria-live="polite">Start typing to see search suggestions</div>
+            <input class="public-good-input" id="live-input" name="search" type="text" aria-describedby="live-hint">
+        </div>
+
+        <div class="demo-controls">
+            <h4>Live Updates</h4>
+            <p>Type in the field above to see live hint updates.</p>
+            <button id="clear-search">Clear Search</button>
+        </div>
+    </div>
+
+    <div class="example">
+        <h3>Hint Variations</h3>
+        <p class="example-description">Different hint styles and sizes for various contexts.</p>
+        
+        <div class="public-good-form-group">
+            <label class="public-good-label" for="size-demo">Field with size variations</label>
+            <div class="public-good-hint">Standard hint text (default size)</div>
+            <div class="public-good-hint public-good-hint--small">Small hint text for less important information</div>
+            <div class="public-good-hint public-good-hint--large">Large hint text for emphasis</div>
+            <input class="public-good-input" id="size-demo" name="sizeDemo" type="text">
+        </div>
+
+        <div class="public-good-form-group">
+            <label class="public-good-label" for="color-demo">Field with colored hints</label>
+            <div class="public-good-hint public-good-hint--success">Success hint: This field is valid</div>
+            <div class="public-good-hint public-good-hint--warning">Warning hint: Please double-check this information</div>
+            <div class="public-good-hint public-good-hint--error">Error hint: This field has an error</div>
+            <input class="public-good-input" id="color-demo" name="colorDemo" type="text">
+        </div>
+
+        <div class="public-good-form-group">
+            <label class="public-good-label" for="inline-demo">Inline hint example</label>
+            This field requires <div class="public-good-hint public-good-hint--inline">an inline hint</div> for context.
+            <input class="public-good-input" id="inline-demo" name="inlineDemo" type="text" style="margin-top: 0.5rem;">
+        </div>
+    </div>
+
+    <script type="module">
+        import { 
+            Hint,
+            createHint, 
+            createTextHint,
+            createAndAssociateHint,
+            getAssociatedHints,
+            initializeHints 
+        } from '../hint.js';
+        
+        let dynamicHintInstance = null;
+        let associatedHint = null;
+        
+        document.addEventListener('DOMContentLoaded', () => {
+            setupDynamicHintDemo();
+            setupAssociationDemo();
+            setupValidationDemo();
+            setupProgressiveDisclosure();
+            setupLiveRegionDemo();
+        });
+        
+        function setupDynamicHintDemo() {
+            const hintElement = document.getElementById('dynamic-hint');
+            const hintStatus = document.getElementById('hint-status');
+            const hintTextarea = document.getElementById('hint-text');
+            
+            dynamicHintInstance = new Hint(hintElement);
+            
+            document.getElementById('update-text').addEventListener('click', () => {
+                dynamicHintInstance.updateText(hintTextarea.value);
+                updateHintStatus();
+            });
+            
+            document.getElementById('update-html').addEventListener('click', () => {
+                const htmlContent = `<strong>HTML:</strong> ${hintTextarea.value} <em>(updated dynamically)</em>`;
+                dynamicHintInstance.updateHtml(htmlContent);
+                updateHintStatus();
+            });
+            
+            document.getElementById('hide-hint').addEventListener('click', () => {
+                dynamicHintInstance.hide();
+                updateHintStatus();
+            });
+            
+            document.getElementById('show-hint').addEventListener('click', () => {
+                dynamicHintInstance.show();
+                updateHintStatus();
+            });
+            
+            document.getElementById('add-class').addEventListener('click', () => {
+                dynamicHintInstance.addClass('custom-hint-style');
+                hintElement.style.backgroundColor = '#e8f4fd';
+                hintElement.style.padding = '0.5rem';
+                hintElement.style.borderRadius = '4px';
+                updateHintStatus();
+            });
+            
+            document.getElementById('remove-class').addEventListener('click', () => {
+                dynamicHintInstance.removeClass('custom-hint-style');
+                hintElement.style.backgroundColor = '';
+                hintElement.style.padding = '';
+                hintElement.style.borderRadius = '';
+                updateHintStatus();
+            });
+            
+            function updateHintStatus() {
+                hintStatus.innerHTML = `
+                    <strong>Hint Status:</strong><br>
+                    Text: "${dynamicHintInstance.getText().substring(0, 50)}..."<br>
+                    ID: ${dynamicHintInstance.getId()}<br>
+                    Visible: ${dynamicHintInstance.isVisible()}<br>
+                    Has Custom Class: ${dynamicHintInstance.hasClass('custom-hint-style')}
+                `;
+            }
+            
+            // Initial status
+            updateHintStatus();
+        }
+        
+        function setupAssociationDemo() {
+            const usernameField = document.getElementById('username-field');
+            const associationStatus = document.getElementById('association-status');
+            const associationText = document.getElementById('association-text');
+            
+            document.getElementById('create-hint').addEventListener('click', () => {
+                // Remove existing hint if any
+                if (associatedHint) {
+                    associatedHint.remove();
+                }
+                
+                // Create and associate new hint
+                associatedHint = createAndAssociateHint(associationText.value, usernameField);
+                usernameField.parentElement.insertBefore(associatedHint, usernameField);
+                
+                updateAssociationStatus();
+            });
+            
+            document.getElementById('remove-hint').addEventListener('click', () => {
+                if (associatedHint) {
+                    associatedHint.remove();
+                    associatedHint = null;
+                    usernameField.removeAttribute('aria-describedby');
+                }
+                updateAssociationStatus();
+            });
+            
+            document.getElementById('show-associations').addEventListener('click', () => {
+                updateAssociationStatus();
+            });
+            
+            function updateAssociationStatus() {
+                const hints = getAssociatedHints(usernameField);
+                const ariaDescribedBy = usernameField.getAttribute('aria-describedby') || 'None';
+                
+                associationStatus.innerHTML = `
+                    <strong>Field Association Status:</strong><br>
+                    aria-describedby: "${ariaDescribedBy}"<br>
+                    Associated hints found: ${hints.length}<br>
+                    ${hints.map(hint => `- Hint ID: ${hint.id}, Text: "${hint.textContent?.substring(0, 30)}..."`).join('<br>')}
+                `;
+            }
+        }
+        
+        function setupValidationDemo() {
+            const form = document.getElementById('validation-form');
+            const validationStatus = document.getElementById('validation-status');
+            
+            const fields = {
+                username: {
+                    element: document.getElementById('val-username'),
+                    hint: document.getElementById('username-hint'),
+                    error: document.getElementById('username-error'),
+                    validate: (value) => {
+                        if (!value) return 'Username is required';
+                        if (value.length < 3) return 'Username must be at least 3 characters';
+                        if (value.length > 20) return 'Username must be no more than 20 characters';
+                        if (!/^[a-zA-Z0-9]+$/.test(value)) return 'Username can only contain letters and numbers';
+                        return null;
+                    }
+                },
+                email: {
+                    element: document.getElementById('val-email'),
+                    hint: document.getElementById('email-hint'),
+                    error: document.getElementById('email-error'),
+                    validate: (value) => {
+                        if (!value) return 'Email address is required';
+                        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) return 'Enter a valid email address';
+                        return null;
+                    }
+                },
+                password: {
+                    element: document.getElementById('val-password'),
+                    hint: document.getElementById('password-hint'),
+                    error: document.getElementById('password-error'),
+                    validate: (value) => {
+                        if (!value) return 'Password is required';
+                        if (value.length < 8) return 'Password must be at least 8 characters';
+                        if (!/(?=.*[a-z])/.test(value)) return 'Password must contain lowercase letters';
+                        if (!/(?=.*[A-Z])/.test(value)) return 'Password must contain uppercase letters';
+                        if (!/(?=.*\d)/.test(value)) return 'Password must contain numbers';
+                        if (!/(?=.*[@$!%*?&])/.test(value)) return 'Password must contain symbols';
+                        return null;
+                    }
+                }
+            };
+            
+            // Add real-time validation
+            Object.entries(fields).forEach(([fieldName, fieldConfig]) => {
+                const hintInstance = new Hint(fieldConfig.hint);
+                
+                fieldConfig.element.addEventListener('input', () => {
+                    const error = fieldConfig.validate(fieldConfig.element.value);
+                    
+                    if (error) {
+                        fieldConfig.element.classList.add('public-good-input--error');
+                        fieldConfig.error.textContent = error;
+                        fieldConfig.error.classList.remove('hidden');
+                        hintInstance.hide();
+                    } else {
+                        fieldConfig.element.classList.remove('public-good-input--error');
+                        fieldConfig.error.classList.add('hidden');
+                        hintInstance.show();
+                    }
+                    
+                    updateValidationStatus();
+                });
+            });
+            
+            document.getElementById('validate-form').addEventListener('click', () => {
+                Object.entries(fields).forEach(([fieldName, fieldConfig]) => {
+                    fieldConfig.element.dispatchEvent(new Event('input'));
+                });
+            });
+            
+            document.getElementById('reset-form').addEventListener('click', () => {
+                form.reset();
+                Object.entries(fields).forEach(([fieldName, fieldConfig]) => {
+                    fieldConfig.element.classList.remove('public-good-input--error');
+                    fieldConfig.error.classList.add('hidden');
+                    const hintInstance = new Hint(fieldConfig.hint);
+                    hintInstance.show();
+                });
+                updateValidationStatus();
+            });
+            
+            function updateValidationStatus() {
+                const statuses = Object.entries(fields).map(([fieldName, fieldConfig]) => {
+                    const value = fieldConfig.element.value;
+                    const error = fieldConfig.validate(value);
+                    return `${fieldName}: ${error ? 'Invalid' : (value ? 'Valid' : 'Empty')}`;
+                });
+                
+                validationStatus.innerHTML = `
+                    <strong>Validation Status:</strong><br>
+                    ${statuses.join('<br>')}
+                `;
+            }
+            
+            updateValidationStatus();
+        }
+        
+        function setupProgressiveDisclosure() {
+            const accountTypeSelect = document.getElementById('account-type');
+            const accountTypeHint = document.getElementById('account-type-hint');
+            const additionalFields = document.getElementById('additional-fields');
+            const hintInstance = new Hint(accountTypeHint);
+            
+            accountTypeSelect.addEventListener('change', () => {
+                const selectedValue = accountTypeSelect.value;
+                
+                if (!selectedValue) {
+                    hintInstance.updateText('Please select an account type to continue');
+                    hintInstance.show();
+                    additionalFields.classList.add('hidden');
+                } else {
+                    if (selectedValue === 'personal') {
+                        hintInstance.updateText('Personal accounts are for individual use');
+                        additionalFields.classList.add('hidden');
+                    } else {
+                        hintInstance.updateText(`${selectedValue === 'business' ? 'Business' : 'Non-profit'} accounts require additional information`);
+                        additionalFields.classList.remove('hidden');
+                    }
+                }
+            });
+            
+            document.getElementById('reset-selection').addEventListener('click', () => {
+                accountTypeSelect.value = '';
+                accountTypeSelect.dispatchEvent(new Event('change'));
+            });
+        }
+        
+        function setupLiveRegionDemo() {
+            const liveInput = document.getElementById('live-input');
+            const liveHint = document.getElementById('live-hint');
+            const hintInstance = new Hint(liveHint);
+            
+            let searchTimeout;
+            const suggestions = [
+                'JavaScript tutorials',
+                'CSS grid layout',
+                'HTML accessibility',
+                'TypeScript types',
+                'React components',
+                'Vue.js framework',
+                'Angular services',
+                'Node.js APIs'
+            ];
+            
+            liveInput.addEventListener('input', () => {
+                clearTimeout(searchTimeout);
+                
+                const value = liveInput.value.toLowerCase();
+                
+                if (!value) {
+                    hintInstance.updateText('Start typing to see search suggestions');
+                    return;
+                }
+                
+                searchTimeout = setTimeout(() => {
+                    const matches = suggestions.filter(suggestion => 
+                        suggestion.toLowerCase().includes(value)
+                    );
+                    
+                    if (matches.length > 0) {
+                        hintInstance.updateText(`Found ${matches.length} suggestion(s): ${matches.slice(0, 3).join(', ')}${matches.length > 3 ? '...' : ''}`);
+                    } else {
+                        hintInstance.updateText('No suggestions found. Try different keywords.');
+                    }
+                }, 300);
+            });
+            
+            document.getElementById('clear-search').addEventListener('click', () => {
+                liveInput.value = '';
+                liveInput.dispatchEvent(new Event('input'));
+                liveInput.focus();
+            });
+        }
+        
+        // Initialize any hints with data attributes
+        const instances = initializeHints();
+        console.log(`Initialized ${instances.length} hint components`);
+    </script>
+</body>
+</html>

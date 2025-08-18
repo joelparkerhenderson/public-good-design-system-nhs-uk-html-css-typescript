@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Label Component - Advanced Examples</title>
+    <link rel="stylesheet" href="../../../core/base.css">
+    <link rel="stylesheet" href="../label.css">
+    <style>
+        body {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 2rem;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+        .example {
+            margin-bottom: 3rem;
+            padding: 2rem;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+        }
+        .example h3 {
+            margin-top: 0;
+            color: #0066cc;
+        }
+        .example-description {
+            margin-bottom: 1rem;
+            color: #666;
+        }
+        .demo-controls {
+            margin: 1rem 0;
+            padding: 1rem;
+            background: #f5f5f5;
+            border-radius: 4px;
+        }
+        .demo-controls button {
+            margin: 0.25rem;
+            padding: 0.5rem 1rem;
+            border: 1px solid #ccc;
+            background: white;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.9rem;
+        }
+        .demo-controls button:hover {
+            background: #f0f0f0;
+        }
+        .demo-controls input, .demo-controls textarea, .demo-controls select {
+            margin: 0.25rem;
+            padding: 0.5rem;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-family: inherit;
+            width: 100%;
+            max-width: 300px;
+        }
+        .form-group {
+            margin-bottom: 1rem;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+        }
+        .status-display {
+            margin: 1rem 0;
+            padding: 1rem;
+            background: #e8f4fd;
+            border-radius: 4px;
+            font-family: monospace;
+            font-size: 0.9em;
+        }
+        .two-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-top: 1rem;
+        }
+        /* Mock form styling */
+        .public-good-form-group {
+            margin-bottom: 1.5rem;
+        }
+        .public-good-input, .public-good-textarea, .public-good-select {
+            width: 100%;
+            max-width: 400px;
+            padding: 0.5rem;
+            border: 2px solid #ccc;
+            border-radius: 4px;
+            font-family: inherit;
+            font-size: 1rem;
+        }
+        .public-good-input:focus, .public-good-textarea:focus, .public-good-select:focus {
+            outline: 3px solid #ffeb3b;
+            outline-offset: 0;
+            border-color: #0066cc;
+        }
+        .public-good-hint {
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+        .validation-message {
+            margin-top: 0.5rem;
+            padding: 0.5rem;
+            border-radius: 4px;
+            font-size: 0.9rem;
+        }
+        .validation-message.success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        .validation-message.error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        /* Color variables */
+        :root {
+            --public-good-color-text: #212b32;
+            --public-good-color-text-secondary: #666666;
+            --public-good-color-text-disabled: #999999;
+            --public-good-color-link: #0066cc;
+            --public-good-color-link-hover: #003d7a;
+            --public-good-color-link-visited: #4c2c92;
+            --public-good-color-black: #212b32;
+            --public-good-color-focus: #ffeb3b;
+            --public-good-color-error: #d5281b;
+            --public-good-spacing-1: 8px;
+            --public-good-spacing-2: 12px;
+            --public-good-spacing-3: 16px;
+            --public-good-spacing-4: 24px;
+        }
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <h1>Label Component - Advanced Examples</h1>
+    
+    <div class="example">
+        <h3>Dynamic Label Management</h3>
+        <p class="example-description">Demonstrates programmatic control of label content, size, and association.</p>
+        
+        <div class="public-good-form-group">
+            <label class="public-good-label" id="dynamic-label" for="dynamic-input">Dynamic Label Text</label>
+            <input class="public-good-input" id="dynamic-input" name="dynamicField" type="text">
+        </div>
+
+        <div class="demo-controls">
+            <h4>Label Controls</h4>
+            <div class="form-group">
+                <label for="label-text">Label Text:</label>
+                <input type="text" id="label-text" value="Dynamic Label Text" placeholder="Enter label text...">
+            </div>
+            <div class="form-group">
+                <label for="label-size">Label Size:</label>
+                <select id="label-size">
+                    <option value="">Default</option>
+                    <option value="xs">Extra Small</option>
+                    <option value="s">Small</option>
+                    <option value="m">Medium</option>
+                    <option value="l">Large</option>
+                    <option value="xl">Extra Large</option>
+                </select>
+            </div>
+            <div style="margin-top: 1rem;">
+                <button id="update-text">Update Text</button>
+                <button id="update-html">Update with HTML</button>
+                <button id="apply-size">Apply Size</button>
+                <button id="focus-control">Focus Control</button>
+                <button id="hide-label">Hide Label</button>
+                <button id="show-label">Show Label</button>
+            </div>
+        </div>
+
+        <div class="status-display" id="label-status">
+            Label status information will appear here.
+        </div>
+    </div>
+
+    <div class="example">
+        <h3>Form Builder with Dynamic Labels</h3>
+        <p class="example-description">Create form fields dynamically with proper label association.</p>
+        
+        <div class="two-column">
+            <div>
+                <h4>Form Builder</h4>
+                <div class="demo-controls">
+                    <div class="form-group">
+                        <label for="field-type">Field Type:</label>
+                        <select id="field-type">
+                            <option value="text">Text Input</option>
+                            <option value="email">Email Input</option>
+                            <option value="password">Password Input</option>
+                            <option value="textarea">Textarea</option>
+                            <option value="select">Select Dropdown</option>
+                            <option value="checkbox">Checkbox</option>
+                            <option value="radio">Radio Button</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="field-label">Label Text:</label>
+                        <input type="text" id="field-label" placeholder="Enter label text...">
+                    </div>
+                    <div class="form-group">
+                        <label for="field-required">Required Field:</label>
+                        <input type="checkbox" id="field-required">
+                    </div>
+                    <div style="margin-top: 1rem;">
+                        <button id="add-field">Add Field</button>
+                        <button id="clear-form">Clear Form</button>
+                        <button id="validate-associations">Validate Associations</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div>
+                <h4>Generated Form</h4>
+                <div id="generated-form">
+                    <!-- Dynamically generated form fields will appear here -->
+                </div>
+            </div>
+        </div>
+
+        <div class="status-display" id="form-status">
+            Form generation status will appear here.
+        </div>
+    </div>
+
+    <div class="example">
+        <h3>Label Association Validation</h3>
+        <p class="example-description">Demonstrates validation of label-control associations for accessibility.</p>
+        
+        <div id="validation-form">
+            <!-- Form fields for validation testing -->
+            <div class="public-good-form-group">
+                <label class="public-good-label" for="valid-field">Properly Associated Field</label>
+                <input class="public-good-input" id="valid-field" name="validField" type="text">
+            </div>
+
+            <div class="public-good-form-group">
+                <label class="public-good-label">Missing For Attribute</label>
+                <input class="public-good-input" id="missing-for" name="missingFor" type="text">
+            </div>
+
+            <div class="public-good-form-group">
+                <label class="public-good-label" for="missing-control">Missing Control</label>
+            </div>
+
+            <div class="public-good-form-group">
+                <label class="public-good-label" for="multiple-labels">First Label</label>
+                <label class="public-good-label" for="multiple-labels">Second Label</label>
+                <input class="public-good-input" id="multiple-labels" name="multipleLabels" type="text">
+            </div>
+
+            <div class="public-good-form-group">
+                <label class="public-good-label" for="empty-label"></label>
+                <input class="public-good-input" id="empty-label" name="emptyLabel" type="text">
+            </div>
+        </div>
+
+        <div class="demo-controls">
+            <h4>Validation Controls</h4>
+            <button id="validate-all">Validate All Associations</button>
+            <button id="fix-associations">Auto-fix Issues</button>
+        </div>
+
+        <div class="status-display" id="validation-status">
+            Validation results will appear here.
+        </div>
+    </div>
+
+    <div class="example">
+        <h3>Conditional Labels</h3>
+        <p class="example-description">Labels that change based on user selections and form context.</p>
+        
+        <div class="public-good-form-group">
+            <label class="public-good-label" for="account-type">Account type</label>
+            <select class="public-good-input" id="account-type" name="accountType">
+                <option value="">-- Please select --</option>
+                <option value="personal">Personal</option>
+                <option value="business">Business</option>
+                <option value="organization">Organization</option>
+            </select>
+        </div>
+
+        <div id="conditional-fields" class="hidden">
+            <div class="public-good-form-group">
+                <label class="public-good-label" id="entity-label" for="entity-name">Entity Name</label>
+                <input class="public-good-input" id="entity-name" name="entityName" type="text">
+            </div>
+
+            <div class="public-good-form-group">
+                <label class="public-good-label" id="id-label" for="entity-id">ID Number</label>
+                <input class="public-good-input" id="entity-id" name="entityId" type="text">
+            </div>
+        </div>
+    </div>
+
+    <div class="example">
+        <h3>Real-time Label Updates</h3>
+        <p class="example-description">Labels that update based on user input and validation state.</p>
+        
+        <div class="public-good-form-group">
+            <label class="public-good-label" id="character-count-label" for="limited-input">
+                Message (0/100 characters)
+            </label>
+            <textarea class="public-good-input" id="limited-input" name="message" rows="3" maxlength="100"></textarea>
+            <div id="message-validation" class="validation-message hidden"></div>
+        </div>
+
+        <div class="public-good-form-group">
+            <label class="public-good-label" id="strength-label" for="password-strength">
+                Password Strength: Not Set
+            </label>
+            <input class="public-good-input" id="password-strength" name="passwordStrength" type="password">
+            <div id="strength-validation" class="validation-message hidden"></div>
+        </div>
+    </div>
+
+    <div class="example">
+        <h3>Page Heading Labels</h3>
+        <p class="example-description">Dynamic page heading labels for single-question forms.</p>
+        
+        <div id="page-heading-demo">
+            <h1 class="public-good-label-wrapper">
+                <label class="public-good-label public-good-label--xl" id="page-heading-label" for="main-question">
+                    What is your question about?
+                </label>
+            </h1>
+            <select class="public-good-input" id="main-question" name="questionType">
+                <option value="">-- Please select --</option>
+                <option value="account">Account issues</option>
+                <option value="billing">Billing questions</option>
+                <option value="technical">Technical support</option>
+                <option value="general">General inquiry</option>
+            </select>
+        </div>
+
+        <div class="demo-controls">
+            <h4>Heading Controls</h4>
+            <button id="change-question">Change Question</button>
+            <button id="toggle-heading-size">Toggle Size (L/XL)</button>
+        </div>
+    </div>
+
+    <script type="module">
+        import { 
+            Label,
+            createLabel, 
+            createAndAssociateLabel,
+            validateLabelAssociation,
+            getAssociatedLabels,
+            associateLabelWithControl,
+            initializeLabels 
+        } from '../label.js';
+        
+        let dynamicLabelInstance = null;
+        let fieldCounter = 0;
+        
+        document.addEventListener('DOMContentLoaded', () => {
+            setupDynamicLabelDemo();
+            setupFormBuilderDemo();
+            setupValidationDemo();
+            setupConditionalLabelsDemo();
+            setupRealTimeLabelsDemo();
+            setupPageHeadingDemo();
+        });
+        
+        function setupDynamicLabelDemo() {
+            const labelElement = document.getElementById('dynamic-label');
+            const labelStatus = document.getElementById('label-status');
+            const labelTextInput = document.getElementById('label-text');
+            const labelSizeSelect = document.getElementById('label-size');
+            
+            dynamicLabelInstance = new Label(labelElement);
+            
+            document.getElementById('update-text').addEventListener('click', () => {
+                dynamicLabelInstance.updateText(labelTextInput.value);
+                updateLabelStatus();
+            });
+            
+            document.getElementById('update-html').addEventListener('click', () => {
+                const htmlContent = `<strong>${labelTextInput.value}</strong> <em>(updated)</em>`;
+                dynamicLabelInstance.updateHtml(htmlContent);
+                updateLabelStatus();
+            });
+            
+            document.getElementById('apply-size').addEventListener('click', () => {
+                const size = labelSizeSelect.value || null;
+                dynamicLabelInstance.setSize(size);
+                updateLabelStatus();
+            });
+            
+            document.getElementById('focus-control').addEventListener('click', () => {
+                const focused = dynamicLabelInstance.focusControl();
+                updateLabelStatus(`Focus control: ${focused ? 'Success' : 'Failed'}`);
+            });
+            
+            document.getElementById('hide-label').addEventListener('click', () => {
+                dynamicLabelInstance.hide();
+                updateLabelStatus();
+            });
+            
+            document.getElementById('show-label').addEventListener('click', () => {
+                dynamicLabelInstance.show();
+                updateLabelStatus();
+            });
+            
+            function updateLabelStatus(extraMessage = '') {
+                labelStatus.innerHTML = `
+                    <strong>Label Status:</strong><br>
+                    Text: "${dynamicLabelInstance.getText()}"<br>
+                    For: ${dynamicLabelInstance.getFor()}<br>
+                    Size: ${dynamicLabelInstance.getSize() || 'Default'}<br>
+                    Visible: ${dynamicLabelInstance.isVisible()}<br>
+                    ${extraMessage ? `Note: ${extraMessage}` : ''}
+                `;
+            }
+            
+            updateLabelStatus();
+        }
+        
+        function setupFormBuilderDemo() {
+            const formContainer = document.getElementById('generated-form');
+            const formStatus = document.getElementById('form-status');
+            const fieldTypeSelect = document.getElementById('field-type');
+            const fieldLabelInput = document.getElementById('field-label');
+            const fieldRequiredCheckbox = document.getElementById('field-required');
+            
+            document.getElementById('add-field').addEventListener('click', () => {
+                const fieldType = fieldTypeSelect.value;
+                const labelText = fieldLabelInput.value.trim();
+                const isRequired = fieldRequiredCheckbox.checked;
+                
+                if (!labelText) {
+                    updateFormStatus('Please enter a label text');
+                    return;
+                }
+                
+                fieldCounter++;
+                const fieldId = `field-${fieldCounter}`;
+                
+                // Create form group container
+                const formGroup = document.createElement('div');
+                formGroup.className = 'public-good-form-group';
+                
+                // Create label
+                const labelClasses = isRequired ? 'public-good-label--required' : '';
+                const label = createAndAssociateLabel(labelText, null, { 
+                    classes: labelClasses 
+                });
+                
+                // Create form control
+                let control;
+                switch (fieldType) {
+                    case 'textarea':
+                        control = document.createElement('textarea');
+                        control.className = 'public-good-input';
+                        control.rows = 3;
+                        break;
+                    case 'select':
+                        control = document.createElement('select');
+                        control.className = 'public-good-input';
+                        control.innerHTML = `
+                            <option value="">-- Please select --</option>
+                            <option value="option1">Option 1</option>
+                            <option value="option2">Option 2</option>
+                        `;
+                        break;
+                    case 'checkbox':
+                    case 'radio':
+                        control = document.createElement('input');
+                        control.type = fieldType;
+                        control.className = `public-good-${fieldType}`;
+                        break;
+                    default:
+                        control = document.createElement('input');
+                        control.type = fieldType;
+                        control.className = 'public-good-input';
+                }
+                
+                control.id = fieldId;
+                control.name = fieldId;
+                if (isRequired && fieldType !== 'checkbox' && fieldType !== 'radio') {
+                    control.required = true;
+                }
+                
+                // Associate label with control
+                label.setAttribute('for', fieldId);
+                
+                // Add to form group
+                formGroup.appendChild(label);
+                formGroup.appendChild(control);
+                
+                // Add to form
+                formContainer.appendChild(formGroup);
+                
+                // Clear inputs
+                fieldLabelInput.value = '';
+                fieldRequiredCheckbox.checked = false;
+                
+                updateFormStatus(`Added ${fieldType} field: "${labelText}"`);
+            });
+            
+            document.getElementById('clear-form').addEventListener('click', () => {
+                formContainer.innerHTML = '';
+                fieldCounter = 0;
+                updateFormStatus('Form cleared');
+            });
+            
+            document.getElementById('validate-associations').addEventListener('click', () => {
+                const controls = formContainer.querySelectorAll('input, select, textarea');
+                let validationResults = [];
+                
+                controls.forEach(control => {
+                    const validation = validateLabelAssociation(control);
+                    validationResults.push({
+                        id: control.id,
+                        validation
+                    });
+                });
+                
+                const issues = validationResults.filter(r => r.validation.warnings.length > 0);
+                updateFormStatus(`Validated ${controls.length} fields. Issues found: ${issues.length}`);
+            });
+            
+            function updateFormStatus(message) {
+                formStatus.textContent = message;
+            }
+        }
+        
+        function setupValidationDemo() {
+            const validationStatus = document.getElementById('validation-status');
+            
+            document.getElementById('validate-all').addEventListener('click', () => {
+                const form = document.getElementById('validation-form');
+                const controls = form.querySelectorAll('input, select, textarea');
+                const results = [];
+                
+                controls.forEach(control => {
+                    const validation = validateLabelAssociation(control);
+                    results.push({
+                        id: control.id || 'unnamed',
+                        name: control.name || 'unnamed',
+                        ...validation
+                    });
+                });
+                
+                displayValidationResults(results);
+            });
+            
+            document.getElementById('fix-associations').addEventListener('click', () => {
+                const form = document.getElementById('validation-form');
+                const controls = form.querySelectorAll('input, select, textarea');
+                let fixedCount = 0;
+                
+                controls.forEach(control => {
+                    const validation = validateLabelAssociation(control);
+                    
+                    if (!validation.hasLabel) {
+                        // Try to find a nearby label
+                        const nearbyLabel = control.previousElementSibling;
+                        if (nearbyLabel && nearbyLabel.tagName === 'LABEL') {
+                            if (!control.id) {
+                                control.id = `auto-${Date.now()}-${Math.random().toString(36).substr(2, 5)}`;
+                            }
+                            nearbyLabel.setAttribute('for', control.id);
+                            fixedCount++;
+                        }
+                    }
+                });
+                
+                validationStatus.innerHTML = `<strong>Auto-fix complete:</strong> Fixed ${fixedCount} association(s)`;
+            });
+            
+            function displayValidationResults(results) {
+                const html = results.map(result => {
+                    const issueClass = result.warnings.length > 0 ? 'error' : 'success';
+                    const status = result.warnings.length > 0 ? 'Issues Found' : 'Valid';
+                    
+                    return `
+                        <div style="margin-bottom: 1rem; padding: 0.5rem; border-radius: 4px; background: ${issueClass === 'error' ? '#f8d7da' : '#d4edda'};">
+                            <strong>${result.id} (${result.name}):</strong> ${status}<br>
+                            Labels: ${result.labelCount}<br>
+                            ${result.warnings.length > 0 ? `Issues: ${result.warnings.join(', ')}` : 'All good!'}
+                        </div>
+                    `;
+                }).join('');
+                
+                validationStatus.innerHTML = `<strong>Validation Results:</strong><br>${html}`;
+            }
+        }
+        
+        function setupConditionalLabelsDemo() {
+            const accountTypeSelect = document.getElementById('account-type');
+            const conditionalFields = document.getElementById('conditional-fields');
+            const entityLabel = document.getElementById('entity-label');
+            const idLabel = document.getElementById('id-label');
+            
+            const entityLabelInstance = new Label(entityLabel);
+            const idLabelInstance = new Label(idLabel);
+            
+            accountTypeSelect.addEventListener('change', () => {
+                const selectedType = accountTypeSelect.value;
+                
+                if (!selectedType) {
+                    conditionalFields.classList.add('hidden');
+                    return;
+                }
+                
+                conditionalFields.classList.remove('hidden');
+                
+                switch (selectedType) {
+                    case 'personal':
+                        entityLabelInstance.updateText('Full Name');
+                        idLabelInstance.updateText('National Insurance Number');
+                        break;
+                    case 'business':
+                        entityLabelInstance.updateText('Business Name');
+                        idLabelInstance.updateText('Company Registration Number');
+                        break;
+                    case 'organization':
+                        entityLabelInstance.updateText('Organization Name');
+                        idLabelInstance.updateText('Charity/Organization Number');
+                        break;
+                }
+            });
+        }
+        
+        function setupRealTimeLabelsDemo() {
+            const limitedInput = document.getElementById('limited-input');
+            const characterCountLabel = document.getElementById('character-count-label');
+            const messageValidation = document.getElementById('message-validation');
+            
+            const passwordStrength = document.getElementById('password-strength');
+            const strengthLabel = document.getElementById('strength-label');
+            const strengthValidation = document.getElementById('strength-validation');
+            
+            const countLabelInstance = new Label(characterCountLabel);
+            const strengthLabelInstance = new Label(strengthLabel);
+            
+            limitedInput.addEventListener('input', () => {
+                const length = limitedInput.value.length;
+                const maxLength = parseInt(limitedInput.maxLength);
+                
+                countLabelInstance.updateText(`Message (${length}/${maxLength} characters)`);
+                
+                if (length > maxLength * 0.9) {
+                    messageValidation.textContent = `Approaching limit: ${maxLength - length} characters remaining`;
+                    messageValidation.className = 'validation-message error';
+                    messageValidation.classList.remove('hidden');
+                } else if (length > 0) {
+                    messageValidation.textContent = `${maxLength - length} characters remaining`;
+                    messageValidation.className = 'validation-message success';
+                    messageValidation.classList.remove('hidden');
+                } else {
+                    messageValidation.classList.add('hidden');
+                }
+            });
+            
+            passwordStrength.addEventListener('input', () => {
+                const password = passwordStrength.value;
+                const strength = calculatePasswordStrength(password);
+                
+                strengthLabelInstance.updateText(`Password Strength: ${strength.label}`);
+                
+                if (password.length === 0) {
+                    strengthValidation.classList.add('hidden');
+                } else {
+                    strengthValidation.textContent = strength.feedback;
+                    strengthValidation.className = `validation-message ${strength.level}`;
+                    strengthValidation.classList.remove('hidden');
+                }
+            });
+            
+            function calculatePasswordStrength(password) {
+                if (password.length === 0) {
+                    return { level: 'error', label: 'Not Set', feedback: '' };
+                }
+                
+                let score = 0;
+                const checks = [
+                    { test: /.{8,}/, message: 'At least 8 characters' },
+                    { test: /[a-z]/, message: 'Lowercase letters' },
+                    { test: /[A-Z]/, message: 'Uppercase letters' },
+                    { test: /\d/, message: 'Numbers' },
+                    { test: /[^a-zA-Z\d]/, message: 'Special characters' }
+                ];
+                
+                const passed = checks.filter(check => check.test.test(password));
+                score = passed.length;
+                
+                const levels = ['Very Weak', 'Weak', 'Fair', 'Good', 'Strong'];
+                const level = score <= 1 ? 'error' : score <= 3 ? 'error' : 'success';
+                
+                return {
+                    level,
+                    label: levels[Math.min(score, 4)] || 'Very Weak',
+                    feedback: `Passed ${score}/5 requirements: ${passed.map(p => p.message).join(', ')}`
+                };
+            }
+        }
+        
+        function setupPageHeadingDemo() {
+            const pageHeadingLabel = document.getElementById('page-heading-label');
+            const headingInstance = new Label(pageHeadingLabel.parentElement);
+            
+            const questions = [
+                'What is your question about?',
+                'How can we help you today?',
+                'What would you like to know?',
+                'Which service do you need help with?'
+            ];
+            let currentQuestionIndex = 0;
+            
+            document.getElementById('change-question').addEventListener('click', () => {
+                currentQuestionIndex = (currentQuestionIndex + 1) % questions.length;
+                headingInstance.updateText(questions[currentQuestionIndex]);
+            });
+            
+            document.getElementById('toggle-heading-size').addEventListener('click', () => {
+                const currentSize = headingInstance.getSize();
+                const newSize = currentSize === 'xl' ? 'l' : 'xl';
+                headingInstance.setSize(newSize);
+            });
+        }
+        
+        // Initialize any labels with data attributes
+        const instances = initializeLabels();
+        console.log(`Initialized ${instances.length} label components`);
+    </script>
+</body>
+</html>

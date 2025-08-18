@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Error Summary - Basic Examples</title>
+    <link rel="stylesheet" href="../../../core/base.css">
+    <link rel="stylesheet" href="../error-summary.css">
+    <style>
+        body {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+        .example {
+            margin-bottom: 3rem;
+            padding: 2rem;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+        }
+        .example h3 {
+            margin-top: 0;
+            color: #0066cc;
+        }
+        .form-example {
+            margin-top: 2rem;
+            padding: 1rem;
+            background: #f8f9fa;
+            border-radius: 4px;
+        }
+        .public-good-form-group {
+            margin-bottom: 1.5rem;
+        }
+        .public-good-label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+        .public-good-input {
+            width: 100%;
+            max-width: 300px;
+            padding: 0.5rem;
+            border: 2px solid #ccc;
+            border-radius: 4px;
+        }
+        .public-good-input--error {
+            border-color: #d32f2f;
+        }
+        .public-good-error-message {
+            color: #d32f2f;
+            font-weight: bold;
+            margin-top: 0.25rem;
+        }
+        .public-good-button {
+            background: #0066cc;
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <h1>Error Summary Component - Basic Examples</h1>
+    
+    <div class="example">
+        <h3>Basic Error Summary</h3>
+        <p>Shows validation errors at the top of a form with links to the problematic fields.</p>
+        
+        <div class="public-good-error-summary" aria-labelledby="error-summary-title" role="alert" tabindex="-1" data-module="public-good-error-summary">
+            <h2 class="public-good-error-summary__title" id="error-summary-title">
+                There is a problem
+            </h2>
+            <div class="public-good-error-summary__body">
+                <ul class="public-good-list public-good-error-summary__list" role="list">
+                    <li>
+                        <a href="#name">Enter your full name</a>
+                    </li>
+                    <li>
+                        <a href="#email">Enter a valid email address</a>
+                    </li>
+                    <li>
+                        <a href="#phone">Enter your phone number</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="form-example">
+            <h4>Example Form with Errors</h4>
+            <form>
+                <div class="public-good-form-group">
+                    <label class="public-good-label" for="name">Full name</label>
+                    <input class="public-good-input public-good-input--error" id="name" name="name" type="text" value="">
+                    <div class="public-good-error-message">Enter your full name</div>
+                </div>
+
+                <div class="public-good-form-group">
+                    <label class="public-good-label" for="email">Email address</label>
+                    <input class="public-good-input public-good-input--error" id="email" name="email" type="email" value="invalid-email">
+                    <div class="public-good-error-message">Enter a valid email address</div>
+                </div>
+
+                <div class="public-good-form-group">
+                    <label class="public-good-label" for="phone">Phone number</label>
+                    <input class="public-good-input public-good-input--error" id="phone" name="phone" type="tel" value="">
+                    <div class="public-good-error-message">Enter your phone number</div>
+                </div>
+
+                <button class="public-good-button" type="submit">Submit</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="example">
+        <h3>Error Summary with Description</h3>
+        <p>Includes additional context or instructions for users.</p>
+        
+        <div class="public-good-error-summary" aria-labelledby="error-summary-title-2" role="alert" tabindex="-1">
+            <h2 class="public-good-error-summary__title" id="error-summary-title-2">
+                Please fix the following errors
+            </h2>
+            <div class="public-good-error-summary__body">
+                <p>All fields marked with an asterisk (*) are required and must be completed before you can continue.</p>
+                <ul class="public-good-list public-good-error-summary__list" role="list">
+                    <li>
+                        <a href="#required-field-1">Date of birth is required</a>
+                    </li>
+                    <li>
+                        <a href="#required-field-2">Select your preferred contact method</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="form-example">
+            <h4>Required Fields Form</h4>
+            <form>
+                <div class="public-good-form-group">
+                    <label class="public-good-label" for="required-field-1">Date of birth *</label>
+                    <input class="public-good-input public-good-input--error" id="required-field-1" name="dob" type="date" value="">
+                    <div class="public-good-error-message">Date of birth is required</div>
+                </div>
+
+                <div class="public-good-form-group">
+                    <fieldset>
+                        <legend class="public-good-label">Preferred contact method *</legend>
+                        <div style="margin-top: 0.5rem;">
+                            <input type="radio" id="contact-email" name="contact" value="email">
+                            <label for="contact-email" style="display: inline; margin-left: 0.5rem;">Email</label>
+                        </div>
+                        <div style="margin-top: 0.25rem;">
+                            <input type="radio" id="contact-phone" name="contact" value="phone">
+                            <label for="contact-phone" style="display: inline; margin-left: 0.5rem;">Phone</label>
+                        </div>
+                        <div class="public-good-error-message" id="required-field-2">Select your preferred contact method</div>
+                    </fieldset>
+                </div>
+
+                <button class="public-good-button" type="submit">Continue</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="example">
+        <h3>Single Error</h3>
+        <p>Error summary with just one validation error.</p>
+        
+        <div class="public-good-error-summary" aria-labelledby="error-summary-title-3" role="alert" tabindex="-1">
+            <h2 class="public-good-error-summary__title" id="error-summary-title-3">
+                There is a problem
+            </h2>
+            <div class="public-good-error-summary__body">
+                <ul class="public-good-list public-good-error-summary__list" role="list">
+                    <li>
+                        <a href="#password">Password must be at least 8 characters long</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="form-example">
+            <h4>Password Form</h4>
+            <form>
+                <div class="public-good-form-group">
+                    <label class="public-good-label" for="password">Password</label>
+                    <input class="public-good-input public-good-input--error" id="password" name="password" type="password" value="short">
+                    <div class="public-good-error-message">Password must be at least 8 characters long</div>
+                </div>
+
+                <button class="public-good-button" type="submit">Create Account</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="example">
+        <h3>Custom Title and Styling</h3>
+        <p>Error summary with custom messaging and additional CSS classes.</p>
+        
+        <div class="public-good-error-summary custom-error-summary" aria-labelledby="error-summary-title-4" role="alert" tabindex="-1">
+            <h2 class="public-good-error-summary__title" id="error-summary-title-4">
+                🚫 Validation Failed
+            </h2>
+            <div class="public-good-error-summary__body">
+                <p>Your application could not be processed due to the following issues:</p>
+                <ul class="public-good-list public-good-error-summary__list" role="list">
+                    <li>
+                        <a href="#application-type">Select an application type</a>
+                    </li>
+                    <li>
+                        <a href="#terms">You must accept the terms and conditions</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="form-example">
+            <h4>Application Form</h4>
+            <form>
+                <div class="public-good-form-group">
+                    <label class="public-good-label" for="application-type">Application type</label>
+                    <select class="public-good-input public-good-input--error" id="application-type" name="type">
+                        <option value="">-- Please select --</option>
+                        <option value="personal">Personal</option>
+                        <option value="business">Business</option>
+                    </select>
+                    <div class="public-good-error-message">Select an application type</div>
+                </div>
+
+                <div class="public-good-form-group">
+                    <div>
+                        <input type="checkbox" id="terms" name="terms" value="accepted">
+                        <label for="terms" style="display: inline; margin-left: 0.5rem;">I accept the terms and conditions</label>
+                    </div>
+                    <div class="public-good-error-message">You must accept the terms and conditions</div>
+                </div>
+
+                <button class="public-good-button" type="submit">Submit Application</button>
+            </form>
+        </div>
+    </div>
+
+    <script type="module">
+        import { initializeErrorSummaries } from '../error-summary.js';
+        
+        document.addEventListener('DOMContentLoaded', () => {
+            // Initialize all error summary components on the page
+            const instances = initializeErrorSummaries();
+            console.log(`Initialized ${instances.length} error summary components`);
+            
+            // Demo: Prevent form submission to keep examples working
+            const forms = document.querySelectorAll('form');
+            forms.forEach(form => {
+                form.addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    alert('Form submission prevented for demo purposes');
+                });
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,178 @@
+/**
+ * Back Link Component Styles
+ * Converted from NHS UK Design System back-link component
+ */
+
+/* Container wrapper */
+.public-good-back-link {
+  padding-top: var(--public-good-spacing-3);
+  line-height: 1;
+}
+
+@media (min-width: 768px) {
+  .public-good-back-link {
+    padding-top: var(--public-good-spacing-4);
+  }
+}
+
+/* Main link/button element */
+.public-good-back-link__link {
+  background: none;
+  border: 0;
+  cursor: pointer;
+  display: inline-block;
+  padding: 0 0 0 16px; /* Space for chevron icon */
+  position: relative;
+  font-size: var(--public-good-font-size-16);
+  font-weight: var(--public-good-font-weight-regular);
+  line-height: var(--public-good-line-height-normal);
+  color: var(--public-good-color-link);
+  text-decoration: underline;
+  min-height: 44px; /* Touch target size */
+  
+  /* Remove visited state for back links */
+  &:visited {
+    color: var(--public-good-color-link);
+  }
+}
+
+/* Hover state */
+.public-good-back-link__link:hover {
+  color: var(--public-good-color-link-hover);
+  text-decoration: underline;
+}
+
+/* Focus state */
+.public-good-back-link__link:focus {
+  outline: var(--public-good-spacing-focus-width) solid var(--public-good-color-focus);
+  outline-offset: var(--public-good-spacing-focus-offset);
+  color: var(--public-good-color-text);
+  background-color: var(--public-good-color-focus);
+  text-decoration: none;
+  box-shadow: 0 -2px var(--public-good-color-focus), 0 4px var(--public-good-color-text);
+}
+
+/* Active state */
+.public-good-back-link__link:active {
+  color: var(--public-good-color-link-active);
+}
+
+/* Chevron icon styles */
+.public-good-icon--chevron-left {
+  height: 24px;
+  width: 24px;
+  position: absolute;
+  left: -8px; /* Align with start of back link */
+  top: -1px; /* Align with middle of text */
+  fill: currentColor;
+}
+
+@media (min-width: 768px) {
+  .public-good-icon--chevron-left {
+    top: 0; /* Better alignment on larger screens */
+  }
+}
+
+/* Reverse variant for dark backgrounds */
+.public-good-back-link--reverse .public-good-back-link__link {
+  color: var(--public-good-color-text-inverse);
+}
+
+.public-good-back-link--reverse .public-good-back-link__link:visited {
+  color: var(--public-good-color-text-inverse);
+}
+
+.public-good-back-link--reverse .public-good-back-link__link:hover {
+  color: var(--public-good-color-text-inverse);
+  text-decoration: underline;
+}
+
+.public-good-back-link--reverse .public-good-back-link__link:focus {
+  color: var(--public-good-color-text);
+  background-color: var(--public-good-color-focus);
+}
+
+/* Button-specific styles */
+button.public-good-back-link__link {
+  font-family: inherit;
+  text-align: left;
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .public-good-back-link__link {
+    border: var(--public-good-border-width-medium) solid transparent;
+  }
+  
+  .public-good-back-link__link:focus {
+    border-color: var(--public-good-color-text);
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .public-good-back-link__link {
+    transition: none;
+  }
+}
+
+/* Print styles */
+@media print {
+  .public-good-back-link__link {
+    color: var(--public-good-color-text);
+    text-decoration: underline;
+  }
+  
+  .public-good-icon--chevron-left {
+    fill: var(--public-good-color-text);
+  }
+}
+
+/* RTL support */
+[dir="rtl"] .public-good-back-link__link {
+  padding-left: 0;
+  padding-right: 16px;
+}
+
+[dir="rtl"] .public-good-icon--chevron-left {
+  left: auto;
+  right: -8px;
+  transform: scaleX(-1); /* Flip chevron direction */
+}
+
+/* Disabled state for buttons */
+button.public-good-back-link__link:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  color: var(--public-good-color-text-secondary);
+}
+
+button.public-good-back-link__link:disabled:hover {
+  color: var(--public-good-color-text-secondary);
+  text-decoration: none;
+}
+
+/* Loading state */
+.public-good-back-link--loading .public-good-back-link__link {
+  cursor: wait;
+  opacity: 0.7;
+}
+
+/* Compact variant for smaller spaces */
+.public-good-back-link--compact {
+  padding-top: var(--public-good-spacing-2);
+}
+
+.public-good-back-link--compact .public-good-back-link__link {
+  font-size: var(--public-good-font-size-14);
+  min-height: 32px;
+}
+
+/* Small screen optimizations */
+@media (max-width: 480px) {
+  .public-good-back-link__link {
+    min-height: 48px; /* Larger touch targets on mobile */
+    padding-top: var(--public-good-spacing-2);
+    padding-bottom: var(--public-good-spacing-2);
+  }
+}

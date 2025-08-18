@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Error Summary - Advanced Examples</title>
+    <link rel="stylesheet" href="../../../core/base.css">
+    <link rel="stylesheet" href="../error-summary.css">
+    <style>
+        body {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 2rem;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+        .example {
+            margin-bottom: 3rem;
+            padding: 2rem;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+        }
+        .example h3 {
+            margin-top: 0;
+            color: #0066cc;
+        }
+        .demo-controls {
+            margin-top: 1rem;
+            padding: 1rem;
+            background: #f5f5f5;
+            border-radius: 4px;
+        }
+        .demo-controls button {
+            margin: 0.25rem;
+            padding: 0.5rem 1rem;
+            border: 1px solid #ccc;
+            background: white;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .demo-controls button:hover {
+            background: #f0f0f0;
+        }
+        .form-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-top: 1rem;
+        }
+        .public-good-form-group {
+            margin-bottom: 1.5rem;
+        }
+        .public-good-label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+        .public-good-input, .public-good-textarea, .public-good-select {
+            width: 100%;
+            padding: 0.5rem;
+            border: 2px solid #ccc;
+            border-radius: 4px;
+            font-family: inherit;
+        }
+        .public-good-input--error, .public-good-textarea--error, .public-good-select--error {
+            border-color: #d32f2f;
+        }
+        .public-good-error-message {
+            color: #d32f2f;
+            font-weight: bold;
+            margin-top: 0.25rem;
+            font-size: 0.9em;
+        }
+        .public-good-button {
+            background: #0066cc;
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+        .public-good-button--secondary {
+            background: #6c757d;
+        }
+        .validation-status {
+            margin-top: 1rem;
+            padding: 1rem;
+            background: #e8f4fd;
+            border-radius: 4px;
+            font-family: monospace;
+            font-size: 0.9em;
+        }
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <h1>Error Summary Component - Advanced Examples</h1>
+    
+    <div class="example">
+        <h3>Programmatic Error Management</h3>
+        <p>Demonstrates dynamic error management with JavaScript API.</p>
+        
+        <div id="dynamic-error-summary" class="hidden">
+            <!-- Error summary will be created programmatically -->
+        </div>
+
+        <div class="demo-controls">
+            <button id="create-error-summary">Create Error Summary</button>
+            <button id="add-name-error">Add Name Error</button>
+            <button id="add-email-error">Add Email Error</button>
+            <button id="remove-name-error">Remove Name Error</button>
+            <button id="clear-all-errors">Clear All Errors</button>
+            <button id="hide-summary">Hide Summary</button>
+            <button id="show-summary">Show Summary</button>
+        </div>
+
+        <div class="validation-status" id="status-display">
+            Click buttons above to see programmatic error management in action.
+        </div>
+    </div>
+
+    <div class="example">
+        <h3>Real-time Form Validation</h3>
+        <p>Error summary that updates as users interact with form fields.</p>
+        
+        <div id="realtime-error-summary" class="hidden">
+            <!-- Error summary will be populated dynamically -->
+        </div>
+
+        <div class="form-container">
+            <div>
+                <h4>Registration Form</h4>
+                <form id="registration-form">
+                    <div class="public-good-form-group">
+                        <label class="public-good-label" for="username">Username *</label>
+                        <input class="public-good-input" id="username" name="username" type="text" required minlength="3">
+                        <div class="public-good-error-message hidden" id="username-error"></div>
+                    </div>
+
+                    <div class="public-good-form-group">
+                        <label class="public-good-label" for="email-rt">Email address *</label>
+                        <input class="public-good-input" id="email-rt" name="email" type="email" required>
+                        <div class="public-good-error-message hidden" id="email-rt-error"></div>
+                    </div>
+
+                    <div class="public-good-form-group">
+                        <label class="public-good-label" for="password-rt">Password *</label>
+                        <input class="public-good-input" id="password-rt" name="password" type="password" required minlength="8">
+                        <div class="public-good-error-message hidden" id="password-rt-error"></div>
+                    </div>
+
+                    <div class="public-good-form-group">
+                        <label class="public-good-label" for="bio">Bio</label>
+                        <textarea class="public-good-textarea" id="bio" name="bio" rows="3" maxlength="200"></textarea>
+                        <div class="public-good-error-message hidden" id="bio-error"></div>
+                    </div>
+
+                    <div class="public-good-form-group">
+                        <label class="public-good-label" for="country">Country *</label>
+                        <select class="public-good-select" id="country" name="country" required>
+                            <option value="">-- Please select --</option>
+                            <option value="us">United States</option>
+                            <option value="uk">United Kingdom</option>
+                            <option value="ca">Canada</option>
+                            <option value="au">Australia</option>
+                        </select>
+                        <div class="public-good-error-message hidden" id="country-error"></div>
+                    </div>
+
+                    <div class="public-good-form-group">
+                        <div>
+                            <input type="checkbox" id="newsletter" name="newsletter">
+                            <label for="newsletter" style="display: inline; margin-left: 0.5rem;">Subscribe to newsletter</label>
+                        </div>
+                    </div>
+
+                    <div class="public-good-form-group">
+                        <div>
+                            <input type="checkbox" id="terms-rt" name="terms" required>
+                            <label for="terms-rt" style="display: inline; margin-left: 0.5rem;">I agree to the terms and conditions *</label>
+                        </div>
+                        <div class="public-good-error-message hidden" id="terms-rt-error"></div>
+                    </div>
+
+                    <button class="public-good-button" type="submit">Register</button>
+                    <button class="public-good-button public-good-button--secondary" type="button" id="validate-form">Validate Form</button>
+                </form>
+            </div>
+
+            <div>
+                <h4>Validation Status</h4>
+                <div class="validation-status" id="form-status">
+                    Form validation status will appear here as you interact with the form.
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="example">
+        <h3>Multi-step Form with Error Persistence</h3>
+        <p>Error summary that persists errors across form steps.</p>
+        
+        <div id="multistep-error-summary" class="hidden">
+            <!-- Error summary for multi-step form -->
+        </div>
+
+        <div class="demo-controls">
+            <button id="step-1" class="active-step">Step 1: Personal Info</button>
+            <button id="step-2">Step 2: Contact Details</button>
+            <button id="step-3">Step 3: Preferences</button>
+        </div>
+
+        <div id="step-1-form" class="step-form">
+            <h4>Step 1: Personal Information</h4>
+            <div class="public-good-form-group">
+                <label class="public-good-label" for="first-name">First name *</label>
+                <input class="public-good-input" id="first-name" name="firstName" type="text" required>
+                <div class="public-good-error-message hidden" id="first-name-error"></div>
+            </div>
+            <div class="public-good-form-group">
+                <label class="public-good-label" for="last-name">Last name *</label>
+                <input class="public-good-input" id="last-name" name="lastName" type="text" required>
+                <div class="public-good-error-message hidden" id="last-name-error"></div>
+            </div>
+            <button class="public-good-button" id="next-step-1">Next Step</button>
+        </div>
+
+        <div id="step-2-form" class="step-form hidden">
+            <h4>Step 2: Contact Details</h4>
+            <div class="public-good-form-group">
+                <label class="public-good-label" for="phone-ms">Phone number *</label>
+                <input class="public-good-input" id="phone-ms" name="phone" type="tel" required>
+                <div class="public-good-error-message hidden" id="phone-ms-error"></div>
+            </div>
+            <div class="public-good-form-group">
+                <label class="public-good-label" for="address">Address *</label>
+                <textarea class="public-good-textarea" id="address" name="address" rows="3" required></textarea>
+                <div class="public-good-error-message hidden" id="address-error"></div>
+            </div>
+            <button class="public-good-button public-good-button--secondary" id="prev-step-2">Previous</button>
+            <button class="public-good-button" id="next-step-2">Next Step</button>
+        </div>
+
+        <div id="step-3-form" class="step-form hidden">
+            <h4>Step 3: Preferences</h4>
+            <div class="public-good-form-group">
+                <fieldset>
+                    <legend class="public-good-label">Preferred contact method *</legend>
+                    <div style="margin-top: 0.5rem;">
+                        <input type="radio" id="contact-email-ms" name="contactMethod" value="email">
+                        <label for="contact-email-ms" style="display: inline; margin-left: 0.5rem;">Email</label>
+                    </div>
+                    <div style="margin-top: 0.25rem;">
+                        <input type="radio" id="contact-phone-ms" name="contactMethod" value="phone">
+                        <label for="contact-phone-ms" style="display: inline; margin-left: 0.5rem;">Phone</label>
+                    </div>
+                </fieldset>
+                <div class="public-good-error-message hidden" id="contact-method-error"></div>
+            </div>
+            <button class="public-good-button public-good-button--secondary" id="prev-step-3">Previous</button>
+            <button class="public-good-button" id="submit-form">Submit</button>
+        </div>
+    </div>
+
+    <script type="module">
+        import { 
+            ErrorSummary,
+            createErrorSummary, 
+            createSimpleErrorSummary,
+            createErrorSummaryFromForm,
+            initializeErrorSummaries 
+        } from '../error-summary.js';
+        
+        let dynamicErrorSummary = null;
+        let realtimeErrorSummary = null;
+        let multistepErrorSummary = null;
+        let multistepErrors = new Map();
+        let currentStep = 1;
+        
+        document.addEventListener('DOMContentLoaded', () => {
+            setupProgrammaticDemo();
+            setupRealtimeValidation();
+            setupMultistepForm();
+        });
+        
+        function setupProgrammaticDemo() {
+            const container = document.getElementById('dynamic-error-summary');
+            const statusDisplay = document.getElementById('status-display');
+            
+            document.getElementById('create-error-summary').addEventListener('click', () => {
+                const errorSummaryElement = createErrorSummary({
+                    titleText: 'Form Validation Errors',
+                    descriptionText: 'Please correct the following issues:',
+                    errorList: []
+                });
+                
+                container.innerHTML = '';
+                container.appendChild(errorSummaryElement);
+                container.classList.remove('hidden');
+                
+                dynamicErrorSummary = new ErrorSummary(errorSummaryElement, { disableAutoFocus: true });
+                
+                statusDisplay.textContent = 'Error summary created with 0 errors';
+            });
+            
+            document.getElementById('add-name-error').addEventListener('click', () => {
+                if (!dynamicErrorSummary) {
+                    statusDisplay.textContent = 'Create error summary first';
+                    return;
+                }
+                
+                dynamicErrorSummary.addError({
+                    text: 'Enter your full name',
+                    href: '#name-field'
+                });
+                
+                updateErrorCount();
+            });
+            
+            document.getElementById('add-email-error').addEventListener('click', () => {
+                if (!dynamicErrorSummary) {
+                    statusDisplay.textContent = 'Create error summary first';
+                    return;
+                }
+                
+                dynamicErrorSummary.addError({
+                    text: 'Enter a valid email address',
+                    href: '#email-field'
+                });
+                
+                updateErrorCount();
+            });
+            
+            document.getElementById('remove-name-error').addEventListener('click', () => {
+                if (!dynamicErrorSummary) {
+                    statusDisplay.textContent = 'Create error summary first';
+                    return;
+                }
+                
+                dynamicErrorSummary.removeError('#name-field');
+                updateErrorCount();
+            });
+            
+            document.getElementById('clear-all-errors').addEventListener('click', () => {
+                if (!dynamicErrorSummary) {
+                    statusDisplay.textContent = 'Create error summary first';
+                    return;
+                }
+                
+                dynamicErrorSummary.clearErrors();
+                updateErrorCount();
+            });
+            
+            document.getElementById('hide-summary').addEventListener('click', () => {
+                if (!dynamicErrorSummary) {
+                    statusDisplay.textContent = 'Create error summary first';
+                    return;
+                }
+                
+                dynamicErrorSummary.hide();
+                statusDisplay.textContent = `Error summary hidden (${dynamicErrorSummary.getErrorCount()} errors)`;
+            });
+            
+            document.getElementById('show-summary').addEventListener('click', () => {
+                if (!dynamicErrorSummary) {
+                    statusDisplay.textContent = 'Create error summary first';
+                    return;
+                }
+                
+                dynamicErrorSummary.show();
+                updateErrorCount();
+            });
+            
+            function updateErrorCount() {
+                const count = dynamicErrorSummary.getErrorCount();
+                statusDisplay.textContent = `Error summary has ${count} error(s)`;
+            }
+        }
+        
+        function setupRealtimeValidation() {
+            const form = document.getElementById('registration-form');
+            const container = document.getElementById('realtime-error-summary');
+            const statusDisplay = document.getElementById('form-status');
+            
+            // Create initial error summary
+            const errorSummaryElement = createErrorSummary({
+                titleText: 'Please fix the following errors',
+                errorList: []
+            });
+            
+            container.appendChild(errorSummaryElement);
+            realtimeErrorSummary = new ErrorSummary(errorSummaryElement, { disableAutoFocus: true });
+            
+            // Validation rules
+            const validationRules = {
+                username: (value) => {
+                    if (!value) return 'Username is required';
+                    if (value.length < 3) return 'Username must be at least 3 characters';
+                    return null;
+                },
+                'email-rt': (value) => {
+                    if (!value) return 'Email address is required';
+                    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) return 'Enter a valid email address';
+                    return null;
+                },
+                'password-rt': (value) => {
+                    if (!value) return 'Password is required';
+                    if (value.length < 8) return 'Password must be at least 8 characters';
+                    return null;
+                },
+                bio: (value) => {
+                    if (value && value.length > 200) return 'Bio must be 200 characters or less';
+                    return null;
+                },
+                country: (value) => {
+                    if (!value) return 'Please select a country';
+                    return null;
+                },
+                'terms-rt': (checked) => {
+                    if (!checked) return 'You must agree to the terms and conditions';
+                    return null;
+                }
+            };
+            
+            // Add real-time validation
+            Object.keys(validationRules).forEach(fieldId => {
+                const field = document.getElementById(fieldId);
+                if (!field) return;
+                
+                const validateField = () => {
+                    const value = field.type === 'checkbox' ? field.checked : field.value;
+                    const error = validationRules[fieldId](value);
+                    
+                    const errorElement = document.getElementById(`${fieldId}-error`);
+                    
+                    if (error) {
+                        field.classList.add(`public-good-${field.type === 'textarea' ? 'textarea' : field.tagName.toLowerCase()}--error`);
+                        errorElement.textContent = error;
+                        errorElement.classList.remove('hidden');
+                        
+                        // Add to error summary
+                        realtimeErrorSummary.removeError(`#${fieldId}`);
+                        realtimeErrorSummary.addError({
+                            text: error,
+                            href: `#${fieldId}`
+                        });
+                    } else {
+                        field.classList.remove(`public-good-${field.type === 'textarea' ? 'textarea' : field.tagName.toLowerCase()}--error`);
+                        errorElement.classList.add('hidden');
+                        
+                        // Remove from error summary
+                        realtimeErrorSummary.removeError(`#${fieldId}`);
+                    }
+                    
+                    updateRealtimeStatus();
+                };
+                
+                field.addEventListener('blur', validateField);
+                field.addEventListener('input', validateField);
+                if (field.type === 'checkbox') {
+                    field.addEventListener('change', validateField);
+                }
+            });
+            
+            // Form submission
+            form.addEventListener('submit', (e) => {
+                e.preventDefault();
+                
+                // Validate all fields
+                Object.keys(validationRules).forEach(fieldId => {
+                    const field = document.getElementById(fieldId);
+                    if (field) {
+                        field.dispatchEvent(new Event('blur'));
+                    }
+                });
+                
+                if (realtimeErrorSummary.getErrorCount() === 0) {
+                    alert('Form is valid! Registration would be processed.');
+                } else {
+                    realtimeErrorSummary.focus();
+                }
+            });
+            
+            // Manual validation button
+            document.getElementById('validate-form').addEventListener('click', () => {
+                Object.keys(validationRules).forEach(fieldId => {
+                    const field = document.getElementById(fieldId);
+                    if (field) {
+                        field.dispatchEvent(new Event('blur'));
+                    }
+                });
+            });
+            
+            function updateRealtimeStatus() {
+                const errorCount = realtimeErrorSummary.getErrorCount();
+                
+                if (errorCount === 0) {
+                    container.classList.add('hidden');
+                    statusDisplay.textContent = 'Form is valid ✓';
+                } else {
+                    container.classList.remove('hidden');
+                    statusDisplay.textContent = `Form has ${errorCount} validation error(s)`;
+                }
+            }
+            
+            // Initial status
+            updateRealtimeStatus();
+        }
+        
+        function setupMultistepForm() {
+            const container = document.getElementById('multistep-error-summary');
+            
+            // Create error summary for multi-step form
+            const errorSummaryElement = createErrorSummary({
+                titleText: 'Please complete all required fields',
+                errorList: []
+            });
+            
+            container.appendChild(errorSummaryElement);
+            multistepErrorSummary = new ErrorSummary(errorSummaryElement, { disableAutoFocus: true });
+            
+            // Step navigation
+            document.getElementById('step-1').addEventListener('click', () => showStep(1));
+            document.getElementById('step-2').addEventListener('click', () => showStep(2));
+            document.getElementById('step-3').addEventListener('click', () => showStep(3));
+            
+            // Step progression
+            document.getElementById('next-step-1').addEventListener('click', () => {
+                if (validateStep(1)) {
+                    showStep(2);
+                }
+            });
+            
+            document.getElementById('prev-step-2').addEventListener('click', () => showStep(1));
+            document.getElementById('next-step-2').addEventListener('click', () => {
+                if (validateStep(2)) {
+                    showStep(3);
+                }
+            });
+            
+            document.getElementById('prev-step-3').addEventListener('click', () => showStep(2));
+            document.getElementById('submit-form').addEventListener('click', () => {
+                if (validateStep(3)) {
+                    if (multistepErrors.size === 0) {
+                        alert('Multi-step form completed successfully!');
+                    } else {
+                        multistepErrorSummary.focus();
+                    }
+                }
+            });
+            
+            function showStep(step) {
+                // Hide all steps
+                document.querySelectorAll('.step-form').forEach(form => {
+                    form.classList.add('hidden');
+                });
+                
+                // Show current step
+                document.getElementById(`step-${step}-form`).classList.remove('hidden');
+                
+                // Update step buttons
+                document.querySelectorAll('[id^="step-"]').forEach(btn => {
+                    btn.classList.remove('active-step');
+                });
+                document.getElementById(`step-${step}`).classList.add('active-step');
+                
+                currentStep = step;
+                updateMultistepErrorSummary();
+            }
+            
+            function validateStep(step) {
+                const stepErrors = [];
+                
+                if (step === 1) {
+                    const firstName = document.getElementById('first-name').value;
+                    const lastName = document.getElementById('last-name').value;
+                    
+                    if (!firstName) {
+                        stepErrors.push({ field: 'first-name', error: 'First name is required' });
+                    }
+                    if (!lastName) {
+                        stepErrors.push({ field: 'last-name', error: 'Last name is required' });
+                    }
+                } else if (step === 2) {
+                    const phone = document.getElementById('phone-ms').value;
+                    const address = document.getElementById('address').value;
+                    
+                    if (!phone) {
+                        stepErrors.push({ field: 'phone-ms', error: 'Phone number is required' });
+                    }
+                    if (!address) {
+                        stepErrors.push({ field: 'address', error: 'Address is required' });
+                    }
+                } else if (step === 3) {
+                    const contactMethod = document.querySelector('input[name="contactMethod"]:checked');
+                    
+                    if (!contactMethod) {
+                        stepErrors.push({ field: 'contact-method', error: 'Please select a contact method' });
+                    }
+                }
+                
+                // Update errors for this step
+                multistepErrors.set(step, stepErrors);
+                updateMultistepErrorSummary();
+                
+                return stepErrors.length === 0;
+            }
+            
+            function updateMultistepErrorSummary() {
+                multistepErrorSummary.clearErrors();
+                
+                // Add all errors from all steps
+                multistepErrors.forEach((errors, step) => {
+                    errors.forEach(({ field, error }) => {
+                        multistepErrorSummary.addError({
+                            text: error,
+                            href: `#${field}`
+                        });
+                    });
+                });
+                
+                // Show/hide error summary
+                if (multistepErrorSummary.getErrorCount() > 0) {
+                    container.classList.remove('hidden');
+                } else {
+                    container.classList.add('hidden');
+                }
+            }
+            
+            // Initialize
+            showStep(1);
+        }
+    </script>
+</body>
+</html>
