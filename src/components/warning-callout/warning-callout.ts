@@ -28,6 +28,7 @@ export interface WarningCalloutConfig {
   onInteraction?: (type: string, element: HTMLElement) => void;
   customValidation?: (element: HTMLElement) => string[];
   announceToScreenReader?: boolean;
+  hiddenPrefix?: string;
 }
 
 /**
@@ -148,8 +149,8 @@ export class WarningCallout {
       hiddenSpan.textContent = hiddenPrefix;
       // Update visible text
       span.childNodes.forEach(node => {
-        if (node.nodeType === Node.TEXT_NODE || 
-            (node.nodeType === Node.ELEMENT_NODE && !node.classList?.contains('public-good-warning-callout-sr-only'))) {
+        if (node.nodeType === Node.TEXT_NODE ||
+            (node.nodeType === Node.ELEMENT_NODE && !(node as Element).classList?.contains('public-good-warning-callout-sr-only'))) {
           if (node.textContent) {
             node.textContent = heading;
           }
@@ -335,7 +336,7 @@ export function createWarningCallout(options: WarningCalloutOptions): HTMLElemen
     } else if (options.content) {
       // Split content into paragraphs if it contains line breaks
       const paragraphs = options.content.split('\n\n');
-      paragraphs.forEach((paragraph, index) => {
+      paragraphs.forEach((paragraph) => {
         if (paragraph.trim()) {
           const p = document.createElement('p');
           p.textContent = paragraph.trim();
@@ -433,8 +434,9 @@ export function validateWarningCalloutAccessibility(
       const prevHeadings = Array.from(document.querySelectorAll('h1, h2, h3, h4, h5, h6'))
         .filter(h => h.compareDocumentPosition(headingElement) & Node.DOCUMENT_POSITION_PRECEDING);
       
-      if (prevHeadings.length > 0) {
-        const prevLevel = parseInt(prevHeadings[prevHeadings.length - 1].tagName.charAt(1));
+      const lastPrevHeading = prevHeadings[prevHeadings.length - 1];
+      if (lastPrevHeading) {
+        const prevLevel = parseInt(lastPrevHeading.tagName.charAt(1));
         if (level > prevLevel + 1) {
           issues.push(`Warning callout ${calloutNumber} heading level h${level} skips levels (previous was h${prevLevel})`);
         }

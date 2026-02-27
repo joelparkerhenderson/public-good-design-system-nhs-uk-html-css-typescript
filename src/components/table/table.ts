@@ -178,12 +178,12 @@ export class Table {
         // Add event listeners
         const handleSort = () => this.sortByColumn(index);
         header.addEventListener('click', handleSort);
-        header.addEventListener('keydown', (event) => {
+        (header as HTMLElement).addEventListener('keydown', ((event: KeyboardEvent) => {
           if (event.key === 'Enter' || event.key === ' ') {
             event.preventDefault();
             handleSort();
           }
-        });
+        }) as EventListener);
       }
     });
   }
@@ -193,10 +193,9 @@ export class Table {
     if (!header) return;
 
     const columnKey = header.getAttribute('data-column') || columnIndex.toString();
-    const isNumeric = header.classList.contains('public-good-table__header--numeric');
-    
+
     let newDirection: 'asc' | 'desc' = 'asc';
-    
+
     if (this.currentSort?.column === columnKey) {
       newDirection = this.currentSort.direction === 'asc' ? 'desc' : 'asc';
     }
@@ -252,8 +251,8 @@ export class Table {
       
       if (!aCell || !bCell) return 0;
       
-      let aValue = aCell.textContent?.trim() || '';
-      let bValue = bCell.textContent?.trim() || '';
+      const aValue = aCell.textContent?.trim() || '';
+      const bValue = bCell.textContent?.trim() || '';
       
       if (isNumeric) {
         const aNum = parseFloat(aValue.replace(/[^0-9.-]/g, ''));
@@ -603,7 +602,6 @@ export function validateTableAccessibility(
     }
     
     // Check for proper header structure
-    const thead = table.querySelector('thead');
     const headers = table.querySelectorAll('th');
     
     if (headers.length === 0) {

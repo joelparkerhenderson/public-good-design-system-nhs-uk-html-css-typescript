@@ -328,11 +328,11 @@ export function createRadios(config: RadiosConfig): RadiosResult {
       if (insertIndex >= radiosContainer.children.length) {
         radiosContainer.appendChild(radioElement)
       } else {
-        radiosContainer.insertBefore(radioElement, radiosContainer.children[insertIndex])
+        radiosContainer.insertBefore(radioElement, radiosContainer.children[insertIndex] ?? null)
       }
       
       // Return the newly created input for reference
-      return radioInputs[radioInputs.length - 1]
+      return radioInputs[radioInputs.length - 1]!
     },
     
     removeOption(value: string): boolean {

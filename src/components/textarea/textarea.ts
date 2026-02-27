@@ -473,7 +473,7 @@ export function createTextarea(options: TextareaOptions): HTMLElement {
   if (options.disabled) textarea.disabled = true;
   if (options.readonly) textarea.readOnly = true;
   if (options.spellcheck !== undefined) textarea.spellcheck = options.spellcheck;
-  if (options.autocomplete) textarea.autocomplete = options.autocomplete;
+  if (options.autocomplete) textarea.autocomplete = options.autocomplete as AutoFill;
 
   // Set resize style
   if (options.resize) {

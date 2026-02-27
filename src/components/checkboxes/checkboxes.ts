@@ -98,12 +98,12 @@ export interface CheckboxesComponent {
 /**
  * Default configuration for checkboxes
  */
-const DEFAULT_CONFIG = {
+const DEFAULT_CONFIG: Partial<CheckboxesConfig> = {
   idPrefix: '',
   values: [],
   classes: '',
   attributes: {},
-  formGroup: {}
+  formGroup: { classes: '', attributes: {} }
 }
 
 /**
@@ -131,7 +131,7 @@ export const createCheckboxes = (config: CheckboxesConfig): CheckboxesComponent 
     describedBy = finalConfig.fieldset.describedBy
   }
 
-  let innerContent = ''
+  let _innerContent = ''
 
   // Create fieldset if provided
   if (finalConfig.fieldset) {
@@ -163,7 +163,7 @@ export const createCheckboxes = (config: CheckboxesConfig): CheckboxesComponent 
     }
 
     formGroup.appendChild(fieldsetElement)
-    innerContent = 'fieldset'
+    _innerContent = 'fieldset'
   }
 
   // Create hint if provided

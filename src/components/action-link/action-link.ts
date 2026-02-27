@@ -196,7 +196,7 @@ export const isValidUrl = (url: string): boolean => {
     return true
   } catch {
     // Check for relative URLs
-    return /^\/[^\/]|^#/.test(url)
+    return /^\/[^/]|^#/.test(url)
   }
 }
 

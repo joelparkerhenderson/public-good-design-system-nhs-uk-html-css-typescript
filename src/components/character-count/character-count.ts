@@ -6,8 +6,6 @@
  * with accessibility features and threshold-based visibility
  */
 
-import { DOMUtils } from '../../core/utils/dom-utils';
-import { ValidationUtils } from '../../core/utils/validation-utils';
 
 export interface CharacterCountConfig {
   maxlength?: number;
@@ -47,9 +45,9 @@ export interface CharacterCountOptions extends CharacterCountConfig {
 export class CharacterCount {
   private readonly element: HTMLElement;
   private readonly textField: HTMLTextAreaElement | HTMLInputElement;
-  private readonly visibleCountMessage: HTMLElement;
-  private readonly screenReaderCountMessage: HTMLElement;
-  private readonly config: Required<CharacterCountConfig>;
+  private visibleCountMessage!: HTMLElement;
+  private screenReaderCountMessage!: HTMLElement;
+  private readonly config: CharacterCountConfig & { threshold: number };
   private readonly maxLength: number;
   private lastInputTimestamp: number | null = null;
   private lastInputValue: string = '';

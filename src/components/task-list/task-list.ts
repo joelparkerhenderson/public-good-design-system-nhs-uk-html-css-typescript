@@ -200,14 +200,14 @@ export class TaskList {
     const list = this.element.querySelector('.public-good-task-list__list');
     if (!list) return;
     
-    list.addEventListener('dragstart', (event) => {
+    list.addEventListener('dragstart', ((event: DragEvent) => {
       const target = event.target as HTMLElement;
       const item = target.closest('.public-good-task-list__item') as HTMLElement;
       if (item) {
         event.dataTransfer?.setData('text/html', item.outerHTML);
         item.classList.add('public-good-task-list__item--dragging');
       }
-    });
+    }) as EventListener);
     
     list.addEventListener('dragover', (event) => {
       event.preventDefault();
@@ -291,6 +291,7 @@ export class TaskList {
     }
 
     const task = this.tasks[index];
+    if (!task) return;
     const oldStatus = task.status;
     task.status = status;
 
@@ -514,7 +515,7 @@ export function initializeTaskLists(scope: Document | HTMLElement = document): T
       const tasks: TaskOptions[] = [];
       const items = element.querySelectorAll('.public-good-task-list__item');
       
-      items.forEach((item, index) => {
+      items.forEach((item) => {
         const link = item.querySelector('.public-good-task-list__link') as HTMLElement;
         const nameEl = item.querySelector('.public-good-task-list__name');
         const hintEl = item.querySelector('.public-good-task-list__hint');

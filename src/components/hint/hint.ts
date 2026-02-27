@@ -14,10 +14,9 @@ export interface HintOptions {
   attributes?: Record<string, string>;
 }
 
-export interface HintConfig {
-  // No specific runtime configuration needed for hint component
-  // This interface exists for consistency with other components
-}
+// No specific runtime configuration needed for hint component
+// This type exists for consistency with other components
+export type HintConfig = Record<string, never>
 
 export class Hint {
   private readonly element: HTMLElement;

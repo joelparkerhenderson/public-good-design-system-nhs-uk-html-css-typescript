@@ -15,10 +15,9 @@ export interface LabelOptions {
   attributes?: Record<string, string>;
 }
 
-export interface LabelConfig {
-  // Configuration for label behavior
-  // Currently minimal but allows for future enhancements
-}
+// Configuration for label behavior
+// Currently minimal but allows for future enhancements
+export type LabelConfig = Record<string, never>
 
 export class Label {
   private readonly element: HTMLElement;

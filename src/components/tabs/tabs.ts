@@ -46,7 +46,7 @@ export interface TabsConfig {
 export class Tabs {
   private element: HTMLElement;
   private config: TabsConfig;
-  private tabList: HTMLElement;
+  private tabList!: HTMLElement;
   private tabs: HTMLElement[] = [];
   private panels: HTMLElement[] = [];
   private activeTabIndex: number = 0;
@@ -106,7 +106,6 @@ export class Tabs {
 
   private setupFromBasicStructure(): void {
     // Convert basic structure to proper tabs
-    const title = this.element.querySelector('.public-good-tabs__title');
     const list = this.element.querySelector('.public-good-tabs__list');
     
     if (list && !list.getAttribute('role')) {
@@ -346,8 +345,9 @@ export class Tabs {
     }
 
     // Trigger callback
-    if (this.config.onTabChange) {
-      this.config.onTabChange(index, this.tabs[index]);
+    const activeTab = this.tabs[index];
+    if (this.config.onTabChange && activeTab) {
+      this.config.onTabChange(index, activeTab);
     }
 
     // Emit custom event
@@ -356,7 +356,7 @@ export class Tabs {
         tabs: this,
         activeIndex: index,
         previousIndex: previousIndex,
-        activeTab: this.tabs[index],
+        activeTab: activeTab,
         activePanel: this.panels[index]
       }
     }));
@@ -370,7 +370,7 @@ export class Tabs {
 
   private isTabRemovable(index: number): boolean {
     const tab = this.tabs[index];
-    return tab && tab.hasAttribute('data-removable');
+    return !!tab && tab.hasAttribute('data-removable');
   }
 
   private removeTab(index: number): void {
@@ -380,6 +380,7 @@ export class Tabs {
 
     const tab = this.tabs[index];
     const panel = this.panels[index];
+    if (!tab) return;
     const listItem = tab.closest('.public-good-tabs__list-item');
 
     // Remove elements from DOM

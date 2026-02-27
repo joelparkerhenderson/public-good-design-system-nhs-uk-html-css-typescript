@@ -83,7 +83,7 @@ describe('Pagination Component E2E Tests', () => {
       
       document.body.appendChild(pagination.element)
 
-      let analyticsEvents: any[] = []
+      const analyticsEvents: any[] = []
       pagination.element.addEventListener('public-good:pagination:click', (event: any) => {
         analyticsEvents.push(event.detail)
       })

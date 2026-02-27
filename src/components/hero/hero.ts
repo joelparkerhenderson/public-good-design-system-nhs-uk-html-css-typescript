@@ -19,10 +19,9 @@ export interface HeroOptions {
   attributes?: Record<string, string>;
 }
 
-export interface HeroConfig {
-  // No specific runtime configuration needed for hero component
-  // This interface exists for consistency with other components
-}
+// No specific runtime configuration needed for hero component
+// This type exists for consistency with other components
+export type HeroConfig = Record<string, never>
 
 export class Hero {
   private readonly element: HTMLElement;

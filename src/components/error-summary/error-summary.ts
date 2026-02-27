@@ -60,11 +60,10 @@ export class ErrorSummary {
     if (fieldset) {
       const legends = fieldset.getElementsByTagName('legend');
       
-      if (legends.length > 0) {
-        const candidateLegend = legends[0];
-
+      const candidateLegend = legends[0];
+      if (candidateLegend) {
         // For radio and checkbox inputs, always use the legend
-        if (input instanceof HTMLInputElement && 
+        if (input instanceof HTMLInputElement &&
             (input.type === 'checkbox' || input.type === 'radio')) {
           return candidateLegend;
         }
@@ -265,7 +264,7 @@ export function createErrorSummary(options: ErrorSummaryOptions): HTMLElement {
     errorList,
     classes = '',
     attributes = {},
-    disableAutoFocus = false
+    disableAutoFocus: _disableAutoFocus = false
   } = options;
 
   // Create main container

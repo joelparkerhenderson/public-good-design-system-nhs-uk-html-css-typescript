@@ -230,9 +230,10 @@ export function createSummaryList(config: SummaryListConfig): SummaryListResult 
     },
     
     updateRow(index: number, row: Partial<SummaryListRow>): boolean {
-      if (index >= 0 && index < config.rows.length) {
-        const oldRow = { ...config.rows[index] }
-        config.rows[index] = { ...config.rows[index], ...row }
+      const existingRow = config.rows[index]
+      if (index >= 0 && index < config.rows.length && existingRow) {
+        const oldRow = { ...existingRow }
+        config.rows[index] = { ...existingRow, ...row }
         rebuildList()
         
         // Dispatch custom event
@@ -254,8 +255,9 @@ export function createSummaryList(config: SummaryListConfig): SummaryListResult 
     },
     
     getRow(index: number): SummaryListRow | null {
-      if (index >= 0 && index < config.rows.length) {
-        return { ...config.rows[index] }
+      const row = config.rows[index]
+      if (index >= 0 && index < config.rows.length && row) {
+        return { ...row }
       }
       return null
     },

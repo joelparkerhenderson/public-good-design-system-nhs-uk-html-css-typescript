@@ -572,7 +572,7 @@ describe('Fieldset Component', () => {
 
       // Set initial content
       fieldset.setContent('<p>Initial content</p>')
-      let contentDiv = fieldset.element.querySelector('.public-good-fieldset__content')
+      const contentDiv = fieldset.element.querySelector('.public-good-fieldset__content')
       expect(contentDiv?.innerHTML).toBe('<p>Initial content</p>')
 
       // Add more content
@@ -590,7 +590,7 @@ describe('Fieldset Component', () => {
       })
 
       fieldset.addContent('<p>First</p>')
-      let contentDiv = fieldset.element.querySelector('.public-good-fieldset__content')
+      const contentDiv = fieldset.element.querySelector('.public-good-fieldset__content')
       expect(contentDiv).toBeTruthy()
 
       fieldset.setContent('<p>Reset</p>')

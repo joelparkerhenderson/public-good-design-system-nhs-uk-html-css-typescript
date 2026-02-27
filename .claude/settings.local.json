@@ -1,0 +1,18 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm run test:*)",
+      "Bash(npm run build:*)",
+      "Bash(npm run lint:*)",
+      "Bash(npm run type-check:*)",
+      "Bash(git -C /Users/jph/git/joelparkerhenderson/public-good-design-system-nhs-uk-html-css-typescript log --oneline)",
+      "Bash(wc:*)",
+      "Bash(du:*)",
+      "Bash(npx tsc:*)",
+      "Bash(pnpm add:*)",
+      "Bash(npx eslint:*)",
+      "Bash(pnpm build:*)",
+      "Bash(pnpm lint:*)"
+    ]
+  }
+}

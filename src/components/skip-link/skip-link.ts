@@ -73,7 +73,7 @@ export class SkipLink {
     const href = this.element.getAttribute('href');
     if (href && href.startsWith('#')) {
       const targetId = href.substring(1);
-      this.targetElement = document.getElementById(targetId);
+      this.targetElement = document.getElementById(targetId) ?? undefined;
     }
   }
 
@@ -88,7 +88,7 @@ export class SkipLink {
     if (this.targetElement) {
       // Scroll to target with configured behavior
       this.targetElement.scrollIntoView({
-        behavior: this.config.scrollBehavior,
+        behavior: this.config.scrollBehavior ?? 'smooth',
         block: 'start'
       });
 
@@ -127,7 +127,7 @@ export class SkipLink {
     if (!this.targetElement) return;
 
     // Make target focusable if it isn't already
-    let originalTabIndex = this.targetElement.getAttribute('tabindex');
+    const originalTabIndex = this.targetElement.getAttribute('tabindex');
     let shouldRestoreTabIndex = false;
 
     if (originalTabIndex === null && this.targetElement.tabIndex < 0) {
